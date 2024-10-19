@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <!-- <script type="text/javascript" src="../js/comcode/com_head.js"></script> -->
+    <script src="../js/comcode/com_head.js"></script>
+    <title>望关 - WangGuan Sociology</title>
+    <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
+</head>
+<body>
+    <script>
+        if(localStorage.getItem('wgsoc-admission') == null){
+            localStorage.setItem('wgsoc-admission','0000000000')
+        }
+    </script>
+    <script>
+        function getParams(key) {
+            var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        };
+        var mode = 1;
+        if(localStorage.getItem("wgsoc-mode") != null){mode = parseInt(localStorage.getItem("wgsoc-mode"))};
+    </script>
+    <script type="text/javascript" src="../js/global_header.js"></script>
+    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+    <!-- <div id="headimg" style="float: inline-start;width: 100%;height:width*80%;z-index: -1;"><img src="../img/headimg.jpg" alt="headimg" style="width:100%;"></div> -->
+    <!--主体-->
+    <div id="headpic" class="headpic">
+        <script>
+            var pics = [
+            // "https://i.postimg.cc/63C6HRGL/headp1.jpg",
+            // "https://i.postimg.cc/4yZfjd6C/headp2.jpg",
+            // "https://i.postimg.cc/FsrFZYF3/headp3.jpg",
+            // "https://i.postimg.cc/3Jt8b3W6/headp4.jpg",
+            // "https://i.postimg.cc/wMVqzp21/headp5.jpg",
+            // "https://i.postimg.cc/DfdyLrh7/headp6.jpg",
+            "https://i.imgloc.com/2022/12/07/fVTsV.jpeg",
+            "https://i.imgloc.com/2022/12/07/fV1fd.jpeg",
+            "https://i.imgloc.com/2022/12/07/fVQ8b.jpeg",
+            "https://i.imgloc.com/2022/12/07/fVYFq.jpeg",
+            "https://i.imgloc.com/2022/12/07/fVqYz.jpeg",
+            "https://i.imgloc.com/2022/12/07/ffZww.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpP1d.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpp03.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpXJ5.jpeg",
+            "https://i.imgloc.com/2022/12/08/fp6OQ.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpFzE.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpG1C.jpeg"
+                // "../img/headp1.jpg",
+                // "../img/headp2.jpg",
+                // "../img/headp3.jpg",
+                // "../img/headp4.jpg",
+                // "../img/headp5.jpeg",
+                // "../img/headp6.jpeg"
+            ]
+            var intros = [
+                "我们今天的家将是马德里",
+                "国际主义",
+                "阿芙乐尔的炮声终会再次响起",
+                "雪原，冰河流淌其上",
+                "国际妇女的解放必胜",
+                "保卫和平和革命！",
+                "两种宇宙观；矛盾的普遍性；矛盾的特殊性；主要的矛盾和主要的矛盾方面；矛盾诸方面的同一性和斗争性；对抗在矛盾中的地位。————毛泽东",
+                "你是为了吃饭而生存，还是为了生存而吃饭呢? ————苏格拉底",
+                "理性精神的王国永存",
+                "当我们一提到本质时，我们便将本质与存在加以区别，而认存在为直接的东西，与本质比较看来，只是一种假象。但这种假象并非空无所有，完全无物，而是一种被扬弃的存在。本质的观点是反思的观点......哲学的任务或目的在于认识事物的本质，不应当让事物停留在它的直接性里，而须指出它是以别的事物为中介或根据的。————黑格尔",
+                "帝国主义是资本主义的最高阶段————列宁",
+                "砸碎铁链"
+            ]
+            xtype = Math.floor(Math.random()*(pics.length-1));
+            document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
+        </script>
+    </div>
+    <div class="headpic-cover">
+        <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
+            <h1 style="font-family: 'Fredericka-tg', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:red;display: inline;">W</div>angGuan Sociology</h1>
+            <h5 style="font-family: 'Fredericka-tg', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:red;display: inline;">A</div> Web Designed for Various Philosophy & Sociology</h5>
+        </div>
+        <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
+            <i><script>
+                document.write(intros[xtype]);
+            </script></i>
+        </div>
+        <div style="text-align: left;padding: 10px 10px 20px 20px;color: #ffffffb6;height:auto;background-color: #0000006c;border-radius: 15px;position:absolute;left: 20px;top: 500px;">
+            <div style="text-align: center;width: 100%;height:100%;border-radius: 10px;border-color: azure;">
+                <a href="https://imgloc.com/" style="color:#ffffff">图床=></a>
+            </div>
+        </div>
+    </div>
+    <div class="big-container" id="particles-js">  
+        <article class="article">
+            <br>
+            <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: #ff00006d;border-radius: 10px;margin: 0 auto;">
+                <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: #ff000090;">WangGuan Sociology</p>
+            </div>
+            <!-- <div style="width: 120px; height:auto;margin: 0 auto;background-color: rgb(255, 113, 113);border-radius: 10px;">
+                <h3 style="text-align: center;color: #ffffff;">首页</h3>
+            </div> -->
+            <div class="right-holder">
+                <!--网页介绍-->
+                <div class="column-container">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">网站介绍</a></span>
+                        </li>
+                        <li class="person-img-li" style="text-align: center;">
+                            <img alt="logo" id="person-img"
+                                src="../img/user.jpeg">
+                        </li>
+                        <div style="text-align: center;">
+                            <script src="../js/comcode/com_artmenu.js"></script>
+                            <div style="border-right: rgb(135, 135, 135) 1px solid;height: 45px;width: 70px;margin: 0 auto;display: inline-block;">
+                                <p style="text-align: center;color: rgb(135, 135, 135);font-size: x-large;"><script>document.write(count_tags('articles'));</script></p>
+                                <p style="text-align: center;color: rgb(135, 135, 135);font-size: small;">文章</p>
+                            </div>
+                            <div style="border-right: rgb(135, 135, 135) 1px solid;height: 45px;width: 70px;margin: 0 auto;display: inline-block;">
+                                <p style="text-align: center;color: rgb(135, 135, 135);font-size: x-large;"><script>document.write(count_tags('categories'));</script></p>
+                                <p style="text-align: center;color: rgb(135, 135, 135);font-size: small;">分类</p>
+                            </div>
+                            <div style="height: 60px;width: 70px;margin: 0 auto;display: inline-block;">
+                                <p style="text-align: center;color: rgb(135, 135, 135);font-size: x-large;"><script>document.write(count_tags('authors'));</script></p>
+                                <p style="text-align: center;color: rgb(135, 135, 135);font-size: small;">著者</p>
+                            </div>
+                        </div>
+                        <!-- <li class="person-intro-detail gradient-text" style="text-align: center;">
+                            <h1>WangGuan Sociology</h1>
+                        </li> -->
+                        <li class="person-intro-detail" style="text-align: center;">
+                            <h5>
+                                一个记录学习和思考的社科哲学小站<br>
+                            </h5>
+                            <br><h5>Builder：所有参与望关建设的同学们</h5>
+                        </li>
+                        <li class="person-intro-detail" style="text-align: center;">
+                            <h5>Based on：Github Pages;Go+Vue</h5>
+                        </li>
+                        <!-- <li class="person-intro-detail">
+                            <a href="./inside.index.html">里站[Inside]</a>
+                        </li> -->
+                        <div class="icon-center">
+                            <span class="icon-box"><a id="github-icon" target="_blank" href="https://github.com/arbeiterklassen"class="foot-icon"></a>
+                            </span>
+                            <span class="icon-box"><a id="qq-icon" target="_blank"href="tencent://Message/?Uin=1038171180&amp;websiteName=q-zone.qq.com&amp;Menu=yes"class="foot-icon"></a>
+                            </span>
+                            <span class="icon-box"><a id="bili-icon" target="_blank" href="https://space.bilibili.com/353804830"class="foot-icon"></a>
+                            </span>
+                        </div>
+                    </ul>
+                </div>
+                <!--投稿须知-->
+                <div class="column-container">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">投稿须知</a></span>
+                        </li>
+                        <li class="person-intro-detail">
+                            <strong>
+                                1.年龄不限。请在文章结尾投上你的网络昵称&截止日期（不要使用真名）<br>
+                                2.对各类社会科学/哲学理论有较充分的了解。需要有一定的历史了解（像康德理性主义之类的探讨都是可以的）<br>
+                                3.主题明确，观点犀利，逻辑清晰，可以是分段论，字数不限（一般还是大于1000字），但是内容不要太水。<br>
+                                4,文本格式可以是：DOC，DOCX，TXT，PDF，PPT<br>
+                                5.文章结构可以是：<br>
+                                标题-导言（可写可不写）-正文（可分段分层）-结束语-注释（可写可不写）<br>
+                                6.当然，写诗也是可以的（文笔优美当然更好）<br>
+                                7.如果是大于5000字的论文形式，建议转成PDF形式，方便上传。
+                                8.请将文章的文件格式投稿到邮箱 arbeiterklassen@163.com (不接受其他方式)<br>
+                            </strong>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column-container" style="width: 100%;float: left;">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;"s>宣传栏</a></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column-container">
+                    <ul class="column_box" id="like-box">
+                        <img src="https://i.imgloc.com/2022/12/17/4m3py.md.jpeg" alt="Thereader" style="width:100%">
+                        <li class="person-intro-detail">
+                            <h2 style="text-align:center">为哲学和哲学之学习精神供以神圣的空间</h2>
+                        </li>
+                        <li class="person-intro-detail">
+                            <h5 style="text-align:center">Bei der Philosophie selbst und beim Lernen geht es nicht nur um Bücher und Wissen, sondern auch um die Möglichkeit der Kommunikation und den Raum für Gemeinschaft.</h5>
+                            <h6 style="text-align:center">哲学本身和学习不仅仅关乎书本和知识，更在于交流和共进之空间的可能性</h6>
+                        </li>
+                        <br>
+                    </ul>
+                </div>
+<!-- https://imgloc.com/i/4m3py -->
+                <div class="column-container">
+                    <ul class="column_box" id="like-box">
+                        <li class="person-intro-detail">
+                            <h5 style="text-align:center">我也不知道这里要写什么但总之是就放点东西吧~</h5>
+                        </li>
+                        <br>
+                    </ul>
+                </div>
+            </div>
+            <div class="left-holder">
+                <div class="column-container-wider">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">置顶</a></span>
+                        </li>
+                        <li class="person-intro-detail">
+                            <strong></strong>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 置顶 -->
+                <div id="article-holder" style="width: 100%; float: left">
+                    <div class="article-box">
+                        <div class="ab-content">
+                            <a href="../articles/000007.html" class="article-img-box">
+                                <img class="lazy-image article-img" data-src="https://i.postimg.cc/50T0J5fV/philosophy1.jpg" alt="" src="https://i.postimg.cc/50T0J5fV/philosophy1.jpg">
+                            </a>
+                            <div class="article-title">
+                                <a href="../articles/000007.html">如何哲学地学习哲学</a>
+                            </div>
+                            <div class="article-detail-box c-666"></div>
+                            <span class="article-tail-box">
+                                <span class="article-date c-999">2023-04-16</span>
+                                <span class="article-author one-line-overflow c-999">ArbeiterKlassen</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 分类 -->
+                <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+                <div class="column-container-wider">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">分类</a></span>
+                        </li>
+                        <li class="person-intro-detail">
+                            <strong></strong>
+                        </li>
+                    </ul>
+                </div>
+                <link rel="stylesheet" href="../css/font.css">
+                <div id="article-holder" style="width: 100%; float: left">
+                    <div id="categories-holder">
+                        <div class="row">
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2023/05/07/iazxfA.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 100px;">
+                                            <h1>Zeitgenössische Gesellschaft</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>当代社会</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">Society</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;" href="javascript:void(0)" onclick="{window.location.href='./categories.html?cate=1'}"> More</a></div>
+                                            <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                                <script>print_authorlist(1)</script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2022/12/17/4m3py.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 100px;">
+                                            <h1>Lecture et apprentissage</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>望关读书会</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">Lecture</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;" href="javascript:void(0)" onclick="{window.location.href='./categories.html?cate=2'}"> More</a></div>
+                                            <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                                <script>print_authorlist(2);</script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2023/05/06/iaERqE.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 100px;">
+                                            <h1>Philosophie Française</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>法兰西哲学</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">Française</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;" href="javascript:void(0)" onclick="{window.location.href='./categories.html?cate=3'}"> More</a></div>
+                                            <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                                <script>print_authorlist(3);</script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2023/05/06/iaE7vc.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 100px;">
+                                            <h1>Filosofia italiana</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>意大利哲学</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">Italiana</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;" href="javascript:void(0)" onclick="{window.location.href='./categories.html?cate=4'}"> More</a></div>
+                                            <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                                <script>print_authorlist(4);</script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2023/05/06/iaE8vZ.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 100px;">
+                                            <h1>Deutsche Philosophie</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>德意志哲学</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">Deutsche</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;" href="javascript:void(0)" onclick="{window.location.href='./categories.html?cate=5'}"> More</a></div>
+                                            <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                                <script>print_authorlist(5);</script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2023/05/06/iaEp7P.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 100px;">
+                                            <h1>Philosophie grecque</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>古希腊哲学</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">Grecque</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;" href="javascript:void(0)" onclick="{window.location.href='./categories.html?cate=6'}"> More</a></div>
+                                        </div>
+                                        <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                            <script>print_authorlist(6);</script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2023/05/06/iaE3GQ.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 100px;">
+                                            <h1>Philosophie russe</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>苏东-俄罗斯哲学</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">Russe</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;" href="javascript:void(0)" onclick="{window.location.href='./categories.html?cate=7'}"> More</a></div>
+                                        </div>
+                                        <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                            <script>print_authorlist(7);</script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2023/05/06/iaezJ5.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 100px;">
+                                            <h1>Nyugati marxizmus</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>西方马克思主义</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">W.marx</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;" href="javascript:void(0)" onclick="{window.location.href='./categories.html?cate=8'}"> More</a></div>
+                                            <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                                <script>print_authorlist(8);</script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2022/12/08/fp6OQ.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 100px;">
+                                            <h1>Andere Typen</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>其他哲学</h1>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">Andere</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;" href="javascript:void(0)" onclick="{window.location.href='./categories.html?cate=9'}"> More</a></div>
+                                        </div>
+                                        <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                            <script>print_authorlist(9);</script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1-of-3">
+                                <div class="card">
+                                    <div class="card__side card__side--front-6" style="background-image: url('https://i.imgloc.com/2022/12/07/fVYFq.md.jpeg');">
+                                        <div style="text-align: center;font-family:Fredericka-tg;color: rgb(255, 255, 255);font-size: middle;line-height: 90px;">
+                                            <h1>Kommen Sie zu uns!</h1>
+                                        </div>
+                                        <div style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);font-size: small;font-weight: 100;">
+                                            <h1>加入望关！</h1>
+                                            <h6>理论|读书|讨论|开发</h6>
+                                            <h6>QQ: 578299151</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card__side card__side--back card__side--back-6">
+                                        <div style="width: 100px;height: 30px;left:-10px" id="signbox">
+                                            <div style="background-color: rgba(255, 91, 146, 0.762);width:100px;height:30px;position: absolute;display:grid;">
+                                                <h1 style="text-align: center;font-family:Kanji-kai-2;color: rgb(255, 255, 255);line-height: 28px;">Gruppe</h1>
+                                            </div>
+                                            <div style="width:0px;height:0px;position: absolute;left: 100px;border-top: 30px solid rgba(255, 91, 146, 0.762);border-right: 30px solid transparent;"></div>
+                                            <div style="position: absolute;width:90px;height: 60px;background:linear-gradient(-45deg, #64b5f6, #f403d1);bottom: -10px;right: -10px;border-radius: 10px;"><a style="text-align: center;line-height: 45px;font-size: large;color: #fff;"> More</a></div>
+                                        </div>
+                                        <div style="position: absolute;width: 90%;height: auto;top:45px;">
+                                            <div style="width: 48%;height:35px;margin: 0 auto;display:inline-block;text-align:center">
+                                                <script>
+                                                    document.write('<a style="color: rgb(237,118,137,1);font-size: large;" href="../inner/index.html?mode='+mode+'">特别文档</a>')
+                                                </script>
+                                            </div>
+                                        </div>        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column-container-wider">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">概览</a></span>
+                        </li>
+                        <li class="person-intro-detail">
+                            <strong></strong>
+                        </li>
+                    </ul>
+                </div>
+                <div id="article-holder" style="width: 100%; float: left">
+                    <div id="celebrates-container"></div>
+                    <script type="text/javascript" src="../js/celebrate.js"></script>
+                    <div id="pages-container"></div>
+                    <div id="chooser-container">
+                        <script>
+                            function getParams(key) {
+                                var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                                var r = window.location.search.substr(1).match(reg);
+                                if (r != null) {
+                                    return unescape(r[2]);
+                                }
+                                return null;
+                            };
+                            var page = 1;
+                            if(getParams("page") != null){page = getParams("page")};
+                            function page_chooser(mode){
+                                document.write('<div class="article-box" style="width:auto;height:32px;background-color:rgba(180,180,180,0)" id="choosen-container">')
+                                document.write('    <div class="ab-content" style="background-color:rgba(180,180,180,0)">')
+                                document.write('        <div style="height:32px;width:auto;border-radius:4px;margin: 0 auto;float:left;text-align:center;font-size:18px;color: #ff000091;background-color:#ffffff;"><strong> '+count+" Par "+pages + " Pag "+' </strong></div>')
+                                for(var i = 1;i<=pages;i++)document.write('<div class="choosen-box">'+'<a style="color:white" href="./index.html?mode='+mode+'&page='+i+'">'+i+'</a></div>')
+                                document.write('    </div>')
+                                document.write('</div>')
+                            };
+                            print_page(page,mode);
+                            page_chooser(mode);
+                        </script>
+                    </div>
+                    <!-- <button type="button" style="color:white;" onclick="{document.getElementById('pages-container').innerHTML='<script>clean_page();print_page(2)</script>'}">2</button> -->
+                </div>
+                <div class="column-container-wider">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;font-size: x-large;">Contact</a></span>
+                        </li>
+                        <br>
+                        <div id="contact-container" style="width: 93%;height:auto; border-width: 1px; border-style:dashed; border-color:#969696;border-radius: 5px;margin: 0 auto;">
+                            <div id="sub-contact-container" style="top: 10px;width: 92%;height: auto;color: #4e4e4e;text-align: left;">
+                                <li class="person-intro-detail">
+                                    <h3 style="text-align: left;">望关 Email: arbeiterklassen@163.com</h3>
+                                    <h3 style="text-align: left;">GitHub: ArbeiterKlassen</h3>
+                                    <h3 style="text-align: left;">望关内容创作组QQ: 578299151</h3>
+                                    <!-- <h3 style="text-align: left;">BiliBili: ArbeiterKlassen</h3> -->
+                                </li>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </div>
+    <!--主题-->>
+    <div>
+        <script>
+            if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0)" onclick="pagereload(2)" style="font-size:28px">✨</a></div>')
+            if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0)" onclick="pagereload(1)" style="font-size:28px">🔆</a></div>')
+        </script>
+    </div>
+    <!--尾部-->
+    <script type="text/javascript" src="../js/comcode/footer.js"></script>
+    <script type="text/javascript" defer>
+        // 图片懒加载
+        const lazyImage = new LazyImage('.lazy-image');
+    </script>
+</body>
+</html>

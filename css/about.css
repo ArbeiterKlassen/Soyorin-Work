@@ -1,0 +1,14 @@
+.about .about_title{
+    text-align: center;
+    display: block;
+    font-size:x-large;
+    color:#4e4e4e;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.about .about_line{
+    color: #4e4e4e;
+    text-align: left;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

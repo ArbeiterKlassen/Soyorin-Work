@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <script type="text/javascript" src="../js/comcode/com_head.js"></script>
+    <title>WGSOC__特别文档</title>
+    <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
+</head>
+
+<body>
+    <script type="text/javascript" src="../js/global_header.js"></script>
+    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+    <!--主体-->
+    <script>
+        function getParams(key) {
+                var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    return unescape(r[2]);
+                }
+                return null;
+            };
+            var mode = 1;
+        if(localStorage.getItem("wgsoc-mode") != null){mode = parseInt(localStorage.getItem("wgsoc-mode"))};
+    </script>
+    <div class="big-container">
+        <article class="article">
+            <div style="width: 120px; height:auto;background-color: rgb(222, 0, 0);border-radius: 10px;">
+                <h3 style="text-align: center;color: #ffffff;">问卷</h3>
+            </div>
+            <ul class="link-box about">
+                <div id="changingpage">
+                    <h1 class="about_line" style="text-align: center;">您接下来将看到10个题目</h1>
+                    <h3 class="about_line" style="text-align: center;">Es folgen 10 Fragen</h3>
+                    <h3 class="about_line" style="text-align: center;">You will see 10 questions next</h3>
+                    <li>
+                        <span class="description">
+                            特别文档页的浏览需要保证浏览者质量，防止恶意利用。
+                            为了确保您没有恶意访问本网站，防止某些文章或资源被恶意转载或传播，造成不可控问题，我们创建了一个测试来检验您是否有资格浏览这些页面。
+                            <br>
+                            这个测试包含哲学/社会学的一些基本知识，您需要至少完全通过一次（共20题）获取资格。此20题全部为ABCDE选择题。
+                            <br>
+                            您可以通过这个测试获取访问权限，也可以选择返回首页。
+                            再次强调，我们不会收集您的任何测试信息。
+                        </span>
+                    </li>
+                    <li>
+                        <script src="../js/comcode/com_artmenu.js"></script>
+                        <div style="background-color: rgb(4, 201, 4);border-radius: 10px;width: 200px;height: 30px;margin: 0 auto;text-align: center;font-size: 20px;padding: 2px 2px 2px 2px; color: azure;"><a href="javascript:void(0)" onclick="localStorage.setItem('wgsoc-questionaire-mark','0');questionaire(0);">接受测试!</a></div>
+                        <br>
+                        <div style="background-color: rgb(255, 34, 34);border-radius: 10px;width: 200px;height: 30px;margin: 0 auto;text-align: center;font-size: 20px;padding: 2px 2px 2px 2px; color: azure;"><a href="../templates/index.html">还是返回首页吧</a></div>
+                    </li>
+                    
+                </div>
+            </ul>
+        </article>
+    </div>
+    <!--主题-->>
+    <div>
+        <script>
+            if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0)" onclick="pagereload(2)" style="font-size:28px">✨</a></div>')
+            if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0)" onclick="pagereload(1)" style="font-size:28px">🔆</a></div>')
+        </script>
+    </div>
+    <!--尾部-->
+    <script type="text/javascript" src="../js/comcode/footer.js"></script>
+    <script type="text/javascript">
+        // 图片懒加载
+        const lazyImage = new LazyImage('.lazy-image');
+    </script>
+</body>
+
+</html>

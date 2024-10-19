@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+    <head>
+        <!-- <script type="text/javascript" src="../js/comcode/com_head.js"></script> -->
+        <script src="../js/comcode/com_head.js"></script>
+        <title>望关 - WangGuan Sociology</title>
+        <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
+    </head>
+    <body>
+        <script>
+                function getParams(key) {
+                    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) {
+                        return unescape(r[2]);
+                    }
+                    return null;
+                };
+                var mode = 1;
+                if(localStorage.getItem("wgsoc-mode") != null){mode = parseInt(localStorage.getItem("wgsoc-mode"))};
+        </script>
+        <script type="text/javascript" src="../js/global_header.js"></script>
+        <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+        <!-- <div id="headimg" style="float: inline-start;width: 100%;height:width*80%;z-index: -1;"><img src="../img/headimg.jpg" alt="headimg" style="width:100%;"></div> -->
+        <!--主体-->
+        <div id="headpic" class="headpic">
+            <script>
+                var pics = [
+                "https://i.imgloc.com/2022/12/07/fVTsV.jpeg",
+                "https://i.imgloc.com/2022/12/07/fV1fd.jpeg",
+                "https://i.imgloc.com/2022/12/07/fVQ8b.jpeg",
+                "https://i.imgloc.com/2022/12/07/fVYFq.jpeg",
+                "https://i.imgloc.com/2022/12/07/fVqYz.jpeg",
+                "https://i.imgloc.com/2022/12/07/ffZww.jpeg",
+                "https://i.imgloc.com/2022/12/08/fpP1d.jpeg",
+                "https://i.imgloc.com/2022/12/08/fpp03.jpeg",
+                "https://i.imgloc.com/2022/12/08/fpXJ5.jpeg",
+                "https://i.imgloc.com/2022/12/08/fp6OQ.jpeg",
+                "https://i.imgloc.com/2022/12/08/fpFzE.jpeg",
+                "https://i.imgloc.com/2022/12/08/fpG1C.jpeg"
+                ]
+                var intros = [
+                    "我们今天的家将是马德里",
+                    "国际主义",
+                    "阿芙乐尔的炮声终会再次响起",
+                    "雪原，冰河流淌其上",
+                    "国际妇女的解放必胜",
+                    "保卫和平和革命！",
+                    "两种宇宙观；矛盾的普遍性；矛盾的特殊性；主要的矛盾和主要的矛盾方面；矛盾诸方面的同一性和斗争性；对抗在矛盾中的地位。————毛泽东",
+                    "你是为了吃饭而生存，还是为了生存而吃饭呢? ————苏格拉底",
+                    "理性精神的王国永存",
+                    "当我们一提到本质时，我们便将本质与存在加以区别，而认存在为直接的东西，与本质比较看来，只是一种假象。但这种假象并非空无所有，完全无物，而是一种被扬弃的存在。本质的观点是反思的观点......哲学的任务或目的在于认识事物的本质，不应当让事物停留在它的直接性里，而须指出它是以别的事物为中介或根据的。————黑格尔",
+                    "帝国主义是资本主义的最高阶段————列宁",
+                    "砸碎铁链"
+                ]
+                xtype = Math.floor(Math.random()*(pics.length-1));
+                document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
+            </script>
+        </div>
+        <div class="headpic-cover">
+            <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
+                <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+                <div id="chooser-container">
+                    <script>
+                        function getParams(key) {
+                            var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                            var r = window.location.search.substr(1).match(reg);
+                            if (r != null) {return unescape(r[2]);}return null;
+                        };
+                        var cate = -1;
+                        var author = -1;
+                        if(getParams("cate") != null)cate = getParams("cate");
+                        if(getParams("author") != null)author = getParams("author");
+                    </script>
+                </div>
+                <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:red;display: inline;">分</div>类于"<script>document.write(translate[cate-1])</script>"的文章</h1>
+                <h4 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:red;display: inline;">A</div>rtikel-Kategorien</h4>
+            </div>
+            <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
+                <i><script>
+                    document.write(intros[xtype]);
+                </script></i>
+            </div>
+            <div style="text-align: left;padding: 10px 10px 20px 20px;color: #ffffffb6;height:auto;background-color: #0000006c;border-radius: 15px;position:absolute;left: 20px;top: 500px;">
+                <div style="text-align: center;width: 100%;height:100%;border-radius: 10px;border-color: azure;">
+                    <a href="https://imgloc.com/" style="color:#ffffff">图床=></a>
+                </div>
+            </div>
+        </div>
+        <div class="big-container" id="particles-js">  
+            <article class="article">
+                <div class="right-holder">
+                    <!--投稿须知-->
+                    <div class="column-container">
+                        <ul class="column_box" id="like-box">
+                            <li class="column-title">
+                                <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">投稿须知</a></span>
+                            </li>
+                            <li class="person-intro-detail">
+                                <strong>
+                                    1.年龄不限。请在文章结尾投上你的网络昵称&截止日期（不要使用真名）<br>
+                                    2.对马克思主义理论或其他社会科学/哲学理论有较充分的了解。需要有一定的历史了解（像康德理性主义之类的探讨都是可以的）<br>
+                                    3.主题明确，观点犀利，逻辑清晰，可以是分段论，字数不限（一般还是大于1000字），但是内容不要太水。<br>
+                                    4,文本格式可以是：DOC，DOCX，TXT，PDF，PPT<br>
+                                    5.文章结构可以是：<br>
+                                    标题-导言（可写可不写）-正文（可分段分层）-结束语-注释（可写可不写）<br>
+                                    6.当然，写诗也是可以的（文笔优美当然更好）<br>
+                                    7.如果是大于5000字的论文形式，建议转成PDF形式，方便上传。
+                                    8.请将文章的文件格式投稿到邮箱 arbeiterklassen@163.com (不接受其他方式)<br>
+                                </strong>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="column-container" style="width: 100%;float: left;">
+                        <ul class="column_box" id="like-box">
+                            <li class="column-title">
+                                <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;"s>宣传栏</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="column-container">
+                        <ul class="column_box" id="like-box">
+                            <img src="https://i.imgloc.com/2022/12/17/4m3py.md.jpeg" alt="Thereader" style="width:100%">
+                            <li class="person-intro-detail">
+                                <h2 style="text-align:center">为哲学和哲学之学习精神供以神圣的空间</h2>
+                            </li>
+                            <li class="person-intro-detail">
+                                <h5 style="text-align:center">Bei der Philosophie selbst und beim Lernen geht es nicht nur um Bücher und Wissen, sondern auch um die Möglichkeit der Kommunikation und den Raum für Gemeinschaft.</h5>
+                                <h6 style="text-align:center">哲学本身和学习不仅仅关乎书本和知识，更在于交流和共进之空间的可能性</h6>
+                            </li>
+                            <br>
+                        </ul>
+                    </div>
+                    <div class="column-container">
+                        <ul class="column_box" id="like-box">
+                            <li class="person-intro-detail">
+                                <h5 style="text-align:center">我也不知道这里要写什么但总之是就放点东西吧~</h5>
+                            </li>
+                            <br>
+                        </ul>
+                    </div>
+                </div>
+                <div class="left-holder">
+                    <div class="column-container-wider">
+                        <ul class="column_box" id="like-box">
+                            <li class="column-title">
+                                <a class="c-666 fl" style="display: inline;font-size:xx-large;font-family: Kanji-kai-2, 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;text-decoration: underline;color:#9d9d9d" href="javascript:void(0)" onclick="{window.location.href='./category.html'}">全部</a>
+                                <div class="c-666 fl" style="display: inline;font-size:large;font-family: Kanji-kai-2, 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;color:#666"> / </div>
+                                <div class="c-666 fl" style="display: inline;font-size:xx-large;font-family: Kanji-kai-2, 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;color:#9d9d9d"><script>if(author == -1){document.write(translate[cate-1])}else{document.write(translate[cate-1]+'/'+authorlist[cate-1][author])}</script></div>
+                                <div class="c-666 fl" style="display: inline;font-size:x-large;font-family: Kanji-kai-2, 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;color:#666"> 分类</div>
+                            </li>
+                            <br>
+                            <br>
+                            <script src="../js/comcode/com_artmenu.js"></script>
+                            <script>
+                                print_category(cate,author);
+                            </script>
+                        </ul>
+                    </div>
+            </article>
+        </div>
+        <!--主题-->>
+        <div>
+            <script>
+                
+            </script>
+        </div>
+        <!--尾部-->
+        <script type="text/javascript" src="../js/comcode/footer.js"></script>
+        <script type="text/javascript" defer>
+            // 图片懒加载
+            const lazyImage = new LazyImage('.lazy-image');
+        </script>
+    </body>
+</html>

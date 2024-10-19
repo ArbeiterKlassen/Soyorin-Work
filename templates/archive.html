@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="../js/comcode/com_head.js"></script>
+    <title>WGSOC__文件归档</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        /* body{background: #f2f2f2;font-family: 'Open Sans', sans-serif;} */
+        .search {width: 100%;position: relative;display: flex;}
+        .searchTerm {width: 100%;border: 3px solid grey;border-right: none;padding: 5px;height: 20px;border-radius: 5px 0 0 5px;outline: none;color: black;}
+        .searchTerm:focus{color: black;}
+        .searchButton {width: 40px;height: 36px;border: 1px solid grey;background: grey;text-align: center;color: #fff;border-radius: 0 5px 5px 0;cursor: pointer;font-size: 20px;}
+    </style>
+    <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
+    <script type="text/javascript" src="../data/strings.js"></script>
+</head>
+<body>
+    <script>
+            function getParams(key) {
+                var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    return unescape(r[2]);
+                }
+                return null;
+            };
+            var mode = 1;
+            if(localStorage.getItem("wgsoc-mode") != null){mode = parseInt(localStorage.getItem("wgsoc-mode"))};
+    </script>
+    <script type="text/javascript" src="../js/global_header.js"></script>
+    <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+    <div id="headpic" class="headpic">
+        <script>
+            var pics = [
+            "https://i.imgloc.com/2022/12/07/fVTsV.jpeg",
+            "https://i.imgloc.com/2022/12/07/fV1fd.jpeg",
+            "https://i.imgloc.com/2022/12/07/fVQ8b.jpeg",
+            "https://i.imgloc.com/2022/12/07/fVYFq.jpeg",
+            "https://i.imgloc.com/2022/12/07/fVqYz.jpeg",
+            "https://i.imgloc.com/2022/12/07/ffZww.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpP1d.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpp03.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpXJ5.jpeg",
+            "https://i.imgloc.com/2022/12/08/fp6OQ.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpFzE.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpG1C.jpeg"
+            ]
+            var intros = [
+                "我们今天的家将是马德里",
+                "国际主义",
+                "阿芙乐尔的炮声终会再次响起",
+                "雪原，冰河流淌其上",
+                "国际妇女的解放必胜",
+                "保卫和平和革命！",
+                "两种宇宙观；矛盾的普遍性；矛盾的特殊性；主要的矛盾和主要的矛盾方面；矛盾诸方面的同一性和斗争性；对抗在矛盾中的地位。————毛泽东",
+                "你是为了吃饭而生存，还是为了生存而吃饭呢? ————苏格拉底",
+                "理性精神的王国永存",
+                "当我们一提到本质时，我们便将本质与存在加以区别，而认存在为直接的东西，与本质比较看来，只是一种假象。但这种假象并非空无所有，完全无物，而是一种被扬弃的存在。本质的观点是反思的观点......哲学的任务或目的在于认识事物的本质，不应当让事物停留在它的直接性里，而须指出它是以别的事物为中介或根据的。————黑格尔",
+                "帝国主义是资本主义的最高阶段————列宁",
+                "砸碎铁链"
+            ]
+            xtype = Math.floor(Math.random()*(pics.length-1));
+            document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
+        </script>
+    </div>
+    <div class="headpic-cover">
+        <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
+            <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+            <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:red;display: inline;">文</div>件归档</h1>
+            <h4 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:red;display: inline;">D</div>okumentenablage</h4>
+        </div>
+        <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
+            <i><script>
+                document.write(intros[xtype]);
+            </script></i>
+        </div>
+        <div style="text-align: left;padding: 10px 10px 20px 20px;color: #ffffffb6;height:auto;background-color: #0000006c;border-radius: 15px;position:absolute;left: 20px;top: 500px;">
+            <div style="text-align: center;width: 100%;height:100%;border-radius: 10px;border-color: azure;">
+                <a href="https://imgloc.com/" style="color:#ffffff">图床=></a>
+            </div>
+        </div>
+    </div>
+    <main class="big-container">
+        <article class="article">
+            <div style="width: 120px; height:auto;background-color: rgb(222, 0, 0);border-radius: 10px;">
+                <h3 style="text-align: center;color: #ffffff;">文件归档</h3>
+            </div>
+            <div class="topsign-title">
+                <h2 class="topsign-text">这里是本站的文件归档处，兼有tag分类功能</h2>
+                <br>
+                <br>
+            </div>
+            <br>
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="Search" id="inpele">
+                <button class="searchButton" onclick="{output()}"><i class="fa fa-search"></i></button>
+            </div>
+            <div style="text-align:center;">
+                <button onclick="{searchmode = 1;document.getElementById('strict').innerHTML = '<strong style=\'color:rgb(126, 183, 244);\'>严格搜索</strong>';document.getElementById('loose').innerHTML = '<strong style=\'color:black;\'>宽泛搜索</strong>';}" style="cursor: pointer;" type="button" id="strict"><strong style="color:rgb(126, 183, 244);">严格搜索</strong></button>
+                <button onclick="{searchmode = 2;document.getElementById('strict').innerHTML = '<strong style=\'color:black;\'>严格搜索</strong>';document.getElementById('loose').innerHTML = '<strong style=\'color:rgb(126, 183, 244);\'>宽泛搜索</strong>';}" style="cursor: pointer;" type="button" id="loose" ><strong>宽泛搜索</strong></button>
+            </div>
+            <details>
+                <summary>搜索模式（默认为严格搜索）</summary>
+                <br><p>严格搜索：搜索项满足全部关键词 宽泛搜索：搜索项部分满足关键词即可</p>
+            </details>
+            <div class="nb-a-holder" id = '1'>
+                <div class="column-container">
+                    <ul class="column_box" id="like-box">
+                        <script>
+                            print_content();
+                        </script>
+                    </ul>
+                </div>
+            </div>
+            <div id='2'>
+                <div class="column-container-wider" style="float:right;">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">论文</a></span>
+                        </li>
+                        <li class="person-intro-detail">
+                            <details>
+                                <summary>[简介]</summary>
+                                <h3 style="color:black;text-align: center;">这里收录优秀论文</h3>
+                                <h5 style="color:black;text-align: center;">论文格式统一为PDF，字数>5000，上传需要时间</h5>
+                                <strong>
+                                    <script>
+                                        print_essays();
+                                    </script>
+                                </strong>
+                                <hr>
+                            </details>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column-container-wider" style="float:right;">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl"  style="font-family: Georgia, 'Times New Roman', Times, serif;">资料</a></span>
+                        </li>
+                        <li class="person-intro-detail">
+                            <strong>
+                                文件备案 历史资料 马恩列斯毛著作文选/全集和各时期著作[PDF] <br>
+                                <a href="https://www.aliyundrive.com/s/QXuNy5c7sQz">[点此获取]</a><br>
+                                文件备案 历史资料 《红旗》1958-1976 汇总[PDF] <br>
+                                <a href="https://www.aliyundrive.com/s/4LuDRBQxLT8">[点此获取]</a><br>
+                                文件备案 历史资料 千禧年后社会调研分析报告[PDF] <br>
+                                <a href="https://www.aliyundrive.com/s/aJvXeStg1wK">[点此获取]</a><br>
+                            </strong>
+                            <br>
+                            <p style="text-align: right;"> based on Aliyundrive</p>
+                            <hr>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id = '3'>
+            </div>
+            <!-- <script>
+                var insearch;
+                if(getParams("insearch")!=null){
+                    insearch = getParams("insearch");
+                    output(insearch);
+                };
+            </script> -->
+        </article>
+    </main>
+    <!--主题-->>
+    <div>
+        <script>
+            if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="./archive.html?mode=2" style="font-size:28px">✨</a></div>')
+            if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="./archive.html?mode=1" style="font-size:28px">🔆</a></div>')
+        </script>
+    </div>
+    <!--尾部-->
+    <script type="text/javascript" src="../js/comcode/footer.js"></script>
+    <script type="text/javascript" defer>
+        //图片懒加载
+        const lazyImage = new LazyImage('.lazy-image');
+    </script>
+</body>
+</html>

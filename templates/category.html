@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <script type="text/javascript" src="../js/comcode/com_head.js"></script>
+    <title>WGSOC__分类</title>
+    <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
+</head>
+
+<body>
+    <script type="text/javascript" src="../js/global_header.js"></script>
+    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+    <!--主体-->
+    <script>
+        function getParams(key) {
+                var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    return unescape(r[2]);
+                }
+                return null;
+            };
+            var mode = 1;
+        if(localStorage.getItem("wgsoc-mode") != null){mode = parseInt(localStorage.getItem("wgsoc-mode"))};
+    </script>
+    <div id="headpic" class="headpic">
+        <script>
+            var pics = [
+            "https://i.imgloc.com/2022/12/07/fVTsV.jpeg",
+            "https://i.imgloc.com/2022/12/07/fV1fd.jpeg",
+            "https://i.imgloc.com/2022/12/07/fVQ8b.jpeg",
+            "https://i.imgloc.com/2022/12/07/fVYFq.jpeg",
+            "https://i.imgloc.com/2022/12/07/fVqYz.jpeg",
+            "https://i.imgloc.com/2022/12/07/ffZww.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpP1d.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpp03.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpXJ5.jpeg",
+            "https://i.imgloc.com/2022/12/08/fp6OQ.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpFzE.jpeg",
+            "https://i.imgloc.com/2022/12/08/fpG1C.jpeg"
+            ]
+            var intros = [
+                "我们今天的家将是马德里",
+                "国际主义",
+                "阿芙乐尔的炮声终会再次响起",
+                "雪原，冰河流淌其上",
+                "国际妇女的解放必胜",
+                "保卫和平和革命！",
+                "两种宇宙观；矛盾的普遍性；矛盾的特殊性；主要的矛盾和主要的矛盾方面；矛盾诸方面的同一性和斗争性；对抗在矛盾中的地位。————毛泽东",
+                "你是为了吃饭而生存，还是为了生存而吃饭呢? ————苏格拉底",
+                "理性精神的王国永存",
+                "当我们一提到本质时，我们便将本质与存在加以区别，而认存在为直接的东西，与本质比较看来，只是一种假象。但这种假象并非空无所有，完全无物，而是一种被扬弃的存在。本质的观点是反思的观点......哲学的任务或目的在于认识事物的本质，不应当让事物停留在它的直接性里，而须指出它是以别的事物为中介或根据的。————黑格尔",
+                "帝国主义是资本主义的最高阶段————列宁",
+                "砸碎铁链"
+            ]
+            xtype = Math.floor(Math.random()*(pics.length-1));
+            document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
+        </script>
+    </div>
+    <div class="headpic-cover">
+        <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
+            <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+            <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:red;display: inline;">文</div>章分类</h1>
+            <h4 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:red;display: inline;">A</div>rtikel-Kategorien</h4>
+        </div>
+        <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
+            <i><script>
+                document.write(intros[xtype]);
+            </script></i>
+        </div>
+        <div style="text-align: left;padding: 10px 10px 20px 20px;color: #ffffffb6;height:auto;background-color: #0000006c;border-radius: 15px;position:absolute;left: 20px;top: 500px;">
+            <div style="text-align: center;width: 100%;height:100%;border-radius: 10px;border-color: azure;">
+                <a href="https://imgloc.com/" style="color:#ffffff">图床=></a>
+            </div>
+        </div>
+    </div>
+    <div class="big-container">
+        <article class="article">
+            <div style="width: 120px; height:auto;background-color: rgb(222, 0, 0);border-radius: 10px;">
+                <h3 style="text-align: center;color: #ffffff;">文章分类</h3>
+            </div>
+            <div class="topsign-title">
+                <h2 class="topsign-text">这里存放我们建站以来的所有已有的文章（可以慢慢翻）</h2>
+                <br>
+                <br>
+            </div>
+            <!--右容器-->
+            <div class="right-holder">
+                <div class="column-container">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">分类</a></span>
+                        </li>
+                        <script>
+                            var translate = ['当代社会','望关读书会','法兰西哲学','意大利哲学','德意志哲学','古希腊哲学','苏东-俄罗斯哲学','西方马克思主义','其他哲学'];
+                            for(var i = 0;i<translate.length;i++){
+                                var link = '"categories.html?cate=' + (i+1) + '"';
+                                document.write('<li class="column-category">');
+                                document.write('<a href='+link+'>'+translate[i]);
+                                document.write('</a>')
+                            }
+                        </script>
+                    </ul>
+                </div>
+            </div>
+            <!--左容器-->
+            <div class="result-box fl">
+                <!--文章内容-->
+                <div class="left-holder">
+                    <!--文章内容-->
+                    <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+                    <div id="article-holder" style="width: 100%; float: left">
+                        <div id="pages-container"></div>
+                        <div id="chooser-container">
+                            <script>
+                                function getParams(key) {
+                                    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                                    var r = window.location.search.substr(1).match(reg);
+                                    if (r != null) {return unescape(r[2]);}return null;
+                                };
+                                var page = 1;var cate = 'all';
+                                if(getParams("page") != null){page = getParams("page")};
+                                function page_chooser(){
+                                    document.write('<div class="article-box" style="width:auto;height:32px;background-color:rgba(180,180,180,0)" id="choosen-container">')
+                                    document.write('    <div class="ab-content" style="background-color:rgba(180,180,180,0)">')
+                                    document.write('        <div style="height:32px;width:auto;border-radius:4px;margin: 0 auto;float:left;text-align:center;font-size:18px">'+"  共"+count+"篇文章 "+pages + "页  "+' </div>')
+                                    for(var i = 1;i<=pages;i++)document.write('<div class="choosen-box">'+'<a style="color:white" href="./category.html?page='+i+'">'+i+'</a></div>')
+                                    document.write('    </div>')
+                                    document.write('</div>')
+                                };
+                                print_page(page);
+                                page_chooser();
+                                if(getParams("cate") != null){cate = getParams("cate")};
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    <!--主题-->>
+    <div>
+        <script>
+            if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="./category.html?mode=2" style="font-size:28px">✨</a></div>')
+            if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="./category.html?mode=1" style="font-size:28px">🔆</a></div>')
+        </script>
+    </div>
+    <!--尾部-->
+    <script type="text/javascript" src="../js/comcode/footer.js"></script>
+    <script type="text/javascript">
+        // 图片懒加载
+        const lazyImage = new LazyImage('.lazy-image');
+    </script>
+</body>
+
+</html>

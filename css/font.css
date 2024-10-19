@@ -1,0 +1,24 @@
+@font-face {
+    font-family: Courierfont;
+    src: url('../fonts/Courier-1.ttf');
+}
+@font-face {
+    font-family: Notescript;
+    src: url('../fonts/Note-Script-Light-2.ttf');
+}
+@font-face {
+    font-family: Kanji-kai-1;
+    src: url('../fonts/RuiZiYunZiKuRuiSongCuTiGBK-1.ttf');
+}
+@font-face {
+    font-family: Kanji-kai-2;
+    src: url('../fonts/SanJiJinSongJianTi-ZhongCu-2.ttf');
+}
+@font-face {
+    font-family: Fredericka-tg;
+    src: url('../fonts/FrederickatheGreat-Regular-2.ttf');
+}
+@font-face {
+    font-family: Hanyikaiti-1;
+    src: url('../fonts/HanYiKaiTiJian-1.ttf');
+}
