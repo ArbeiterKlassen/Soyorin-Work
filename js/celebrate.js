@@ -1,6 +1,6 @@
 var date = [
     {active:true,name:0,month:1,day:15,title:"今天是：测试代码2023-1-15的生日！（"},
-    {active:true,name:1,month:5,day:29,title:"今天是@望关WangGuan Sociology的建站日！"},
+    {active:true,name:1,month:5,day:29,title:"今天是@Soyorin.Work - AKlassen's Blogs的建站日！"},
     // {active:false,name:2,month:5,day:29,title:""},
     // {active:false,name:3,month:5,day:29,title:""},
     // {active:true,name:4,month:8,day:30,title:"今天是@呼和浩特马克思主义学社的生日！"},

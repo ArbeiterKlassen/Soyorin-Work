@@ -3,7 +3,7 @@
 
 <head>
     <script type="text/javascript" src="../js/comcode/com_head.js"></script>
-    <title>WGSOC__特别文档</title>
+    <title>SOYORIN__特别文档</title>
     <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
 </head>
 
@@ -17,7 +17,7 @@
         if(!hasadmission()){
             window.location.href = './back.html'
         }else{
-            if(localStorage.getItem('wgsoc-admission') != '0000000001'){
+            if(localStorage.getItem('soyorin-admission') != '0000000001'){
                 window.location.href = '../inner/back.html'
             }
         }
@@ -35,7 +35,7 @@
                 return null;
             };
             var mode = 1;
-        if(localStorage.getItem("wgsoc-mode") != null){mode = parseInt(localStorage.getItem("wgsoc-mode"))};
+        if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};
     </script>
     <div id="headpic" class="headpic">
         <script>
@@ -121,7 +121,7 @@
                 <div class="column-container">
                     <ul class="column_box" id="like-box">
                         <li class="column-category">
-                            <a style="font-family: Georgia, 'Times New Roman', Times, serif;" href="javascript:void(0)" onclick="localStorage.removeItem('wgsoc-admission')">撤销访问权限</a></span>
+                            <a style="font-family: Georgia, 'Times New Roman', Times, serif;" href="javascript:void(0)" onclick="localStorage.removeItem('soyorin-admission')">撤销访问权限</a></span>
                         </li>
                     </ul>
                 </div>

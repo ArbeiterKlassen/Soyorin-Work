@@ -9,14 +9,14 @@ function getParams(key) {
     return null;
 };
 var mode = 1;
-if(localStorage.getItem("wgsoc-mode") != null){mode = parseInt(localStorage.getItem("wgsoc-mode"))};
+if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};
 
 function pagereload(colormode){
-    localStorage.setItem('wgsoc-mode',colormode);
+    localStorage.setItem('soyorin-mode',colormode);
     window.location.reload();
 }
 function hasadmission(){
-    if(localStorage.getItem('wgsoc-admission') == null){
+    if(localStorage.getItem('soyorin-admission') == null){
         return false;
     }else{
         return true;
