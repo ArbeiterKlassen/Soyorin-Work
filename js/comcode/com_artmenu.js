@@ -71,8 +71,8 @@ var questions = [
     {q:'苏东马克思主义的代表人物有？',a1:'科尔施',a2:'葛兰西',a3:'日丹诺夫',a4:'马雅科夫斯基',a5:'齐泽克',ans:3},
 ]
 function record_questionaire(code,ans){
-    if(localStorage.getItem('wgsoc-questionaire-mark') == null)localStorage.setItem('wgsoc-questionaire-mark','0');
-    if(ans == questions[code].ans)localStorage.setItem('wgsoc-questionaire-mark',parseInt(localStorage.getItem('wgsoc-questionaire-mark'))+10);
+    if(localStorage.getItem('soyorin-questionaire-mark') == null)localStorage.setItem('soyorin-questionaire-mark','0');
+    if(ans == questions[code].ans)localStorage.setItem('soyorin-questionaire-mark',parseInt(localStorage.getItem('soyorin-questionaire-mark'))+10);
 }
 function questionaire(code){
     questionclear();
@@ -83,7 +83,7 @@ function questionaire(code){
         <h3 class="about_line" style="text-align: center;">10 questions completed</h3>
         <br>
         <h3 class="about_line" style="text-align: center;">根据您的知识水平，您获得了
-        `+localStorage.getItem('wgsoc-questionaire-mark')+` 分</h3>
+        `+localStorage.getItem('soyorin-questionaire-mark')+` 分</h3>
         <br>
         <li>
             <script src="../js/comcode/com_artmenu.js"></script>
@@ -91,7 +91,7 @@ function questionaire(code){
             <br>
             <div style="background-color: rgb(255, 34, 34);border-radius: 10px;width: 200px;height: 30px;margin: 0 auto;text-align: center;font-size: 20px;padding: 2px 2px 2px 2px; color: azure;"><a href="../templates/index.html">还是返回首页吧</a></div>
         </li>`
-        if(parseInt(localStorage.getItem('wgsoc-questionaire-mark'))>90)localStorage.setItem('wgsoc-admission','0000000001')
+        if(parseInt(localStorage.getItem('soyorin-questionaire-mark'))>90)localStorage.setItem('soyorin-admission','0000000001')
         document.getElementById('changingpage').innerHTML +=`
         <br><li><div style="background-color: rgb(4, 201, 4);border-radius: 10px;width: 200px;height: 30px;margin: 0 auto;text-align: center;font-size: 20px;padding: 2px 2px 2px 2px; color: azure;"><a href="./index.html">获得浏览资格!</a></div></li>
         `

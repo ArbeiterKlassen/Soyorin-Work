@@ -7,7 +7,7 @@ function getParams(key) {
     return null;
 };
 var mode = 1;
-if(localStorage.getItem("wgsoc-mode") != null){mode = parseInt(localStorage.getItem("wgsoc-mode"))};
+if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};
 if(mode == 1){
     document.write('<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">');
     document.write('<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">');
