@@ -495,7 +495,8 @@
     border-radius:3px;
     font-size:85%;
     margin:0;
-    padding:.2em .4em
+    padding:.2em .4em;
+    color:#000000;
 }
 .markdown-body pre{
     word-wrap:normal
