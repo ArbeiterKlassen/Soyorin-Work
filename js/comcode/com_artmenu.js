@@ -1,28 +1,28 @@
 var artmenu = [
-    {number:20,type:"art",class:"deu",subtype:"normal",links:"../articles/000020.html",time:"2023-7-1",author:"卡尔·洛维特",name:"卡尔·洛维特：劳动是凝神与深思的解题",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:19,type:"art",class:"deu",subtype:"normal",links:"../articles/000019.html",time:"2023-7-1",author:"西奥多·阿多诺",name:"西奥多·阿多诺:电影的透明性",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:18,type:"art",class:"deu",subtype:"normal",links:"../articles/000018.html",time:"2023-7-1",author:"Jeffrey A. Bernstein",name:"Jeffrey A. Bernstein:犹太教与历史",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:17,type:"art",class:"deu",subtype:"normal",links:"../articles/000017.html",time:"2023-6-5",author:"阿尔方索·林吉斯",name:"阿尔方索·林吉斯：尼采与动物",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:16,type:"art",class:"deu",subtype:"normal",links:"../articles/000016.html",time:"2023-05-29",author:"胡塞尔",name:"胡塞尔：现象学的四条原理",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:15,type:"art",class:"deu",subtype:"normal",links:"../articles/000015.html",time:"2023-05-28",author:"朱利安·杨",name:"朱利安·杨：什么是四合？",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:14,type:"art",class:"deu",subtype:"normal",links:"../articles/000014.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：爱欲、恐怖、青年人与精神疗法（三）",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:13,type:"art",class:"deu",subtype:"normal",links:"../articles/000013.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：爱欲、恐怖、青年人与精神疗法（二）",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:12,type:"art",class:"deu",subtype:"normal",links:"../articles/000012.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：爱欲、恐怖、青年人与精神疗法（一）",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:11,type:"art",class:"deu",subtype:"normal",links:"../articles/000011.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：国家资本主义与全职异化劳动",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:10,type:"art",class:"deu",subtype:"normal",links:"../articles/000010.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：论科学和现象学",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:9,type:"art",class:"deu",subtype:"normal",links:"../articles/000009.html",time:"2023-05-27",author:"马尔库塞",name:"马尔库塞：论思想现如今的处境",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:8,type:"art",class:"deu",subtype:"normal",links:"../articles/000008.html",time:"2023-05-27",author:"AlexandreChirat",name:"Alexandre Chirat:尼采和工作：我们时代的“恶”",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:7,type:"art",class:"wan",subtype:"normal",links:"../articles/000007.html",time:"2023-04-16",author:"ArbeiterKlassen",name:"如何哲学地学习哲学",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:6,type:"art",class:"soc",subtype:"normal",links:"../articles/000006.html",time:"2022-12-25",author:"望关内容组",name:"哲学世界的两大家族",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
-    {number:5,type:"art",class:"soc",subtype:"normal",links:"../articles/000005.html",time:"2022-12-25",author:"望关内容组",name:"家庭和爱情",headpic:"https://i.postimg.cc/FRQcPq8w/marx1.jpg",detail:""},
-    {number:4,type:"art",class:"soc",subtype:"normal",links:"../articles/000004.html",time:"2022-12-25",author:"望关内容组",name:"孤独摇滚",headpic:"https://i.postimg.cc/FRQcPq8w/marx1.jpg",detail:""},
-    {number:3,type:"art",class:"wma",subtype:"normal",links:"../articles/000003.html",time:"2022-01-22",author:"阿兰-彭加姆",name:"阿兰-彭加姆:无政府主义共产主义者",headpic:"https://i.postimg.cc/x1wbChfq/AnaCom1.jpg",detail:""},
-    {number:2,type:"art",class:"soc",subtype:"essay",links:"../articles/000002.html",time:"2021-05-06",author:"Faschiung",name:"论信息化资本主义",headpic:"https://i.postimg.cc/FRQcPq8w/marx1.jpg",detail:"自20世纪40至50年代起，电子计算——即后来的计算机的兴起促使社会生产力大幅提高。90年代后互联网在全球普及，美国的苹果、微软等公司腾飞；"},
-    {number:1,type:"art",class:"soc",subtype:"essay",links:"../articles/000001.html",time:"2021-03-13",author:"Faschiung",name:"中产阶级扩大论",headpic:"https://i.postimg.cc/FRQcPq8w/marx1.jpg",detail:"中产阶级，即小资产阶级实际上是无产阶级中的特殊组成部分，占有少部分的生产资料，但不属于大资产阶级。既可以单独作为社会阶级之一，也可以划分进无产阶级之内。"},
+    {number:21,type:"art",class:"code",subtype:"normal",links:"../articles/000021.html",time:"2024-10-27",author:"C-C++",name:"数据结构Note-Binary Seeking Tree",headpic:"https://i.postimg.cc/FRQcPq8w/marx1.jpg",detail:""},
+    {number:20,type:"art",class:"art",subtype:"normal",links:"../articles/000020.html",time:"2023-7-1",author:"卡尔·洛维特",name:"卡尔·洛维特：劳动是凝神与深思的解题",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:19,type:"art",class:"art",subtype:"normal",links:"../articles/000019.html",time:"2023-7-1",author:"西奥多·阿多诺",name:"西奥多·阿多诺:电影的透明性",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:18,type:"art",class:"art",subtype:"normal",links:"../articles/000018.html",time:"2023-7-1",author:"Jeffrey A. Bernstein",name:"Jeffrey A. Bernstein:犹太教与历史",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:17,type:"art",class:"art",subtype:"normal",links:"../articles/000017.html",time:"2023-6-5",author:"阿尔方索·林吉斯",name:"阿尔方索·林吉斯：尼采与动物",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:16,type:"art",class:"art",subtype:"normal",links:"../articles/000016.html",time:"2023-05-29",author:"胡塞尔",name:"胡塞尔：现象学的四条原理",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:15,type:"art",class:"art",subtype:"normal",links:"../articles/000015.html",time:"2023-05-28",author:"朱利安·杨",name:"朱利安·杨：什么是四合？",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:14,type:"art",class:"art",subtype:"normal",links:"../articles/000014.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：爱欲、恐怖、青年人与精神疗法（三）",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:13,type:"art",class:"art",subtype:"normal",links:"../articles/000013.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：爱欲、恐怖、青年人与精神疗法（二）",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:12,type:"art",class:"art",subtype:"normal",links:"../articles/000012.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：爱欲、恐怖、青年人与精神疗法（一）",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:11,type:"art",class:"art",subtype:"normal",links:"../articles/000011.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：国家资本主义与全职异化劳动",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:10,type:"art",class:"art",subtype:"normal",links:"../articles/000010.html",time:"2023-05-28",author:"马尔库塞",name:"马尔库塞：论科学和现象学",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:9,type:"art",class:"art",subtype:"normal",links:"../articles/000009.html",time:"2023-05-27",author:"马尔库塞",name:"马尔库塞：论思想现如今的处境",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:8,type:"art",class:"art",subtype:"normal",links:"../articles/000008.html",time:"2023-05-27",author:"AlexandreChirat",name:"Alexandre Chirat:尼采和工作：我们时代的“恶”",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:7,type:"art",class:"book",subtype:"normal",links:"../articles/000007.html",time:"2023-04-16",author:"ArbeiterKlassen",name:"如何哲学地学习哲学",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:6,type:"art",class:"oth",subtype:"normal",links:"../articles/000006.html",time:"2022-12-25",author:"望关内容组",name:"哲学世界的两大家族",headpic:"https://i.postimg.cc/50T0J5fV/philosophy1.jpg",detail:""},
+    {number:5,type:"art",class:"oth",subtype:"normal",links:"../articles/000005.html",time:"2022-12-25",author:"望关内容组",name:"家庭和爱情",headpic:"https://i.postimg.cc/FRQcPq8w/marx1.jpg",detail:""},
+    {number:4,type:"art",class:"oth",subtype:"normal",links:"../articles/000004.html",time:"2022-12-25",author:"望关内容组",name:"孤独摇滚",headpic:"https://i.postimg.cc/FRQcPq8w/marx1.jpg",detail:""},
+    {number:3,type:"art",class:"art",subtype:"normal",links:"../articles/000003.html",time:"2022-01-22",author:"阿兰-彭加姆",name:"阿兰-彭加姆:无政府主义共产主义者",headpic:"https://i.postimg.cc/x1wbChfq/AnaCom1.jpg",detail:""},
+    {number:2,type:"art",class:"book",subtype:"essay",links:"../articles/000002.html",time:"2021-05-06",author:"Faschiung",name:"论信息化资本主义",headpic:"https://i.postimg.cc/FRQcPq8w/marx1.jpg",detail:"自20世纪40至50年代起，电子计算——即后来的计算机的兴起促使社会生产力大幅提高。90年代后互联网在全球普及，美国的苹果、微软等公司腾飞；"},
+    {number:1,type:"art",class:"book",subtype:"essay",links:"../articles/000001.html",time:"2021-03-13",author:"Faschiung",name:"中产阶级扩大论",headpic:"https://i.postimg.cc/FRQcPq8w/marx1.jpg",detail:"中产阶级，即小资产阶级实际上是无产阶级中的特殊组成部分，占有少部分的生产资料，但不属于大资产阶级。既可以单独作为社会阶级之一，也可以划分进无产阶级之内。"},
     {type:"arc",subtype:"normal",links:"./archive.html",time:"2022-09-30",author:"马克思，恩格斯，列宁，斯大林，毛泽东",name:"文件备案 历史资料 马恩列斯毛著作文选/全集和各时期著作[PDF]",headpic:"",detail:""},
     {type:"arc",subtype:"normal",links:"./archive.html",time:"2022-09-30",author:"《红旗》",name:"文件备案 历史资料 《红旗》1958-1976 汇总[PDF]",headpic:"",detail:""},
     {type:"arc",subtype:"normal",links:"./archive.html",time:"2022-09-30",author:"未知",name:"文件备案 历史资料 千禧年后社会调研分析报告[PDF]",headpic:"",detail:""},
-//{links,time,author,name},
 ]
 
 var specialartmenu = [
@@ -113,17 +113,17 @@ function questionaire(code){
     </div>
     `
 }
-var translate = ['当代社会','望关读书会','法兰西哲学','意大利哲学','德意志哲学','古希腊哲学','苏东-俄罗斯哲学','西方马克思主义','其他哲学'];
-var numcate = ['soc','wan','fra','ita','deu','gre','rus','wma','oth'];
+var translate = ['CodeDev','读书思考','政史经哲','转载文章','记录生活','日常抱怨','推荐Something','技术相关','其他'];
+var numcate = ['code','book','eup','art','rec','cpl','pro','tec','oth'];
 var authorlist = [
-    ['望关内容组','ArbeiterKlassen','Faschiung'],
-    ['望关内容组','ArbeiterKlassen'],
+    ['C-C++','前端','机器学习'],
+    ['ArbeiterKlassen','Faschiung'],
+    [],
+    ['朱利安·杨','马尔库塞','AlexandreChirat','胡塞尔','阿尔方索·林吉斯','西奥多·阿多诺','卡尔·洛维特','Jeffrey A. Bernstein',"阿兰-彭加姆"],
     [],
     [],
-    ['朱利安·杨','马尔库塞','AlexandreChirat','胡塞尔','阿尔方索·林吉斯','西奥多·阿多诺','卡尔·洛维特','Jeffrey A. Bernstein'],
     [],
     [],
-    ["阿兰-彭加姆"],
     [],
 ];
 var eachpage = 10;
