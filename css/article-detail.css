@@ -14,7 +14,6 @@
     list-style: disc;
 }
 
-
 .main {
     width: 100%;
     margin: 60px auto 10px auto;
@@ -597,7 +596,6 @@ li {
     background-color: #e2e3e3;
     text-decoration: none;
 }
-
 
 /*响应式尺寸*/
 @media (max-width: 1200px) {
