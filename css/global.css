@@ -556,7 +556,7 @@ pre {
         position:fixed;
         right:10px;
         bottom:31px;
-        z-index: 100;
+        z-index: 10000;
         height: 40px;
         width: 48px;
         float: right;
