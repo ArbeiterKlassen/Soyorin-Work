@@ -1,177 +1,175 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+        <meta charset="UTF-8">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>数据结构Note-Binary Seeking Tree</title>
+    <script type="text/javascript" src="../js/comcode/com_arthead.js"></script>
+        <link rel="stylesheet" href="../css/font.css">
+        <style>
+            .lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}
+            .markdown-body {box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 10px;}
+            @media (max-width: 767px) {.markdown-body {padding: 15px;}.markdown-body h1 {font-size: 1.35em;}}
+            .codehilite {border-radius: 10px;}
+            .article-content img {max-width: 100%;}
+            #outerdiv { width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: #00000030;display: none;z-index: 200;
+            }
+        </style>
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
 
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true">
-    <meta charset="UTF-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>数据结构Note-Binary Seeking Tree</title>
-<script type="text/javascript" src="../js/comcode/com_arthead.js"></script>
-    <link rel="stylesheet" href="../css/font.css">
-    <style>
-        .lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}
-        .markdown-body {box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 10px;}
-        @media (max-width: 767px) {.markdown-body {padding: 15px;}.markdown-body h1 {font-size: 1.35em;}}
-        .codehilite {border-radius: 10px;}
-        .article-content img {max-width: 100%;}
-        #outerdiv { width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, 0.3);display: none;z-index: 200;
-        }
-    </style>
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body>
-    <script type="text/javascript" src="../js/global_header.js"></script>
-    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
-    <!--文章目录-->
-    <div class="toc">
-        <ul>
-        </ul>
-    </div>
-
-    <!--主体-->
-    <section class="main">
-        <label for="article_id"></label><input hidden id="article_id" name="article_id" value="55">
-        <label for="user_id"></label><input hidden id="user_id" name="user_id"
-            value="{{ no such element: django.contrib.sessions.backends.cache.SessionStore object[&#39;user_id&#39;] }}">
-        <div class="left-box">
-            <div id="outerdiv">
-                <div id="innerdiv" style="position:absolute;"><img alt id="bigimg"
-                        style="box-shadow: 0 0 10px rgba(0,0,0,0.38)" src="" />
-                </div>
-            </div>
-            <!--文章内容-->
-            <div class="article-container">
-                <div class="article-content markdown-body">
-                    <h1 style="margin: 10px 0">数据结构Note-Binary Seeking Tree</h1>
-                    <div class="writer-info">
-                        <span style="margin: 5px 0;">作者:</span>
-                        <span id="writer">C/C++</span>
-                        <span id="write-time">2024-10-26 0:0:0</span>
-                    </div>
-                    <p>
-                        Hello World!
-                    </p>
-                    <code>
-                        <br>namespace ST {
-                        <br>typedef struct Node {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;double data;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;Node* _left;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;Node* _right;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;Node* _parent;
-                        <br>};
-                        <br>
-                        <br>Node* init() {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;Node* t = (Node*)malloc(sizeof(Node));
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;t->data = 0;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;t->_left = NULL;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;t->_right = NULL;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;t->_parent = NULL;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;return t;
-                        <br>}
-                        <br>
-                        <br>Node* insert(Node* now, double x) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;if (x < now->data) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (now->_left == NULL) { now->_left = init(); now->_left->data = x; now->_left->_parent = now; }
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else { insert(now->_left, x); }
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;else if (x > now->data) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (now->_right == NULL) { now->_right = init(); now->_right->data = x; now->_right->_parent = now;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else { insert(now->_right, x); }
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;return now;
-                        <br>}
-                        <br>
-                        <br>bool find(Node* now, double x) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;if (x < now->data) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (now->_left != NULL)find(now->_left, x);
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else return false;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;else if (x > now->data) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (now->_right != NULL)find(now->_right, x);
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else return false;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;return true;
-                        <br>}
-                        <br>
-                        <br>double findmax_left(Node * left) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;if (left == NULL)return 0;//当前左子树为空
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;else if (left->_right == NULL)return left->data;//若当前子树存在右侧为空，直接返回data
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;return findmax_left(left->_right);//若当前子树及其右子树存在，查询右子树
-                        <br>}
-                        <br>
-                        <br>Node* remove(Node* root, double x) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;if (x < root->data) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left != NULL)remove(root->_left, x);
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else return root;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;else if (x > root->data) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_right != NULL)remove(root->_right, x);
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else return root;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;else {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left == NULL && root->_right == NULL) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root == NULL;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return root;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left == NULL && root->_right != NULL) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root = root->_right;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return root;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left != NULL && root->_right == NULL) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root = root->_left;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return root;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left != NULL && root->_right != NULL) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double val = findmax_left(root->_left);
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root->data = val;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root->_left = remove(root->_left, val);
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return root;
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;return root;
-                        <br>}
-                        <br>
-                        <br>void depth_first_search(Node* root) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;if (root != NULL) {
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//operational function//
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depth_first_search(root->_left);
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depth_first_search(root->_right);
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-                        <br>}
-                    </code>
-                </div>
-            </div>
+    <body>
+        <script type="text/javascript" src="../js/global_header.js"></script>
+        <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+        <!--文章目录-->
+        <div class="toc">
+            <ul>
+            </ul>
         </div>
-    </section>
-    <!--主题-->>
-    <div>
-        <script>
-            function getParams(key) {
-                var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-                var r = window.location.search.substr(1).match(reg);
-                if (r != null) {
-                    return unescape(r[2]);
-                }
-                return null;
-            };
-            var mode = 1;
-            if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};
-            if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0)" onclick="pagereload(2)" style="font-size:28px">✨</a></div>')
-            if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0)" onclick="pagereload(1)" style="font-size:28px">🔆</a></div>')
-        </script>
-    </div>
-    <!--尾部-->
-    <script type="text/javascript" src="../js/comcode/article-footer.js"></script>
-</body>
 
+        <!--主体-->
+        <section class="main">
+            <label for="article_id"></label><input hidden id="article_id" name="article_id" value="55">
+            <label for="user_id"></label><input hidden id="user_id" name="user_id"
+                value="{{ no such element: django.contrib.sessions.backends.cache.SessionStore object[&#39;user_id&#39;] }}">
+            <div class="left-box">
+                <div id="outerdiv">
+                    <div id="innerdiv" style="position:absolute;">
+                        <img alt id="bigimg" style="box-shadow: 0 0 10px rgba(0,0,0,0.38)" src="" />
+                    </div>
+                </div>
+                <!--文章内容-->
+                <div class="article-container">
+                    <div class="article-content markdown-body">
+                        <h1 style="margin: 10px 0">数据结构Note-Binary Seeking Tree</h1>
+                        <div class="writer-info">
+                            <span style="margin: 5px 0;">作者:</span>
+                            <span id="writer">C/C++</span>
+                            <span id="write-time">2024-10-26 0:0:0</span>
+                        </div>
+                        <p>
+                            Hello World!
+                        </p>
+                        <code>
+                            <br>namespace ST {
+                            <br>typedef struct Node {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;double data;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;Node* _left;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;Node* _right;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;Node* _parent;
+                            <br>};
+                            <br>
+                            <br>Node* init() {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;Node* t = (Node*)malloc(sizeof(Node));
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;t->data = 0;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;t->_left = NULL;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;t->_right = NULL;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;t->_parent = NULL;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;return t;
+                            <br>}
+                            <br>
+                            <br>Node* insert(Node* now, double x) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;if (x < now->data) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (now->_left == NULL) { now->_left = init(); now->_left->data = x; now->_left->_parent = now; }
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else { insert(now->_left, x); }
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;else if (x > now->data) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (now->_right == NULL) { now->_right = init(); now->_right->data = x; now->_right->_parent = now;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else { insert(now->_right, x); }
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;return now;
+                            <br>}
+                            <br>
+                            <br>bool find(Node* now, double x) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;if (x < now->data) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (now->_left != NULL)find(now->_left, x);
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else return false;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;else if (x > now->data) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (now->_right != NULL)find(now->_right, x);
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else return false;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;return true;
+                            <br>}
+                            <br>
+                            <br>double findmax_left(Node * left) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;if (left == NULL)return 0;//当前左子树为空
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;else if (left->_right == NULL)return left->data;//若当前子树存在右侧为空，直接返回data
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;return findmax_left(left->_right);//若当前子树及其右子树存在，查询右子树
+                            <br>}
+                            <br>
+                            <br>Node* remove(Node* root, double x) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;if (x < root->data) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left != NULL)remove(root->_left, x);
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else return root;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;else if (x > root->data) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_right != NULL)remove(root->_right, x);
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else return root;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;else {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left == NULL && root->_right == NULL) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root == NULL;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return root;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left == NULL && root->_right != NULL) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root = root->_right;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return root;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left != NULL && root->_right == NULL) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root = root->_left;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return root;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (root->_left != NULL && root->_right != NULL) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double val = findmax_left(root->_left);
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root->data = val;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root->_left = remove(root->_left, val);
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return root;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;return root;
+                            <br>}
+                            <br>
+                            <br>void depth_first_search(Node* root) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;if (root != NULL) {
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//operational function//
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depth_first_search(root->_left);
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;depth_first_search(root->_right);
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;}
+                            <br>}
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--主题-->>
+        <div>
+            <script>
+                function getParams(key) {
+                    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) {
+                        return unescape(r[2]);
+                    }
+                    return null;
+                };
+                var mode = 1;
+                if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};
+                if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0)" onclick="pagereload(2)" style="font-size:28px">✨</a></div>')
+                if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0)" onclick="pagereload(1)" style="font-size:28px">🔆</a></div>')
+            </script>
+        </div>
+        <!--尾部-->
+        <script type="text/javascript" src="../js/comcode/article-footer.js"></script>
+    </body>
 </html>
