@@ -1,4 +1,5 @@
 var artmenu = [
+    {number:22,type:"art",class:"art",subtype:"normal",links:"../articles/000022.html",time:"2024-10-27",author:"朱迪斯·巴特勒",name:"朱迪斯·巴特勒：文化战争，JK·罗琳，反智时代",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
     {number:21,type:"art",class:"code",subtype:"normal",links:"../articles/000021.html",time:"2024-10-27",author:"C-C++",name:"数据结构Note-Binary Seeking Tree",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
     {number:20,type:"art",class:"art",subtype:"normal",links:"../articles/000020.html",time:"2023-7-1",author:"卡尔·洛维特",name:"卡尔·洛维特：劳动是凝神与深思的解题",headpic:"https://img.soyorin.work/article-img/eup.jpg",detail:""},
     {number:19,type:"art",class:"art",subtype:"normal",links:"../articles/000019.html",time:"2023-7-1",author:"西奥多·阿多诺",name:"西奥多·阿多诺:电影的透明性",headpic:"https://img.soyorin.work/article-img/eup.jpg",detail:""},
@@ -119,7 +120,7 @@ var authorlist = [
     ['C-C++','前端','机器学习'],
     ['ArbeiterKlassen','Faschiung'],
     [],
-    ['朱利安·杨','马尔库塞','AlexandreChirat','胡塞尔','阿尔方索·林吉斯','西奥多·阿多诺','卡尔·洛维特','Jeffrey A. Bernstein',"阿兰-彭加姆"],
+    ['朱利安·杨','马尔库塞','AlexandreChirat','胡塞尔','阿尔方索·林吉斯','西奥多·阿多诺','卡尔·洛维特','Jeffrey A. Bernstein',"阿兰-彭加姆","朱迪斯·巴特勒"],
     [],
     [],
     [],
