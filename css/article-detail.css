@@ -608,6 +608,32 @@ li {
     text-decoration: none;
 }
 
+.headpage{
+    width:calc(100vw);
+    height:calc(60vh);
+    background-size: calc(100vw);
+    background-image: url('https://img.soyorin.work/article-img/lib.jpg');
+}
+.headpage-cover{
+    position: absolute;
+    top: calc(52vh);
+    margin-bottom:0;
+    width: calc(100vw);
+    height:calc(8vh);
+    background: linear-gradient(0deg,#000000 0%,#ff000000 100%);
+    color:#fff
+}
+@media(max-width:1200px){
+    .headpage{
+        visibility: hidden;
+        height:0px;
+    }
+    .headpage-cover{
+        visibility: hidden;
+        height:0px;
+    }
+}
+
 /*响应式尺寸*/
 @media (max-width: 1200px) {
     .toc {
