@@ -45,11 +45,22 @@
     width: 220px;
     font-size: 14px;
     right: -12px;
-    height: 470px;
+    height: auto;
     overflow: hidden;
-    /* 支持现代浏览器 */
-    /*-webkit-transform: translate(-50%, -50%);*/
-    /*transform: translate(-50%, -50%);*/
+    margin: 20px 10px;
+    padding: 20px;
+    background-color: #21252b;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.toc:hover {
+    box-shadow: 0 0 10px #767676;
+    -moz-box-shadow: 0 0 10px #767676;
 }
 
 .toc ul {
@@ -73,7 +84,7 @@
 }
 
 .toc a {
-    color: #777777;
+    color: #ffffff;
     /*单行文本溢出显示省略号*/
     width: 100%;
     overflow: hidden;
