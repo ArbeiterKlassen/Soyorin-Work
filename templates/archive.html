@@ -11,6 +11,9 @@
         .searchTerm {width: 100%;border: 3px solid grey;border-right: none;padding: 5px;height: 20px;border-radius: 5px 0 0 5px;outline: none;color: black;}
         .searchTerm:focus{color: black;}
         .searchButton {width: 40px;height: 36px;border: 1px solid grey;background: grey;text-align: center;color: #fff;border-radius: 0 5px 5px 0;cursor: pointer;font-size: 20px;}
+        details {transition: height 0.5s ease;overflow: hidden;}
+        summary {cursor: pointer;}
+        details:not([open]) > div {height: 0;}
     </style>
     <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
     <script type="text/javascript" src="../data/strings.js"></script>
