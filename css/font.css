@@ -22,3 +22,11 @@
     font-family: Hanyikaiti-1;
     src: url('../fonts/HanYiKaiTiJian-1.ttf');
 }
+@font-face {
+    font-family: Exo-White;
+    src: url('../fonts/Exo-Medium.ttf');
+}
+@font-face {
+    font-family: Exo-Black;
+    src: url('../fonts/Exo-Black.ttf');
+}
