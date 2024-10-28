@@ -1,4 +1,5 @@
 var artmenu = [
+    {number:24,type:"art",class:"art",subtype:"normal",links:"../articles/000024.html",time:"2024-10-29",author:"韩炳哲",name:"韩炳哲：远程办公、“Zoom”和抑郁症",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
     {number:23,type:"art",class:"cpl",subtype:"normal",links:"../articles/000023.html",time:"2024-10-28",author:"Arcaea",name:"12.00+推分历程及喷616😅",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
     {number:22,type:"art",class:"art",subtype:"normal",links:"../articles/000022.html",time:"2024-10-27",author:"朱迪斯·巴特勒",name:"朱迪斯·巴特勒：文化战争，JK·罗琳，反智时代",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
     {number:21,type:"art",class:"code",subtype:"normal",links:"../articles/000021.html",time:"2024-10-27",author:"C-C++",name:"数据结构Note-Binary Seeking Tree",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
@@ -121,7 +122,9 @@ var authorlist = [
     ['C-C++','前端','机器学习'],
     ['ArbeiterKlassen','Faschiung'],
     [],
-    ['朱利安·杨','马尔库塞','AlexandreChirat','胡塞尔','阿尔方索·林吉斯','西奥多·阿多诺','卡尔·洛维特','Jeffrey A. Bernstein',"阿兰-彭加姆","朱迪斯·巴特勒"],
+    ['朱利安·杨','马尔库塞','AlexandreChirat','胡塞尔',
+        '阿尔方索·林吉斯','西奥多·阿多诺','卡尔·洛维特','Jeffrey A. Bernstein',
+        "阿兰-彭加姆","朱迪斯·巴特勒","韩炳哲"],
     [],
     ['Arcaea'],
     [],
