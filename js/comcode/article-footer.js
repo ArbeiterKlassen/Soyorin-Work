@@ -1,4 +1,3 @@
-document.write('                    style="box-shadow: 0 0 10px rgba(0,0,0,0.38)" src="" />')
 document.write('</div>')
 document.write('    <footer class="footer">')
 document.write('        <div class="footer-line">Powered By <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank">Soyorin.Work - '+"AKlassen's Blogs</a> 浙ICP备1145141919810号• © 2022</div>")
