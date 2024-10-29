@@ -307,6 +307,7 @@ input {
 }
 
 .topsign-title {
+    padding: 15px;
     width: 100%;
     height:auto;
     background-color: #ffffff;
