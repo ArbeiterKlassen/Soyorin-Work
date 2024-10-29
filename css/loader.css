@@ -7,7 +7,7 @@
     justify-content: center;
     opacity: 1;
     background: linear-gradient(0deg,#D1BD80 0%,#8AECDD 50%,#66CFFF 100%);
-    transition: opacity 2s;
+    transition: opacity 1.5s;
 }
 .wrapper {
     width: fit-content;

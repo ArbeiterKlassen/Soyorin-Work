@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     opacity: 1;
-    transition: opacity 3s;
+    transition: opacity 1.5s;
     background: linear-gradient(0deg,#51EAFF 0%,#8AE7EC 43.46%,#8347FF 100%); 
 }
 .wrapper {

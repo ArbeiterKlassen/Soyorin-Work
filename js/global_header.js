@@ -191,7 +191,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 window.onload = function(){
-    sleep(3000);
+    sleep(3500);
     document.getElementById("loader-cover").style.opacity = 0;
-    sleep(2000).then(()=>{document.getElementById("loader-cover").style.zIndex = -9999;});
+    sleep(1500).then(()=>{document.getElementById("loader-cover").style.zIndex = -9999;});
 }
