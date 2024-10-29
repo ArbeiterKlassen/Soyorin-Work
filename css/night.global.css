@@ -52,7 +52,7 @@ input {
 .nav-bar-holder {
     width: 100%;
     height: 40px;
-    background-color: #ffffff;
+    background-color: #63636320;
     border-bottom: 1px solid #ECECEC;
     text-align: left;
     /* position: fixed; */
@@ -60,6 +60,11 @@ input {
     z-index: 100;
     position:fixed;
     float: inline-start;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.nav-bar-holder:hover{
+    background-color: #303643;
 }
 
 /* .sub-nav-bar-holder {
