@@ -17,6 +17,7 @@ if(mode == 1){
     document.write('<link rel="stylesheet" href="../css/code.css">');
     document.write('<link rel="stylesheet" href="../css/github-markdown.css">');
     document.write('<link rel="stylesheet" href="../css/vditor.css">')
+    document.write('<link rel="stylesheet" href="../css/loader.css">')
     document.write('<link rel="shortcut icon" href="../img/user.jpeg">');
 }
 if(mode == 2){
@@ -27,5 +28,6 @@ if(mode == 2){
     document.write('<link rel="stylesheet" href="../css/code.css">');
     document.write('<link rel="stylesheet" href="../css/night.github-markdown.css">');
     document.write('<link rel="stylesheet" href="../css/vditor.css">')
+    document.write('<link rel="stylesheet" href="../css/night.loader.css">')
     document.write('<link rel="shortcut icon" href="../img/user.jpeg">');
 }            
