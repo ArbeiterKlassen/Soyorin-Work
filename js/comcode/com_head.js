@@ -26,6 +26,7 @@ if(mode == 1){
     document.write('<link rel="stylesheet" href="../css/about.css">');
     document.write('<link rel="stylesheet" href="../css/font.css">');
     document.write('<link rel="stylesheet" href="../css/loader.css">')
+    document.write('<link rel="stylesheet" href="../css/manifest.css">')
     document.write('<link rel="shortcut icon" href="../headpage/icon.png">');
 }
 if(mode == 2){
@@ -47,5 +48,6 @@ if(mode == 2){
     document.write('<link rel="stylesheet" href="../css/night.about.css">');
     document.write('<link rel="stylesheet" href="../css/font.css">');
     document.write('<link rel="stylesheet" href="../css/night.loader.css">')
+    document.write('<link rel="stylesheet" href="../css/night.manifest.css">')
     document.write('<link rel="shortcut icon" href="../headpage/icon.png">');
 }
