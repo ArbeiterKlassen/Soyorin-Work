@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <script type="text/javascript" src="../js/comcode/com_head.js"></script>
+    <title>SOYORIN__清单</title>
+    <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
+</head>
+<body>
+    <script>
+        function getParams(key) {
+            var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        };
+        var mode = 1;
+        if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};
+    </script>
+    <script type="text/javascript" src="../js/global_header.js"></script>
+    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+    <!--主体-->
+    <div id="headpic" class="headpic">
+        <script>
+            var pics = [
+                "https://img.soyorin.work/headp1.jpg",
+                "https://img.soyorin.work/headp2.jpg",
+                "https://img.soyorin.work/headp3.jpg",
+                "https://img.soyorin.work/headp4.jpg",
+                "https://img.soyorin.work/headp5.jpg",
+                "https://img.soyorin.work/headp6.jpg",
+                "https://img.soyorin.work/headp7.jpg",
+                "https://img.soyorin.work/headp8.jpg",
+                "https://img.soyorin.work/headp9.jpg",
+                "https://img.soyorin.work/headp10.jpg",
+                "https://img.soyorin.work/headp11.jpg",
+                "https://img.soyorin.work/headp12.jpg"
+            ]
+            var intros = [
+                "Mémoires",
+                "Raisons et hypothèses",
+                "Vivez l'instant rêvé et réel.",
+                "Long voyage",
+                "Fins silencieuses",
+                "Lit. le bécasseau et la palourde font la guerre ensemble",
+                "Rompre les relations avec",
+                "Victoire",
+                "Le jugement dernier",
+                "Quand le rêve s'éveille",
+                "Revitalisation",
+                "Compte à rebours"
+            ]
+            xtype = Math.floor(Math.random()*(pics.length-1));
+            document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
+        </script>
+    </div>
+    <div class="headpic-cover">
+        <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
+            <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+            <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">友</div>情链接</h1>
+            <h4 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">L</div>inks</h4>
+        </div>
+        <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
+            <i><script>
+                document.write(intros[xtype]);
+            </script></i>
+        </div>
+        <div style="text-align: left;padding: 10px 10px 20px 20px;color: #ffffffb6;height:auto;background-color: #0000006c;border-radius: 15px;position:absolute;left: 20px;top: 500px;">
+            <div style="text-align: center;width: 100%;height:100%;border-radius: 10px;border-color: azure;">
+                <a href="https://cloudflare-cn.com" style="color:#ffffff">图床=></a>
+            </div>
+        </div>
+    </div>
+    <div class="big-container">
+        <article class="article" style="width: 90%;">
+            <div style="width:fit-content;padding:10px; height:auto;background-color: rgb(0, 102, 255);border-radius: 10px;">
+                <h3 style="text-align: center;color: #ffffff;">清单</h3>
+            </div>
+            <div class="topsign-title">
+                <h2 class="topsign-text">这里是AKlassen的书单/歌单/待办(～￣▽￣)～</h2>
+                <br>
+                <p>大概会有推荐的书/游戏/歌这样子</p>
+                <br>
+                <br>
+                <a href="#b" >BookLists</a>
+                <a href="#p" >PlayLists</a>
+                <a href="#g" >GameLists</a>
+            </div>
+            <style>
+                .section-holder{
+                    display: inline-block;
+                    margin-top: 10px;
+                    margin-right: 10px;
+                    margin-left: 10px;
+                    border-radius: 10px;
+                    width: 82%;
+                    /* height:fit-content; */
+                    height: 200px;
+                    background-color: rgb(255, 255, 255);
+                }
+                .section-holder section{
+                    display: none;
+                }
+                .section-holder section.active{
+                    display: block;
+                }
+            </style>
+            <div class="section-holder">
+                <section id="book" class="">
+                    <h1>Hello?</h1>
+                    AAAAAAAAAAAAAAAAAAAAAAA
+                </section>
+                <section id="play" class="">
+                    BBBBBBBBBBBBBBBBBBBBBBB
+                </section>
+                <section id="game" class="">
+                    CCCCCCCCCCCCCCCCCCCCCCC
+                </section>
+            </div>
+        </article>
+    </div>
+    <!--主题-->>
+    <div>
+        <script>
+            document.getElementById(getParams("key")).className = "active";
+            if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0)" onclick="pagereload(2)" style="font-size:28px">✨</a></div>')
+            if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0)" onclick="pagereload(1)" style="font-size:28px">🔆</a></div>')
+        </script>
+    </div>
+    <!--尾部-->
+    <script type="text/javascript" src="../js/comcode/footer.js"></script>
+    <script type="text/javascript" defer>
+        //图片懒加载
+        const lazyImage = new LazyImage('.lazy-image');
+    </script>
+</body>
+
+</html>
