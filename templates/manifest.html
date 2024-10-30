@@ -152,11 +152,40 @@
                 }
                 .section-holder .book-holder{
                     display: inline-block;
-                    margin: 10px;
-                    height :282px;
+                    height :300px;
                     width: 95%;
-                    background-color: rgb(23, 69, 23);
+                    background-color: rgba(255, 255, 255, 0);
                     border-radius: 10px;
+                }
+                .section-holder .book-holder .book-cover{
+                    float: left;
+                    margin: 20px 9px 9px 9px;
+                    height :282px;
+                    width: 200px;
+                    background-color: rgba(0, 0, 0, 0);
+                    border-radius: 10px;
+                    background-size: 200px;
+                }
+                .section-holder .book-holder .book-intro{
+                    margin: 9px;
+                    padding: 10px;
+                    line-height: 25px;
+                    font-size: 20px;
+                    height :282px;
+                    width: auto;
+                    border-radius: 10px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #000000;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .section-holder .book-holder .book-intro p{
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 11;
+                    line-clamp: 11;
+                    -webkit-box-orient: vertical;
                 }
             </style>
             <script>
@@ -194,15 +223,75 @@
                 <section id="default" class="active">
                     <br>
                 </section>
-                <section id="book" class="">
-                    <div class="book-holder"></div>
-                    <div class="book-holder"></div>
-                    <div class="book-holder"></div>
-                    <h1>Hello?</h1>
-                    AAAAAAAAAAAAAAAAAAAAAAA
+                <section id="book" class="" style="font-family: Exo-White;">
+                    <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: rgb(0, 102, 255);border-radius: 10px;margin: 0 auto;">
+                        <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: rgb(0, 102, 255);">不那么硬核的</p>
+                    </div>
+                    <div class="book-holder">
+                        <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/introduction_to_algorithm.jpg);"></div>
+                        <div class="book-intro">
+                            <p>
+                                《算法导论》（Introduction to Algorithms）是麻省理工学院出版社出版的关于计算机中数据结构与算法的图书，作者是托马斯·科尔曼（Thomas H. Cormen）、查尔斯·雷瑟尔森（Charles E. Leiserson）、罗纳德·李维斯特（Ronald L. Rivest）、克利福德·斯坦（Clifford Stein）。第一版刊行于1990年，2009年最新版为第三版。<br>
+                                本书深入浅出，全面地介绍了计算机算法。对每一个算法的分析既易于理解又十分有趣，并保持了数学严谨性。本书的设计目标全面，适用于多种用途。涵盖的内容有：算法在计算中的作用，概率分析和随机算法的介绍。本书专门讨论了线性规划，介绍了动态规划的两个应用，随机化和线性规划技术的近似算法等，还有有关递归求解、快速排序中用到的划分方法与期望线性时间顺序统计算法，以及对贪心算法元素的讨论。本书还介绍了对强连通子图算法正确性的证明，对哈密顿回路和子集求和问题的NP完全性的证明等内容。全书提供了900多个练习题和思考题以及叙述较为详细的实例研究。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder">
+                        <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/politics_and_history.jpg);"></div>
+                        <div class="book-intro">
+                            <p>
+                            Enlightenment advances towards a science of politics, and Marx's relationship to Hegel.
+                            <br><br>In the first two essays of this book, Louis Althusser analyses the work of two of the greatest thinkers of the Enlightenment – Montesquieu and Rousseau. He shows that although they made considerable advances towards establishing a science of politics, particularly in comparison with the theorists of natural law, they nevertheless remained the victims of the ideologies of their day and class. Montesquieu accepted as given the political notions current in French absolutism; Rousseau attempted to impose by moral conversion an already outdated mode of production. 
+                            <br><br>The third essay examines Marx’s relationship to Hegel and elaborates on the discussions of this theme in Althusser’s earlier books, For Marx and Lenin and Philosophy. Althusser argues that Marx was able to establish a theory of historical materialism and the possibility of a Marxist philosophy of dialectical materialism not simply by turning his back on Hegel, but by extracting and converting certain categories from Hegel’s Logic and applying them to English political economy and French socialist political theory.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder">
+                        <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/pour_marx.jpg);"></div>
+                        <div class="book-intro">
+                            <p>
+                                Pour Marx is a 1965 book by the philosopher Louis Althusser, a leading theoretician of the PCF, in which the author reinterprets the work of the philosopher Karl Marx, proposing an epistemological break between the young, Hegelian Marx, and the old Marx, the author of Das Kapital. 
+                                <br><br>The book, first published in France by François Maspero, established Althusser's reputation. The texts presented in For Marx are theoretical interventions in a definite conjuncture, particularly aiming at the definition of the lines to be pursued by the PCF after Stalin's years in the Soviet Union. Althusser's position is of theoretical antihumanism, and is against the teleology of history. 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder">
+                        <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/princeton_calculus.jpg);"></div>
+                        <div class="book-intro">
+                            <p>
+                                The Calculus Lifesaver combines ease of use and readability with the depth of content and mathematical rigor of the best calculus textbooks. It is an indispensable volume for any student seeking to master calculus.
+                                <br>
+                                <br>Serves as a companion to any single-variable calculus textbook
+                                <br>
+                                <br>Informal, entertaining, and not intimidating
+                                <br>
+                                <br>Informative videos that follow the book—a full forty-eight hours of Banner’s Princeton calculus-review course—is available at Adrian Banner lectures
+                                <br>
+                                <br>More than 475 examples (ranging from easy to hard) provide step-by-step reasoning
+                                <br>
+                                <br>Theorems and methods justified and connections made to actual practice
+                                <br>
+                                <br>Difficult topics such as improper integrals and infinite series covered in detail
+                                <br>
+                                <br>Tried and tested by students taking freshman calculus
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder">
+                        <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/the_sublime_subject_of_ideology.jpg);"></div>
+                        <div class="book-intro">
+                            <p>
+                                Žižek thematizes the Kantian notion of the sublime in order to liken ideology to the experience of something that is absolutely vast and powerful beyond all perception and objective intelligibility. 
+                                <br><br>Žižek provides an analysis of "How did Marx Invent the Symptom?", in which he compares the ways in which the notion of symptom runs through the work of the philosopher Karl Marx and Sigmund Freud, the founder of psychoanalysis. Žižek opposes any simplistic reading of the two thinkers, who are shown to have discovered the "kernel" of meaning concealed within the apparently unconnected "forms" of commodities (Marx) and dreams (Freud). 
+                            </p>
+                        </div>
+                    </div>
+                    <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: rgb(0, 102, 255);border-radius: 10px;margin: 0 auto;">
+                        <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: rgb(0, 102, 255);">硬核的</p>
+                    </div>
                 </section>
                 <section id="play" class="">
-                    BBBBBBBBBBBBBBBBBBBBBBB
                 </section>
                 <section id="game" class="">
                     CCCCCCCCCCCCCCCCCCCCCCC
