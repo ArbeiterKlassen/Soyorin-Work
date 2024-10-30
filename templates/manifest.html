@@ -157,6 +157,13 @@
                     background-color: rgba(255, 255, 255, 0);
                     border-radius: 10px;
                 }
+                .section-holder .book-holder-full{
+                    display: inline-block;
+                    height :fit-content;
+                    width: 95%;
+                    background-color: rgba(255, 255, 255, 0);
+                    border-radius: 10px;
+                }
                 .section-holder .book-holder .book-cover{
                     float: left;
                     margin: 20px 9px 9px 9px;
@@ -186,6 +193,18 @@
                     -webkit-line-clamp: 11;
                     line-clamp: 11;
                     -webkit-box-orient: vertical;
+                }
+                .section-holder .book-holder-full .book-intro-full{
+                    margin: 9px;
+                    padding: 10px;
+                    line-height: 25px;
+                    font-size: 20px;
+                    height:fit-content;
+                    width: auto;
+                    border-radius: 10px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #000000;
                 }
             </style>
             <script>
@@ -219,11 +238,11 @@
                     <a onclick="select3()"  href="javascript:void(0);">游戏</a>
                 </div>
             </div>
-            <div class="section-holder">
+            <div class="section-holder" style="font-family: Exo-White;">
                 <section id="default" class="active">
                     <br>
                 </section>
-                <section id="book" class="" style="font-family: Exo-White;">
+                <section id="book" class="">
                     <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: rgb(0, 102, 255);border-radius: 10px;margin: 0 auto;">
                         <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: rgb(0, 102, 255);">不那么硬核的</p>
                     </div>
@@ -290,8 +309,194 @@
                     <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: rgb(0, 102, 255);border-radius: 10px;margin: 0 auto;">
                         <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: rgb(0, 102, 255);">硬核的</p>
                     </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Software Foundations
+                                <br>Author: *
+                                <br>As you will see, "SOFTWARE FOUNDATIONS", or is it?
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Database systems: A Practical Approach to Design, Implementation, and Management
+                                <br>Too big..
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Computational Complexity: A Modern Approach
+                                <br>Author: Sanjeev Arora & Boaz Barak
+                                <br>An introductory book to computational complexity theory, which can be considered as the extension of computability theory.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Types and Programming Languages
+                                <br>Author: Benjamin. C. Pierce
+                                <br>A comprehensive guide to type and programming language theory, it is said that you will be able to read research papers directly after understanding this book.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Discrete Mathmatics and Its Application(离散数学及其应用)
+                                <br>Author: Kenneth H·Rosen
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Computer System: A Programmer's Perspective(CS:APP,深入理解计算机系统)
+                                <br>Author: Randal E.Bryant / David O'Hallaron
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Structure and Interpretation of Computer Language(SICP,计算机程序的构造和解释)
+                                <br>Author: Harold Abelson / Gerald Jay Sussman / Julie Sussman
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>TCP/IP Illustrated(TCP/IP详解(共三部))
+                                <br>Author: W·Richard Stevens
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Modern Compiler Implementation in C(现代编译原理:C语言实现)
+                                <br>Author: Andrew W.Appel / MaiaGinsburg
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Modern Compiler Implementation in Java(现代编译原理:Java语言实现)
+                                <br>Author: Andrew W.Appel
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Assembly Language for x86 Processors(汇编语言:基于x86处理器)
+                                <br>Author: Kip Irvine
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Advanced Compiler Design and Implementation(高级编译器设计与实现)
+                                <br>Author: Steven.S.Muchnick
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Engineering a Compiler(编译器设计)
+                                <br>Author: Keith Cooper / Linda Torczon
+                            </p>
+                        </div>
+                    </div>
+                    <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: rgb(0, 102, 255);border-radius: 10px;margin: 0 auto;">
+                        <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: rgb(0, 102, 255);">愿望单</p>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>罗生门
+                                <br>Author: 芥川龙之介
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>河童
+                                <br>Author: 芥川龙之介
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>The Art of Computer Programming(计算机程序设计艺术)
+                                <br>Author: 高德纳
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Computer Networking: A Top-down Approach(计算机网络:自顶向下方法)
+                                <br>Author: James F. Kurose / Keith W. Ross
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>The Design and Evolution of C++(C++语言的设计和演化)
+                                <br>Author: Bjarne Stroustrup
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Computer Organization and Design: The Hardware/Software Interface(计算机组成与设计:软件/硬件接口)
+                                <br>Author David A.Patterson / John L.Hennessy
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Unix Network Programming(UNIX网络编程(共两卷))
+                                <br>Author: W.Richard Stevens / Bill Fenner / Andrew M. Rudoff
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Computer Architecture：A Quantitative Approach(计算机体系结构:量化研究方法)
+                                <br>Author: John L. Hennessy / David A. Patterson
+                            </p>
+                        </div>
+                    </div>
+                    <div class="book-holder-full">
+                        <div class="book-intro-full">
+                            <p>
+                                <br>Compilers: Principles, Techniques, &Tools(编译原理)
+                                <br>Author: Alfred V. Aho / Monica S.Lam / Ravi Sethi / Jeffrey D. Ullman
+                            </p>
+                        </div>
+                    </div>
                 </section>
                 <section id="play" class="">
+                    <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: rgb(0, 102, 255);border-radius: 10px;margin: 0 auto;">
+                        <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: rgb(0, 102, 255);">不那么硬核的</p>
+                    </div>
+                    
                 </section>
                 <section id="game" class="">
                     CCCCCCCCCCCCCCCCCCCCCCC
