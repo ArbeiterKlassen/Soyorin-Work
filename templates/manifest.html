@@ -58,7 +58,7 @@
     <div class="headpic-cover">
         <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
             <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
-            <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">友</div>情链接</h1>
+            <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div id="title"><div style="color:rgb(0,102,255);display: inline;">友</div>情链接</h1></div>
             <h4 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">L</div>inks</h4>
         </div>
         <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
@@ -81,33 +81,123 @@
                 <h2 class="topsign-text">这里是AKlassen的书单/歌单/待办(～￣▽￣)～</h2>
                 <br>
                 <p>大概会有推荐的书/游戏/歌这样子</p>
-                <br>
-                <br>
-                <a href="#b" >BookLists</a>
-                <a href="#p" >PlayLists</a>
-                <a href="#g" >GameLists</a>
             </div>
             <style>
-                .section-holder{
-                    display: inline-block;
+                .section-selector{
+                    float: left;
                     margin-top: 10px;
                     margin-right: 10px;
                     margin-left: 10px;
                     border-radius: 10px;
-                    width: 82%;
+                    width: 15%;
                     /* height:fit-content; */
-                    height: 200px;
-                    background-color: rgb(255, 255, 255);
+                    height: 190px;
+                    background-color: #161728a0;
+                }
+                .section-selector .list{
+                    width: 78%;
+                    border-radius: 10px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    line-height: 40px;
+                    font-size: 20px;
+                    color:#fff;
+                    transition: all 0.3s ease-in-out;
+                }
+                .section-selector .list a{
+                    color: #fff;
+                    transition: all 0.3s ease-in-out;
+                }
+                .section-selector .list a:hover{
+                    color:dodgerblue;
+                }
+                .section-selector .list:hover{
+                    color:dodgerblue;
+                    background-color: #1617283a;
+                }
+                .section-holder{
+                    float: right;
+                    margin-top: 10px;
+                    margin-right: 10px;
+                    margin-left: 10px;
+                    border-radius: 10px;
+                    width: 80%;
+                    /* height:fit-content; */
+                    height:fit-content;
+                    background-color: #161728a0;
+                }
+                @media (max-width:1200px) {
+                    .section-holder{
+                        width: 100%;
+                    }
+                    .section-selector{
+                        width: 100%;
+                        height: fit-content;
+                    }
+                    .section-selector .list{
+                        display: inline-block;
+                        width: 100px;
+                    }
                 }
                 .section-holder section{
                     display: none;
+                    transition: all 0.5s ease-in-out;
+                    color:#fff
                 }
-                .section-holder section.active{
-                    display: block;
+                .active{
+                    display: initial;
+                    opacity: 1;
+                }
+                .section-holder .book-holder{
+                    display: inline-block;
+                    margin: 10px;
+                    height :282px;
+                    width: 95%;
+                    background-color: rgb(23, 69, 23);
+                    border-radius: 10px;
                 }
             </style>
+            <script>
+                function select1(){
+                    document.getElementById('book').style.display='initial';
+                    document.getElementById('play').style.display='none';
+                    document.getElementById('game').style.display='none';
+                    document.getElementById('title').innerHTML = '<div style="color:rgb(0,102,255);display: inline;">BOOK </div>LIST</h1>';
+                }
+                function select2(){
+                    document.getElementById('book').style.display='none';
+                    document.getElementById('play').style.display='initial';
+                    document.getElementById('game').style.display='none';
+                    document.getElementById('title').innerHTML = '<div style="color:rgb(0,102,255);display: inline;">PLAY </div>LIST</h1>';
+                }
+                function select3(){
+                    document.getElementById('book').style.display='none';
+                    document.getElementById('play').style.display='none';
+                    document.getElementById('game').style.display='initial';
+                    document.getElementById('title').innerHTML = '<div style="color:rgb(0,102,255);display: inline;">GAME </div>LIST</h1>';
+                }
+            </script>
+            <div class="section-selector">
+                <div class="list">
+                    <a onclick="{select1()}" href="javascript:void(0);">书单</a>
+                </div>
+                <div class="list">
+                    <a onclick="select2()"  href="javascript:void(0);">歌单</a>
+                </div>
+                <div class="list">
+                    <a onclick="select3()"  href="javascript:void(0);">游戏</a>
+                </div>
+            </div>
             <div class="section-holder">
+                <section id="default" class="active">
+                    <br>
+                </section>
                 <section id="book" class="">
+                    <div class="book-holder"></div>
+                    <div class="book-holder"></div>
+                    <div class="book-holder"></div>
                     <h1>Hello?</h1>
                     AAAAAAAAAAAAAAAAAAAAAAA
                 </section>
@@ -123,7 +213,6 @@
     <!--主题-->>
     <div>
         <script>
-            document.getElementById(getParams("key")).className = "active";
             if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0)" onclick="pagereload(2)" style="font-size:28px">✨</a></div>')
             if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0)" onclick="pagereload(1)" style="font-size:28px">🔆</a></div>')
         </script>
