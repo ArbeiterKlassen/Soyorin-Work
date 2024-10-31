@@ -56,7 +56,7 @@
     }
     .section-selector .list{
         display: inline-block;
-        width: 100px;
+        width: 90px;
     }
 }
 .section-holder section{
@@ -145,6 +145,20 @@
     padding: 10px;
     line-height: 25px;
     font-size: 20px;
+    height :300px;
+    width: auto;
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.section-holder .game-holder .button-container{
+    margin: 9px;
+    padding: 10px;
+    line-height: 25px;
+    font-size: 20px;
     height :200px;
     width: auto;
     border-radius: 10px;
@@ -154,27 +168,27 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.section-holder .game-holder .game-intro .button-holder{
+.section-holder .game-holder .button-container .button-holder{
     display: inline-block;
     width: 30%;
     height:40px;
-    background-color: #161728a0;
+    background-color: #00ff11;
     border-top-left-radius: 10px;
     transition: all 0.5s ease-in-out;
 }
-.section-holder .game-holder .game-intro .button-holder:hover{
+.section-holder .game-holder .button-container .button-holder:hover{
     width: 32%;
     height:40px;
-    background-color: #1617283a;
+    background-color: #06c613;
 }
-.section-holder .game-holder .game-intro .button-holder a{
+.section-holder .game-holder .button-container .button-holder a{
     line-height: 20px;
     padding: 10px;
     display: inline-block;
     color: #ffffff;
     transition: color 0.5s ease-in-out;
 }
-.section-holder .game-holder .game-intro .button-holder a:hover{
+.section-holder .game-holder .button-container .button-holder a:hover{
     color:dodgerblue;
 }
 .section-holder .game-holder .game-intro p{
@@ -184,9 +198,21 @@
     line-clamp: 11;
     -webkit-box-orient: vertical;
 }
-@media(max-width:768px){
-    .section-holder .game-holder .game-intro .button-holder{
+@media(max-width:1200px){
+    .section-holder .game-holder{
+        height:350px;
+    }
+    .section-holder .game-holder .game-intro{
+        height:332px;
+    }
+    .section-holder .game-holder .button-container .button-holder{
         display: unset;
         width: fit-content;
+        border-top-left-radius: unset;
+        height: 20px;
+    }
+    .section-holder .game-holder .button-container .button-holder a{
+        line-height: 20px;
+        font-size: 12px;
     }
 }
