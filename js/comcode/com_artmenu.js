@@ -121,7 +121,7 @@ function questionaire(code){
 var translate = ['CodeDev','读书思考','政史经哲','转载文章','记录生活','日常抱怨','推荐Something','技术相关','其他'];
 var numcate = ['code','book','eup','art','rec','cpl','pro','tec','oth'];
 var authorlist = [
-    ['C-C++','前端','机器学习'],
+    ['C-C++','前端','机器学习','L-I-F'],
     ['ArbeiterKlassen','Faschiung'],
     [],
     ['朱利安·杨','马尔库塞','AlexandreChirat','胡塞尔',
