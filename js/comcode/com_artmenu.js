@@ -1,5 +1,5 @@
 var artmenu = [
-    {number:26,type:"art",class:"code",subtype:"normal",links:"../articles/000026.html",time:"2025-5-19",author:"L-I-F",name:"关于pytorch中contiguous（内存连续性）的一些理解",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
+    {number:26,type:"art",class:"code",subtype:"normal",links:"../articles/000026.html",time:"2025-5-19",author:"L-I-F",name:"关于pytorch中contiguous（内存连续性）的一些理解",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
     {number:25,type:"art",class:"code",subtype:"normal",links:"../articles/000025.html",time:"2024-11-6",author:"C-C++",name:"数据结构Note-Prime Sieves",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
     {number:24,type:"art",class:"art",subtype:"normal",links:"../articles/000024.html",time:"2024-10-29",author:"韩炳哲",name:"韩炳哲：远程办公、“Zoom”和抑郁症",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
     {number:23,type:"art",class:"cpl",subtype:"normal",links:"../articles/000023.html",time:"2024-10-28",author:"Arcaea",name:"12.00+推分历程及喷616😅",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
