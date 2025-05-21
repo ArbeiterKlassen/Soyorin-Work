@@ -490,7 +490,32 @@
 .markdown-body img[align=left]{
     padding-right:20px
 }
-.markdown-body code{
+.markdown-body .refer-holder{
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #444d56;
+    border-left: #24292e 10px;
+    border-style: solid;
+    color:white;
+    font-family: 'Times New Roman', Times, serif;
+    transition: color 0.5s ease-in-out;
+}
+.markdown-body .refer-holder:hover{
+    color:#41b0ff;
+}
+.markdown-body .code-holder{
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+    margin: 0 auto;
+    padding: 10px;
+    border-width: 1px;
+    border-color:white;
+    border-style: solid;
+}
+.markdown-body .code-holder code{
     background-color:rgba(27,31,35,.05);
     border-radius:3px;
     font-size:85%;
@@ -498,8 +523,20 @@
     padding:.2em .4em;
     transition: color 0.5s #006ebc;
 }
-.markdown-body code:hover{
+.markdown-body .code-holder code:hover{
     color:#006ebc;
+}
+.markdown-body .math-holder{
+    width: 90%;
+    text-align: center;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(27,31,35,.05);
+    border-style: solid;
+    color:rgb(255, 255, 255);
+    font-family: 'Times New Roman', Times, serif;
+    transition: color 0.5s ease-in-out;
 }
 .markdown-body pre{
     word-wrap:normal
