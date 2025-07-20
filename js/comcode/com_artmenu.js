@@ -1,4 +1,5 @@
 var artmenu = [
+    {number:27,type:"vid",class:"art",subtype:"normal",links:"",time:"2025-7-20",author:"Sunny_DucK,L-I-F",name:"来自L-I-F的生日祝福",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
     {number:26,type:"art",class:"code",subtype:"normal",links:"../articles/000026.html",time:"2025-5-19",author:"L-I-F",name:"关于pytorch中contiguous（内存连续性）的一些理解",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
     {number:25,type:"art",class:"code",subtype:"normal",links:"../articles/000025.html",time:"2024-11-6",author:"C-C++",name:"数据结构Note-Prime Sieves",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
     {number:24,type:"art",class:"art",subtype:"normal",links:"../articles/000024.html",time:"2024-10-29",author:"韩炳哲",name:"韩炳哲：远程办公、“Zoom”和抑郁症",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
@@ -118,8 +119,8 @@ function questionaire(code){
     </div>
     `
 }
-var translate = ['CodeDev','读书思考','政史经哲','转载文章','记录生活','日常抱怨','推荐Something','技术相关','其他'];
-var numcate = ['code','book','eup','art','rec','cpl','pro','tec','oth'];
+var translate = ['CodeDev','读书思考','政史经哲','转载文章','记录生活','日常抱怨','推荐Something','技术相关','外链视频','其他'];
+var numcate = ['code','book','eup','art','rec','cpl','pro','tec','vid','oth'];
 var authorlist = [
     ['C-C++','前端','机器学习','L-I-F'],
     ['ArbeiterKlassen','Faschiung'],
@@ -129,6 +130,7 @@ var authorlist = [
         "阿兰-彭加姆","朱迪斯·巴特勒","韩炳哲"],
     [],
     ['Arcaea'],
+    [],
     [],
     [],
     [],
