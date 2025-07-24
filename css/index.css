@@ -146,11 +146,13 @@
 }
 
 .choosen-box {
-    width:25px;
+    width:35px;
     height:32px;
     background-color:rgb(180, 180, 180);
     margin: 0 auto;
     float:left;
+    padding-right: 5px;
+    padding-left: 5px;
     text-align:center;
     font-size:20px;
     border-radius: 4px;
@@ -617,12 +619,14 @@
         margin: 8px 1%;
     }
     .choosen-box {
-        width:25px;
+        width:35px;
         height:32px;
         background-color:rgb(180, 180, 180);
         margin: 0 auto;
         float:left;
         text-align:center;
+        padding-right: 5px;
+        padding-left: 5px;
         font-size:20px;
         border-radius: 4px;
         box-shadow: 0 0 10px rgba(184, 197, 214, .5);

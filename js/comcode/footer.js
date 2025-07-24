@@ -1,5 +1,6 @@
 document.write('    <footer class="footer">')
-document.write('        <div class="footer-line">Powered By <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank">Soyorin.Work - '+"AKlassen's Blogs</a> 浙ICP备1145141919810号• © 2023</div>")
+document.write('        <div class="footer-line">Powered By <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank">Soyorin.Work - '+"AKlassen's Blogs</a> 浙ICP备1145141919810号• © 2025</div>")
+//document.write('        <img src="../img/footer-cat.png" alt="" style="width: 100%;min-height: 250px;">')
 document.write('    </footer>')
 document.write('    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>')
 document.write('    <script type="text/javascript" src="../js/sweetalert.min.js"></script>')

@@ -1,0 +1,285 @@
+
+        <!DOCTYPE html>
+            <html lang = "zh-cmn-Hans">
+                <head>
+                    <meta name = "viewport" content = "width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+                    <meta http - equiv = "X-UA-Compatible" content = "IE=edge,chrome=1">
+                    <meta name = "HandheldFriendly" content = "true">
+                    <meta charset = "UTF-8">
+                    <meta name = "keywords" content = "">
+                    <meta name = "description" content = "">
+                    <meta name = "author" content = "">
+                    <title>
+    日本之行</title>
+                    <script type = "text/javascript" src = "../js/comcode/com_arthead.js"></script>
+                    <link rel = "stylesheet" href = "../css/font.css">
+                    <style>
+                        .lazy-image{ background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 10%; }
+                    .markdown-body{ box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 10px; }
+                    @media(max-width: 767px) { .markdown-body{ padding: 15px; }.markdown body h1{ font-size: 1.35em; } }
+                    .codehilite{ border-radius: 10px; }
+                    .article-content img{ max-width: 100%; }
+                    #outerdiv{ width: 100%; height: 100%; position: fixed; top : 0; left : 0; background: rgba(0, 0, 0, 0.3); display: none; z-index: 200;}
+                </style>
+                <!--[if lt IE 9]>
+                <script src = "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                <script src = "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+            <![endif]-->
+            </head>
+            <body>
+                <script type = "text/javascript" src = "../js/global_header.js"></script>
+                <div id = "d-audio" class = "d-audio" style = "width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+                    <div class = "toc">
+                        <ul>                            
+                            <li><a href='#1'>1.准备工作</a></li>
+                            <li><a href='#2'>2.关西5日谈</a></li>
+                            <li><a href='#3'>3.上洛进京</a></li>
+                            <li><a href='#4'>4.结语</a></li>
+                                </ul>
+                        </div>
+                        <section class = "main">
+                            <label for = "article_id"></label><input hidden id = "article_id" name = "article_id" value = "55">
+                            <label for = "user_id"></label><input hidden id = "user_id" name = "user_id" value = "{{ no such element: django.contrib.sessions.backends.cache.SessionStore object[&#39;user_id&#39;] }}">
+                            <div class = "left-box">
+                                <div id = "outerdiv">
+                                    <div id = "innerdiv" style = "position:absolute;"><br>
+                                        <img alt id = "bigimg" style = "box-shadow: 0 0 10px #00000038" src = ""/>
+                                    </div>
+                                </div>
+                                <div class = "article-container">
+                                    <div class = "article-content markdown-body">
+                                        <h1 style = "margin: 10px 0">日本之行</h1>
+                                        <div class = "writer-info">
+                                            <span style = "margin: 5px 0;">作者:</span>
+                                            <span id = "writer">ArbeiterKlassen</span><br>
+                                            <span id = "write-time">2025-8-11 0:0:0 </span >
+                                        </div>
+                                
+                                <p>
+                                   之前在学习pytorch的时候一直对于这个概念云里雾里，于是画了一个小时理了理内存连续的概念，有了一些理解.<br>
+                                   文中所说的c风格式存储，指的是一行一行存，先存第一行，接着把第二行放在第一行后面存储，以此类推.<br>
+                                </p>
+                            <h2 style='text-align:left' id = '1'>1.内存连续性的定义</h2>
+                                <p><br>
+                                        首先来看官方给的定义
+<br>
+                                </p>
+<div class="refer-holder">
+ Tensor is or will be allocated in dense non-overlapping memory. Strides represented by values in decreasing order.
+</div>
+                                
+                                <p>
+                                       
+<br>
+                                        翻译成中文就是
+<br>
+                                </p>
+<div class="refer-holder">
+张量在密集且不重叠的内存中分配，stride 按递减顺序排列。
+</div>
+                                <p>
+
+<br>
+                                        要解释明白这句话，首先就要说明一下stride是什么:
+<br>
+                                        常常被表示为一个元组，元组的位置和tensor的维度一一对应，表示该维度加一需要走过的内存中的元素数量
+<br>
+                                        举个例子,如果我有一个tenser是：
+<br>
+                                </p>
+<div class="math-holder">
+                                        [ [1,2,3],
+<br>
+                                        [4,5,6] ]
+<br>
+</div>
+                                <p>
+                                        在内存中的存储是 1，2，3，4，5，6
+<br>
+                                        那么他的stride是（3,1），容易理解的是，第二维每增加1，就要走过一个元素
+<br>
+                                        比如1->2,从1走到2，走过了元素“1”，走过了一个元素
+<br>
+                                        而对于第一维，要增加1，就是要从1走到4：
+<br>
+                                         1->2->3->4，走过了“1”，“2”，“3”三个元素，所以stride对应位置是3
+<br>
+                                        现在我们回到contiguous上面，stride的数字应该从前往后依次减小，也就是说，靠后的维数（比如第2维）要比靠前的维数（比如第1维）每增大一个值，走过的内存中的元素小
+<br>
+                                        你可能会疑惑，在C风格的内存存储下，后面比前面的stride小不是很显然吗？难不成还有变大的？
+<br>
+                                        有，还真有！
+<br>
+                                        问题就出在stride定义时候强调的走过内存中的元素，注意是内存中的，不是你看到的
+<br>
+                                        比如我对刚刚那个矩阵生成一个转置的视图（视图view，只改变你看到的形状，不改变原存储方式）：
+<br>
+                                </p>
+<div class="math-holder">
+                                        [ [1,4],
+<br>
+                                        [2,5]
+<br>
+                                        [3,6] ]
+<br>
+</div>
+                                <p>
+                                        由于内存没有变，所以在内存中的存储依然是 1，2，3，4，5，6
+<br>
+                                        此时第二个维数增加1，在内存中要走1->2->3->4，stride为3
+<br>
+                                        但是第一个维数增加1，在内存中只需要走1->2，stride为1
+<br>
+                                        stride是(1,3)，是不是后面的比前面的大了？
+<br>
+                                        但是好像这样的解释有点隔靴搔痒，没有触及本质。
+                                </p>
+                            <h2 style='text-align:left' id = '2'>2.违反contiguous的本质（我理解的）</h2>
+                                <p>
+<br>                                    有一个很简单的判断准则：对于一个你看见的tensor，如果你按照C风格存储方式所预期的stride不等于实际上的stride，就不连续。
+
+<br>因为只有按照c风格来存储，你用索引从小到大，维数从后到前的最正常的遍历方法，在内存中才是不跳跃，不反向的连续遍历，而按照C风格存储方式所预期的stride不等于实际上的stride，就意味着你不是按照C风格存储，就会导致不连续。
+<br>（[0][0]->[0][1]->[1][0]->[1][1]->[2][0]->[2][1]）
+<br>下面用3个不连续的例子帮你理解：
+
+<br>首先就用上面转置生成的视图举例子：
+                                </p>
+<div class="math-holder">
+[ [1,4],
+<br>  [2,5]
+<br>  [3,6] ]
+</div>
+                                <p>
+
+
+<br>假设你不知道这个是转置生成的视图，按照C风格的存储方式，你预期的存储应该是 1，4，2，5，3，6，stripe应该是（3，1）
+
+<br>但是实际上是 1，2，3，4，5，6，stripe是（1 , 3）
+
+<br>这个例子下，在按照索引从小到大，维数从后到前遍历时候，会发生内存的跳跃（从1跳到4）
+
+<br>第二个例子是切片(pytorch中的切片返回的是视图)
+
+<br>就拿最简单的一维举例子:
+                                </p>
+<div class="math-holder">
+    [1,2,3,4,5,6]<br>
+</div>
+                                <p>
+
+
+<br>①取切片[ : :2]，生成[1,3,5]，假设你不知道这个是一个视图，按照C风格的存储方式，你预期的存储应该是 1，3，5，stripe应该是（1）
+
+<br>但是实际上存储是 1，2，3，4，5，6，stripe是（2）
+
+<br>此时在按照索引从小到大，维数从后到前遍历时候，会发生跳跃
+
+<br>事实上pytorch不支持负步长，也大概不存在反转的视图（torch.flip()会直接产生副本），上面这个负步长的例子是基于我的理解推演出的例子
+
+<br>②如果取[ : :-1],生成[6,5,4,3,2,1]，假设你不知道这个是一个视图，按照C风格的存储方式，你预期的存储应该是 6，5，4，3，2，1，stripe应该是（1）
+
+<br>但是实际上存储是 1，2，3，4，5，6，stripe是（-1）
+
+<br>此时在按照索引从小到大，维数从后到前遍历时候，会发生反向
+
+<br>第三个例子是expand函数，用法三言两语解释不清，简而言之是：生成一个将现有的数据在某个维度上“复制”几次的视图（注意：不是真的在内存中复制了，只是把同一个地方的数据反复用）
+
+<br>比如我有一个（1，4）的tensor，变量名为t：
+                                </p>
+<div class="math-holder">
+    [1,2,3,4]
+</div>
+                                <p>
+<br>
+<br>现在用t.expand(4,4)“复制”数据生成一个（4，4）的视图：
+                                </p>
+<div class="math-holder">
+    [[1,2,3,4],
+<br>[1,2,3,4],
+<br>[1,2,3,4],
+<br>[1,2,3,4]]
+
+</div>
+                                <p>
+
+<br>假设你不知道这个是一个视图，按照C风格的存储方式，你预期的存储应该是 1，2，3，4，1，2，3，4，1，2，3，4，1，2，3，4，stride为（4,1）
+
+<br>但是实际上存储是 1，2，3，4，stripe是（0，1）
+
+<br>这里0代表着第一个维数加1（从第一行的1到第二行的1，一步也不用动，事实上确实是如此）
+
+<br>此时在按照索引从小到大，维数从后到前遍历时候，会在切换行的时候反向跳回第一个数字
+                                </p>
+                            <h2 style='text-align:left' id = '3'>3.总结</h2>
+                                <p>
+<br>                                    你可以用官方给出的定义来判断，也可以用我再第2点里提到的判断准则来判断，由于stride的性质，这两种判断方法实际上是等价的
+<br>   而所谓的不连续，本质上就是视图和它的存储不满足C风格的对应关系，导致按照索引从小到大，维数从后到前遍历的时候，在内存中并不是一个一个一个一个元素连续遍历
+<br>   要想转成连续（比如a是一个不连续的视图）
+<br>
+</p>
+<div class="code-holder">
+<code>
+a = a.contiguous()
+</code>
+</div>
+<p>
+<br>   
+<br>   会强制拷贝一份a，并用c风格存到内存里。
+<br>
+</p>
+
+                                        </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div>
+            <script>
+                function getParams(key) {
+                    var reg = new RegExp('(^|&)' + key + '=([^&]*)(&|$)');
+                    var r = window.location.search.substr(1).match(reg);
+                    if (r != null) { return unescape(r[2]); }
+                    return null;
+                };
+                var mode = 1;
+                if (localStorage.getItem("soyorin-mode") != null) { mode = parseInt(localStorage.getItem("soyorin-mode")) };
+                if (mode == 1) document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0) " onclick="pagereload(2) " style="font-size:28px">✨</a></div>')
+                if (mode == 2) document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0) " onclick="pagereload(1) " style="font-size:28px">🔆</a></div>')
+            </script>
+        </div>
+        <section>
+            <div class="left-box">
+                <div id="outerdiv">
+                    <div id="innerdiv" style="position:absolute;">
+                        <img alt id="bigimg" style="box-shadow: 0 0 10px #00000038" src="" />
+                    </div>
+                </div>
+                <div class="article-container">
+                    <div class="article-content markdown-body">
+                        <h2 style="margin: 10px 0">评论</h2>
+                        <div id="tcomment"></div>
+                        <!-- 来必力City版安装代码 -->
+                        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
+                        <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                        </script>
+                        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+                        </div>
+                        <!-- City版安装代码已完成 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript" src="../js/comcode/article-footer.js"></script>
+    </body>
+</html>
+    

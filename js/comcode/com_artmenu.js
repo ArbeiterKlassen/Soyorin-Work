@@ -1,5 +1,7 @@
 var artmenu = [
-    {number:27,type:"vid",class:"art",subtype:"normal",links:"",time:"2025-7-20",author:"Sunny_DucK,L-I-F",name:"来自L-I-F的生日祝福",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
+    {number:26,type:"art",class:"art",subtype:"normal",links:"../articles/000029.html",time:"2025-8-12",author:"ArbeiterKlassen",name:"包头的秋",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
+    {number:28,type:"art",class:"art",subtype:"normal",links:"../articles/000028.html",time:"2025-8-11",author:"ArbeiterKlassen",name:"日本之行",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
+    {number:27,type:"art",class:"vid",subtype:"normal",links:"https://www.bilibili.com/video/BV13Nufz4EV6/",time:"2025-7-20",author:"Sunny_DucK,L-I-F",name:"来自L-I-F的生日祝福",headpic:"https://i2.hdslb.com/bfs/archive/ba4083b43b84edc140bc57e97c5ae975476e0846.jpg",detail:""},
     {number:26,type:"art",class:"code",subtype:"normal",links:"../articles/000026.html",time:"2025-5-19",author:"L-I-F",name:"关于pytorch中contiguous（内存连续性）的一些理解",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
     {number:25,type:"art",class:"code",subtype:"normal",links:"../articles/000025.html",time:"2024-11-6",author:"C-C++",name:"数据结构Note-Prime Sieves",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},
     {number:24,type:"art",class:"art",subtype:"normal",links:"../articles/000024.html",time:"2024-10-29",author:"韩炳哲",name:"韩炳哲：远程办公、“Zoom”和抑郁症",headpic:"https://img.soyorin.work/article-img/book.jpg",detail:""},

@@ -120,11 +120,11 @@
                                 };
                                 var page = 1;var cate = 'all';
                                 if(getParams("page") != null){page = getParams("page")};
-                                function page_chooser(){
+                                function page_chooser(mode){
                                     document.write('<div class="article-box" style="width:auto;height:32px;background-color:rgba(180,180,180,0)" id="choosen-container">')
                                     document.write('    <div class="ab-content" style="background-color:rgba(180,180,180,0)">')
-                                    document.write('        <div style="height:32px;width:auto;border-radius:4px;margin: 0 auto;float:left;text-align:center;font-size:18px">'+"  共"+count+"篇文章 "+pages + "页  "+' </div>')
-                                    for(var i = 1;i<=pages;i++)document.write('<div class="choosen-box">'+'<a style="color:white" href="./category.html?page='+i+'">'+i+'</a></div>')
+                                    document.write('        <div style="height:32px;width:auto;border-radius:4px;margin: 0 auto;float:left;text-align:center;font-size:18px;color: #ff000091;background-color:#ffffff;padding-left: 20px;padding-right:20px"><strong> '+count+"篇，共"+pages + "页"+' </strong></div>')
+                                    for(var i = 1;i<=pages;i++)document.write('<div class="choosen-box">'+'<a style="color:white" href="./index.html?mode='+mode+'&page='+i+'">'+i+'</a></div>')
                                     document.write('    </div>')
                                     document.write('</div>')
                                 };
