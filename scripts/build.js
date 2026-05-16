@@ -1,4 +1,4 @@
-import ejs from 'ejs';
+﻿import ejs from 'ejs';
 import { readFileSync, writeFileSync, copyFileSync, mkdirSync, existsSync, readdirSync, statSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -120,6 +120,7 @@ for (const page of templatePages) {
 }
 
 // 5. 创建新的 main.js 替换 global_header.js 和 footer.js 的动态加载
+// 5. 创建新的 main.js 替换全局逻辑
 console.log('Creating new main.js...');
 const mainJs = `
 // Soyorin.Work - Refactored Main JS
@@ -149,14 +150,12 @@ function hasadmission() {
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
 window.addEventListener('load', function() {
-  sleep(3500).then(() => {
-    const cover = document.getElementById("loader-cover");
-    if (cover) cover.style.opacity = 0;
-  });
-  sleep(5000).then(() => {
-    const cover = document.getElementById("loader-cover");
-    if (cover) cover.style.zIndex = -9999;
-  });
+  const cover = document.getElementById("loader-cover");
+  if (cover) {
+    cover.style.opacity = 0;
+    cover.style.transition = 'opacity 0.5s';
+    setTimeout(function() { cover.style.zIndex = -9999; }, 1500);
+  }
   document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
 });
 

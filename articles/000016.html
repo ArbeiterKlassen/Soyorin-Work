@@ -46,9 +46,6 @@
   <!-- PC导航 -->
   <nav class="nav-bar-holder">
     <div class="nav-bar" id="nav-bar">
-      <div class="logo-box">
-        <a href="index.html" class="blog-title ta-c"><img style="vertical-align: top; height: 32px;" alt="logo" src="https://img.soyorin.work/user.jpeg" /></a>
-      </div>
       <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
       <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
       <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
@@ -57,7 +54,7 @@
       <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
       <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
       <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
-      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航�?/a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
     </div>
   </nav>
 
@@ -77,11 +74,11 @@
     <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
     <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
     <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
-    <li><a class="w-h-100 fl" href="../index.html">导航�?/a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
   </ul>
 
   <!-- Loader -->
-  <div class="loader" style="width: 100vw; height: 100vh; position: fixed; z-index: 10000;" id="loader-cover">
+  <div class="loader" style="width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; z-index: 99999;" id="loader-cover">
     <div class="wrapper">
       <div class="catContainer">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 733 673" class="catbody">
@@ -358,10 +355,6 @@
 </section>
 
 
-  
-  </div>
-  
-
   <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 20px; padding: 5px 12px; font-size: 28px; background: var(--bg-card); box-shadow: var(--shadow-card);">
     <a href="javascript:void(0)" onclick="const d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" style="text-decoration:none;">✨</a>
   </div>
@@ -402,7 +395,7 @@
   <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js" integrity="sha384-3f4jG+SN1L8xH8RX2z5G7j8Fz1T8wzH7V8yq6f3w2x1y0z9c8b7a6f5e4d3c2b1a" crossorigin="anonymous"></script>
   <script>
     document.body.oncopy = function() {
-      layer.msg("复制成功,若要转载请务必保留原文链�?br>并遵�?(CC)-BY-NC-SA 协议");
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
     };
     document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
   </script>
@@ -429,14 +422,12 @@
     }
     function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
     window.addEventListener('load', function() {
-      sleep(3500).then(() => {
-        const cover = document.getElementById("loader-cover");
-        if (cover) { cover.style.opacity = 0; }
-      });
-      sleep(5000).then(() => {
-        const cover = document.getElementById("loader-cover");
-        if (cover) { cover.style.zIndex = -9999; }
-      });
+      const cover = document.getElementById("loader-cover");
+      if (cover) {
+        cover.style.opacity = 0;
+        cover.style.transition = 'opacity 0.5s';
+        setTimeout(function() { cover.style.zIndex = -9999; }, 1500);
+      }
     });
   </script>
 </body>

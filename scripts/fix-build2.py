@@ -1,4 +1,13 @@
+with open('scripts/build.js', 'rb') as f:
+    data = f.read()
+text = data.decode('utf-8-sig')
 
+start = text.find('const mainJs = ')
+end = text.find('`;\nwriteFileSync(join(root, \'js/main.js\'), mainJs);')
+
+if start != -1 and end != -1:
+    old_section = text[start:end+2]
+    new_section = """const mainJs = `
 // Soyorin.Work - Refactored Main JS
 (function() {
   const saved = localStorage.getItem('soyorin-mode');
@@ -40,3 +49,10 @@ document.body.oncopy = function() {
     layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
   }
 };
+`;"""
+    text = text[:start] + new_section + text[end+2:]
+    with open('scripts/build.js', 'wb') as f:
+        f.write(text.encode('utf-8-sig'))
+    print('fixed')
+else:
+    print('not found')
