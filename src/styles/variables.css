@@ -1,0 +1,75 @@
+:root {
+  /* 背景 */
+  --bg-body: #fff;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f2f2f2;
+  --bg-card: #ffffff;
+  --bg-dark-trans: #0000006c;
+  --bg-code: #f8f8f8;
+  --bg-toc: #f6f8fa;
+  --bg-input: #fff;
+
+  /* 文字 */
+  --text-primary: #000;
+  --text-secondary: #292929;
+  --text-tertiary: #4e4e4e;
+  --text-muted: #666;
+  --text-light: #999;
+  --text-on-dark: #fff;
+  --text-link: #1a6aec;
+  --text-danger: #ff1f30;
+  --text-accent: rgb(255, 97, 97);
+
+  /* 边框 & 阴影 */
+  --border-color: rgba(0, 0, 0, 0.616);
+  --border-light: #ebebeb;
+  --shadow-card: 0 0 10px rgba(184, 197, 214, .5);
+  --shadow-card-hover: 0 0 10px #767676;
+  --shadow-img: 0 0 10px rgba(0,0,0,0.38);
+
+  /* 组件特定 */
+  --nav-bg: #40485b;
+  --footer-bg: transparent;
+  --footer-text: #666;
+  --box-border: dashed;
+  --markdown-heading: #1b1f23;
+  --markdown-blockquote: #6a737d;
+  --markdown-table-border: #dfe2e5;
+  --markdown-code-bg: rgba(27,31,35,0.05);
+}
+
+[data-theme="dark"] {
+  --bg-body: #21252b;
+  --bg-primary: #2b2b2cf4;
+  --bg-secondary: #161728;
+  --bg-card: #161728a0;
+  --bg-dark-trans: #0000006c;
+  --bg-code: #2d2d2d;
+  --bg-toc: #1d2125;
+  --bg-input: #2b2b2b;
+
+  --text-primary: #fff;
+  --text-secondary: #ededed;
+  --text-tertiary: #ededed;
+  --text-muted: #aaa;
+  --text-light: #888;
+  --text-on-dark: #fff;
+  --text-link: #58a6ff;
+  --text-danger: #ff4444;
+  --text-accent: #ff8181;
+
+  --border-color: rgba(255, 255, 255, 0.2);
+  --border-light: #444;
+  --shadow-card: 0 0 10px rgba(115, 115, 115, .5);
+  --shadow-card-hover: 0 0 10px rgba(115, 115, 115, .5);
+  --shadow-img: 0 0 10px rgba(255,255,255,0.1);
+
+  --nav-bg: #2d333b;
+  --footer-bg: transparent;
+  --footer-text: #aaa;
+  --box-border: dashed;
+  --markdown-heading: #c9d1d9;
+  --markdown-blockquote: #8b949e;
+  --markdown-table-border: #30363d;
+  --markdown-code-bg: rgba(66,133,244,0.15);
+}

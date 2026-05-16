@@ -1,0 +1,17 @@
+.calendar-lh{
+    width: 50%;
+    float: left;
+}
+.calendar-rh{
+    width: 50%;
+    float: left;
+}
+
+@media (max-width:1200px){
+    .calendar-lh{
+        width: 100%;
+    }
+    .calendar-rh{
+        display: none;
+    }
+}

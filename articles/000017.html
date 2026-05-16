@@ -1,46 +1,128 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-
+<html lang="zh-cmn-Hans" data-theme="light">
 <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true">
-    <meta charset="UTF-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>阿尔方索·林吉斯：尼采与动物</title>
-<script type="text/javascript" src="../js/comcode/com_arthead.js"></script>
-    <link rel="stylesheet" href="../css/font.css">
-    <style>
-        .lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}
-        .markdown-body {box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 10px;}
-        @media (max-width: 767px) {.markdown-body {padding: 15px;}.markdown-body h1 {font-size: 1.35em;}}
-        .codehilite {border-radius: 10px;}
-        .article-content img {max-width: 100%;}
-        #outerdiv { width: 100%;height: 100%;position: fixed;top: 0;left: 0;background: rgba(0, 0, 0, 0.3);display: none;z-index: 200;
-        }
-    </style>
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="Soyorin.Work - AKlassen&#39;s Blogs">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="阿尔方索·林吉斯：尼采与动物">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>阿尔方索·林吉斯：尼采与动物</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/article-detail.css">
+  
+  <link rel="stylesheet" href="../css/code.css">
+  
+  <link rel="stylesheet" href="../css/github-markdown.css">
+  
+  <link rel="stylesheet" href="../css/vditor.css">
+  
+  <link rel="stylesheet" href="../css/loader.css">
+  
+  
+  <style>
+    .lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }
+    .markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 10px; }
+    @media (max-width: 767px) { .markdown-body { padding: 15px; } .markdown-body h1 { font-size: 1.35em; } }
+    .codehilite { border-radius: 10px; }
+    .article-content img { max-width: 100%; }
+    #outerdiv { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.3); display: none; z-index: 200; }
+  </style>
+  
 </head>
-
 <body>
-    <script type="text/javascript" src="../js/global_header.js"></script><div class="headpage"><div class="headpage-cover"></div></div>
-    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
-    <!--文章目录-->
-    <div class="toc">
-        <ul>
-            <li><a href="#1">1. 价值的自然化</a></li>
-            <li><a href="#2">2. 生态学和拟人论</a></li>
-        </ul>
-    </div>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
 
-    <!--主体-->
-    <section class="main">
-        <label for="article_id"></label><input hidden id="article_id" name="article_id" value="55">
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="logo-box">
+        <a href="index.html" class="blog-title ta-c"><img style="vertical-align: top; height: 32px;" alt="logo" src="https://img.soyorin.work/user.jpeg" /></a>
+      </div>
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/archive.html">归档</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航�?/a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+    <div class="logo-box"><a href="index.html" class="blog-title ta-c"></a></div>
+    <a id="mobile_cate" href="javascript:void(0);"><div style="padding: 1px; background-color: white; border-radius: 25px;"><img style="width: 35px;" alt="mobile-nav" src="../img/cate.svg"></div></a>
+  </nav>
+  <ul id="nav-m-list">
+    <li id="cancel-li"><a class="fr" id="cancel" href="javascript:void(0);"></a></li>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/archive.html">归档</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航�?/a></li>
+  </ul>
+
+  <!-- Loader -->
+  <div class="loader" style="width: 100vw; height: 100vh; position: fixed; z-index: 10000;" id="loader-cover">
+    <div class="wrapper">
+      <div class="catContainer">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 733 673" class="catbody">
+          <path class="loader-cat-fill" d="M111.002 139.5C270.502 -24.5001 471.503 2.4997 621.002 139.5C770.501 276.5 768.504 627.5 621.002 649.5C473.5 671.5 246 687.5 111.002 649.5C-23.9964 611.5 -48.4982 303.5 111.002 139.5Z"></path>
+          <path class="loader-cat-fill" d="M184 9L270.603 159H97.3975L184 9Z"></path>
+          <path class="loader-cat-fill" d="M541 0L627.603 150H454.397L541 0Z"></path>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 158 564" class="tail">
+          <path class="loader-tail-fill" d="M5.97602 76.066C-11.1099 41.6747 12.9018 0 51.3036 0V0C71.5336 0 89.8636 12.2558 97.2565 31.0866C173.697 225.792 180.478 345.852 97.0691 536.666C89.7636 553.378 73.0672 564 54.8273 564V564C16.9427 564 -5.4224 521.149 13.0712 488.085C90.2225 350.15 87.9612 241.089 5.97602 76.066Z"></path>
+        </svg>
+        <div class="text"><span class="bigzzz">Z</span><span class="zzz">Z</span></div>
+      </div>
+      <div class="wallContainer">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 500 126" class="wall">
+          <line stroke-width="6" stroke="#7C7C7C" y2="3" x2="450" y1="3" x1="50"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="85" x2="400" y1="85" x1="100"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="122" x2="375" y1="122" x1="125"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="500" y1="43"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="1.99391" x2="115.5" y1="43.0061" x1="115.5"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="2.00002" x2="189" y1="43.0122" x1="189"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="2.00612" x2="262.5" y1="43.0183" x1="262.5"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="2.01222" x2="336" y1="43.0244" x1="336"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="2.01833" x2="409.5" y1="43.0305" x1="409.5"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="153" y1="84.0122" x1="153"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="228" y1="84.0122" x1="228"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="303" y1="84.0122" x1="303"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="43" x2="378" y1="84.0122" x1="378"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="84" x2="192" y1="125.012" x1="192"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="84" x2="267" y1="125.012" x1="267"></line>
+          <line stroke-width="6" stroke="#7C7C7C" y2="84" x2="342" y1="125.012" x1="342"></line>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  <div class="headpage"><div class="headpage-cover"></div></div>
+
+<section class="main">
+  <label for="article_id"></label><input hidden id="article_id" name="article_id" value="55">
         <label for="user_id"></label><input hidden id="user_id" name="user_id"
             value="{{ no such element: django.contrib.sessions.backends.cache.SessionStore object[&#39;user_id&#39;] }}">
         <div class="left-box">
@@ -142,10 +224,7 @@
                 return null;
             };
             var mode = 1;
-            if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};
-            if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0)" onclick="pagereload(2)" style="font-size:28px">✨</a></div>')
-            if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0)" onclick="pagereload(1)" style="font-size:28px">🔆</a></div>')
-        </script>
+            if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};</script>
         <section>
             <div class = "left-box">
                 <div id = "outerdiv">
@@ -178,10 +257,89 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-    <!--尾部-->
-    <script type="text/javascript" src="../js/comcode/article-footer.js"></script>
-</body>
+</section>
 
+
+  
+  </div>
+  
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 20px; padding: 5px 12px; font-size: 28px; background: var(--bg-card); box-shadow: var(--shadow-card);">
+    <a href="javascript:void(0)" onclick="const d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" style="text-decoration:none;">✨</a>
+  </div>
+  <footer class="footer">
+    <div class="footer-line">Powered By <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank">Soyorin.Work - AKlassen's Blogs</a> © 2021 - <span class="year"></span></div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="../js/vditor.min.js"></script>
+  <script src="../js/article-detail.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-3f4jG+SN1L8xH8RX2z5G7j8Fz1T8wzH7V8yq6f3w2x1y0z9c8b7a6f5e4d3c2b1a" crossorigin="anonymous"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none",
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath:  [["$", "$"]],
+        displayMath: [["$$","$$"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre","code","a"],
+        ignoreClass:"comment-content"
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+        showMathMenu: false
+      }
+    });
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  </script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js" integrity="sha384-3f4jG+SN1L8xH8RX2z5G7j8Fz1T8wzH7V8yq6f3w2x1y0z9c8b7a6f5e4d3c2b1a" crossorigin="anonymous"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链�?br>并遵�?(CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    // Theme init
+    (function() {
+      const saved = localStorage.getItem('soyorin-mode');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+    function getParams(key) {
+      const reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      const r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+    window.addEventListener('load', function() {
+      sleep(3500).then(() => {
+        const cover = document.getElementById("loader-cover");
+        if (cover) { cover.style.opacity = 0; }
+      });
+      sleep(5000).then(() => {
+        const cover = document.getElementById("loader-cover");
+        if (cover) { cover.style.zIndex = -9999; }
+      });
+    });
+  </script>
+</body>
 </html>

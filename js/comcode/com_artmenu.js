@@ -1,3 +1,12 @@
+
+function insertHtml(html) {
+  const currentScript = document.currentScript;
+  if (currentScript) {
+    currentScript.insertAdjacentHTML('beforebegin', html);
+  } else {
+    document.body.insertAdjacentHTML('beforeend', html);
+  }
+}
 var artmenu = [
     {number:26,type:"art",class:"art",subtype:"normal",links:"../articles/000029.html",time:"2025-8-12",author:"ArbeiterKlassen",name:"包头的秋",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
     {number:28,type:"art",class:"art",subtype:"normal",links:"../articles/000028.html",time:"2025-8-11",author:"ArbeiterKlassen",name:"日本之行",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
@@ -168,7 +177,7 @@ function print_authorlist(cate){
     var max = authorlist[cate-1].length
     if(max>6)max = 6;
     for(var i = 0; i<=max-1;i++){
-        document.write('<div style="width: 48%;height:35px;margin: 0 auto;display:inline-block;text-align:center"><a style="color: rgb(237,118,137,1);font-size: large;" href="./categories.html?cate='+cate+'&author='+i+'">'+authorlist[cate-1][i]+'</a></div>');
+        insertHtml('<div style="width: 48%;height:35px;margin: 0 auto;display:inline-block;text-align:center"><a style="color: rgb(237,118,137,1);font-size: large;" href="./categories.html?cate='+cate+'&author='+i+'">'+authorlist[cate-1][i]+'</a></div>');
     };
 }
 function print_page(pagename){
@@ -204,31 +213,31 @@ function print_category(cate,authornum){
         for(var i = 0; i<=max-1;i++){
             if(artmenu[i].class==numcate[cate-1]){
                 date = artmenu[i].time.split("-");
-                if(parseInt(date[0])<inity){inity = date[0];document.write('<li class="person-intro-detail" style="font-size:x-large">【'+inity+'】</li>');}
-                document.write('<li class="person-intro-detail"><span class="date" style="font-size:small;color:#666">'+date[1]+'-'+date[2]+'  </span><a href="'+artmenu[i].links+'" class="title" style="font-size:x-large">'+artmenu[i].name+'</a><span class="date" style="font-size:small;color:#666"> By '+artmenu[i].author+'</span></li><br>');
+                if(parseInt(date[0])<inity){inity = date[0];insertHtml('<li class="person-intro-detail" style="font-size:x-large">【'+inity+'】</li>');}
+                insertHtml('<li class="person-intro-detail"><span class="date" style="font-size:small;color:#666">'+date[1]+'-'+date[2]+'  </span><a href="'+artmenu[i].links+'" class="title" style="font-size:x-large">'+artmenu[i].name+'</a><span class="date" style="font-size:small;color:#666"> By '+artmenu[i].author+'</span></li><br>');
             }
         }
     }else{
         for(var i = 0; i<=max-1;i++){
             if(artmenu[i].class==numcate[cate-1] && artmenu[i].author == authorlist[cate-1][authornum]){
                 date = artmenu[i].time.split("-");
-                if(parseInt(date[0])<inity){inity = date[0];document.write('<li class="person-intro-detail" style="font-size:x-large">【'+inity+'】</li>');}
-                document.write('<li class="person-intro-detail"><span class="date" style="font-size:small;color:#666">'+date[1]+'-'+date[2]+'  </span><a href="'+artmenu[i].links+'" class="title" style="font-size:x-large">'+artmenu[i].name+'</a><span class="date" style="font-size:small;color:#666"> By '+artmenu[i].author+'</span></li><br>');
+                if(parseInt(date[0])<inity){inity = date[0];insertHtml('<li class="person-intro-detail" style="font-size:x-large">【'+inity+'】</li>');}
+                insertHtml('<li class="person-intro-detail"><span class="date" style="font-size:small;color:#666">'+date[1]+'-'+date[2]+'  </span><a href="'+artmenu[i].links+'" class="title" style="font-size:x-large">'+artmenu[i].name+'</a><span class="date" style="font-size:small;color:#666"> By '+artmenu[i].author+'</span></li><br>');
             }
         }
     }
 }
 function print_content(){
-    document.write('<li class="column-title">')
-    document.write('<span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, Times New Roman, Times, serif;">文章</a></span>')
-    document.write('</li>')
+    insertHtml('<li class="column-title">')
+    insertHtml('<span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, Times New Roman, Times, serif;">文章</a></span>')
+    insertHtml('</li>')
     var max = artmenu.length;
     var inity=2020;
     var date;
     for(var i = max-1; i>=0;i--){if(artmenu[i].type=='art'){
         date = artmenu[i].time.split("-");
-        if(parseInt(date[0]) > inity){inity++;document.write('<li class="person-intro-detail gradient-text">'+inity+'</li>');}
-        document.write('<li class="person-intro-detail"><span class="date">'+date[1]+'-'+date[2]+' </span><a href="'+artmenu[i].links+'" class="title">'+artmenu[i].name+'</a></li>');
+        if(parseInt(date[0]) > inity){inity++;insertHtml('<li class="person-intro-detail gradient-text">'+inity+'</li>');}
+        insertHtml('<li class="person-intro-detail"><span class="date">'+date[1]+'-'+date[2]+' </span><a href="'+artmenu[i].links+'" class="title">'+artmenu[i].name+'</a></li>');
     }};
 };
 function output(){
@@ -277,7 +286,7 @@ function print_essays(){
     var max = artmenu.length;
     for(var i = 0;i<max;i++){
         if(artmenu[i].subtype == "essay"){
-            document.write('<a href="'+artmenu[i].links+'">'+artmenu[i].author+','+artmenu[i].name+'</a><br>');
+            insertHtml('<a href="'+artmenu[i].links+'">'+artmenu[i].author+','+artmenu[i].name+'</a><br>');
         }
     }
 }

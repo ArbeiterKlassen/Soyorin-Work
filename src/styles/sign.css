@@ -1,0 +1,109 @@
+.sign-container {
+    float: left;
+    width: 1090px;
+    margin-left: 5px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(184, 197, 214, .5);
+    -moz-box-shadow: 0 0 10px rgba(184, 197, 214, .5);
+    transition: ease-in-out 0.3s;
+    border-radius: 10px;
+}
+
+.sign-container:hover {
+    box-shadow: 0 0 10px #7e8795;
+    -moz-box-shadow: 0 0 10px #7e8795;
+}
+
+.qrcode-container{
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+.qrcode-container .sub-container{
+    width:50%;
+    height: auto;
+    display:table-cell;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.qrcode-container .sub-container img{
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    width:100%;
+    height:auto;
+}
+.qrcode-container .sub-container p{
+    line-height: 30px;
+    text-align: center;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.poster-container{
+    margin: 0 auto;
+    width: 500px;
+    height: auto;
+}
+.poster-container img{
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    width: 500px;
+    height:auto;
+}
+.poster-container p{
+    line-height: 30px;
+    text-align: center;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+}
+.name-holder{
+    width: auto;
+    height: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    display:inline-block;
+    color: #828487;
+}
+@media screen and (max-width: 1200px){
+    .sign-container {
+        width: 98%;
+        margin: 6px 1%;
+        font-size: 14px;
+    }
+
+    .sign-container a {
+        font-size: 14px;
+    }
+
+    .poster-container{
+        margin: 0 auto;
+        width: 100%;
+        height: auto;
+    }
+
+    .poster-container img{
+        border-width: 1px;
+        border-color: black;
+        border-style: solid;
+        border-radius: 5px;
+        width: 100%;
+        height:auto;
+    }
+
+    .poster-container p{
+        line-height: 30px;
+        text-align: center;
+        border-width: 1px;
+        border-color: black;
+        border-style: solid;
+        border-radius: 5px;
+    }
+}
