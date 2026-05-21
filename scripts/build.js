@@ -71,9 +71,12 @@ for (const art of data.articles) {
     keywords: 'Soyorin.Work, Blog',
     theme: 'light',
     basePath: '../',
-    cssFiles: ['article-detail.css', 'code.css', 'github-markdown.css', 'vditor.css', 'loader.css'],
+    cssFiles: ['article-detail.css', 'code.css', 'github-markdown.css', 'vditor.css'],
     hasToc: true,
     isArticle: true,
+    hasHeadpic: false,
+    headpicTitle: '',
+    headpicSubtitle: '',
     body: bodyHtml
   });
   
@@ -94,29 +97,121 @@ let newIndex = indexHtml
   .replace(/unescape\(/g, 'decodeURIComponent(');
 writeFileSync(join(root, 'index.html'), newIndex);
 
-// 4. 处理 templates/ 下的页面（简化处理：保留主体，替换公共部分）
-const templatePages = ['index.html', 'archive.html', 'category.html', 'categories.html', 'about.html', 'link.html', 'manifest.html', 'issue.html', 'web.sign.html'];
+// 4. 从 EJS 生成 templates/ 下的页面
+console.log('Generating template pages from EJS...');
 
-for (const page of templatePages) {
-  const p = join(root, 'templates', page);
-  if (!existsSync(p)) continue;
+const pageConfigs = [
+  {
+    file: 'index.html',
+    ejs: 'index.ejs',
+    title: 'Soyorin.Work - 首页',
+    headpicTitle: '<div style="color:rgb(0, 102, 255);display: inline;">S</div>oyorin.Work',
+    headpicSubtitle: '<div style="color:rgb(0, 102, 255);display: inline;">A</div> Web Designed for Various Thoughts & Records',
+    cssFiles: ['index.css', 'sign.css', 'archive.css'],
+    extraHead: ''
+  },
+  {
+    file: 'about.html',
+    ejs: 'about.ejs',
+    title: 'SOYORIN__关于',
+    headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">关</div>于Soyorin.Work和我',
+    headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">&Uuml;</div>ber diese Website und mir',
+    cssFiles: ['about.css', 'calendar.css', 'link.css'],
+    extraHead: '<style>@import url("../css/calendar.css");</style>'
+  },
+  {
+    file: 'archive.html',
+    ejs: 'archive.ejs',
+    title: 'SOYORIN__归档',
+    headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">文</div>件归档',
+    headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">D</div>okumentenablage',
+    cssFiles: ['archive.css'],
+    extraHead: '<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"><style>.search {width: 100%;position: relative;display: flex;}.searchTerm {width: 100%;border: 3px solid grey;border-right: none;padding: 5px;height: 20px;border-radius: 5px 0 0 5px;outline: none;color: black;}.searchTerm:focus{color: black;}.searchButton {width: 40px;height: 36px;border: 1px solid grey;background: grey;text-align: center;color: #fff;border-radius: 0 5px 5px 0;cursor: pointer;font-size: 20px;}details {transition: height 0.5s ease;overflow: hidden;}summary {cursor: pointer;}details:not([open]) > div {height: 0;}</style>'
+  },
+  {
+    file: 'category.html',
+    ejs: 'category.ejs',
+    title: 'SOYORIN__分类',
+    headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">文</div>章分类',
+    headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">A</div>rtikel-Kategorien',
+    cssFiles: ['index.css', 'sign.css', 'archive.css'],
+    extraHead: ''
+  },
+  {
+    file: 'categories.html',
+    ejs: 'categories.ejs',
+    title: 'Soyorin.Work - AKlassen\'s Blogs',
+    headpicTitle: '<div style="color:red;display: inline;">分</div>类于"<script>document.write(translate[cate-1])</script>"的文章',
+    headpicSubtitle: '<div style="color:red;display: inline;">A</div>rtikel-Kategorien',
+    cssFiles: ['index.css', 'sign.css', 'archive.css'],
+    extraHead: '<script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>'
+  },
+  {
+    file: 'link.html',
+    ejs: 'link.ejs',
+    title: 'SOYORIN__友情链接',
+    headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">友</div>情链接',
+    headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">L</div>inks',
+    cssFiles: ['link.css', 'about.css'],
+    extraHead: ''
+  },
+  {
+    file: 'manifest.html',
+    ejs: 'manifest.ejs',
+    title: 'SOYORIN__清单',
+    headpicTitle: '<div id="manifest-title"><div style="color:rgb(0,102,255);display: inline;">清</div>单</div>',
+    headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">L</div>iste',
+    cssFiles: ['manifest.css'],
+    extraHead: ''
+  },
+  {
+    file: 'issue.html',
+    ejs: 'issue.ejs',
+    title: 'SOYORIN__评论',
+    headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">讨</div>论|提案|建议|开发',
+    headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">D</div>iskussion|Vorlage|Vorschlag|Entwicklung',
+    cssFiles: ['index.css', 'github-markdown.css'],
+    extraHead: '<link rel="shortcut icon" href="../img/builder.jpeg">'
+  },
+  {
+    file: 'web.sign.html',
+    ejs: 'web.sign.ejs',
+    title: 'SOYORIN__公告',
+    headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">公</div>告',
+    headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">A</div>nk&uuml;ndigung',
+    cssFiles: ['sign.css', 'index.css', 'archive.css'],
+    extraHead: ''
+  }
+];
+
+for (const cfg of pageConfigs) {
+  const pageTplPath = join(root, 'src/templates/pages', cfg.ejs);
+  if (!existsSync(pageTplPath)) {
+    console.log(`  SKIP templates/${cfg.file} (no EJS source)`);
+    continue;
+  }
+  const pageTpl = readFileSync(pageTplPath, 'utf-8');
+  const bodyHtml = ejs.render(pageTpl, {});
   
-  let html = readFileSync(p, 'utf-8');
+  const html = ejs.render(baseTpl, {
+    title: cfg.title,
+    description: 'Soyorin.Work - AKlassen\'s Blogs',
+    keywords: 'Soyorin.Work, Blog',
+    theme: 'light',
+    basePath: '../',
+    cssFiles: cfg.cssFiles,
+    hasToc: false,
+    isArticle: false,
+    hasHeadpic: true,
+    headpicTitle: cfg.headpicTitle,
+    headpicSubtitle: cfg.headpicSubtitle,
+    extraHead: cfg.extraHead || '',
+    body: bodyHtml
+  });
   
-  // 移除过时代码
-  html = html
-    .replace(/<!--\[if lt IE 9\]>.*?<!\[endif\]-->/gs, '')
-    .replace(/<meta http-equiv="X-UA-Compatible"[^>]*>/gi, '');
-  
-  // 替换 unescape
-  html = html.replace(/unescape\(/g, 'decodeURIComponent(');
-  
-  // 替换 document.write 的 com_head / com_arthead 为静态 link
-  // 这是一个简化：删除这些 script 标签，因为 CSS 已经合并并由 base 模板管理
-  // 但由于 templates 页面没有使用 base.ejs，我们暂时保留原有结构，只做安全替换
-  
-  writeFileSync(p, html);
-  console.log(`  -> templates/${page}`);
+  const outPath = join(root, 'templates', cfg.file);
+  writeFileSync(outPath, html);
+  console.log(`  -> templates/${cfg.file}`);
 }
 
 // 5. 创建新的 main.js 替换 global_header.js 和 footer.js 的动态加载
@@ -149,15 +244,7 @@ function hasadmission() {
 
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
-window.addEventListener('load', function() {
-  const cover = document.getElementById("loader-cover");
-  if (cover) {
-    cover.style.opacity = 0;
-    cover.style.transition = 'opacity 0.5s';
-    setTimeout(function() { cover.style.zIndex = -9999; }, 1500);
-  }
-  document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
-});
+document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
 
 document.body.oncopy = function() {
   if (typeof layer !== 'undefined') {

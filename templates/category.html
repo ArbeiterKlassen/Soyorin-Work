@@ -1,156 +1,230 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-
+<html lang="zh-cmn-Hans" data-theme="light">
 <head>
-    <script type="text/javascript" src="../js/comcode/com_head.js"></script>
-    <title>SOYORIN__分类</title>
-    <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="Soyorin.Work - AKlassen&#39;s Blogs">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="SOYORIN__分类">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>SOYORIN__分类</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/index.css">
+  
+  <link rel="stylesheet" href="../css/sign.css">
+  
+  <link rel="stylesheet" href="../css/archive.css">
+  
+  
+  <style>.lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }</style>
+  
+  
+  <!-- 初始主题检测 + 全局变量 (需在页面内容前定义) -->
+  <script>
+    var mode = 1;
+    (function() {
+      var saved = localStorage.getItem('soyorin-mode');
+      if (saved) mode = parseInt(saved);
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function getParams(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+  </script>
 </head>
-
 <body>
-    <script type="text/javascript" src="../js/global_header.js"></script>
-    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
-    <!--主体-->
-    <script>
-        function getParams(key) {
-                var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-                var r = window.location.search.substr(1).match(reg);
-                if (r != null) {
-                    return decodeURIComponent(r[2]);
-                }
-                return null;
-            };
-            var mode = 1;
-        if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};
-    </script>
-    <div id="headpic" class="headpic">
-        <script>
-            var pics = [
-                "https://img.soyorin.work/headp1.jpg",
-                "https://img.soyorin.work/headp2.jpg",
-                "https://img.soyorin.work/headp3.jpg",
-                "https://img.soyorin.work/headp4.jpg",
-                "https://img.soyorin.work/headp5.jpg",
-                "https://img.soyorin.work/headp6.jpg",
-                "https://img.soyorin.work/headp7.jpg",
-                "https://img.soyorin.work/headp8.jpg",
-                "https://img.soyorin.work/headp9.jpg",
-                "https://img.soyorin.work/headp10.jpg",
-                "https://img.soyorin.work/headp11.jpg",
-                "https://img.soyorin.work/headp12.jpg"
-            ]
-            var intros = [
-                "Mémoires",
-                "Raisons et hypothèses",
-                "Vivez l'instant rêvé et réel.",
-                "Long voyage",
-                "Fins silencieuses",
-                "Lit. le bécasseau et la palourde font la guerre ensemble",
-                "Rompre les relations avec",
-                "Victoire",
-                "Le jugement dernier",
-                "Quand le rêve s'éveille",
-                "Revitalisation",
-                "Compte à rebours"
-            ]
-            xtype = Math.floor(Math.random()*(pics.length-1));
-            document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
-        </script>
-    </div>
-    <div class="headpic-cover">
-        <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
-            <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
-            <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">文</div>章分类</h1>
-            <h4 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">A</div>rtikel-Kategorien</h4>
-        </div>
-        <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
-            <i><script>
-                document.write(intros[xtype]);
-            </script></i>
-        </div>
-        <div style="text-align: left;padding: 10px 10px 20px 20px;color: #ffffffb6;height:auto;background-color: #0000006c;border-radius: 15px;position:absolute;left: 20px;top: 500px;">
-            <div style="text-align: center;width: 100%;height:100%;border-radius: 10px;border-color: azure;">
-                <a href="https://cloudflare-cn.com" style="color:#ffffff">图床=></a>
-            </div>
-        </div>
-    </div>
-    <div class="big-container">
-        <article class="article">
-            <div style="width: 120px; height:auto;background-color: rgb(000, 102, 255);border-radius: 10px;">
-                <h3 style="text-align: center;color: #ffffff;">文章分类</h3>
-            </div>
-            <div class="topsign-title">
-                <h2 class="topsign-text">这里存放我们建站以来的所有已有的文章（可以慢慢翻）</h2>
-                <br>
-                <br>
-            </div>
-            <!--右容器-->
-            <div class="right-holder">
-                <div class="column-container">
-                    <ul class="column_box" id="like-box">
-                        <li class="column-title">
-                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">分类</a></span>
-                        </li>
-                        <script>
-                            var translate = ['CodeDev','读书思考','政史经哲','转载文章','记录生活','日常抱怨','推荐Something','技术相关','其他'];
-                            for(var i = 0;i<translate.length;i++){
-                                var link = '"categories.html?cate=' + (i+1) + '"';
-                                document.write('<li class="column-category">');
-                                document.write('<a href='+link+'>'+translate[i]);
-                                document.write('</a>')
-                            }
-                        </script>
-                    </ul>
-                </div>
-            </div>
-            <!--左容器-->
-            <div class="result-box fl">
-                <!--文章内容-->
-                <div class="left-holder">
-                    <!--文章内容-->
-                    <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
-                    <div id="article-holder" style="width: 100%; float: left">
-                        <div id="pages-container"></div>
-                        <div id="chooser-container">
-                            <script>
-                                function getParams(key) {
-                                    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-                                    var r = window.location.search.substr(1).match(reg);
-                                    if (r != null) {return decodeURIComponent(r[2]);}return null;
-                                };
-                                var page = 1;var cate = 'all';
-                                if(getParams("page") != null){page = getParams("page")};
-                                function page_chooser(mode){
-                                    document.write('<div class="article-box" style="width:auto;height:32px;background-color:rgba(180,180,180,0)" id="choosen-container">')
-                                    document.write('    <div class="ab-content" style="background-color:rgba(180,180,180,0)">')
-                                    document.write('        <div style="height:32px;width:auto;border-radius:4px;margin: 0 auto;float:left;text-align:center;font-size:18px;color: #ff000091;background-color:#ffffff;padding-left: 20px;padding-right:20px"><strong> '+count+"篇，共"+pages + "页"+' </strong></div>')
-                                    for(var i = 1;i<=pages;i++)document.write('<div class="choosen-box">'+'<a style="color:white" href="./index.html?mode='+mode+'&page='+i+'">'+i+'</a></div>')
-                                    document.write('    </div>')
-                                    document.write('</div>')
-                                };
-                                print_page(page);
-                                page_chooser();
-                                if(getParams("cate") != null){cate = getParams("cate")};
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
-    </div>
-    <!--主题-->>
-    <div>
-        <script>
-            if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0)" onclick="pagereload(2)" style="font-size:28px">✨</a></div>')
-            if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0)" onclick="pagereload(1)" style="font-size:28px">🔆</a></div>')
-        </script>
-    </div>
-    <!--尾部-->
-    <script type="text/javascript" src="../js/comcode/footer.js"></script>
-    <script type="text/javascript">
-        // 图片懒加载
-        const lazyImage = new LazyImage('.lazy-image');
-    </script>
-</body>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
 
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/archive.html">归档</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+    <a id="mobile_cate" href="javascript:void(0);"><div style="padding: 1px; background-color: white; border-radius: 25px;"><img style="width: 35px;" alt="mobile-nav" src="../img/cate.svg"></div></a>
+  </nav>
+  <ul id="nav-m-list">
+    <li id="cancel-li"><a class="fr" id="cancel" href="javascript:void(0);"></a></li>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/archive.html">归档</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
+  </ul>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  
+  <!-- 头图区域 -->
+  <div id="headpic" class="headpic">
+    <script>
+      var pics = [
+        "https://img.soyorin.work/headp1.jpg",
+        "https://img.soyorin.work/headp2.jpg",
+        "https://img.soyorin.work/headp3.jpg",
+        "https://img.soyorin.work/headp4.jpg",
+        "https://img.soyorin.work/headp5.jpg",
+        "https://img.soyorin.work/headp6.jpg",
+        "https://img.soyorin.work/headp7.jpg",
+        "https://img.soyorin.work/headp8.jpg",
+        "https://img.soyorin.work/headp9.jpg",
+        "https://img.soyorin.work/headp10.jpg",
+        "https://img.soyorin.work/headp11.jpg",
+        "https://img.soyorin.work/headp12.jpg"
+      ];
+      var intros = [
+        "Mémoires",
+        "Raisons et hypothèses",
+        "Vivez l'instant rêvé et réel.",
+        "Long voyage",
+        "Fins silencieuses",
+        "Lit. le bécasseau et la palourde font la guerre ensemble",
+        "Rompre les relations avec",
+        "Victoire",
+        "Le jugement dernier",
+        "Quand le rêve s'éveille",
+        "Revitalisation",
+        "Compte à rebours"
+      ];
+      var xtype = Math.floor(Math.random()*(pics.length-1));
+      document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
+    </script>
+  </div>
+  <div class="headpic-cover">
+    <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
+      <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">文</div>章分类</h1>
+      <h4 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">A</div>rtikel-Kategorien</h4>
+    </div>
+    <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
+      <i><script>document.write(intros[xtype]);</script></i>
+    </div>
+    <div style="text-align: left;padding: 10px 10px 20px 20px;color: #ffffffb6;height:auto;background-color: #0000006c;border-radius: 15px;position:absolute;left: 20px;top: 500px;">
+      <div style="text-align: center;width: 100%;height:100%;border-radius: 10px;border-color: azure;">
+        <a href="https://cloudflare-cn.com" style="color:#ffffff">图床=></a>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="big-container">
+  <article class="article">
+    <div style="width: 120px; height:auto;background-color: rgb(000, 102, 255);border-radius: 10px;">
+      <h3 style="text-align: center;color: #ffffff;">文章分类</h3>
+    </div>
+    <div class="topsign-title">
+      <h2 class="topsign-text">这里存放我们建站以来的所有已有的文章（可以慢慢翻）</h2>
+      <br><br>
+    </div>
+    <!-- 右容器 - 分类列表 -->
+    <div class="right-holder">
+      <div class="column-container">
+        <ul class="column_box" id="like-box">
+          <li class="column-title">
+            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">分类</a></span>
+          </li>
+          <script>
+            var translate = ['CodeDev','读书思考','政史经哲','转载文章','记录生活','日常抱怨','推荐Something','技术相关','其他'];
+            for(var i = 0;i<translate.length;i++){
+              var link = '"categories.html?cate=' + (i+1) + '"';
+              document.write('<li class="column-category">');
+              document.write('<a href='+link+'>'+translate[i]);
+              document.write('</a>')
+            }
+          </script>
+        </ul>
+      </div>
+    </div>
+    <!-- 左容器 - 文章列表 -->
+    <div class="result-box fl">
+      <div class="left-holder">
+        <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+        <div id="article-holder" style="width: 100%; float: left">
+          <div id="pages-container"></div>
+          <div id="chooser-container">
+            <script>
+              var page = 1;var cate = 'all';
+              if(getParams("page") != null){page = getParams("page")};
+              if(getParams("cate") != null){cate = getParams("cate")};
+              print_page(page);
+              function page_chooser(mode){
+                document.write('<div class="article-box" style="width:auto;height:32px;background-color:rgba(180,180,180,0)" id="choosen-container">')
+                document.write('    <div class="ab-content" style="background-color:rgba(180,180,180,0)">')
+                document.write('        <div style="height:32px;width:auto;border-radius:4px;margin: 0 auto;float:left;text-align:center;font-size:18px;color: #ff000091;background-color:#ffffff;padding-left: 20px;padding-right:20px"><strong> '+count+" 篇，共 "+pages + " 页"+' </strong></div>')
+                for(var i = 1;i<=pages;i++)document.write('<div class="choosen-box">'+'<a style="color:white" href="./index.html?mode='+mode+'&page='+i+'">'+i+'</a></div>')
+                document.write('    </div>')
+                document.write('</div>')
+              };
+              page_chooser();
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 20px; padding: 5px 12px; font-size: 28px; background: var(--bg-card); box-shadow: var(--shadow-card);">
+    <a href="javascript:void(0)" onclick="const d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" style="text-decoration:none;">✨</a>
+  </div>
+  <footer class="footer">
+    <div class="footer-line">Powered By <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank">Soyorin.Work - AKlassen's Blogs</a> © 2021 - <span class="year"></span></div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js" integrity="sha384-3f4jG+SN1L8xH8RX2z5G7j8Fz1T8wzH7V8yq6f3w2x1y0z9c8b7a6f5e4d3c2b1a" crossorigin="anonymous"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
+</body>
 </html>

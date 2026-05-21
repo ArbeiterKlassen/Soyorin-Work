@@ -1,187 +1,242 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-cmn-Hans" data-theme="light">
 <head>
-    <script type="text/javascript" src="../js/comcode/com_head.js"></script>
-    <title>SOYORIN__归档</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-    <style>
-        /* body{background: #f2f2f2;font-family: 'Open Sans', sans-serif;} */
-        .search {width: 100%;position: relative;display: flex;}
-        .searchTerm {width: 100%;border: 3px solid grey;border-right: none;padding: 5px;height: 20px;border-radius: 5px 0 0 5px;outline: none;color: black;}
-        .searchTerm:focus{color: black;}
-        .searchButton {width: 40px;height: 36px;border: 1px solid grey;background: grey;text-align: center;color: #fff;border-radius: 0 5px 5px 0;cursor: pointer;font-size: 20px;}
-        details {transition: height 0.5s ease;overflow: hidden;}
-        summary {cursor: pointer;}
-        details:not([open]) > div {height: 0;}
-    </style>
-    <style rel="stylesheet">.lazy-image {background: url('../img/loading.gif') no-repeat center;background-size: 26% 35%;height: 100%;width: 100%;}</style>
-    <script type="text/javascript" src="../data/strings.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="Soyorin.Work - AKlassen&#39;s Blogs">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="SOYORIN__归档">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>SOYORIN__归档</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/archive.css">
+  
+  
+  <style>.lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }</style>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"><style>.search {width: 100%;position: relative;display: flex;}.searchTerm {width: 100%;border: 3px solid grey;border-right: none;padding: 5px;height: 20px;border-radius: 5px 0 0 5px;outline: none;color: black;}.searchTerm:focus{color: black;}.searchButton {width: 40px;height: 36px;border: 1px solid grey;background: grey;text-align: center;color: #fff;border-radius: 0 5px 5px 0;cursor: pointer;font-size: 20px;}details {transition: height 0.5s ease;overflow: hidden;}summary {cursor: pointer;}details:not([open]) > div {height: 0;}</style>
+  <!-- 初始主题检测 + 全局变量 (需在页面内容前定义) -->
+  <script>
+    var mode = 1;
+    (function() {
+      var saved = localStorage.getItem('soyorin-mode');
+      if (saved) mode = parseInt(saved);
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function getParams(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+  </script>
 </head>
 <body>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
+
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/archive.html">归档</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+    <a id="mobile_cate" href="javascript:void(0);"><div style="padding: 1px; background-color: white; border-radius: 25px;"><img style="width: 35px;" alt="mobile-nav" src="../img/cate.svg"></div></a>
+  </nav>
+  <ul id="nav-m-list">
+    <li id="cancel-li"><a class="fr" id="cancel" href="javascript:void(0);"></a></li>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/archive.html">归档</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
+  </ul>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  
+  <!-- 头图区域 -->
+  <div id="headpic" class="headpic">
     <script>
-            function getParams(key) {
-                var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-                var r = window.location.search.substr(1).match(reg);
-                if (r != null) {
-                    return decodeURIComponent(r[2]);
-                }
-                return null;
-            };
-            var mode = 1;
-            if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};
+      var pics = [
+        "https://img.soyorin.work/headp1.jpg",
+        "https://img.soyorin.work/headp2.jpg",
+        "https://img.soyorin.work/headp3.jpg",
+        "https://img.soyorin.work/headp4.jpg",
+        "https://img.soyorin.work/headp5.jpg",
+        "https://img.soyorin.work/headp6.jpg",
+        "https://img.soyorin.work/headp7.jpg",
+        "https://img.soyorin.work/headp8.jpg",
+        "https://img.soyorin.work/headp9.jpg",
+        "https://img.soyorin.work/headp10.jpg",
+        "https://img.soyorin.work/headp11.jpg",
+        "https://img.soyorin.work/headp12.jpg"
+      ];
+      var intros = [
+        "Mémoires",
+        "Raisons et hypothèses",
+        "Vivez l'instant rêvé et réel.",
+        "Long voyage",
+        "Fins silencieuses",
+        "Lit. le bécasseau et la palourde font la guerre ensemble",
+        "Rompre les relations avec",
+        "Victoire",
+        "Le jugement dernier",
+        "Quand le rêve s'éveille",
+        "Revitalisation",
+        "Compte à rebours"
+      ];
+      var xtype = Math.floor(Math.random()*(pics.length-1));
+      document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
     </script>
-    <script type="text/javascript" src="../js/global_header.js"></script>
-    <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
-    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
-    <div id="headpic" class="headpic">
-        <script>
-            var pics = [
-                "https://img.soyorin.work/headp1.jpg",
-                "https://img.soyorin.work/headp2.jpg",
-                "https://img.soyorin.work/headp3.jpg",
-                "https://img.soyorin.work/headp4.jpg",
-                "https://img.soyorin.work/headp5.jpg",
-                "https://img.soyorin.work/headp6.jpg",
-                "https://img.soyorin.work/headp7.jpg",
-                "https://img.soyorin.work/headp8.jpg",
-                "https://img.soyorin.work/headp9.jpg",
-                "https://img.soyorin.work/headp10.jpg",
-                "https://img.soyorin.work/headp11.jpg",
-                "https://img.soyorin.work/headp12.jpg"
-            ]
-            var intros = [
-                "Mémoires",
-                "Raisons et hypothèses",
-                "Vivez l'instant rêvé et réel.",
-                "Long voyage",
-                "Fins silencieuses",
-                "Lit. le bécasseau et la palourde font la guerre ensemble",
-                "Rompre les relations avec",
-                "Victoire",
-                "Le jugement dernier",
-                "Quand le rêve s'éveille",
-                "Revitalisation",
-                "Compte à rebours"
-            ]
-            xtype = Math.floor(Math.random()*(pics.length-1));
-            document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
-        </script>
+  </div>
+  <div class="headpic-cover">
+    <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
+      <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">文</div>件归档</h1>
+      <h4 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">D</div>okumentenablage</h4>
     </div>
-    <div class="headpic-cover">
-        <div style="margin: 0 auto;top:210px;text-align: center;padding: 10px 10px 20px 20px;color: #ffffff;position: absolute;width: 100%;">
-            <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
-            <h1 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-size: 70px;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">文</div>件归档</h1>
-            <h4 style="font-family: 'Kanji-kai-2', 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;margin: 0 auto;text-align: center;font-weight: 100;"><div style="color:rgb(0,102,255);display: inline;">D</div>okumentenablage</h4>
-        </div>
-        <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
-            <i><script>
-                document.write(intros[xtype]);
-            </script></i>
-        </div>
-        <div style="text-align: left;padding: 10px 10px 20px 20px;color: #ffffffb6;height:auto;background-color: #0000006c;border-radius: 15px;position:absolute;left: 20px;top: 500px;">
-            <div style="text-align: center;width: 100%;height:100%;border-radius: 10px;border-color: azure;">
-                <a href="https://cloudflare-cn.com" style="color:#ffffff">图床=></a>
-            </div>
-        </div>
+    <div style="text-align: center;padding: 10px 10px 20px 20px;color: #ffffffb6;width: 500px;height:auto;background-color: #0000006c;border-radius: 15px;position:relative;margin: 0 auto;top: 430px;">
+      <i><script>document.write(intros[xtype]);</script></i>
     </div>
-    <main class="big-container">
-        <article class="article">
-            <div style="width:fit-content;padding:10px; height:auto;background-color: rgb(0, 102, 255);border-radius: 10px;">
-                <h3 style="text-align: center;color: #ffffff;">归档</h3>
-            </div>
-            <div class="topsign-title">
-                <h2 class="topsign-text">这里是本站的文件归档处，兼有tag分类功能</h2>
-                <br>
-                <br>
-            </div>
-            <br>
-            <div class="search">
-                <input type="text" class="searchTerm" placeholder="Search" id="inpele">
-                <button class="searchButton" onclick="{output()}"><i class="fa fa-search"></i></button>
-            </div>
-            <div style="text-align:center;">
-                <button onclick="{searchmode = 1;document.getElementById('strict').innerHTML = '<strong style=\'color:rgb(126, 183, 244);\'>严格搜索</strong>';document.getElementById('loose').innerHTML = '<strong style=\'color:black;\'>宽泛搜索</strong>';}" style="cursor: pointer;" type="button" id="strict"><strong style="color:rgb(126, 183, 244);">严格搜索</strong></button>
-                <button onclick="{searchmode = 2;document.getElementById('strict').innerHTML = '<strong style=\'color:black;\'>严格搜索</strong>';document.getElementById('loose').innerHTML = '<strong style=\'color:rgb(126, 183, 244);\'>宽泛搜索</strong>';}" style="cursor: pointer;" type="button" id="loose" ><strong>宽泛搜索</strong></button>
-            </div>
+    <div style="text-align: left;padding: 10px 10px 20px 20px;color: #ffffffb6;height:auto;background-color: #0000006c;border-radius: 15px;position:absolute;left: 20px;top: 500px;">
+      <div style="text-align: center;width: 100%;height:100%;border-radius: 10px;border-color: azure;">
+        <a href="https://cloudflare-cn.com" style="color:#ffffff">图床=></a>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="big-container">
+  <article class="article">
+    <div style="width:fit-content;padding:10px; height:auto;background-color: rgb(0, 102, 255);border-radius: 10px;">
+      <h3 style="text-align: center;color: #ffffff;">归档</h3>
+    </div>
+    <div class="topsign-title">
+      <h2 class="topsign-text">这里是本站的文件归档处，兼有tag分类功能</h2>
+      <br><br>
+    </div>
+    <br>
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="Search" id="inpele">
+      <button class="searchButton" onclick="{output()}"><i class="fa fa-search"></i></button>
+    </div>
+    <div style="text-align:center;">
+      <button onclick="{searchmode = 1;document.getElementById('strict').innerHTML = '<strong style=\'color:rgb(126, 183, 244);\'>严格搜索</strong>';document.getElementById('loose').innerHTML = '<strong style=\'color:black;\'>宽泛搜索</strong>';}" style="cursor: pointer;" type="button" id="strict"><strong style="color:rgb(126, 183, 244);">严格搜索</strong></button>
+      <button onclick="{searchmode = 2;document.getElementById('strict').innerHTML = '<strong style=\'color:black;\'>严格搜索</strong>';document.getElementById('loose').innerHTML = '<strong style=\'color:rgb(126, 183, 244);\'>宽泛搜索</strong>';}" style="cursor: pointer;" type="button" id="loose"><strong>宽泛搜索</strong></button>
+    </div>
+    <details>
+      <summary>搜索模式（默认为严格搜索）</summary>
+      <br><p>严格搜索：搜索项满足全部关键词 宽泛搜索：搜索项部分满足关键词即可</p>
+    </details>
+    <div class="nb-a-holder" id="1">
+      <div class="column-container">
+        <ul class="column_box" id="like-box">
+          <script>print_content();</script>
+        </ul>
+      </div>
+    </div>
+    <div id="2">
+      <div class="column-container-wider" style="float:right;">
+        <ul class="column_box" id="like-box">
+          <li class="column-title">
+            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">论文</a></span>
+          </li>
+          <li class="person-intro-detail">
             <details>
-                <summary>搜索模式（默认为严格搜索）</summary>
-                <br><p>严格搜索：搜索项满足全部关键词 宽泛搜索：搜索项部分满足关键词即可</p>
+              <summary>[简介]</summary>
+              <h3 style="color:black;text-align: center;">这里收录优秀论文</h3>
+              <h5 style="color:black;text-align: center;">论文格式统一为PDF，字数>5000，上传需要时间</h5>
+              <strong><script>print_essays();</script></strong>
+              <hr>
             </details>
-            <div class="nb-a-holder" id = '1'>
-                <div class="column-container">
-                    <ul class="column_box" id="like-box">
-                        <script>
-                            print_content();
-                        </script>
-                    </ul>
-                </div>
-            </div>
-            <div id='2'>
-                <div class="column-container-wider" style="float:right;">
-                    <ul class="column_box" id="like-box">
-                        <li class="column-title">
-                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">论文</a></span>
-                        </li>
-                        <li class="person-intro-detail">
-                            <details>
-                                <summary>[简介]</summary>
-                                <h3 style="color:black;text-align: center;">这里收录优秀论文</h3>
-                                <h5 style="color:black;text-align: center;">论文格式统一为PDF，字数>5000，上传需要时间</h5>
-                                <strong>
-                                    <script>
-                                        print_essays();
-                                    </script>
-                                </strong>
-                                <hr>
-                            </details>
-                        </li>
-                    </ul>
-                </div>
-                <div class="column-container-wider" style="float:right;">
-                    <ul class="column_box" id="like-box">
-                        <li class="column-title">
-                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl"  style="font-family: Georgia, 'Times New Roman', Times, serif;">资料</a></span>
-                        </li>
-                        <li class="person-intro-detail">
-                            <strong>
-                                文件备案 历史资料 马恩列斯毛著作文选/全集和各时期著作[PDF] <br>
-                                <a href="https://www.aliyundrive.com/s/QXuNy5c7sQz">[点此获取]</a><br>
-                                文件备案 历史资料 《红旗》1958-1976 汇总[PDF] <br>
-                                <a href="https://www.aliyundrive.com/s/4LuDRBQxLT8">[点此获取]</a><br>
-                                文件备案 历史资料 千禧年后社会调研分析报告[PDF] <br>
-                                <a href="https://www.aliyundrive.com/s/aJvXeStg1wK">[点此获取]</a><br>
-                            </strong>
-                            <br>
-                            <p style="text-align: right;"> based on Aliyundrive</p>
-                            <hr>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div id = '3'>
-            </div>
-            <!-- <script>
-                var insearch;
-                if(getParams("insearch")!=null){
-                    insearch = getParams("insearch");
-                    output(insearch);
-                };
-            </script> -->
-        </article>
-    </main>
-    <!--主题-->>
-    <div>
-        <script>
-            if(mode==1)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#000000"><a href="javascript:void(0)" onclick="pagereload(2)" style="font-size:28px">✨</a></div>')
-            if(mode==2)document.write('<div style="padding-left: 10px;padding-right: 10px;color: rgb(0, 0, 0);z-index: 1000; width: auto; height: 40px; position: fixed; bottom: 40px; right: 17%; cursor: pointer; background-size: 100%; display: inline-block;border-radius: 20px;background-color:#ffffff"><a href="javascript:void(0)" onclick="pagereload(1)" style="font-size:28px">🔆</a></div>')
-        </script>
+          </li>
+        </ul>
+      </div>
+      <div class="column-container-wider" style="float:right;">
+        <ul class="column_box" id="like-box">
+          <li class="column-title">
+            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">资料</a></span>
+          </li>
+          <li class="person-intro-detail">
+            <strong>
+              文件备案 历史资料 马恩列斯毛著作文选/全集和各时期著作[PDF] <br>
+              <a href="https://www.aliyundrive.com/s/QXuNy5c7sQz">[点此获取]</a><br>
+              文件备案 历史资料 《红旗》1958-1976 汇总[PDF] <br>
+              <a href="https://www.aliyundrive.com/s/4LuDRBQxLT8">[点此获取]</a><br>
+              文件备案 历史资料 千禧年后社会调研分析报告[PDF] <br>
+              <a href="https://www.aliyundrive.com/s/aJvXeStg1wK">[点此获取]</a><br>
+            </strong>
+            <br>
+            <p style="text-align: right;"> based on Aliyundrive</p>
+            <hr>
+          </li>
+        </ul>
+      </div>
     </div>
-    <!--尾部-->
-    <script type="text/javascript" src="../js/comcode/footer.js"></script>
-    <script type="text/javascript" defer>
-        //图片懒加载
-        const lazyImage = new LazyImage('.lazy-image');
-    </script>
+    <div id="3"></div>
+  </article>
+</div>
+<script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+<script type="text/javascript" src="../data/strings.js"></script>
+
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 20px; padding: 5px 12px; font-size: 28px; background: var(--bg-card); box-shadow: var(--shadow-card);">
+    <a href="javascript:void(0)" onclick="const d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" style="text-decoration:none;">✨</a>
+  </div>
+  <footer class="footer">
+    <div class="footer-line">Powered By <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank">Soyorin.Work - AKlassen's Blogs</a> © 2021 - <span class="year"></span></div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js" integrity="sha384-3f4jG+SN1L8xH8RX2z5G7j8Fz1T8wzH7V8yq6f3w2x1y0z9c8b7a6f5e4d3c2b1a" crossorigin="anonymous"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
 </body>
 </html>

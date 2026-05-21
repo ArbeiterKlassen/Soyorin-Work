@@ -1,0 +1,72 @@
+<div class="big-container">
+  <article class="article">
+    <div style="width:fit-content;padding:10px; height:auto;background-color: rgb(0, 102, 255);border-radius: 10px;">
+      <h3 style="text-align: center;color: #ffffff;">归档</h3>
+    </div>
+    <div class="topsign-title">
+      <h2 class="topsign-text">这里是本站的文件归档处，兼有tag分类功能</h2>
+      <br><br>
+    </div>
+    <br>
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="Search" id="inpele">
+      <button class="searchButton" onclick="{output()}"><i class="fa fa-search"></i></button>
+    </div>
+    <div style="text-align:center;">
+      <button onclick="{searchmode = 1;document.getElementById('strict').innerHTML = '<strong style=\'color:rgb(126, 183, 244);\'>严格搜索</strong>';document.getElementById('loose').innerHTML = '<strong style=\'color:black;\'>宽泛搜索</strong>';}" style="cursor: pointer;" type="button" id="strict"><strong style="color:rgb(126, 183, 244);">严格搜索</strong></button>
+      <button onclick="{searchmode = 2;document.getElementById('strict').innerHTML = '<strong style=\'color:black;\'>严格搜索</strong>';document.getElementById('loose').innerHTML = '<strong style=\'color:rgb(126, 183, 244);\'>宽泛搜索</strong>';}" style="cursor: pointer;" type="button" id="loose"><strong>宽泛搜索</strong></button>
+    </div>
+    <details>
+      <summary>搜索模式（默认为严格搜索）</summary>
+      <br><p>严格搜索：搜索项满足全部关键词 宽泛搜索：搜索项部分满足关键词即可</p>
+    </details>
+    <div class="nb-a-holder" id="1">
+      <div class="column-container">
+        <ul class="column_box" id="like-box">
+          <script>print_content();</script>
+        </ul>
+      </div>
+    </div>
+    <div id="2">
+      <div class="column-container-wider" style="float:right;">
+        <ul class="column_box" id="like-box">
+          <li class="column-title">
+            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">论文</a></span>
+          </li>
+          <li class="person-intro-detail">
+            <details>
+              <summary>[简介]</summary>
+              <h3 style="color:black;text-align: center;">这里收录优秀论文</h3>
+              <h5 style="color:black;text-align: center;">论文格式统一为PDF，字数>5000，上传需要时间</h5>
+              <strong><script>print_essays();</script></strong>
+              <hr>
+            </details>
+          </li>
+        </ul>
+      </div>
+      <div class="column-container-wider" style="float:right;">
+        <ul class="column_box" id="like-box">
+          <li class="column-title">
+            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">资料</a></span>
+          </li>
+          <li class="person-intro-detail">
+            <strong>
+              文件备案 历史资料 马恩列斯毛著作文选/全集和各时期著作[PDF] <br>
+              <a href="https://www.aliyundrive.com/s/QXuNy5c7sQz">[点此获取]</a><br>
+              文件备案 历史资料 《红旗》1958-1976 汇总[PDF] <br>
+              <a href="https://www.aliyundrive.com/s/4LuDRBQxLT8">[点此获取]</a><br>
+              文件备案 历史资料 千禧年后社会调研分析报告[PDF] <br>
+              <a href="https://www.aliyundrive.com/s/aJvXeStg1wK">[点此获取]</a><br>
+            </strong>
+            <br>
+            <p style="text-align: right;"> based on Aliyundrive</p>
+            <hr>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="3"></div>
+  </article>
+</div>
+<script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+<script type="text/javascript" src="../data/strings.js"></script>

@@ -1,0 +1,56 @@
+<div class="big-container">
+  <article class="article">
+    <div style="width: 120px; height:auto;background-color: rgb(000, 102, 255);border-radius: 10px;">
+      <h3 style="text-align: center;color: #ffffff;">文章分类</h3>
+    </div>
+    <div class="topsign-title">
+      <h2 class="topsign-text">这里存放我们建站以来的所有已有的文章（可以慢慢翻）</h2>
+      <br><br>
+    </div>
+    <!-- 右容器 - 分类列表 -->
+    <div class="right-holder">
+      <div class="column-container">
+        <ul class="column_box" id="like-box">
+          <li class="column-title">
+            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">分类</a></span>
+          </li>
+          <script>
+            var translate = ['CodeDev','读书思考','政史经哲','转载文章','记录生活','日常抱怨','推荐Something','技术相关','其他'];
+            for(var i = 0;i<translate.length;i++){
+              var link = '"categories.html?cate=' + (i+1) + '"';
+              document.write('<li class="column-category">');
+              document.write('<a href='+link+'>'+translate[i]);
+              document.write('</a>')
+            }
+          </script>
+        </ul>
+      </div>
+    </div>
+    <!-- 左容器 - 文章列表 -->
+    <div class="result-box fl">
+      <div class="left-holder">
+        <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
+        <div id="article-holder" style="width: 100%; float: left">
+          <div id="pages-container"></div>
+          <div id="chooser-container">
+            <script>
+              var page = 1;var cate = 'all';
+              if(getParams("page") != null){page = getParams("page")};
+              if(getParams("cate") != null){cate = getParams("cate")};
+              print_page(page);
+              function page_chooser(mode){
+                document.write('<div class="article-box" style="width:auto;height:32px;background-color:rgba(180,180,180,0)" id="choosen-container">')
+                document.write('    <div class="ab-content" style="background-color:rgba(180,180,180,0)">')
+                document.write('        <div style="height:32px;width:auto;border-radius:4px;margin: 0 auto;float:left;text-align:center;font-size:18px;color: #ff000091;background-color:#ffffff;padding-left: 20px;padding-right:20px"><strong> '+count+" 篇，共 "+pages + " 页"+' </strong></div>')
+                for(var i = 1;i<=pages;i++)document.write('<div class="choosen-box">'+'<a style="color:white" href="./index.html?mode='+mode+'&page='+i+'">'+i+'</a></div>')
+                document.write('    </div>')
+                document.write('</div>')
+              };
+              page_chooser();
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>

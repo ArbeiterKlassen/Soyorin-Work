@@ -25,15 +25,7 @@ function hasadmission() {
 
 function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
-window.addEventListener('load', function() {
-  const cover = document.getElementById("loader-cover");
-  if (cover) {
-    cover.style.opacity = 0;
-    cover.style.transition = 'opacity 0.5s';
-    setTimeout(function() { cover.style.zIndex = -9999; }, 1500);
-  }
-  document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
-});
+document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
 
 document.body.oncopy = function() {
   if (typeof layer !== 'undefined') {
