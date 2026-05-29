@@ -147,39 +147,36 @@
   <div class="big-container" id="particles-js">
   <article class="article">
     <div class="right-holder">
-      <div class="column-container">
+      <div class="column-container" style="width: 100%;float: left;">
         <ul class="column_box" id="like-box">
           <li class="column-title">
-            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family:Georgia,'Times New Roman',Times,serif;">宣传栏</a></span>
+            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;">宣传栏</a></span>
           </li>
         </ul>
       </div>
       <div class="column-container">
         <ul class="column_box" id="like-box">
           <li class="person-intro-detail">
-            <p style="color:var(--text-muted);text-align:center;">我也不知道这里要写什么但总之是就放点东西吧~</p>
+            <h5 style="text-align:center">我也不知道这里要写什么但总之是就放点东西吧~</h5>
           </li>
+          <br>
         </ul>
       </div>
     </div>
     <div class="left-holder">
       <div class="column-container-wider">
         <ul class="column_box" id="like-box">
-          <li class="column-title" style="display:flex;align-items:center;gap:8px;height:auto;line-height:normal;padding:10px 0;">
-            <a style="font-size:xx-large;font-family:Kanji-kai-2,sans-serif;text-decoration:underline;color:var(--text-light);" href="./category.html">全部</a>
-            <span style="font-size:large;color:var(--text-muted);">/</span>
-            <span style="font-size:xx-large;font-family:Kanji-kai-2,sans-serif;color:var(--text-light);">
-              <script>if(author == -1){document.write(translate[cate-1])}else{document.write(translate[cate-1]+'/'+authorlist[cate-1][author])}</script>
-            </span>
-            <span style="font-size:x-large;color:var(--text-muted);">分类</span>
+          <li class="column-title">
+            <a class="c-666 fl" style="display: inline;font-size:xx-large;font-family: Kanji-kai-2, 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;text-decoration: underline;color:#9d9d9d" href="javascript:void(0)" onclick="{window.location.href='./category.html'}">全部</a>
+            <div class="c-666 fl" style="display: inline;font-size:large;font-family: Kanji-kai-2, 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;color:#666"> / </div>
+            <div class="c-666 fl" style="display: inline;font-size:xx-large;font-family: Kanji-kai-2, 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;color:#9d9d9d"><script>if(author == -1){document.write(translate[cate-1])}else{document.write(translate[cate-1]+'/'+authorlist[cate-1][author])}</script></div>
+            <div class="c-666 fl" style="display: inline;font-size:x-large;font-family: Kanji-kai-2, 'Mulish', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;color:#666"> 分类</div>
           </li>
-        </ul>
-      </div>
-      <script src="../js/comcode/com_artmenu.js"></script>
-      <div class="sign-container" style="padding:15px;">
-        <ul style="list-style:none;padding:12px 0;">
+          <br><br>
+          <script src="../js/comcode/com_artmenu.js"></script>
           <script>
-            var cate = -1, author = -1;
+            var cate = -1;
+            var author = -1;
             if(getParams("cate") != null) cate = getParams("cate");
             if(getParams("author") != null) author = getParams("author");
             print_category(cate, author);
