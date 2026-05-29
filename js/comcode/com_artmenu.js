@@ -272,7 +272,7 @@ function output(){
     clearcontent('3');
     var ifcan = new Array (artmenu.length);
     for(var i = 0;i<artmenu.length;i++)ifcan[i] = true;
-    document.getElementById('3').innerHTML += '<div class="sign-container" style="padding:15px;"><ul class="column_box" id="like-box">';
+    document.getElementById('3').innerHTML += '<div class="column-container-wider"><ul class="column_box" id="like-box">';
     document.getElementById('3').innerHTML += '<li class="person-intro-detail"><h2 style="text-align:center">\"'+str.join(' ')+'\" 的搜索结果</h2><hr></li>';
     var time = 0;
     if(searchmode == 1)for(var i = 0;i<artmenu.length;i++){
