@@ -152,7 +152,7 @@ const pageConfigs = [
     title: 'SOYORIN__友情链接',
     headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">友</div>情链接',
     headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">L</div>inks',
-    cssFiles: ['link.css', 'about.css'],
+    cssFiles: ['link.css', 'about.css', 'index.css', 'sign.css'],
     extraHead: ''
   },
   {

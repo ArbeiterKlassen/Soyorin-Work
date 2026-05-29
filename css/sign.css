@@ -70,7 +70,7 @@
     padding-left: 10px;
     padding-right: 10px;
     display:inline-block;
-    color: #828487;
+    color: var(--text-muted);
 }
 @media screen and (max-width: 1200px){
     .sign-container {
