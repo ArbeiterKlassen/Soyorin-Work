@@ -643,12 +643,10 @@ width:35px;
 
 [data-theme="dark"] .article-box:hover {
 box-shadow: 0 0 10px rgba(115, 115, 115, .5);
-    transform: scale(1.02);
 }
 
 [data-theme="dark"] .choosen-box:hover {
 box-shadow: 0 0 10px rgba(115, 115, 115, .5);
-        transform: scale(1.15);
 }
 
 [data-theme="dark"] .empty-box .tip {
