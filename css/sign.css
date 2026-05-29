@@ -1,14 +1,11 @@
 .sign-container {
     width: 1090px;
     margin: 20px auto;
-    border: 10px solid red;
     background-color: var(--bg-card);
     box-shadow: var(--shadow-card);
     -moz-box-shadow: var(--shadow-card);
     transition: ease-in-out 0.3s;
-    display: flow-root;
-    overflow: auto;
-    min-height: 100px;
+    overflow: hidden;
     border-radius: 10px;
 }
 
