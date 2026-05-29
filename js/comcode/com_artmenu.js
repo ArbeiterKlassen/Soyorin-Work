@@ -263,8 +263,8 @@ function output(){
         clearcontent('1');
         clearcontent('3');
         var div1 = document.getElementById('1');
-        div1.innerHTML = '<div class="column-container-wider"><ul class="column_box" id="like-box"></ul></div>';
-        print_content_to(div1.querySelector('.column_box'));
+        div1.innerHTML = '<ul style=\"list-style:none;padding:12px 0;\"></ul>';
+        print_content_to(div1.querySelector('ul'));
         return;
     }
     str = str.split(/\s+/);//字符串拆分
@@ -272,7 +272,7 @@ function output(){
     clearcontent('3');
     var ifcan = new Array (artmenu.length);
     for(var i = 0;i<artmenu.length;i++)ifcan[i] = true;
-    document.getElementById('3').innerHTML += '<div class="column-container-wider"><ul class="column_box" id="like-box">';
+    document.getElementById('3').innerHTML += '<ul style=\"list-style:none;padding:12px 0;\">';
     document.getElementById('3').innerHTML += '<li class="person-intro-detail"><h2 style="text-align:center">\"'+str.join(' ')+'\" 的搜索结果</h2><hr></li>';
     var time = 0;
     if(searchmode == 1)for(var i = 0;i<artmenu.length;i++){
@@ -305,7 +305,7 @@ function output(){
     if(time == 0){
         document.getElementById('3').innerHTML += '<li class="person-intro-detail"><h3>无结果</h3></li>';
     }
-    document.getElementById('3').innerHTML += '</ul></div>';
+    document.getElementById('3').innerHTML += '</ul>';
 }
 function print_essays(){
     var max = artmenu.length;
