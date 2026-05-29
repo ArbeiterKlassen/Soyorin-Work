@@ -37,10 +37,9 @@ visibility:visible
 .markdown-body {
 -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%;
-    color:#24292e;
+    color: var(--text-primary);
     line-height:1.5;
     font-family:Hanyikaiti-1;
-    color: white;
     font-size:16px;
     line-height:1.5;
     word-wrap:break-word

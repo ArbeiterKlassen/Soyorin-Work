@@ -148,12 +148,10 @@ width:35px;
 
 .article-box:hover {
 box-shadow: 0 0 10px var(--text-muted);
-    transform: scale(1.02);
 }
 
 .choosen-box:hover {
 box-shadow: 0 0 10px var(--text-muted);
-        transform: scale(1.15);
 }
 
 .ab-content {
