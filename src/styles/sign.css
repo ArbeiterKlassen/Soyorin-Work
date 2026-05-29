@@ -1,6 +1,7 @@
 .sign-container {
     width: 1090px;
     margin: 20px auto;
+    border: 1px solid var(--border-light);
     background-color: var(--bg-card);
     box-shadow: var(--shadow-card);
     -moz-box-shadow: var(--shadow-card);
