@@ -305,7 +305,7 @@ box-shadow: 0 0 10px #7e8795;
 }
 
 .column_box {
-	border: 1px solid var(--border-light);
+	border: 10px solid red;
 width: 100%;
     padding: 12px 0;
     background-color: var(--bg-card);
