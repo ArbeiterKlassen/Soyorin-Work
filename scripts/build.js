@@ -116,7 +116,7 @@ const pageConfigs = [
     title: 'SOYORIN__关于',
     headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">关</div>于Soyorin.Work和我',
     headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">&Uuml;</div>ber diese Website und mir',
-    cssFiles: ['about.css', 'calendar.css', 'link.css'],
+    cssFiles: ['about.css', 'calendar.css', 'link.css', 'index.css', 'sign.css'],
     extraHead: '<style>@import url("../css/calendar.css");</style>'
   },
   {
@@ -125,8 +125,8 @@ const pageConfigs = [
     title: 'SOYORIN__归档',
     headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">文</div>件归档',
     headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">D</div>okumentenablage',
-    cssFiles: ['archive.css'],
-    extraHead: '<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"><style>.search {width: 100%;position: relative;display: flex;}.searchTerm {width: 100%;border: 3px solid grey;border-right: none;padding: 5px;height: 20px;border-radius: 5px 0 0 5px;outline: none;color: black;}.searchTerm:focus{color: black;}.searchButton {width: 40px;height: 36px;border: 1px solid grey;background: grey;text-align: center;color: #fff;border-radius: 0 5px 5px 0;cursor: pointer;font-size: 20px;}details {transition: height 0.5s ease;overflow: hidden;}summary {cursor: pointer;}details:not([open]) > div {height: 0;}</style>'
+    cssFiles: ['archive.css', 'index.css', 'sign.css'],
+    extraHead: '<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"><style>.search {width: 100%;position: relative;display: flex;}.searchTerm {width: 100%;border: 1px solid var(--border-light);border-right: none;padding: 8px 12px;height: 36px;border-radius: 5px 0 0 5px;outline: none;color: var(--text-primary);background: var(--bg-secondary);}.searchTerm:focus{color: var(--text-primary);border-color: var(--text-link);}.searchButton {width: 40px;height: 36px;border: 1px solid var(--text-link);background: var(--text-link);text-align: center;color: #fff;border-radius: 0 5px 5px 0;cursor: pointer;font-size: 20px;}details {transition: height 0.5s ease;overflow: hidden;}summary {cursor: pointer;color: var(--text-primary);}details:not([open]) > div {height: 0;}</style>'
   },
   {
     file: 'category.html',

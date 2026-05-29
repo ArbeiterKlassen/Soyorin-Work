@@ -226,7 +226,10 @@ border-bottom: solid 1px var(--border-light);
 }
 
 .topsign-title {
-	padding: 15px;
+	position: relative;
+    margin-top: -50px;
+    z-index: 5;
+    padding: 15px;
     width: 100%;
     height:auto;
     background-color: var(--bg-primary);
