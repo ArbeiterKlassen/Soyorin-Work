@@ -42,7 +42,7 @@ text-decoration: underline var(--text-link);
 .link-box li .description {
 float: left;
     font-size: 13px;
-    color: #777777;
+    color: var(--text-muted);
     line-height: 25px;
 }
 
