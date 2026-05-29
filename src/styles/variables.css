@@ -17,6 +17,7 @@
   --text-light: #999;
   --text-on-dark: #fff;
   --text-link: #1a6aec;
+  --text-link-hover: #3aa4ff;
   --text-danger: #ff1f30;
   --text-accent: rgb(255, 97, 97);
 
@@ -56,6 +57,7 @@
   --text-light: #888;
   --text-on-dark: #fff;
   --text-link: #58a6ff;
+  --text-link-hover: #79b8ff;
   --text-danger: #ff4444;
   --text-accent: #ff8181;
 
