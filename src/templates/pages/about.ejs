@@ -94,49 +94,80 @@
     </ul>
     </div>
     <div class="sign-container" style="padding:15px;margin-top:20px;">
-      <div style="text-align:center;display: block;font-size:x-large;color: var(--text-primary);font-family: 'Times New Roman', Times, serif;margin-bottom:10px;">Calendar</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="font-size:x-large;color:var(--text-primary);font-family:'Times New Roman',Times,serif;">Calendar</span>
+        <button id="lunar-toggle" onclick="toggleLunar()" style="cursor:pointer;background:var(--text-link);color:#fff;border:none;padding:4px 12px;border-radius:5px;font-size:13px;">农历</button>
+      </div>
       <div id="calendar" style="height: auto;width: 100%;margin: 0 auto;background-color: var(--bg-card);border-radius:10px;overflow:hidden;">
         <div id="left-holder" class="calendar-lh">
           <div id="inner-holder" style="margin: 20px;">
-            <div id="calendar-title" style="width: 100%;height: 80px;text-align: center;vertical-align: middle;font-size: x-large;font-family:'Times New Roman', Times, serif;color: var(--text-primary);">MONTH</div>
-            <div id="calendar-weekdays" style="width: 100%;height:50px;background-color: transparent;">
-              <div id="w1" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:50px;float: left;text-align: center;font-size: large;color: var(--text-danger);">S</div>
-              <div id="w2" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:50px;float: left;text-align: center;font-size: large;color: var(--text-primary);">M</div>
-              <div id="w3" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:50px;float: left;text-align: center;font-size: large;color: var(--text-primary);">T</div>
-              <div id="w4" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:50px;float: left;text-align: center;font-size: large;color: var(--text-primary);">W</div>
-              <div id="w5" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:50px;float: left;text-align: center;font-size: large;color: var(--text-primary);">T</div>
-              <div id="w6" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:50px;float: left;text-align: center;font-size: large;color: var(--text-primary);">F</div>
-              <div id="w7" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:50px;float: left;text-align: center;font-size: large;color: var(--text-primary);">S</div>
+            <div id="calendar-title" style="width: 100%;height: 50px;text-align: center;vertical-align: middle;font-size: x-large;font-family:'Times New Roman', Times, serif;color: var(--text-primary);">MONTH YEAR</div>
+            <div id="calendar-weekdays" style="width: 100%;height:40px;background-color: transparent;">
+              <div id="w1" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:40px;float: left;text-align: center;font-size: large;color: var(--text-danger);">S</div>
+              <div id="w2" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:40px;float: left;text-align: center;font-size: large;color: var(--text-primary);">M</div>
+              <div id="w3" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:40px;float: left;text-align: center;font-size: large;color: var(--text-primary);">T</div>
+              <div id="w4" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:40px;float: left;text-align: center;font-size: large;color: var(--text-primary);">W</div>
+              <div id="w5" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:40px;float: left;text-align: center;font-size: large;color: var(--text-primary);">T</div>
+              <div id="w6" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:40px;float: left;text-align: center;font-size: large;color: var(--text-primary);">F</div>
+              <div id="w7" style="font-family: 'Times New Roman', Times, serif;width: 14.2%;height:40px;float: left;text-align: center;font-size: large;color: var(--text-primary);">S</div>
             </div>
             <div id="calendar-dates">
               <div id="calendar-dates-container"></div>
               <script>
+                var lunarMonthNames = ['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','腊月'];
+                var lunarDayNames = ['','初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
+                var lunarInfo = [0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977,0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,0x06ca0,0x0b550,0x15355,0x04da0,0x0a5b0,0x14573,0x052b0,0x0a9a8,0x0e950,0x06aa0,0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,0x096d0,0x04dd5,0x04ad0,0x0a4d0,0x0d4d4,0x0d250,0x0d558,0x0b540,0x0b6a0,0x195a6,0x095b0,0x049b0,0x0a974,0x0a4b0,0x0b27a,0x06a50,0x06d40,0x0af46,0x0ab60,0x09570,0x04af5,0x04970,0x064b0,0x074a3,0x0ea50,0x06b58,0x055c0,0x0ab60,0x096d5,0x092e0,0x0c960,0x0d954,0x0d4a0,0x0da50,0x07552,0x056a0,0x0abb7,0x025d0,0x092d0,0x0cab5,0x0a950,0x0b4a0,0x0baa4,0x0ad50,0x055d9,0x04ba0,0x0a5b0,0x15176,0x052b0,0x0a930,0x07954,0x06aa0,0x0ad50,0x05b52,0x04b60,0x0a6e6,0x0a4e0,0x0d260,0x0ea65,0x0d530,0x05aa0,0x076a3,0x096d0,0x04afb,0x04ad0,0x0a4d0,0x1d0b6,0x0d250,0x0d520,0x0dd45,0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0,0x14b63,0x09370,0x049f8,0x04970,0x064b0,0x168a6,0x0ea50,0x06b20,0x1a6c4,0x0aae0,0x0a2e0,0x0d2e3,0x0c960,0x0d557,0x0d4a0,0x0da50,0x05d55,0x056a0,0x0a6d0,0x055d4,0x052d0,0x0a9b8,0x0a950,0x0b4a0,0x0b6a6,0x0ad50,0x055a0,0x0aba4,0x0a5b0,0x052b0,0x0b273,0x06930,0x07337,0x06aa0,0x0ad50,0x14b55,0x04b60,0x0a570,0x054e4,0x0d160,0x0e968,0x0d520,0x0daa0,0x16aa6,0x056d0,0x04ae0,0x0a9d4,0x0a2d0,0x0d150,0x0f252,0x0d520];
+                function lunarYear(y){var s=0;for(var i=0;i<y-1900;i++){s+=12;var li=lunarInfo[i];if(li&0x10000){s++;}}return s;}
+                function lunarDays(y){var li=lunarInfo[y-1900];var d=0;for(var i=0;i<12;i++){d+=(li&1)?30:29;li>>=1;}return d+((lunarInfo[y-1900]&0x10000)?30:29);}
+                function solarToLunar(y,m,d){var offset=Date.UTC(y,m-1,d)-Date.UTC(1900,0,30);var days=Math.floor(offset/86400000);var ly=1900,lm=0,ld;while(days>=lunarDays(ly)){days-=lunarDays(ly);ly++;}var li=lunarInfo[ly-1900];for(lm=0;lm<12;lm++){var md=(li&1)?30:29;li>>=1;if(days<md){ld=days+1;break;}days-=md;}if(lm===12){ld=days+1;lm=(li&1)?12:13;}return [ly,lm+1,ld];}
+
                 var monthlist = ["January","February","March","April","May","June","July","August","September","October","November","December"];
                 var myDate = new Date();
-                var strDate = myDate.getFullYear()+'-'+(myDate.getMonth()+1)+'-1';
+                var currentYear = myDate.getFullYear();
+                var currentMonth = myDate.getMonth();
+                var currentDay = myDate.getDate();
+                var showLunar = false;
+                var strDate = currentYear+'-'+(currentMonth+1)+'-1';
                 var firstDate = new Date(strDate);
                 var weekday = firstDate.getDay();
-                var tmpDate = new Date(strDate);
                 var datesContainer = document.getElementById("calendar-dates-container");
-                for(var i = 0;i<weekday;i++){
-                  var emptyDiv = document.createElement("div");
-                  emptyDiv.className = "calendar-date";
-                  emptyDiv.style.cssText = "width:14.2%;height:80px;float:left;margin-top:5px;font-size:large;color: var(--text-primary);";
-                  datesContainer.appendChild(emptyDiv);
-                }
-                document.getElementById("calendar-title").innerHTML = monthlist[myDate.getMonth()];
-                var daysInMonth = new Date(myDate.getFullYear(), myDate.getMonth()+1, 0).getDate();
-                for(var j = 1;j<=daysInMonth;j++){
-                  var dateDiv = document.createElement("div");
-                  dateDiv.className = "calendar-date";
-                  dateDiv.style.cssText = "width:14.2%;height:80px;float:left;margin-top:5px;font-size:large;text-align:center;color: var(--text-primary);";
-                  dateDiv.innerHTML = j;
-                  if(j == myDate.getDate()){
-                    dateDiv.style.backgroundColor = "rgb(67, 87, 255)";
-                    dateDiv.style.color = "white";
-                    dateDiv.style.borderRadius = "40px";
+
+                function renderCalendar(){
+                  datesContainer.innerHTML = '';
+                  document.getElementById("calendar-title").innerHTML = monthlist[currentMonth] + ' ' + currentYear;
+                  for(var i = 0;i<weekday;i++){
+                    var emptyDiv = document.createElement("div");
+                    emptyDiv.className = "calendar-date";
+                    emptyDiv.style.cssText = "width:14.2%;height:60px;float:left;margin-top:5px;font-size:large;color:var(--text-primary);";
+                    datesContainer.appendChild(emptyDiv);
                   }
-                  datesContainer.appendChild(dateDiv);
+                  var daysInMonth = new Date(currentYear, currentMonth+1, 0).getDate();
+                  for(var j = 1;j<=daysInMonth;j++){
+                    var dateDiv = document.createElement("div");
+                    dateDiv.className = "calendar-date";
+                    dateDiv.style.cssText = "width:14.2%;height:60px;float:left;margin-top:5px;font-size:large;text-align:center;color:var(--text-primary);";
+                    var label = ''+j;
+                    if(showLunar){
+                      try{
+                        var lunar = solarToLunar(currentYear, currentMonth+1, j);
+                        var ldName = lunarDayNames[lunar[2]];
+                        label = j + '<br><small style=\"font-size:10px;color:var(--text-muted);\">'+ldName+'</small>';
+                      }catch(e){}
+                    }
+                    dateDiv.innerHTML = label;
+                    if(j == currentDay && currentMonth == myDate.getMonth() && currentYear == myDate.getFullYear()){
+                      dateDiv.style.fontWeight = 'bold';
+                      dateDiv.style.color = 'var(--text-link)';
+                    }
+                    datesContainer.appendChild(dateDiv);
+                  }
+                }
+                renderCalendar();
+                function toggleLunar(){
+                  showLunar = !showLunar;
+                  var btn = document.getElementById('lunar-toggle');
+                  btn.textContent = showLunar ? '公历' : '农历';
+                  renderCalendar();
                 }
               </script>
             </div>
