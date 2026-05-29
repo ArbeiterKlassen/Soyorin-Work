@@ -132,7 +132,7 @@ display: inline-block;
     float: left;
     line-height: 40px;
     font-size: 16px;
-    color: var(--bg-primary);
+    color: var(--nav-text);
     transition: all 0.3s;
 }
 
