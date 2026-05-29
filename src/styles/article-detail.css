@@ -100,7 +100,7 @@ color: var(--text-link);
 /*左容器*/
 .article-container {
 width: 830px;
-    margin: 20px 10px;
+    margin: 20px auto;
     padding: 20px;
     background-color: var(--bg-primary);
     border-radius: 10px;
@@ -713,7 +713,7 @@ color: var(--bg-primary);
 [data-theme="dark"] /*左容器*/
 .article-container {
 width: 830px;
-    margin: 20px 10px;
+    margin: 20px auto;
     padding: 20px;
     background-color: var(--bg-body);
     border-radius: 10px;
