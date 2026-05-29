@@ -14,21 +14,12 @@
           <li class="person-img-li" style="text-align: center;">
             <img alt="logo" id="person-img" src="../img/builder.jpeg">
           </li>
-          <div style="text-align: center;">
+          <li style="text-align:center;list-style:none;">
             <script src="../js/comcode/com_artmenu.js"></script>
-            <div style="border-right: rgb(135, 135, 135) 1px solid;height: 45px;width: 70px;margin: 0 auto;display: inline-block;">
-              <p style="text-align: center;color: rgb(135, 135, 135);font-size: x-large;"><script>document.write(count_tags('articles'));</script></p>
-              <p style="text-align: center;color: rgb(135, 135, 135);font-size: small;">文章</p>
-            </div>
-            <div style="border-right: rgb(135, 135, 135) 1px solid;height: 45px;width: 70px;margin: 0 auto;display: inline-block;">
-              <p style="text-align: center;color: rgb(135, 135, 135);font-size: x-large;"><script>document.write(count_tags('categories'));</script></p>
-              <p style="text-align: center;color: rgb(135, 135, 135);font-size: small;">分类</p>
-            </div>
-            <div style="height: 60px;width: 70px;margin: 0 auto;display: inline-block;">
-              <p style="text-align: center;color: rgb(135, 135, 135);font-size: x-large;"><script>document.write(count_tags('authors'));</script></p>
-              <p style="text-align: center;color: rgb(135, 135, 135);font-size: small;">著者</p>
-            </div>
-          </div>
+            <span style="display:inline-block;border-right:1px solid var(--text-light);padding:0 10px;"><span style="font-size:x-large;color:var(--text-muted);"><script>document.write(count_tags('articles'));</script></span><br><small style="color:var(--text-muted);">文章</small></span>
+            <span style="display:inline-block;border-right:1px solid var(--text-light);padding:0 10px;"><span style="font-size:x-large;color:var(--text-muted);"><script>document.write(count_tags('categories'));</script></span><br><small style="color:var(--text-muted);">分类</small></span>
+            <span style="display:inline-block;padding:0 10px;"><span style="font-size:x-large;color:var(--text-muted);"><script>document.write(count_tags('authors'));</script></span><br><small style="color:var(--text-muted);">著者</small></span>
+          </li>
           <li class="person-intro-detail" style="text-align: center;">
             <h5>一个记录学习和思考的Blog小站<br></h5>
             <br><h5>Builder: ArbeiterKlassen(AKlassen)</h5>
@@ -36,11 +27,11 @@
           <li class="person-intro-detail" style="text-align: center;">
             <h5>Based on: Github Pages;Go+Vue</h5>
           </li>
-          <div class="icon-center">
+          <li style="text-align:center;list-style:none;padding:10px;">
             <span class="icon-box"><a id="github-icon" target="_blank" href="https://github.com/arbeiterklassen" class="foot-icon"></a></span>
             <span class="icon-box"><a id="qq-icon" target="_blank" href="tencent://Message/?Uin=1038171180&amp;websiteName=q-zone.qq.com&amp;Menu=yes" class="foot-icon"></a></span>
             <span class="icon-box"><a id="bili-icon" target="_blank" href="https://space.bilibili.com/353804830" class="foot-icon"></a></span>
-          </div>
+          </li>
         </ul>
       </div>
       <!-- 宣传栏 -->
@@ -53,7 +44,7 @@
       </div>
       <div class="column-container">
         <ul class="column_box" id="like-box">
-          <img src="../img/library.jpg" alt="Thereader" style="width:100%">
+          <li><img src="../img/library.jpg" alt="Thereader" style="width:100%;border-radius:8px;"></li>
           <li class="person-intro-detail">
             <h2 style="text-align:center">广告位招租（）</h2>
           </li>
@@ -61,7 +52,6 @@
             <h5 style="text-align:center">Bei der Philosophie selbst und beim Lernen geht es nicht nur um Bücher und Wissen, sondern auch um die Möglichkeit der Kommunikation und den Raum für Gemeinschaft.</h5>
             <h6 style="text-align:center">哲学本身和学习不仅仅关乎书本和知识，更在于交流和共进之空间的可能性</h6>
           </li>
-          <br>
         </ul>
       </div>
       <div class="column-container">
@@ -69,7 +59,6 @@
           <li class="person-intro-detail">
             <h5 style="text-align:center">我也不知道这里要写什么但总之是就放点东西吧~</h5>
           </li>
-          <br>
         </ul>
       </div>
     </div>
@@ -202,12 +191,12 @@
             if(getParams("page") != null){page = getParams("page")};
             print_page(page, 1);
             function page_chooser(mode){
-              document.write('<div class="article-box" style="width:auto;height:32px;background-color:rgba(180,180,180,0)" id="choosen-container">')
-              document.write('    <div class="ab-content" style="background-color:rgba(180,180,180,0)">')
-              document.write('        <div style="height:32px;width:auto;border-radius:4px;margin: 0 auto;float:left;text-align:center;font-size:18px;color: #ff000091;background-color:#ffffff;padding-left: 20px;padding-right:20px"><strong> '+count+" 篇，共 "+pages + " 页"+' </strong></div>')
-              for(var i = 1;i<=pages;i++)document.write('<div class="choosen-box">'+'<a style="color:white" href="./index.html?mode='+mode+'&page='+i+'">'+i+'</a></div>')
-              document.write('    </div>')
-              document.write('</div>')
+              var h = '<div class=\"article-box\" style=\"width:auto;height:32px;background:transparent;\" id=\"choosen-container\">';
+              h += '<div class=\"ab-content\" style=\"background:transparent;\">';
+              h += '<span style=\"display:inline-block;padding:4px 15px;background:var(--bg-card);border-radius:4px;color:var(--text-muted);font-size:14px;\"><strong>'+count+' 篇，共 '+pages+' 页</strong></span>';
+              for(var i = 1; i <= pages; i++) h += '<div class=\"choosen-box\"><a style=\"color:#fff\" href=\"./index.html?mode='+mode+'&page='+i+'\">'+i+'</a></div>';
+              h += '</div></div>';
+              document.getElementById('chooser-container').innerHTML = h;
             };
             page_chooser(1);
           </script>
@@ -219,16 +208,15 @@
           <li class="column-title">
             <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, 'Times New Roman', Times, serif;font-size: x-large;">Contact</a></span>
           </li>
-          <br>
-          <div id="contact-container" style="width: 93%;height:auto; border-width: 1px; border-style:dashed; border-color:#969696;border-radius: 5px;margin: 0 auto;">
-            <div id="sub-contact-container" style="top: 10px;width: 92%;height: auto;color: #4e4e4e;text-align: left;">
-              <li class="person-intro-detail">
-                <h3 style="text-align: left;">Email: arbeiterklassen@163.com</h3>
-                <h3 style="text-align: left;">GitHub: ArbeiterKlassen</h3>
-                <h3 style="text-align: left;">QQ: 1038171180</h3>
-              </li>
+          <li style="list-style:none;">
+            <div id="contact-container" style="width:93%;height:auto;border:1px dashed var(--border-light);border-radius:5px;margin:0 auto;padding:10px;">
+              <div id="sub-contact-container" style="width:92%;height:auto;color:var(--text-secondary);text-align:left;">
+                <p style="margin:5px 0;">Email: arbeiterklassen@163.com</p>
+                <p style="margin:5px 0;">GitHub: ArbeiterKlassen</p>
+                <p style="margin:5px 0;">QQ: 1038171180</p>
+              </div>
             </div>
-          </div>
+          </li>
         </ul>
       </div>
     </div>
