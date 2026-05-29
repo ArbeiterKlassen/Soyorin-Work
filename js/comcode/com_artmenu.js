@@ -214,7 +214,7 @@ function print_category(cate,authornum){
             if(artmenu[i].class==numcate[cate-1]){
                 date = artmenu[i].time.split("-");
                 if(parseInt(date[0])<inity){inity = date[0];insertHtml('<li class="person-intro-detail" style="font-size:x-large">【'+inity+'】</li>');}
-                insertHtml('<li class="person-intro-detail"><span class="date" style="font-size:small;color:#666">'+date[1]+'-'+date[2]+'  </span><a href="'+artmenu[i].links+'" class="title" style="font-size:x-large">'+artmenu[i].name+'</a><span class="date" style="font-size:small;color:#666"> By '+artmenu[i].author+'</span></li><br>');
+                insertHtml('<li class="person-intro-detail"><span class="date" style="font-size:small;color:var(--text-muted)">'+date[1]+'-'+date[2]+'  </span><a href="'+artmenu[i].links+'" class="title" style="font-size:x-large">'+artmenu[i].name+'</a><span class="date" style="font-size:small;color:var(--text-muted)"> By '+artmenu[i].author+'</span></li><br>');
             }
         }
     }else{
@@ -222,7 +222,7 @@ function print_category(cate,authornum){
             if(artmenu[i].class==numcate[cate-1] && artmenu[i].author == authorlist[cate-1][authornum]){
                 date = artmenu[i].time.split("-");
                 if(parseInt(date[0])<inity){inity = date[0];insertHtml('<li class="person-intro-detail" style="font-size:x-large">【'+inity+'】</li>');}
-                insertHtml('<li class="person-intro-detail"><span class="date" style="font-size:small;color:#666">'+date[1]+'-'+date[2]+'  </span><a href="'+artmenu[i].links+'" class="title" style="font-size:x-large">'+artmenu[i].name+'</a><span class="date" style="font-size:small;color:#666"> By '+artmenu[i].author+'</span></li><br>');
+                insertHtml('<li class="person-intro-detail"><span class="date" style="font-size:small;color:var(--text-muted)">'+date[1]+'-'+date[2]+'  </span><a href="'+artmenu[i].links+'" class="title" style="font-size:x-large">'+artmenu[i].name+'</a><span class="date" style="font-size:small;color:var(--text-muted)"> By '+artmenu[i].author+'</span></li><br>');
             }
         }
     }
