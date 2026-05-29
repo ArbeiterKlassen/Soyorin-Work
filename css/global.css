@@ -234,7 +234,7 @@ padding: 15px;
     border-radius: 10px;
     transition:ease-in-out 0.3s;
     box-shadow: var(--shadow-card);
-    overflow: hidden;
+    display: flow-root;
 }
 
 .topsign-text {

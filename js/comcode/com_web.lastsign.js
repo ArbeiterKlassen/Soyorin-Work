@@ -33,7 +33,7 @@ insertHtml('             <h3>7. 更新了关于，添加了一部分引用链接
 insertHtml('             <h3>8. 更新了Cloudflare图床和MongoDB作为图床和储存区，避免图片和评论崩掉了。<br></h3>')
 insertHtml('             <h3>9. 未来本站内容将更加侧重于日常生活学习吐槽和分享读书的内容，不再涉及敏感话题，敬请理解。<br></h3>')
 insertHtml('             <h3>10. 预备增添“歌单”和“游戏两个子栏目，敬请期待！o(*￣▽￣*)ブ”<br></h3>')
-insertHtml('             <br>')
+insertHtml('             <li style="list-style:none;height:10px;"></li>')
 insertHtml('         </li>')
 
 
