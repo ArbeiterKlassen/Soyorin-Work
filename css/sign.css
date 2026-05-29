@@ -1,10 +1,9 @@
 .sign-container {
-    float: left;
     width: 1090px;
-    margin-left: 5px;
-    margin-top: 20px;
-    box-shadow: 0 0 10px rgba(184, 197, 214, .5);
-    -moz-box-shadow: 0 0 10px rgba(184, 197, 214, .5);
+    margin: 20px auto;
+    background-color: var(--bg-card);
+    box-shadow: var(--shadow-card);
+    -moz-box-shadow: var(--shadow-card);
     transition: ease-in-out 0.3s;
     border-radius: 10px;
 }

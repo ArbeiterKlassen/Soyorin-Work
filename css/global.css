@@ -232,7 +232,7 @@ padding: 15px;
     background-color: var(--bg-primary);
     border-radius: 10px;
     transition:ease-in-out 0.3s;
-    box-shadow: 0 0 10px rgba(184, 197, 214, .5);
+    box-shadow: var(--shadow-card);
     overflow: hidden;
 }
 
@@ -590,7 +590,7 @@ padding: 15px;
     background-color: var(--bg-card);
     border-radius: 10px;
     transition:ease-in-out 0.3s;
-    box-shadow: 0 0 10px rgba(184, 197, 214, .5);
+    box-shadow: var(--shadow-card);
     overflow: hidden;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
