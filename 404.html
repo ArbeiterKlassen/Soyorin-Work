@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+<html lang="zh-cmn-Hans" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +8,14 @@
 <title>404 - 页面未找到</title>
 <link rel="stylesheet" href="./css/variables.css">
 <link rel="stylesheet" href="./css/global.css">
+<script>
+(function() {
+  var saved = localStorage.getItem('soyorin-mode');
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var isDark = saved ? saved === '2' : prefersDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+})();
+</script>
 </head>
 <style type="text/css">
 .me404 {
@@ -202,5 +210,8 @@ C445.1,269.6,446.4,268.3,448.1,268.3z" />
 </g>
 </g>
 </svg>
+ <div style="text-align:center;margin-top:20px;padding-bottom:40px;">
+   <a href="./templates/index.html" style="color:var(--text-link);font-size:18px;text-decoration:none;">← 返回首页</a>
+ </div>
  </body>
 </html>

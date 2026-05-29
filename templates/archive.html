@@ -121,7 +121,7 @@
         "Compte à rebours"
       ];
       var xtype = Math.floor(Math.random()*(pics.length-1));
-      document.write('<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
+      document.currentScript.insertAdjacentHTML('beforebegin', '<img style="width: 100%; height:auto" alt="" src="'+pics[xtype]+'">');
     </script>
   </div>
   <div class="headpic-cover">
@@ -228,7 +228,7 @@
   <script src="../js/d-audio.js"></script>
   <script src="../js/myPagination.js"></script>
   
-  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js" integrity="sha384-3f4jG+SN1L8xH8RX2z5G7j8Fz1T8wzH7V8yq6f3w2x1y0z9c8b7a6f5e4d3c2b1a" crossorigin="anonymous"></script>
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js"></script>
   <script>
     document.body.oncopy = function() {
       layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
