@@ -226,6 +226,7 @@ border-bottom: solid 1px var(--border-light);
 }
 
 .topsign-title {
+	border: 1px solid var(--border-light);
 padding: 15px;
     width: 100%;
     height:auto;
