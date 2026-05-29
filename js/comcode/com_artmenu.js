@@ -240,6 +240,21 @@ function print_content(){
         insertHtml('<li class="person-intro-detail"><span class="date">'+date[1]+'-'+date[2]+' </span><a href="'+artmenu[i].links+'" class="title">'+artmenu[i].name+'</a></li>');
     }};
 };
+function print_content_to(target){
+    var h = '';
+    h += '<li class="column-title">';
+    h += '<span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl" style="font-family: Georgia, Times New Roman, Times, serif;">文章</a></span>';
+    h += '</li>';
+    var max = artmenu.length;
+    var inity=2020;
+    var date;
+    for(var i = max-1; i>=0;i--){if(artmenu[i].type=='art'){
+        date = artmenu[i].time.split("-");
+        if(parseInt(date[0]) > inity){inity++;h += '<li class="person-intro-detail gradient-text">'+inity+'</li>';}
+        h += '<li class="person-intro-detail"><span class="date">'+date[1]+'-'+date[2]+' </span><a href="'+artmenu[i].links+'" class="title">'+artmenu[i].name+'</a></li>';
+    }};
+    target.innerHTML = h;
+}
 function output(){
     var str = document.getElementById('inpele').value;
     str = str.trim();
@@ -247,7 +262,9 @@ function output(){
     if(str === ''){
         clearcontent('1');
         clearcontent('3');
-        document.getElementById('1').innerHTML = '<div class="column-container-wider"><ul class="column_box" id="like-box"><script>print_content();<\/script></ul></div>';
+        var div1 = document.getElementById('1');
+        div1.innerHTML = '<div class="column-container-wider"><ul class="column_box" id="like-box"></ul></div>';
+        print_content_to(div1.querySelector('.column_box'));
         return;
     }
     str = str.split(/\s+/);//字符串拆分

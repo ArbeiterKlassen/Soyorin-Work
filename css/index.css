@@ -673,6 +673,7 @@ width: 100%;
     border-radius: 10px;
     overflow: hidden;
 }
+.sign-container .column_box { background-color: transparent; box-shadow: none; }
 
 [data-theme="dark"] .column_box .column-category a {
 width: 86%;
