@@ -12,9 +12,9 @@ width: 98%;
     position: relative;
     border-radius: 10px;
     border-width: 3px;
-    border-color: rgba(0, 0, 0, 0.616);
+    border-color: var(--border-color);
     border-style: dashed;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--bg-primary);
 }
 
 .headpic {
@@ -130,7 +130,7 @@ width: 98%;
 .choosen-box {
 width:35px;
         height:32px;
-        background-color:rgb(180, 180, 180);
+        background-color:var(--text-muted);
         margin: 0 auto;
         float:left;
         text-align:center;
@@ -307,7 +307,7 @@ box-shadow: 0 0 10px #7e8795;
 .column_box {
 width: 100%;
     padding: 12px 0;
-    background-color: white;
+    background-color: var(--bg-card);
     border-radius: 10px;
     overflow: hidden;
 }
@@ -341,7 +341,7 @@ width: 86%;
     height: 100%;
     float: left;
     color: var(--text-muted);
-    transition: border-left-width 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     /*单行文本溢出显示省略号*/
     overflow: hidden;
     white-space: nowrap;

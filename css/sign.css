@@ -1,11 +1,11 @@
 .sign-container {
+    float: left;
     width: 1090px;
-    margin: 20px auto;
-    background-color: var(--bg-card);
-    box-shadow: var(--shadow-card);
-    -moz-box-shadow: var(--shadow-card);
+    margin-left: 5px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(184, 197, 214, .5);
+    -moz-box-shadow: 0 0 10px rgba(184, 197, 214, .5);
     transition: ease-in-out 0.3s;
-    overflow: hidden;
     border-radius: 10px;
 }
 
@@ -70,7 +70,7 @@
     padding-left: 10px;
     padding-right: 10px;
     display:inline-block;
-    color: var(--text-muted);
+    color: #828487;
 }
 @media screen and (max-width: 1200px){
     .sign-container {
