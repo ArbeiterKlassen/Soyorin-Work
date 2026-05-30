@@ -84,9 +84,23 @@
   <!-- mobile导航 -->
   <nav class="mobile-nav">
   </nav>
-  <a id="mobile_cate" href="javascript:void(0);" style="text-decoration:none;" onclick="var m=document.getElementById('nav-m-list');m.classList.toggle('nav-open');event.stopPropagation();">☰</a>
+  <a id="mobile_cate" href="javascript:void(0);" style="text-decoration:none;">☰</a>
+  <script>
+    document.getElementById('mobile_cate').addEventListener('click', function(e){
+      document.getElementById('nav-m-list').classList.toggle('nav-open');
+      e.stopPropagation();
+    });
+    document.getElementById('cancel').addEventListener('click', function(){
+      document.getElementById('nav-m-list').classList.remove('nav-open');
+    });
+    document.addEventListener('click', function(e){
+      if(!document.getElementById('nav-m-list').contains(e.target) && e.target.id !== 'mobile_cate'){
+        document.getElementById('nav-m-list').classList.remove('nav-open');
+      }
+    });
+  </script>
   <ul id="nav-m-list">
-    <li id="cancel-li"><a class="fr" id="cancel" href="javascript:void(0);"></a></li>
+    <li id="cancel-li"><a class="fr" id="cancel" href="javascript:void(0);">✕</a></li>
     <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
     <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
     <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
