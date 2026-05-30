@@ -339,19 +339,30 @@
     function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
   </script>
   <script>
-    document.getElementById('mobile_cate').onclick = function(e){
-      document.getElementById('nav-m-list').classList.add('nav-open');
-      e.stopPropagation();
-    };
-    document.getElementById('cancel').onclick = function(){
-      document.getElementById('nav-m-list').classList.remove('nav-open');
-    };
-    document.body.onclick = function(e){
-      var m = document.getElementById('nav-m-list');
-      if(m.classList.contains('nav-open') && !m.contains(e.target) && e.target.id !== 'mobile_cate'){
-        m.classList.remove('nav-open');
-      }
-    };
+    (function(){
+      var btn = document.getElementById('mobile_cate');
+      var menu = document.getElementById('nav-m-list');
+      var cancel = document.getElementById('cancel');
+
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        menu.classList.add('nav-open');
+      });
+
+      cancel.addEventListener('click', function(e){
+        e.preventDefault();
+        menu.classList.remove('nav-open');
+      });
+
+      menu.addEventListener('click', function(e){
+        e.stopPropagation();
+      });
+
+      document.addEventListener('click', function(){
+        menu.classList.remove('nav-open');
+      });
+    })();
   </script>
 </body>
 </html>
