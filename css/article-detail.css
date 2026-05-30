@@ -41,15 +41,9 @@ color: var(--text-link);
 position: sticky;
     top: 60px;
     width: 250px;
+    font-size: 14px;
+    right: auto;
     flex-shrink: 0;
-    max-height: calc(100vh - 80px);
-    overflow-y: auto;
-    font-size: 13px;
-    background: var(--bg-card);
-    border-radius: 10px;
-    padding: 14px 16px;
-    box-shadow: var(--shadow-card);
-    z-index: 40;
     height: auto;
     overflow: hidden;
     margin: 20px 10px;
@@ -89,7 +83,7 @@ padding-left: 10px;
 }
 
 .toc a {
-color: var(--text-primary);
+color: #1b1b1b;
     /*单行文本溢出显示省略号*/
     width: 100%;
     overflow: hidden;
@@ -107,7 +101,7 @@ color: var(--text-link);
 /*左容器*/
 .article-container {
 width: 830px;
-    margin: 20px auto;
+    margin: 20px 10px;
     padding: 20px;
     background-color: var(--bg-primary);
     border-radius: 10px;
@@ -245,7 +239,7 @@ margin: 0;
 
 .column_box {
 width: 100%;
-    background-color: var(--bg-card);
+    background-color: white;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -691,15 +685,9 @@ list-style: disc;
 position: sticky;
     top: 60px;
     width: 250px;
+    font-size: 14px;
+    right: auto;
     flex-shrink: 0;
-    max-height: 70vh;
-    overflow-y: auto;
-    font-size: 13px;
-    background: var(--bg-card);
-    border-radius: 10px;
-    padding: 12px;
-    box-shadow: var(--shadow-card);
-    z-index: 50;
     height: auto;
     overflow: hidden;
     margin: 20px 10px;
@@ -715,8 +703,6 @@ position: sticky;
 
 [data-theme="dark"] .toc a {
 color: var(--bg-primary);
-
-.toc:hover { transform: translateX(0); }
     /*单行文本溢出显示省略号*/
     width: 100%;
     overflow: hidden;
@@ -729,7 +715,7 @@ color: var(--bg-primary);
 [data-theme="dark"] /*左容器*/
 .article-container {
 width: 830px;
-    margin: 20px auto;
+    margin: 20px 10px;
     padding: 20px;
     background-color: var(--bg-body);
     border-radius: 10px;
@@ -802,8 +788,7 @@ background-color: #e2e3e3;
     color: white;
 }
 
-@media (max-width: 1200px) {
-[data-theme="dark"]
+[data-theme="dark"] */
     .article-container {
 width: 100%;
         margin: 0;
@@ -816,8 +801,4 @@ width: 100%;
         transition: all 0.3s;
         color: white;
 }
-}
 
-
-section.main.has-toc { display: flex !important; align-items: flex-start; gap: 24px; }
-section.main.has-toc .left-box { flex: 1; min-width: 0; width: auto !important; float: none !important; margin: 0 !important; }
