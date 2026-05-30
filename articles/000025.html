@@ -105,7 +105,7 @@
 
   <div class="headpage"><div class="headpage-cover"></div></div>
 <section class="main">
-  <div class="left-box">
+  <div class="left-box" style="width:830px;margin:0 auto;float:none;">
     <div class="article-container">
       <div class="article-content markdown-body">
         <div id="innerdiv" style="position:absolute;">
@@ -288,7 +288,43 @@
     </div>
   </div>
   
+  <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
+    <ul id="toc-list">
+      <li><a href="#" id="toc-a-on">目录</a></li>
+    </ul>
+  </aside>
+  
 </section>
+
+<script>
+(function(){
+  // TOC follows article, sticks at 60px below nav
+  var toc = document.getElementById('toc-sidebar');
+  var article = document.querySelector('.article-container');
+  if (toc && article) {
+    function updateToc(){
+      var artTop = article.getBoundingClientRect().top;
+      toc.style.top = (artTop > 60 ? artTop : 60) + 'px';
+    }
+    updateToc();
+    toc.style.visibility = 'visible';
+    window.addEventListener('scroll', updateToc);
+    window.addEventListener('resize', updateToc);
+  }
+  // Build TOC from headings
+  var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
+  var tocList = document.getElementById('toc-list');
+  if(!tocList || headings.length === 0) return;
+  tocList.innerHTML = '';
+  headings.forEach(function(h, i){
+    var id = 'heading-' + i;
+    h.id = id;
+    var level = parseInt(h.tagName.charAt(1));
+    var indent = '   '.repeat(level - 1);
+    tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
+  });
+})();
+</script>
 
 
 
