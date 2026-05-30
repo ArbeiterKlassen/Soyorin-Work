@@ -33,7 +33,7 @@ var signHtml =
   '             <h3>9. 未来本站内容将更加侧重于日常生活学习吐槽和分享读书的内容，不再涉及敏感话题，敬请理解。<br></h3>' +
   '             <h3>10. 预备增添歌单和游戏两个子栏目，敬请期待！o(*￣▽￣*)ブ<br></h3>' +
   '         </li>' +
-  '         <li style="list-style:none;height:10px;"></li>' +
+  '         <div style="height:10px;"></div>' +
   '         <li class="person-intro-detail gradient-text">' +
   '             <h2>2023-6-1</h2>' +
   '         </li>' +
@@ -49,7 +49,8 @@ var signHtml =
   '             <h3>4. 网站首页添加了9个哲学和社会科学已经望关文创分类板块，下设不同作者的分类导航版<br></h3>' +
   '             <h3>5. 修改了文章分类页的样式，移除了旧的赤园文创，改善了文创搜索系统<br></h3>' +
   '             <h3>6. 添加复制提醒和应用新的著作权协议：(CC)-BY-NC-SA<br></h3>' +
-  '             <li style="list-style:none;height:10px;"></li>' +
+  '             <div style="height:10px;"></div>' +
+  '             <li class="person-intro-detail">' +
   '             <h3>技术修复：<br></h3>' +
   '             <h3>···计划建立望关网站运营组，负责网站运维和文章上传，同时避免再次出现涉及敏感字眼问题<br></h3>' +
   '         </li>' +
@@ -67,7 +68,7 @@ var signHtml =
   '             <h3>6. 于2023年5月开始，正式重启望关项目<br></h3>' +
   '             <h3>7. 于2023年5月开始，域名将更换为：<a href="https://www.wangguan.soc">WWW.WANGGUAN.SOC</a><br></h3>' +
   '             <h3>8. 为防止非法境外势力干预，计划开发网站初次进入审核机制，暂定为答题版<br></h3>' +
-  '             <li style="list-style:none;height:10px;"></li>' +
+  '             <div style="height:10px;"></div>' +
   '             <h3>技术修复：<br></h3>' +
   '             <h3>···计划开发夜晚模式<br></h3>' +
   '             <h3>···计划建立望关网站运营组，负责网站运维和文章上传，同时避免再次出现涉及敏感字眼问题<br></h3>' +
@@ -84,7 +85,7 @@ var signHtml =
   '             <h3>内蒙古左联AULIM成立了，新的网课计划也在逐步进行<br></h3>' +
   '             <h3>我们也认识了很多新的同志<br></h3>' +
   '             <h3>然而疫情还是没什么好的进展<br></h3>' +
-  '             <li style="list-style:none;height:10px;"></li>' +
+  '             <div style="height:10px;"></div>' +
   '             <h3>唉<br></h3>' +
   '             <h3>技术修复：<br></h3>' +
   '             <h3>···计划开发分页功能并优化界面<br></h3>' +
@@ -143,11 +144,11 @@ var signHtml =
   '             <span id="description"><a href="https://self.wgsoc.top">https://self.wgsoc.top</a></span><br>' +
   '             <h3>仍可以使用:</h3>' +
   '             <span id="description"><a href="https://arbeiterklassen.github.io/self">https://arbeiterklassen.github.io/self</a></span><br>' +
-  '             <li style="list-style:none;height:10px;"></li>' +
+  '             <div style="height:10px;"></div>' +
   '             <h3>@包头九中赤原青年马克思主义社 的宣传页面正在开发中<br></h3>' +
   '             <h3>增加望关社论站的Bili宣传账号（在底部小电视图标访问）<br></h3>' +
   '         </li>' +
-  '         <li style="list-style:none;height:10px;"></li>' +
+  '         <div style="height:10px;"></div>' +
   '         <li class="person-intro-detail gradient-text">' +
   '             <h2>2022-1-22</h2>' +
   '         </li>' +
@@ -157,11 +158,11 @@ var signHtml =
   '             <span id="description">1. ArbeiterKlassen 和社团成员文章的记录工作</span><br>' +
   '             <span id="description">2. 马克思主义的宣传工作</span><br>' +
   '             <span id="description">3. 全国各界有意加入这个企划的同志，并已来稿文章的文章记录，发布和宣传工作</span><br>' +
-  '             <li style="list-style:none;height:10px;"></li>' +
+  '             <div style="height:10px;"></div>' +
   '             <h3>ArbeiterKlassen将长期作为网站的运维<br></h3>' +
   '             <h3>望关 wgsoc.top 将增加对@包头九中赤原青年马克思主义社 的宣传功能<br></h3>' +
   '         </li>' +
-  '         <li style="list-style:none;height:10px;"></li>' +
+  '         <div style="height:10px;"></div>' +
   '         <li class="person-intro-detail gradient-text">' +
   '             <h2>2022-1-21</h2>' +
   '         </li>' +
@@ -174,7 +175,7 @@ var signHtml =
   '             <h3>考虑到CDS的纲领问题，暂时将CDS在首页的信息移除，仅保留友链的QR码<br></h3>' +
   '             <h3>目前存在的主要问题是：<br>1.网站宣传不出去，<br>2.网站没钱租服务器所以只能搭在Github上(已绑定域名)<br>3.网站人少没有内容，我文笔也渣<br>4.没时间管理网站<br>5.最重要的一点，晶哥</h3>' +
   '         </li>' +
-  '         <li style="list-style:none;height:10px;"></li>' +
+  '         <div style="height:10px;"></div>' +
   '         <li class="person-intro-detail gradient-text">' +
   '             <h1>2021-8-10</h1>' +
   '         </li>' +
