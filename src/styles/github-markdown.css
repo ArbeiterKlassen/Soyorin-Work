@@ -547,7 +547,7 @@ color: var(--text-link-hover);
 
 .markdown-body .code-holder {
     counter-reset: codeline;
-width: 100%;
+    width: 100%;
     height: auto;
     border-radius: 3px;
     margin: 0 auto;
@@ -848,7 +848,7 @@ width: 90%;
 
 
 .markdown-body .code-line {
-    display: block;
+    display: block !important;
     counter-increment: codeline;
 }
 .markdown-body .code-line::before {
