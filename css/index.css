@@ -993,4 +993,4 @@ background: #222;
   }
 }
 
-.person-intro-detail h3, .person-intro-detail h4, .person-intro-detail h5 { padding-left: 0; margin: 8px 0; }
+.person-intro-detail h3, .person-intro-detail h4, .person-intro-detail h5 { padding-left: 12px; margin: 8px 0; color: var(--text-primary); }
