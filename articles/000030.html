@@ -108,7 +108,8 @@
   <div class="left-box">
     <div class="article-container">
       <div class="article-content markdown-body">
-        <p><h1>LiNeXt Developer Documentation</h1></p>
+        <div style="font-family:Times New Roman,Times,serif;">
+<p><h1>LiNeXt Developer Documentation</h1></p>
 <p><strong>Target Venue:</strong> CVPR / AAAI  
 <strong>Author:</strong> cuitianxu, Wuhan University  
 <strong>Last Updated:</strong> 2026-05-30</p>
@@ -212,6 +213,7 @@ CUDA_VISIBLE_DEVICES=5 python tools/batch_eval_v3.py \
 <p><strong>GPU Zombie Processes.</strong> The 8×4090 server accumulates stale CUDA contexts from crashed training runs. These manifest as 35+ GB of "already allocated" memory on otherwise idle GPUs, causing spurious OOM errors on subsequent runs. The fix is </code>fuser -k /dev/nvidia{N}` before each training launch. The __pycache__ directories must similarly be purged after any code change, as stale bytecode can cause dimension mismatch errors that are indistinguishable from genuine bugs.</p>
 <p><strong>Temporal Training OOM.</strong> Early temporal fusion training attempts encountered OOM errors at approximately 35 GB allocated per GPU. The root cause was traced to zombie GPU processes rather than the temporal dataloader itself. A clean GPU launch with batch_size=1 verified that the model fits comfortably (13.5 GB peak). The temporal dataloader was validated separately on 50 batches and confirmed to produce valid data with expected CD distributions.
 </p>
+</div>
       </div>
     </div>
   </div>

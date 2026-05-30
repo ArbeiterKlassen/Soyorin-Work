@@ -90,7 +90,7 @@ padding-left: 10px;
 }
 
 .toc a {
-color: #1b1b1b;
+color: var(--text-primary);
     /*单行文本溢出显示省略号*/
     width: 100%;
     overflow: hidden;
