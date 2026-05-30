@@ -1,10 +1,24 @@
 <div class="headpage"><div class="headpage-cover"></div></div>
 <% if (hasToc) { %>
 <div class="toc">
-  <ul>
+  <ul id="toc-list">
     <li><a href="#" id="toc-a-on">目录</a></li>
   </ul>
 </div>
+<script>
+(function(){
+  var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
+  var tocList = document.getElementById('toc-list');
+  if(!tocList || headings.length === 0) return;
+  headings.forEach(function(h, i){
+    var id = 'heading-' + i;
+    h.id = id;
+    var level = parseInt(h.tagName.charAt(1));
+    var indent = '&emsp;'.repeat(level - 1);
+    tocList.innerHTML += '<li style=\"padding-left:' + ((level-1)*12) + 'px;\"><a href=\"#' + id + '\">' + indent + h.textContent + '</a></li>';
+  });
+})();
+</script>
 <% } %>
 <section class="main">
   <div class="left-box">
