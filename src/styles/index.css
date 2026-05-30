@@ -869,3 +869,126 @@ color: var(--text-link);
 background: #222;
 }
 
+
+
+/* === Modern Article Cards === */
+.article-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  margin: 12px 0;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.article-card:hover {
+  box-shadow: var(--shadow-card);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+.article-card-img {
+  width: 160px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+.article-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.article-card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.article-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.article-card-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.article-card-title a:hover {
+  color: var(--text-link);
+}
+.article-card-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.article-card-meta span {
+  white-space: nowrap;
+}
+
+/* === Modern Pagination === */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 12px 0;
+  flex-wrap: wrap;
+}
+.pagination-info {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  background: var(--bg-card);
+  border-radius: 20px;
+  margin-right: 12px;
+}
+.pagination-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.pagination-btn:hover {
+  background: var(--text-link);
+  color: #fff;
+  border-color: var(--text-link);
+}
+.pagination-btn.active {
+  background: var(--text-link);
+  color: #fff;
+  border-color: var(--text-link);
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .article-card-img {
+    width: 100px;
+    height: 70px;
+  }
+  .article-card {
+    padding: 12px;
+    gap: 12px;
+  }
+  .article-card-title {
+    font-size: 14px;
+  }
+}

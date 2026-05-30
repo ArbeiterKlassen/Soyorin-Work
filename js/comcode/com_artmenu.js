@@ -183,12 +183,14 @@ function print_authorlist(cate){
 function print_page(pagename){
     if(pagename == pages){x = count%eachpage+(pagename-1)*eachpage}
     else{x = 10 + (pagename-1)*eachpage};
+    var h = '';
     for(var i = (pagename-1)*eachpage;i<x;){
         if(artmenu[i].type=="art"){
-            document.getElementById('pages-container').innerHTML += '<div class="article-box">'+'<div class="ab-content">'+'<a href="'+artmenu[i].links+'" class="article-img-box">'+'<img class="lazy-image article-img" data-src="'+artmenu[i].headpic+'" alt="" src="'+artmenu[i].headpic+'">'+'</a>'+'<div class="article-title">'+'<a href="'+artmenu[i].links+'">'+artmenu[i].name+'</a>'+'</div>'+'<div class="article-detail-box c-666">'+artmenu[i].detail+'</div>'+'<span class="article-tail-box">'+'<span class="article-date c-999">'+artmenu[i].time+'</span>'+'<span class="article-author one-line-overflow c-999">'+artmenu[i].author+'</span>'+'</span>'+'</div>'+'</div>'
+            h += '<a href=\"'+artmenu[i].links+'\" style=\"text-decoration:none;\"><div class=\"article-card\"><div class=\"article-card-img\"><img class=\"lazy-image\" data-src=\"'+artmenu[i].headpic+'\" alt=\"\" src=\"'+artmenu[i].headpic+'\"></div><div class=\"article-card-body\"><div class=\"article-card-title\">'+artmenu[i].name+'</div><div class=\"article-card-meta\"><span>'+artmenu[i].time+'</span><span>'+artmenu[i].author+'</span></div></div></div></a>';
             i++;
         }
     }
+    document.getElementById('pages-container').innerHTML = h;
 };
 function print_specialpage(pagename){
     if(pagename == specialpages){x = specialcount%eachpage+(pagename-1)*eachpage}

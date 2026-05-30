@@ -527,11 +527,12 @@
             if(getParams("page") != null){page = getParams("page")};
             print_page(page, 1);
             function page_chooser(mode){
-              var h = '<div class=\"article-box\" style=\"width:auto;height:32px;background:transparent;\" id=\"choosen-container\">';
-              h += '<div class=\"ab-content\" style=\"background:transparent;\">';
-              h += '<span style=\"display:inline-block;padding:4px 15px;background:var(--bg-card);border-radius:4px;color:var(--text-muted);font-size:14px;\"><strong>'+count+' 篇，共 '+pages+' 页</strong></span>';
-              for(var i = 1; i <= pages; i++) h += '<div class=\"choosen-box\"><a style=\"color:#fff\" href=\"./index.html?mode='+mode+'&page='+i+'\">'+i+'</a></div>';
-              h += '</div></div>';
+              var h = '<div class=\"pagination\">';
+              h += '<span class=\"pagination-info\">'+count+' 篇 / '+pages+' 页</span>';
+              for(var i = 1; i <= pages; i++){
+                h += '<a class=\"pagination-btn'+(i==page?' active':'')+'\" href=\"./index.html?mode='+mode+'&page='+i+'\">'+i+'</a>';
+              }
+              h += '</div>';
               document.getElementById('chooser-container').innerHTML = h;
             };
             page_chooser(1);

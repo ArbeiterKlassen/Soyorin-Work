@@ -44,10 +44,12 @@
   if(getParams("cate") != null) cate = getParams("cate");
   print_page(page);
   (function buildChooser(){
-    var h = '<div style=\"display:inline-block;padding:4px 15px;background:var(--bg-card);border-radius:4px;color:var(--text-muted);font-size:14px;margin-right:8px;\"><strong>'+count+' 篇，共 '+pages+' 页</strong></div>';
+    var h = '<div class=\"pagination\">';
+    h += '<span class=\"pagination-info\">'+count+' 篇 / '+pages+' 页</span>';
     for(var i = 1; i <= pages; i++){
-      h += '<div class=\"choosen-box\" style=\"display:inline-block;\"><a style=\"color:#fff\" href=\"./category.html?mode='+mode+'&page='+i+'\">'+i+'</a></div>';
+      h += '<a class=\"pagination-btn'+(i==page?' active':'')+'\" href=\"./category.html?mode='+mode+'&page='+i+'\">'+i+'</a>';
     }
+    h += '</div>';
     document.getElementById('chooser-container').innerHTML = h;
   })();
 </script>
