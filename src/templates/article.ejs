@@ -1,6 +1,6 @@
 <div class="headpage"><div class="headpage-cover"></div></div>
-<section class="main<%= hasToc ? ' has-toc' : '' %>">
-  <div class="left-box">
+<section class="main<%= hasToc ? ' has-toc' : '' %>"<%= hasToc ? ' style=\"display:flex;align-items:flex-start;gap:24px;\"' : '' %>>
+  <div class="left-box"<%= hasToc ? ' style=\"flex:1;min-width:0;width:auto;float:none;margin:0;\"' : '' %>>
     <div class="article-container">
       <div class="article-content markdown-body">
         <%- content %>
