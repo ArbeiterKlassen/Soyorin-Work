@@ -153,8 +153,17 @@
       <h2 class="topsign-text">这里存放我们建站以来的所有已有的文章（可以慢慢翻）</h2>
     </div>
 
-    <div style="display:flex;gap:20px;">
-      <div style="width:200px;flex-shrink:0;">
+    <style>
+      .category-layout { display:flex; gap:20px; }
+      .category-sidebar { width:200px; flex-shrink:0; }
+      .category-main { flex:1; min-width:0; }
+      @media (max-width: 900px) {
+        .category-layout { flex-direction:column; }
+        .category-sidebar { width:100%; }
+      }
+    </style>
+    <div class="category-layout">
+      <div class="category-sidebar">
         <div class="sign-container" style="padding:10px;">
           <ul class="column_box" id="like-box">
             <li class="column-title">
@@ -172,7 +181,7 @@
         </div>
       </div>
 
-      <div style="flex:1;min-width:0;">
+      <div class="category-main">
         <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
         <div id="article-holder" style="width:100%;">
           <div class="sign-container" style="padding:15px;">
