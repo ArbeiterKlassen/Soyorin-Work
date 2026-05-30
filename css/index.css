@@ -992,3 +992,5 @@ background: #222;
     font-size: 14px;
   }
 }
+
+.person-intro-detail h3, .person-intro-detail h4, .person-intro-detail h5 { padding-left: 0; margin: 8px 0; }

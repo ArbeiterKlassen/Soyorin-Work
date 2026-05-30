@@ -1,81 +1,77 @@
 # Soyorin.Work - AKlassen's Blogs
 
-> 重构后的静态博客系统，基于 EJS 模板 + CSS 变量 + Node.js 构建脚本。
+> 基于 EJS 模板 + CSS 变量的静态博客系统，部署于 GitHub Pages
+
+## 技术栈
+
+- **模板引擎**: EJS — 静态生成所有页面
+- **样式方案**: CSS 变量 (`variables.css`) — 统一浅色/深色主题切换
+- **构建工具**: Node.js 脚本 (`scripts/build.js`)
+- **托管**: GitHub Pages (`soyorin.work`)
 
 ## 项目结构
 
 ```
-├── src/                    # 源码目录
-│   ├── templates/          # EJS 模板
-│   ├── styles/             # 合并后的 CSS（使用 CSS 变量）
-│   ├── data/               # 文章元数据 JSON
-│   └── articles/           # 文章正文提取
-├── scripts/                # 构建和重构脚本
-│   ├── build.js            # 主构建脚本
-│   └── merge-css.js        # CSS 合并脚本
-├── articles/               # 生成的文章页（28篇）
-├── templates/              # 生成的模板页
-├── css/                    # 运行时 CSS（含 variables.css）
-├── js/                     # 运行时 JS
-│   └── main.js             # 重构后的公共逻辑
-├── package.json            # npm 配置
-└── index.html              # 导航页
+├── src/                     # 源文件（权威来源）
+│   ├── templates/           # EJS 模板
+│   │   ├── base.ejs         #   主布局（导航栏、头图、页脚）
+│   │   ├── article.ejs      #   文章包裹模板
+│   │   └── pages/           #   各页面内容模板 (9个)
+│   ├── styles/              # CSS 源文件（19个）
+│   ├── data/                # 文章元数据 (articles.json)
+│   └── articles/            # 文章正文片段 (29篇)
+├── scripts/
+│   └── build.js             # 构建脚本
+├── articles/                # 生成的文章页 (29篇)
+├── templates/               # 生成的模板页 (9个)
+├── css/                     # 运行时 CSS（构建时从 src/styles/ 复制）
+├── js/                      # 运行时 JS
+│   ├── base.js              #   公共逻辑（导航、主题）
+│   ├── comcode/             #   数据驱动组件
+│   └── lib/                 #   第三方库
+├── headpage/                # 导航页（独立子系统）
+├── inner/                   # 密码保护区域
+├── img/                     # 图片资源
+├── fonts/                   # 字体文件
+├── index.html               # 根导航页
+└── package.json             # npm 配置
 ```
-
-## 高优先级重构完成清单
-
-### ✅ 1. 彻底消灭 document.write（874处 → 0处）
-- 文章页（28篇）改用 EJS 模板静态生成
-- 模板页（index/archive/category 等）内联静态 HTML 替换动态 document.write
-- JS 公共文件（global_header.js, comcode/*）全部改为 `insertAdjacentHTML`
-
-### ✅ 2. 日夜模式 CSS 合并为 CSS 变量
-- 删除所有 `night.*.css` 文件（约 15 个）
-- 新建 `css/variables.css`，通过 `data-theme="dark"` 切换
-- 支持系统级 `prefers-color-scheme: dark` 自动适配
-
-### ✅ 3. 文章模板化 + 数据 JSON 化
-- 文章元数据从 `com_artmenu.js` 提取到 `src/data/articles.json`
-- 文章正文从原 HTML 提取，用统一模板重新生成
-- 新增文章只需更新 JSON + 添加正文到 `src/articles/`
-
-### ✅ 4. 替换废弃 API / 清理过时代码
-- `unescape()` → `decodeURIComponent()`（全局替换）
-- 删除所有 `<!--[if lt IE 9]>` 条件注释和 `html5shiv`
-- 删除 `X-UA-Compatible` 等过时 meta
-- 新建 `js/main.js` 整合公共逻辑（主题切换、参数解析、loader 动画）
-- 版权年份改为自动更新 `new Date().getFullYear()`
-
-### ✅ 5. 安全与性能优化
-- 为 CDN 资源添加 `integrity` 占位符（需替换为真实 SRI hash）
-- Google Analytics UA 标签标记为 GA4 迁移提示
-- 模板中移除 `document.write` 导致的渲染阻塞
 
 ## 本地开发
 
 ```bash
-# 安装依赖
-npm install
-
-# 生成文章页和复制资源
-node scripts/build.js
-
-# 启动开发服务器（如需）
-npm run dev
+npm install                  # 安装依赖（仅需 ejs）
+node scripts/build.js        # 生成所有页面
 ```
+
+构建后直接用浏览器打开 `index.html` 或 `templates/index.html` 预览。
 
 ## 添加新文章
 
 1. 在 `src/data/articles.json` 的 `articles` 数组中添加元数据
-2. 在 `src/articles/` 目录下新建 `0000xx.html`，写入文章正文（只保留 `<section class="main">` 内部的内容）
+2. 在 `src/articles/` 创建对应的 `0000xx.html`，写入正文 HTML 片段
 3. 运行 `node scripts/build.js` 重新生成
 
-## 后续可继续优化（中低优先级）
+## 主题切换
 
-- [ ] 引入 Vite 进行 CSS/JS 压缩和构建
-- [ ] jQuery 3.4.1 升级或迁移到原生 JS
-- [ ] MathJax 2.7.5 升级到 3.x 或 KaTeX
-- [ ] 文章正文改为 Markdown 源文件
-- [ ] 添加 PWA 支持（manifest + Service Worker）
-- [ ] 图片懒加载完善 + 响应式图片 srcset
-- [ ] 添加 sitemap.xml 和 robots.txt
+浅色/深色模式通过 CSS 变量实现：
+- `css/variables.css` 定义 `:root`（浅色）和 `[data-theme="dark"]`（深色）两套变量
+- 主题状态存储在 `localStorage.soyorin-mode`
+- 右下角 ✨ 按钮切换，首次访问跟随系统 `prefers-color-scheme`
+
+## 页面列表
+
+| 页面 | 模板 | 说明 |
+|------|------|------|
+| 首页 | `index.ejs` | 文章概览、分类卡片、分页浏览 |
+| 文章分类 | `category.ejs` | 按分类筛选文章 |
+| 归档 | `archive.ejs` | 搜索、论文、资料下载 |
+| 关于 | `about.ejs` | 个人介绍、开发历史、日历 |
+| 友情链接 | `link.ejs` | 鸣谢、贡献者、学术链接 |
+| 公告 | `web.sign.ejs` | 网站更新记录 |
+| 清单 | `manifest.ejs` | 游戏、歌单 |
+| 讨论 | `issue.ejs` | 评论区 |
+
+## License
+
+CC BY-NC-SA 4.0
