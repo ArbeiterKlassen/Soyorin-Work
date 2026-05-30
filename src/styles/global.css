@@ -630,6 +630,8 @@ color: var(--text-secondary);
 
 [data-theme="dark"] #nav-m-list {
     width: 280px;
+    right: 0;
+    transform: translateX(100%);
         height: 100%;
         position:fixed;
         top: 0px;
