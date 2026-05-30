@@ -40,8 +40,8 @@ color: var(--text-link);
 .toc {
 position: sticky;
     top: 60px;
-    float: right;
-    width: 260px;
+    width: 250px;
+    flex-shrink: 0;
     max-height: calc(100vh - 80px);
     overflow-y: auto;
     font-size: 13px;
@@ -50,8 +50,6 @@ position: sticky;
     padding: 14px 16px;
     box-shadow: var(--shadow-card);
     z-index: 40;
-    margin-right: -20px;
-    margin-left: 20px;
     height: auto;
     overflow: hidden;
     margin: 20px 10px;
@@ -692,8 +690,8 @@ list-style: disc;
 [data-theme="dark"] .toc {
 position: sticky;
     top: 60px;
-    float: right;
-    width: 260px;
+    width: 250px;
+    flex-shrink: 0;
     max-height: 70vh;
     overflow-y: auto;
     font-size: 13px;
@@ -820,3 +818,6 @@ width: 100%;
 }
 }
 
+
+section.main:has(.toc) { display: flex; align-items: flex-start; gap: 20px; }
+section.main:has(.toc) .left-box { flex: 1; min-width: 0; }
