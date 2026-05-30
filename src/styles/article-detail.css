@@ -89,7 +89,7 @@ padding-left: 10px;
 }
 
 .toc a {
-color: #1b1b1b;
+color: var(--text-primary);
     /*单行文本溢出显示省略号*/
     width: 100%;
     overflow: hidden;
@@ -714,7 +714,7 @@ list-style: disc;
 }
 
 [data-theme="dark"] .toc a {
-color: var(--bg-primary);
+color: var(--text-primary);
     /*单行文本溢出显示省略号*/
     width: 100%;
     overflow: hidden;

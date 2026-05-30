@@ -21,7 +21,7 @@ outline:none
 }
 
 .markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link {
-color:#1b1f23;
+color: var(--markdown-heading);
     vertical-align:middle;
     visibility:hidden
 }
@@ -280,7 +280,7 @@ font-weight:600;
 }
 
 .markdown-body h6 {
-color:#6a737d;
+color: var(--markdown-blockquote);
     font-size:.85em
 }
 
@@ -292,7 +292,7 @@ margin-bottom:10px;
 
 .markdown-body blockquote {
 border-left:.25em solid #dfe2e5;
-    color:#6a737d;
+    color: var(--markdown-blockquote);
     padding:0 1em
 }
 
