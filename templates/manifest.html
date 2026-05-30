@@ -18,6 +18,10 @@
   
   <link rel="stylesheet" href="../css/manifest.css">
   
+  <link rel="stylesheet" href="../css/index.css">
+  
+  <link rel="stylesheet" href="../css/sign.css">
+  
   
   <style>.lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }</style>
   
@@ -141,96 +145,82 @@
   
 
   <div class="big-container">
-  <article class="article" style="width: 90%;">
-    <div style="width:fit-content;padding:10px; height:auto;background-color: rgb(0, 102, 255);border-radius: 10px;">
-      <h3 style="text-align: center;color: #ffffff;">清单</h3>
+  <article class="article">
+    <div style="width:fit-content;padding:10px;height:auto;background-color:rgb(0,102,255);border-radius:10px;">
+      <h3 style="text-align:center;color:#fff;">清单</h3>
     </div>
     <div class="topsign-title">
       <h2 class="topsign-text">这里是AKlassen的书单/歌单/待办(～￣▽￣)～</h2>
-      <br>
-      <p>大概会有推荐的书/游戏/歌这样子</p>
+      <p style="color:var(--text-muted);">推荐的书/游戏/歌</p>
     </div>
+
     <script>
-      function select1(){
-        document.getElementById('book').style.display='initial';
-        document.getElementById('play').style.display='none';
-        document.getElementById('game').style.display='none';
-        document.getElementById('manifest-title').innerHTML = '<div style="color:rgb(0,102,255);display: inline;">BOOK </div>LIST';
-      }
-      function select2(){
-        document.getElementById('book').style.display='none';
-        document.getElementById('play').style.display='initial';
-        document.getElementById('game').style.display='none';
-        document.getElementById('manifest-title').innerHTML = '<div style="color:rgb(0,102,255);display: inline;">PLAY </div>LIST';
-      }
-      function select3(){
-        document.getElementById('book').style.display='none';
-        document.getElementById('play').style.display='none';
-        document.getElementById('game').style.display='initial';
-        document.getElementById('manifest-title').innerHTML = '<div style="color:rgb(0,102,255);display: inline;">GAME </div>LIST';
+      function selectTab(id){
+        ['book','play','game'].forEach(function(t){
+          document.getElementById(t).style.display = (t===id) ? 'block' : 'none';
+        });
       }
     </script>
-    <div class="section-selector">
-      <div class="list"><a onclick="{select1()}" href="javascript:void(0);">书单</a></div>
-      <div class="list"><a onclick="select2()" href="javascript:void(0);">歌单</a></div>
-      <div class="list"><a onclick="select3()" href="javascript:void(0);">游戏</a></div>
-    </div>
-    <div class="section-holder" style="font-family: Exo-White;">
-      <section id="default" class="active"><br><br><br><br><br></section>
-      <section id="book" class="">
-        <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: rgb(0, 102, 255);border-radius: 10px;margin: 0 auto;">
-          <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: rgb(0, 102, 255);">不那么硬核的</p>
+
+    <div class="sign-container" style="padding:15px;margin-bottom:15px;">
+      <div style="display:flex;gap:12px;margin-bottom:15px;flex-wrap:wrap;">
+        <button onclick="selectTab('book')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--text-link);color:#fff;font-size:14px;">书单</button>
+        <button onclick="selectTab('play')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--bg-secondary);color:var(--text-primary);font-size:14px;">歌单</button>
+        <button onclick="selectTab('game')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--bg-secondary);color:var(--text-primary);font-size:14px;">游戏</button>
+      </div>
+
+      <div id="book">
+        <div style="border-style:dashed;width:80%;height:auto;padding:5px;border-width:3px;border-color:rgb(0,102,255);border-radius:10px;margin:10px auto;">
+          <p style="text-align:center;font-size:15px;font-family:Impact,sans-serif;color:rgb(0,102,255);">不那么硬核的</p>
         </div>
         <div class="book-holder">
-          <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/introduction_to_algorithm.jpg);"></div>
-          <div class="book-intro"><p>《算法导论》（Introduction to Algorithms）是麻省理工学院出版社出版的关于计算机中数据结构与算法的图书，作者是托马斯·科尔曼（Thomas H. Cormen）、查尔斯·雷瑟尔森（Charles E. Leiserson）、罗纳德·李维斯特（Ronald L. Rivest）、克利福德·斯坦（Clifford Stein）。第一版刊行于1990年，2009年最新版为第三版。<br>本书深入浅出，全面地介绍了计算机算法。对每一个算法的分析既易于理解又十分有趣，并保持了数学严谨性。本书的设计目标全面，适用于多种用途。涵盖的内容有：算法在计算中的作用，概率分析和随机算法的介绍。本书专门讨论了线性规划，介绍了动态规划的两个应用，随机化和线性规划技术的近似算法等，还有有关递归求解、快速排序中用到的划分方法与期望线性时间顺序统计算法，以及对贪心算法元素的讨论。本书还介绍了对强连通子图算法正确性的证明，对哈密顿回路和子集求和问题的NP完全性的证明等内容。全书提供了900多个练习题和思考题以及叙述较为详细的实例研究。</p></div>
+          <div class="book-cover" style="background-image:url(https://img.soyorin.work/books/introduction_to_algorithm.jpg);"></div>
+          <div class="book-intro"><p>《算法导论》（Introduction to Algorithms）是麻省理工学院出版社出版的关于计算机中数据结构与算法的图书，作者是托马斯·科尔曼（Thomas H. Cormen）、查尔斯·雷瑟尔森（Charles E. Leiserson）、罗纳德·李维斯特（Ronald L. Rivest）、克利福德·斯坦（Clifford Stein）。第一版刊行于1990年，2009年最新版为第三版。<br>本书深入浅出，全面地介绍了计算机算法。对每一个算法的分析既易于理解又十分有趣，并保持了数学严谨性。本书的设计目标全面，适用于多种用途。</p></div>
         </div>
         <div class="book-holder">
-          <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/politics_and_history.jpg);"></div>
-          <div class="book-intro"><p>Enlightenment advances towards a science of politics, and Marx's relationship to Hegel.<br><br>In the first two essays of this book, Louis Althusser analyses the work of two of the greatest thinkers of the Enlightenment - Montesquieu and Rousseau. He shows that although they made considerable advances towards establishing a science of politics, particularly in comparison with the theorists of natural law, they nevertheless remained the victims of the ideologies of their day and class.<br><br>The third essay examines Marx's relationship to Hegel and elaborates on the discussions of this theme in Althusser's earlier books, For Marx and Lenin and Philosophy.</p></div>
+          <div class="book-cover" style="background-image:url(https://img.soyorin.work/books/politics_and_history.jpg);"></div>
+          <div class="book-intro"><p>Enlightenment advances towards a science of politics, and Marx's relationship to Hegel.<br><br>In the first two essays of this book, Louis Althusser analyses the work of two of the greatest thinkers of the Enlightenment - Montesquieu and Rousseau.</p></div>
         </div>
         <div class="book-holder">
-          <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/pour_marx.jpg);"></div>
-          <div class="book-intro"><p>Pour Marx is a 1965 book by the philosopher Louis Althusser, a leading theoretician of the PCF, in which the author reinterprets the work of the philosopher Karl Marx, proposing an epistemological break between the young, Hegelian Marx, and the old Marx, the author of Das Kapital.<br><br>The book, first published in France by François Maspero, established Althusser's reputation. The texts presented in For Marx are theoretical interventions in a definite conjuncture, particularly aiming at the definition of the lines to be pursued by the PCF after Stalin's years in the Soviet Union.</p></div>
+          <div class="book-cover" style="background-image:url(https://img.soyorin.work/books/pour_marx.jpg);"></div>
+          <div class="book-intro"><p>Pour Marx is a 1965 book by the philosopher Louis Althusser, a leading theoretician of the PCF, in which the author reinterprets the work of the philosopher Karl Marx, proposing an epistemological break between the young, Hegelian Marx, and the old Marx, the author of Das Kapital.</p></div>
         </div>
         <div class="book-holder">
-          <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/princeton_calculus.jpg);"></div>
-          <div class="book-intro"><p>The Calculus Lifesaver combines ease of use and readability with the depth of content and mathematical rigor of the best calculus textbooks. It is an indispensable volume for any student seeking to master calculus.<br><br>Serves as a companion to any single-variable calculus textbook<br><br>Informal, entertaining, and not intimidating<br><br>More than 475 examples (ranging from easy to hard) provide step-by-step reasoning<br><br>Theorems and methods justified and connections made to actual practice<br><br>Difficult topics such as improper integrals and infinite series covered in detail<br><br>Tried and tested by students taking freshman calculus</p></div>
+          <div class="book-cover" style="background-image:url(https://img.soyorin.work/books/princeton_calculus.jpg);"></div>
+          <div class="book-intro"><p>The Calculus Lifesaver combines ease of use and readability with the depth of content and mathematical rigor of the best calculus textbooks. It is an indispensable volume for any student seeking to master calculus.</p></div>
         </div>
         <div class="book-holder">
-          <div class="book-cover" style="background-image: url(https://img.soyorin.work/books/the_sublime_subject_of_ideology.jpg);"></div>
-          <div class="book-intro"><p>Žižek thematizes the Kantian notion of the sublime in order to liken ideology to the experience of something that is absolutely vast and powerful beyond all perception and objective intelligibility.<br><br>Žižek provides an analysis of "How did Marx Invent the Symptom?", in which he compares the ways in which the notion of symptom runs through the work of the philosopher Karl Marx and Sigmund Freud, the founder of psychoanalysis.</p></div>
+          <div class="book-cover" style="background-image:url(https://img.soyorin.work/books/the_sublime_subject_of_ideology.jpg);"></div>
+          <div class="book-intro"><p>Žižek thematizes the Kantian notion of the sublime in order to liken ideology to the experience of something that is absolutely vast and powerful beyond all perception and objective intelligibility.</p></div>
         </div>
-        <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: rgb(0, 102, 255);border-radius: 10px;margin: 0 auto;">
-          <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: rgb(0, 102, 255);">硬核的</p>
+        <div style="border-style:dashed;width:80%;height:auto;padding:5px;border-width:3px;border-color:rgb(0,102,255);border-radius:10px;margin:10px auto;">
+          <p style="text-align:center;font-size:15px;font-family:Impact,sans-serif;color:rgb(0,102,255);">硬核的</p>
         </div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Software Foundations<br>Author: *<br>As you will see, "SOFTWARE FOUNDATIONS", or is it?</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Database systems: A Practical Approach to Design, Implementation, and Management<br>Too big..</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Computational Complexity: A Modern Approach<br>Author: Sanjeev Arora & Boaz Barak<br>An introductory book to computational complexity theory, which can be considered as the extension of computability theory.</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Types and Programming Languages<br>Author: Benjamin. C. Pierce<br>A comprehensive guide to type and programming language theory, it is said that you will be able to read research papers directly after understanding this book.</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Discrete Mathmatics and Its Application(离散数学及其应用)<br>Author: Kenneth H·Rosen</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Computer System: A Programmer's Perspective(CS:APP,深入理解计算机系统)<br>Author: Randal E.Bryant / David O'Hallaron</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Structure and Interpretation of Computer Language(SICP,计算机程序的构造和解释)<br>Author: Harold Abelson / Gerald Jay Sussman / Julie Sussman</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>TCP/IP Illustrated(TCP/IP详解(共三部))<br>Author: W·Richard Stevens</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Modern Compiler Implementation in C(现代编译原理:C语言实现)<br>Author: Andrew W.Appel / MaiaGinsburg</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Modern Compiler Implementation in Java(现代编译原理:Java语言实现)<br>Author: Andrew W.Appel</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Assembly Language for x86 Processors(汇编语言:基于x86处理器)<br>Author: Kip Irvine</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Advanced Compiler Design and Implementation(高级编译器设计与实现)<br>Author: Steven.S.Muchnick</p></div></div>
-        <div class="book-holder-full"><div class="book-intro-full"><p><br>Engineering a Compiler(编译器设计)<br>Author: Keith Cooper / Linda Torczon</p></div></div>
-        <div style="border-style:dashed;width: 80%;height: auto;padding: 5px 5px 5px 5px;border-width: 3px;border-color: rgb(0, 102, 255);border-radius: 10px;margin: 0 auto;">
-          <p style="text-align:center;font-size:15px;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color: rgb(0, 102, 255);">愿望单</p>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Software Foundations</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Database systems: A Practical Approach to Design, Implementation, and Management</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Computational Complexity: A Modern Approach - Sanjeev Arora & Boaz Barak</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Types and Programming Languages - Benjamin C. Pierce</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Discrete Mathmatics and Its Application - Kenneth H·Rosen</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Computer System: A Programmer's Perspective (CS:APP) - Randal E.Bryant</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Structure and Interpretation of Computer Language (SICP)</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>TCP/IP Illustrated - W·Richard Stevens</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Modern Compiler Implementation in C - Andrew W.Appel</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Modern Compiler Implementation in Java - Andrew W.Appel</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Assembly Language for x86 Processors - Kip Irvine</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Advanced Compiler Design and Implementation - Steven.S.Muchnick</p></div></div>
+        <div class="book-holder-full"><div class="book-intro-full"><p>Engineering a Compiler - Keith Cooper</p></div></div>
+        <div style="border-style:dashed;width:80%;height:auto;padding:5px;border-width:3px;border-color:rgb(0,102,255);border-radius:10px;margin:10px auto;">
+          <p style="text-align:center;font-size:15px;font-family:Impact,sans-serif;color:rgb(0,102,255);">愿望单</p>
         </div>
-      </section>
-      <section id="play" style="display:none;">
-        <br><br>
-        <p style="text-align:center">歌单建设中...</p>
-        <br><br>
-      </section>
-      <section id="game" style="display:none;">
-        <br><br>
-        <p style="text-align:center">游戏列表建设中...</p>
-        <br><br>
-      </section>
+      </div>
+
+      <div id="play" style="display:none;">
+        <p style="text-align:center;color:var(--text-muted);padding:40px 0;">歌单建设中...</p>
+      </div>
+
+      <div id="game" style="display:none;">
+        <p style="text-align:center;color:var(--text-muted);padding:40px 0;">游戏列表建设中...</p>
+      </div>
     </div>
   </article>
 </div>

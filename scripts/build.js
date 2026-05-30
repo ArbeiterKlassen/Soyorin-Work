@@ -170,7 +170,7 @@ const pageConfigs = [
     title: 'SOYORIN__清单',
     headpicTitle: '<div id="manifest-title"><div style="color:rgb(0,102,255);display: inline;">清</div>单</div>',
     headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">L</div>iste',
-    cssFiles: ['manifest.css'],
+    cssFiles: ['manifest.css', 'index.css', 'sign.css'],
     extraHead: ''
   },
   {
