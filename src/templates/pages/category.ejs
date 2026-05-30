@@ -47,7 +47,7 @@
     var h = '<div class=\"pagination\">';
     h += '<span class=\"pagination-info\">'+count+' 篇 / '+pages+' 页</span>';
     for(var i = 1; i <= pages; i++){
-      h += '<a class=\"pagination-btn'+(i==page?' active':'')+'\" href=\"./category.html?mode='+mode+'&page='+i+'\">'+i+'</a>';
+      h += '<a class=\"pagination-btn'+(i==page?' active':'')+'\" href=\"./category.html?cate='+cate+'&page='+i+'\">'+i+'</a>';
     }
     h += '</div>';
     document.getElementById('chooser-container').innerHTML = h;
