@@ -84,9 +84,9 @@
   <!-- mobile导航 -->
   <nav class="mobile-nav">
   </nav>
-  <a id="mobile_cate" href="javascript:void(0);" style="text-decoration:none;">☰</a>
-  <ul id="nav-m-list">
-    <li id="cancel-li"><a class="fr" id="cancel" href="javascript:void(0);">✕</a></li>
+  <button id="mobile_cate" style="border:none;outline:none;">☰</button>
+  <div id="nav-m-list">
+    <button id="cancel" style="position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-primary);">✕</button>
     <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
     <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
     <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
@@ -304,27 +304,19 @@
     function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
   </script>
   <script>
-    (function(){
-      var btn = document.getElementById('mobile_cate');
-      var menu = document.getElementById('nav-m-list');
-      var cancel = document.getElementById('cancel');
-      if(btn && menu){
-        btn.addEventListener('click', function(e){
-          menu.classList.toggle('nav-open');
-          e.stopPropagation();
-        });
+    document.getElementById('mobile_cate').onclick = function(e){
+      document.getElementById('nav-m-list').classList.add('nav-open');
+      e.stopPropagation();
+    };
+    document.getElementById('cancel').onclick = function(){
+      document.getElementById('nav-m-list').classList.remove('nav-open');
+    };
+    document.body.onclick = function(e){
+      var m = document.getElementById('nav-m-list');
+      if(m.classList.contains('nav-open') && !m.contains(e.target) && e.target.id !== 'mobile_cate'){
+        m.classList.remove('nav-open');
       }
-      if(cancel){
-        cancel.addEventListener('click', function(){
-          menu.classList.remove('nav-open');
-        });
-      }
-      document.addEventListener('click', function(e){
-        if(menu && !menu.contains(e.target) && e.target !== btn){
-          menu.classList.remove('nav-open');
-        }
-      });
-    })();
+    };
   </script>
 </body>
 </html>
