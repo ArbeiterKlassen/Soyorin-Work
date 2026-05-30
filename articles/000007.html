@@ -367,30 +367,15 @@
     function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
   </script>
   <script>
-    (function(){
-      var btn = document.getElementById('mobile_cate');
-      var menu = document.getElementById('nav-m-list');
-      var cancel = document.getElementById('cancel');
-
-      btn.addEventListener('click', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        menu.classList.add('nav-open');
-      });
-
-      cancel.addEventListener('click', function(e){
-        e.preventDefault();
-        menu.classList.remove('nav-open');
-      });
-
-      menu.addEventListener('click', function(e){
-        e.stopPropagation();
-      });
-
-      document.addEventListener('click', function(){
-        menu.classList.remove('nav-open');
-      });
-    })();
+    document.getElementById('mobile_cate').onclick = function(e){
+      e.preventDefault();
+      var m = document.getElementById('nav-m-list');
+      if(m.classList.contains('nav-open')){
+        m.classList.remove('nav-open');
+      } else {
+        m.classList.add('nav-open');
+      }
+    };
   </script>
 </body>
 </html>
