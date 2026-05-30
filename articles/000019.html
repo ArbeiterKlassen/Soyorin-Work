@@ -175,43 +175,34 @@
                 </div>
                 <div class = "article-container">
                     <div class = "article-content markdown-body">
-                        <h2 style="margin: 10px 0">评论</h2>
-                        <div id="tcomment"></div>
-                        <!-- 来必力City版安装代码 -->
-                        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
-                        <script type="text/javascript">
-                        (function(d, s) {
-                            var j, e = d.getElementsByTagName(s)[0];
-
-                            if (typeof LivereTower === 'function') { return; }
-
-                            j = d.createElement(s);
-                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                            j.async = true;
-
-                            e.parentNode.insertBefore(j, e);
-                        })(document, 'script');
-                        </script>
-                        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-                        </div>
-                        <!-- City版安装代码已完成 -->
 
       </div>
     </div>
     
-    <div style="max-width:830px;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
-      <div>
-        
-        <a href="../articles/000018.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← Jeffrey A. Bernstein:犹太教与历史</a>
-        
-      </div>
-      <div>
-        
-        <a href="../articles/000020.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">卡尔·洛维特：劳动是凝神与深思的解题 →</a>
-        
-      </div>
+    <div class="article-nav" style="max-width:830px;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div><a href="../articles/000018.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← Jeffrey A. Bernstein:犹太教与历史</a></div>
+      <div><a href="../articles/000020.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">卡尔·洛维特：劳动是凝神与深思的解题 →</a></div>
     </div>
     
+    <div class="article-container" id="comment-box" style="margin-top:10px;">
+      <div class="article-content markdown-body">
+        <h2 style="margin:10px 0">评论</h2>
+        <div id="tcomment"></div>
+        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
+      </div>
+    </div>
   </div>
   
 </section>
