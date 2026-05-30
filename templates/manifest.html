@@ -158,15 +158,23 @@
       function selectTab(id){
         ['book','play','game'].forEach(function(t){
           document.getElementById(t).style.display = (t===id) ? 'block' : 'none';
+          var btn = document.getElementById('tab-'+t);
+          if (t===id) {
+            btn.style.background = 'var(--text-link)';
+            btn.style.color = '#fff';
+          } else {
+            btn.style.background = 'var(--bg-secondary)';
+            btn.style.color = 'var(--text-primary)';
+          }
         });
       }
     </script>
 
     <div class="sign-container" style="padding:15px;margin-bottom:15px;">
       <div style="display:flex;gap:12px;margin-bottom:15px;flex-wrap:wrap;">
-        <button onclick="selectTab('book')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--text-link);color:#fff;font-size:14px;">书单</button>
-        <button onclick="selectTab('play')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--bg-secondary);color:var(--text-primary);font-size:14px;">歌单</button>
-        <button onclick="selectTab('game')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--bg-secondary);color:var(--text-primary);font-size:14px;">游戏</button>
+        <button id="tab-book" onclick="selectTab('book')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--text-link);color:#fff;font-size:14px;">书单</button>
+        <button id="tab-play" onclick="selectTab('play')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--bg-secondary);color:var(--text-primary);font-size:14px;">歌单</button>
+        <button id="tab-game" onclick="selectTab('game')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--bg-secondary);color:var(--text-primary);font-size:14px;">游戏</button>
       </div>
 
       <div id="book">
