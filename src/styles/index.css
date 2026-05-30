@@ -996,4 +996,4 @@ background: #222;
 
 
 
-.person-intro-detail h2,.person-intro-detail h3,.person-intro-detail h4,.person-intro-detail h5,.person-intro-detail h6 { margin-left:0; padding-left:0; text-indent:0; }
+.person-intro-detail h1,.person-intro-detail h2,.person-intro-detail h3,.person-intro-detail h4,.person-intro-detail h5,.person-intro-detail h6,.person-intro-detail p,.person-intro-detail span,.person-intro-detail div { margin:6px 0; padding:0; text-indent:0; font-size:inherit; font-weight:inherit; }
