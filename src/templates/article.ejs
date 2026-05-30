@@ -1,6 +1,6 @@
 <div class="headpage"><div class="headpage-cover"></div></div>
-<section class="main<%= hasToc ? ' has-toc' : '' %>"<%= hasToc ? ' style=\"display:flex;align-items:flex-start;gap:24px;\"' : '' %>>
-  <div class="left-box"<%= hasToc ? ' style=\"flex:1;min-width:0;width:auto;float:none;margin:0;\"' : '' %>>
+<section class="main">
+  <div class="left-box">
     <div class="article-container">
       <div class="article-content markdown-body">
         <%- content %>
@@ -8,11 +8,11 @@
     </div>
   </div>
   <% if (hasToc) { %>
-  <div class="toc">
+  <aside class="toc">
     <ul id="toc-list">
       <li><a href="#" id="toc-a-on">目录</a></li>
     </ul>
-  </div>
+  </aside>
   <% } %>
 </section>
 <% if (hasToc) { %>
@@ -26,7 +26,7 @@
     var id = 'heading-' + i;
     h.id = id;
     var level = parseInt(h.tagName.charAt(1));
-    var indent = '&emsp;'.repeat(level - 1);
+    var indent = '   '.repeat(level - 1);
     tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
   });
 })();

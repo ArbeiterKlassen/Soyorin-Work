@@ -104,8 +104,8 @@
   
 
   <div class="headpage"><div class="headpage-cover"></div></div>
-<section class="main has-toc" style=&#34;display:flex;align-items:flex-start;gap:24px;&#34;>
-  <div class="left-box" style=&#34;flex:1;min-width:0;width:auto;float:none;margin:0;&#34;>
+<section class="main">
+  <div class="left-box">
     <div class="article-container">
       <div class="article-content markdown-body">
         <div style="font-family:Times New Roman,Times,serif;">
@@ -218,11 +218,11 @@ CUDA_VISIBLE_DEVICES=5 python tools/batch_eval_v3.py \
     </div>
   </div>
   
-  <div class="toc">
+  <aside class="toc">
     <ul id="toc-list">
       <li><a href="#" id="toc-a-on">目录</a></li>
     </ul>
-  </div>
+  </aside>
   
 </section>
 
@@ -236,7 +236,7 @@ CUDA_VISIBLE_DEVICES=5 python tools/batch_eval_v3.py \
     var id = 'heading-' + i;
     h.id = id;
     var level = parseInt(h.tagName.charAt(1));
-    var indent = '&emsp;'.repeat(level - 1);
+    var indent = '   '.repeat(level - 1);
     tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
   });
 })();

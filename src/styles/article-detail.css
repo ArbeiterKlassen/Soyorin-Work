@@ -38,12 +38,18 @@ color: var(--text-link);
 }
 
 .toc {
-position: sticky;
-    top: 60px;
+    position: fixed;
+    top: 100px;
+    right: 20px;
     width: 250px;
-    font-size: 14px;
-    right: auto;
-    flex-shrink: 0;
+    font-size: 13px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow-card);
+    z-index: 40;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
     height: auto;
     overflow: hidden;
     margin: 20px 10px;
@@ -682,12 +688,18 @@ list-style: disc;
 }
 
 [data-theme="dark"] .toc {
-position: sticky;
-    top: 60px;
+    position: fixed;
+    top: 100px;
+    right: 20px;
     width: 250px;
-    font-size: 14px;
-    right: auto;
-    flex-shrink: 0;
+    font-size: 13px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow-card);
+    z-index: 40;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
     height: auto;
     overflow: hidden;
     margin: 20px 10px;
