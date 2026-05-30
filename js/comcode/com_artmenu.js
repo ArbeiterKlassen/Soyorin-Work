@@ -186,7 +186,7 @@ function print_page(pagename){
     var h = '';
     for(var i = (pagename-1)*eachpage;i<x;){
         if(artmenu[i].type=="art"){
-            h += '<a href=\"'+artmenu[i].links+'\" style=\"text-decoration:none;\"><div class=\"article-card\"><div class=\"article-card-img\"><img class=\"lazy-image\" data-src=\"'+artmenu[i].headpic+'\" alt=\"\" src=\"'+artmenu[i].headpic+'\"></div><div class=\"article-card-body\"><div class=\"article-card-title\">'+artmenu[i].name+'</div><div class=\"article-card-meta\"><span>'+artmenu[i].time+'</span><span>'+artmenu[i].author+'</span></div></div></div></a>';
+            h += '<a href=\"'+artmenu[i].links+'\" style=\"text-decoration:none;\"><div class=\"article-card\"><div class=\"article-card-img\"><img loading=\"lazy\" data-src=\"'+artmenu[i].headpic+'\" alt=\"\" src=\"'+artmenu[i].headpic+'\"></div><div class=\"article-card-body\"><div class=\"article-card-title\">'+artmenu[i].name+'</div><div class=\"article-card-meta\"><span>'+artmenu[i].time+'</span><span>'+artmenu[i].author+'</span></div></div></div></a>';
             i++;
         }
     }
