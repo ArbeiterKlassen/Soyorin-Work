@@ -308,25 +308,3 @@
             </div>
         </div>
     </section>
-    <!--主题-->>
-    <div>
-        <script>
-            function getParams(key) {
-                var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-                var r = window.location.search.substr(1).match(reg);
-                if (r != null) {
-                    return unescape(r[2]);
-                }
-                return null;
-            };
-            var mode = 1;
-            if(localStorage.getItem("soyorin-mode") != null){mode = parseInt(localStorage.getItem("soyorin-mode"))};</script>
-        <section>
-            <div class = "left-box">
-                <div id = "outerdiv">
-                    <div id = "innerdiv" style = "position:absolute;">
-                        <img alt id = "bigimg" style = "box-shadow: 0 0 10px #00000038" src = ""/>
-                    </div>
-                </div>
-                <div class = "article-container">
-                    <div class = "article-content markdown-body">
