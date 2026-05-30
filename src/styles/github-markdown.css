@@ -851,6 +851,8 @@ width: 90%;
 .markdown-body .code-line {
     display: block !important;
     counter-increment: codeline;
+    line-height: 1.3;
+    font-size: 0.82em;
 }
 .markdown-body .code-line::before {
     content: counter(codeline);
