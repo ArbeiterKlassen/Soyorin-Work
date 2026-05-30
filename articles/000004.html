@@ -187,9 +187,21 @@
 </section>
 
 
-  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 20px; padding: 5px 12px; font-size: 28px; background: var(--bg-card); box-shadow: var(--shadow-card);">
-    <a href="javascript:void(0)" onclick="const d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" style="text-decoration:none;">✨</a>
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--bg-card); box-shadow: var(--shadow-card);" onclick="var d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" title="切换深色/浅色模式">
+    <span id="theme-icon">☀️</span>
   </div>
+  <script>
+    (function(){
+      var icon = document.getElementById('theme-icon');
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      icon.textContent = isDark ? '☀️' : '🌙';
+      var orig = window.pagereload;
+      window.pagereload = function(m){
+        orig(m);
+        icon.textContent = (m === 2) ? '☀️' : '🌙';
+      };
+    })();
+  </script>
   <footer class="footer">
     <div class="footer-line">Powered By <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank">Soyorin.Work - AKlassen's Blogs</a> © 2021 - <span class="year"></span></div>
   </footer>
