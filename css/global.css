@@ -487,11 +487,11 @@ display: none;
 
 #mobile_cate {
 position:fixed;
-        right: 17%;
-        bottom: 90px;
+        right: 20px;
+        bottom: 100px;
         z-index: 10000;
-        height: 44px;
-        width: 44px;
+        height: 48px;
+        width: 48px;
         border-radius: 50%;
         background: var(--bg-card);
         box-shadow: var(--shadow-card);
@@ -499,7 +499,9 @@ position:fixed;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        font-size: 22px;
+        font-size: 24px;
+        color: var(--text-primary);
+        user-select: none;
 }
 
 #nav-m-list #cancel-li {
