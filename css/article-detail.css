@@ -38,11 +38,19 @@ color: var(--text-link);
 }
 
 .toc {
-top: 590px;
-    position: fixed;
-    width: 220px;
-    font-size: 14px;
-    right: -12px;
+position: fixed;
+    top: 80px;
+    right: 10px;
+    width: 200px;
+    max-height: 70vh;
+    overflow-y: auto;
+    font-size: 13px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: var(--shadow-card);
+    z-index: 50;
+    transition: transform 0.3s ease;
     height: auto;
     overflow: hidden;
     margin: 20px 10px;
@@ -603,7 +611,7 @@ visibility: hidden;
 /*响应式尺寸*/
 @media (max-width: 1200px) {
 .toc {
-        display: none;
+        transform: translateX(250px);
 }
 
 /*.location {
@@ -681,11 +689,18 @@ list-style: disc;
 }
 
 [data-theme="dark"] .toc {
-top: 590px;
-    position: fixed;
-    width: 220px;
-    font-size: 14px;
-    right: -12px;
+position: fixed;
+    top: 80px;
+    right: 10px;
+    width: 200px;
+    max-height: 70vh;
+    overflow-y: auto;
+    font-size: 13px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: var(--shadow-card);
+    z-index: 50;
     height: auto;
     overflow: hidden;
     margin: 20px 10px;
@@ -701,6 +716,8 @@ top: 590px;
 
 [data-theme="dark"] .toc a {
 color: var(--bg-primary);
+
+.toc:hover { transform: translateX(0); }
     /*单行文本溢出显示省略号*/
     width: 100%;
     overflow: hidden;
