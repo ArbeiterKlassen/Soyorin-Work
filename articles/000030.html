@@ -216,6 +216,20 @@ CUDA_VISIBLE_DEVICES=5 python tools/batch_eval_v3.py \
 </div>
       </div>
     </div>
+    
+    <div style="max-width:830px;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div>
+        
+        <a href="../articles/000029.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 包头的秋</a>
+        
+      </div>
+      <div>
+        
+        <a href="../articles/000031.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">Pseudo-Stereo Visual-Inertial SLAM with OpenVINS and RTAB-Map →</a>
+        
+      </div>
+    </div>
+    
   </div>
   
   <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
@@ -226,23 +240,8 @@ CUDA_VISIBLE_DEVICES=5 python tools/batch_eval_v3.py \
   
 </section>
 
-<div style="max-width:830px;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
-  <div>
-    
-    <a href="../articles/000029.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 包头的秋</a>
-    
-  </div>
-  <div>
-    
-    <a href="../articles/000031.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">Pseudo-Stereo Visual-Inertial SLAM with OpenVINS and RTAB-Map →</a>
-    
-  </div>
-</div>
-
-
 <script>
 (function(){
-  // TOC follows article, sticks at 60px below nav
   var toc = document.getElementById('toc-sidebar');
   var article = document.querySelector('.article-container');
   if (toc && article) {
@@ -255,7 +254,6 @@ CUDA_VISIBLE_DEVICES=5 python tools/batch_eval_v3.py \
     window.addEventListener('scroll', updateToc);
     window.addEventListener('resize', updateToc);
   }
-  // Build TOC from headings
   var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
   var tocList = document.getElementById('toc-list');
   if(!tocList || headings.length === 0) return;

@@ -341,6 +341,20 @@ a = a.contiguous()
 
       </div>
     </div>
+    
+    <div style="max-width:830px;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div>
+        
+        <a href="../articles/000028.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 日本之行</a>
+        
+      </div>
+      <div>
+        
+        <a href="../articles/000030.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">LiNeXt Developer Documentation →</a>
+        
+      </div>
+    </div>
+    
   </div>
   
   <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
@@ -351,23 +365,8 @@ a = a.contiguous()
   
 </section>
 
-<div style="max-width:830px;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
-  <div>
-    
-    <a href="../articles/000028.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 日本之行</a>
-    
-  </div>
-  <div>
-    
-    <a href="../articles/000030.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">LiNeXt Developer Documentation →</a>
-    
-  </div>
-</div>
-
-
 <script>
 (function(){
-  // TOC follows article, sticks at 60px below nav
   var toc = document.getElementById('toc-sidebar');
   var article = document.querySelector('.article-container');
   if (toc && article) {
@@ -380,7 +379,6 @@ a = a.contiguous()
     window.addEventListener('scroll', updateToc);
     window.addEventListener('resize', updateToc);
   }
-  // Build TOC from headings
   var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
   var tocList = document.getElementById('toc-list');
   if(!tocList || headings.length === 0) return;
