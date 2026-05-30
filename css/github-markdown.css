@@ -559,7 +559,9 @@ color: var(--text-link-hover);
 
 .markdown-body .code-holder code {
 white-space: pre-wrap;
-    line-height: 1.15;
+    line-height: 1;
+    font-size: 0.8em;
+    display: block;
     background-color:rgba(27,31,35,.05);
     border-radius:3px;
     font-size:85%;
@@ -852,8 +854,7 @@ width: 90%;
 .markdown-body .code-line {
     display: block !important;
     counter-increment: codeline;
-    line-height: 1.15;
-    font-size: 0.8em;
+    line-height: 1.2;
     margin: 0;
     padding: 0;
 }
