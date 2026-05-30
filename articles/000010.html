@@ -85,20 +85,6 @@
   <nav class="mobile-nav">
   </nav>
   <a id="mobile_cate" href="javascript:void(0);" style="text-decoration:none;">☰</a>
-  <script>
-    document.getElementById('mobile_cate').addEventListener('click', function(e){
-      document.getElementById('nav-m-list').classList.toggle('nav-open');
-      e.stopPropagation();
-    });
-    document.getElementById('cancel').addEventListener('click', function(){
-      document.getElementById('nav-m-list').classList.remove('nav-open');
-    });
-    document.addEventListener('click', function(e){
-      if(!document.getElementById('nav-m-list').contains(e.target) && e.target.id !== 'mobile_cate'){
-        document.getElementById('nav-m-list').classList.remove('nav-open');
-      }
-    });
-  </script>
   <ul id="nav-m-list">
     <li id="cancel-li"><a class="fr" id="cancel" href="javascript:void(0);">✕</a></li>
     <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
@@ -409,6 +395,29 @@
   </script>
   <script>
     function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
+  <script>
+    (function(){
+      var btn = document.getElementById('mobile_cate');
+      var menu = document.getElementById('nav-m-list');
+      var cancel = document.getElementById('cancel');
+      if(btn && menu){
+        btn.addEventListener('click', function(e){
+          menu.classList.toggle('nav-open');
+          e.stopPropagation();
+        });
+      }
+      if(cancel){
+        cancel.addEventListener('click', function(){
+          menu.classList.remove('nav-open');
+        });
+      }
+      document.addEventListener('click', function(e){
+        if(menu && !menu.contains(e.target) && e.target !== btn){
+          menu.classList.remove('nav-open');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
