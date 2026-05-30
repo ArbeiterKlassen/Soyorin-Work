@@ -524,18 +524,18 @@
         <div id="chooser-container">
           <script>
             var page = 1;
-            if(getParams("page") != null){page = getParams("page")};
-            print_page(page, 1);
-            function page_chooser(mode){
+            if(getParams("page") != null){page = parseInt(getParams("page"))};
+            print_page(page);
+            function page_chooser(){
               var h = '<div class=\"pagination\">';
               h += '<span class=\"pagination-info\">'+count+' 篇 / '+pages+' 页</span>';
               for(var i = 1; i <= pages; i++){
-                h += '<a class=\"pagination-btn'+(i==page?' active':'')+'\" href=\"./index.html?mode='+mode+'&page='+i+'\">'+i+'</a>';
+                h += '<a class=\"pagination-btn'+(i==page?' active':'')+'\" href=\"./index.html?page='+i+'\">'+i+'</a>';
               }
               h += '</div>';
               document.getElementById('chooser-container').innerHTML = h;
             };
-            page_chooser(1);
+            page_chooser();
           </script>
         </div>
       </div>
