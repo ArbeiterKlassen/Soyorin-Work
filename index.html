@@ -122,22 +122,15 @@
                 </div>
                 <div class="right">
                     <section id="home" class="active">
-                        <h1 style="font-family:Georgia, 'Times New Roman', Times, serif">
-                            Willkommen Auf <div style="color:rgb(26, 106, 236);display: inline;">Soyorin.work</div>!
+                        <h1 style="font-family:Georgia,'Times New Roman',Times,serif">
+                            Willkommen Auf <span style="color:rgb(26,106,236);">Soyorin.work</span>!
                         </h1>
-                        <h6 style="font-style: italic;">
-                            欢 迎 回 来
-                        </h6>
+                        <h6 style="font-style:italic;">欢 迎 回 来</h6>
                         <br>
-                        <p style="font-family: 'Times New Roman', Times, serif;line-height: 30px;font-size: 20px;">
-                            <div style="color:rgb(26, 106, 236);display: inline;">Soyorin.Work</div><br>
-                            <div style="color:rgb(0, 0, 0);display: inline;text-align: right;">——AKlassen的Blogs!,</div><br>
-                            <div style="color:rgb(255, 97, 97);display: inline;">记录日常</div>|
-                            <div style="color:rgb(255, 97, 97);display: inline;">生活</div>|
-                            <div style="color:rgb(255, 97, 97);display: inline;">思考</div>|
-                            <div style="color:rgb(255, 97, 97);display: inline;">游戏</div>|
-                            <div style="color:rgb(255, 97, 97);display: inline;">学习笔记</div>|
-                            <div style="color:rgb(255, 97, 97);display: inline;">etc</div>
+                        <p style="font-family:'Times New Roman',Times,serif;line-height:30px;font-size:20px;">
+                            <span style="color:rgb(26,106,236);">Soyorin.Work</span><br>
+                            <span style="color:var(--text-primary, #000);">——AKlassen的Blogs!</span><br>
+                            <span style="color:rgb(255,97,97);">记录日常|生活|思考|游戏|学习笔记|etc</span>
                         </p>
                         <p>
                             联系：arbeiterklassen@163.com
@@ -147,59 +140,60 @@
                         </p>
                     </section>
                     <section id="entrance" class="">
-                        <h1 style="font-family:Georgia, 'Times New Roman', Times, serif"><div style="color:red;display: inline;">H</div>auptseite</h1>
-                        <h6 style="font-style: italic;">
-                            主 站 入 口
-                        </h6>
+                        <h1 style="font-family:Georgia, 'Times New Roman', Times, serif"><div style="color:rgb(26,106,236);display:inline;">E</div>ntrance</h1>
+                        <h6 style="font-style:italic;">主 站 入 口</h6>
                         <div class="items">
-                            <a href="./templates/index.html" onclick="{localStorage.setItem('soyorin-mode','1')}" target="_blank">
+                            <a href="./templates/index.html" target="_blank">
                                 <i class="fa fa-home"></i>
-                                <span>主站[Light]</span>
+                                <span>首页</span>
                             </a>
-                            <a href="./templates/index.html" onclick="{localStorage.setItem('soyorin-mode','2')}"target="_blank">
-                                <i class="fa fa-home"></i>
-                                <span>主站[Dark]</span>
+                            <a href="./templates/archive.html" target="_blank">
+                                <i class="fa fa-archive"></i>
+                                <span>归档</span>
+                            </a>
+                            <a href="./templates/about.html" target="_blank">
+                                <i class="fa fa-user"></i>
+                                <span>关于</span>
+                            </a>
+                            <a href="./templates/category.html" target="_blank">
+                                <i class="fa fa-th-list"></i>
+                                <span>分类</span>
+                            </a>
+                            <a href="./templates/link.html" target="_blank">
+                                <i class="fa fa-link"></i>
+                                <span>友链</span>
+                            </a>
+                            <a href="./templates/web.sign.html" target="_blank">
+                                <i class="fa fa-bullhorn"></i>
+                                <span>公告</span>
                             </a>
                         </div>
                     </section>
                     <section id="contact" class="">
-                        <h1 style="font-family:Georgia, 'Times New Roman', Times, serif"><div style="color:red;display: inline;">K</div>ontaktangaben</h1>
-                        <h6 style="font-style: italic;">
-                            联 系 方 式
-                        </h6>
+                        <h1 style="font-family:Georgia, 'Times New Roman', Times, serif"><div style="color:rgb(26,106,236);display:inline;">C</div>ontact</h1>
+                        <h6 style="font-style:italic;">联 系 方 式</h6>
                         <div class="items">
-                            <a href="./templates/index.html" onclick="{localStorage.setItem('soyorin-mode','1')}" target="_blank">
-                                <i class="fa fa-home"></i>
-                                <span>主站[Light]</span>
-                            </a>
-                            <a href="./templates/index.html" onclick="{localStorage.setItem('soyorin-mode','2')}" target="_blank">
-                                <i class="fa fa-home"></i>
-                                <span>主站[Dark]</span>
-                            </a>
-                            <a href="arbeiterklassen@163.com" target="_blank">
+                            <a href="mailto:arbeiterklassen@163.com">
                                 <i class="fa fa-envelope"></i>
                                 <span>E-Mail</span>
                             </a>
                             <a href="https://github.com/arbeiterklassen" target="_blank">
                                 <i class="fa fa-github"></i>
-                                <span>Github Developer</span>
+                                <span>GitHub</span>
                             </a>
                             <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank">
-                                <i class="fa fa-bar-chart"></i>
-                                <span>Github Pages</span>
+                                <i class="fa fa-code"></i>
+                                <span>源代码</span>
                             </a>
                         </div>
                     </section>
                 </div>
             </div>
             <footer>
-                <p></p>
                 <div class="copyright-mobile">
-                    © 2021 - 2024
+                    © 2021 - <script>document.write(new Date().getFullYear())</script>
                     <i class="fa fa-heart"></i>
-                    <a href="./templates/index.html" target="_blank">
-                        www.soyorin.work
-                    </a>
+                    <a href="./templates/index.html" target="_blank">www.soyorin.work</a>
                 </div>
             </footer>
         </main>
