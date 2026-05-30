@@ -8,6 +8,7 @@ function insertHtml(html) {
   }
 }
 var artmenu = [
+    {number:30,type:"art",class:"code",subtype:"normal",links:"../articles/000030.html",time:"2026-5-30",author:"cuitianxu",name:"LiNeXt Developer Documentation",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"LiDAR scene completion technical documentation"},
     {number:26,type:"art",class:"art",subtype:"normal",links:"../articles/000029.html",time:"2025-8-12",author:"ArbeiterKlassen",name:"包头的秋",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
     {number:28,type:"art",class:"art",subtype:"normal",links:"../articles/000028.html",time:"2025-8-11",author:"ArbeiterKlassen",name:"日本之行",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
     {number:27,type:"art",class:"vid",subtype:"normal",links:"https://www.bilibili.com/video/BV13Nufz4EV6/",time:"2025-7-20",author:"Sunny_DucK,L-I-F",name:"来自L-I-F的生日祝福",headpic:"https://i2.hdslb.com/bfs/archive/ba4083b43b84edc140bc57e97c5ae975476e0846.jpg",detail:""},
