@@ -66,9 +66,13 @@ $(function () {
 
     //隐藏/显示移动端侧边栏
     $("#mobile_cate").click(function (event) {
-        $("#nav-m-list").addClass('nav-open');
+        $("#nav-m-list").delay(100).animate({
+            right: '0'
+        }, 500);
         $(document).one("click", function () { //对document绑定一个影藏Div方法
-            $("#nav-m-list").removeClass('nav-open');
+            $("#nav-m-list").delay(100).animate({
+                right: '-280px'
+            }, 500);
         });
         event.stopPropagation(); //阻止事件向上冒泡
         $("#nav-m-list").click(function (event) {
@@ -77,7 +81,9 @@ $(function () {
     });
 
     $("#cancel").click(function () {
-        $("#nav-m-list").removeClass('nav-open');
+        $("#nav-m-list").delay(100).animate({
+            right: '-280px'
+        }, 500);
     });
 
     //加载进度条
