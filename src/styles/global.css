@@ -473,6 +473,8 @@ display: none;
         transform: translateX(0);
 }
 
+#mobile_cate { display: none; }
+
 /*响应式尺寸*/
 @media (max-width: 1200px) {
 .mobile-nav {
