@@ -800,7 +800,8 @@ background-color: #e2e3e3;
     color: white;
 }
 
-[data-theme="dark"] */
+@media (max-width: 1200px) {
+[data-theme="dark"]
     .article-container {
 width: 100%;
         margin: 0;
@@ -812,5 +813,6 @@ width: 100%;
         overflow: hidden;
         transition: all 0.3s;
         color: white;
+}
 }
 
