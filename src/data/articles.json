@@ -61,6 +61,17 @@
   },
   "articles": [
     {
+      "number": 31,
+      "class": "code",
+      "links": "../articles/000031.html",
+      "time": "2026-5-30",
+      "author": "cuitianxu",
+      "name": "Pseudo-Stereo Visual-Inertial SLAM with OpenVINS and RTAB-Map",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "OpenVINS pseudo-stereo visual-inertial SLAM in Gazebo simulation",
+      "hasToc": true
+    },
+    {
       "number": 30,
       "class": "code",
       "links": "../articles/000030.html",

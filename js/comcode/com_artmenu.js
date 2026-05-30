@@ -8,6 +8,7 @@ function insertHtml(html) {
   }
 }
 var artmenu = [
+    {number:31,type:"art",class:"code",subtype:"normal",links:"../articles/000031.html",time:"2026-5-30",author:"cuitianxu",name:"Pseudo-Stereo Visual-Inertial SLAM with OpenVINS and RTAB-Map",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"OpenVINS pseudo-stereo visual-inertial SLAM in Gazebo simulation"},
     {number:30,type:"art",class:"code",subtype:"normal",links:"../articles/000030.html",time:"2026-5-30",author:"cuitianxu",name:"LiNeXt Developer Documentation",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"LiDAR scene completion technical documentation"},
     {number:26,type:"art",class:"art",subtype:"normal",links:"../articles/000029.html",time:"2025-8-12",author:"ArbeiterKlassen",name:"包头的秋",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
     {number:28,type:"art",class:"art",subtype:"normal",links:"../articles/000028.html",time:"2025-8-11",author:"ArbeiterKlassen",name:"日本之行",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:""},
