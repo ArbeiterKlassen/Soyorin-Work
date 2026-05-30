@@ -39,7 +39,7 @@ color: var(--text-link);
 
 .toc {
 position: fixed;
-    top: 80px;
+    top: 130px;
     right: 10px;
     width: 200px;
     max-height: 70vh;
@@ -690,7 +690,7 @@ list-style: disc;
 
 [data-theme="dark"] .toc {
 position: fixed;
-    top: 80px;
+    top: 130px;
     right: 10px;
     width: 200px;
     max-height: 70vh;

@@ -1,4 +1,13 @@
 <div class="headpage"><div class="headpage-cover"></div></div>
+<section class="main">
+  <div class="left-box">
+    <div class="article-container">
+      <div class="article-content markdown-body">
+        <%- content %>
+      </div>
+    </div>
+  </div>
+</section>
 <% if (hasToc) { %>
 <div class="toc">
   <ul id="toc-list">
@@ -10,22 +19,14 @@
   var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
   var tocList = document.getElementById('toc-list');
   if(!tocList || headings.length === 0) return;
+  tocList.innerHTML = '';
   headings.forEach(function(h, i){
     var id = 'heading-' + i;
     h.id = id;
     var level = parseInt(h.tagName.charAt(1));
     var indent = '&emsp;'.repeat(level - 1);
-    tocList.innerHTML += '<li style=\"padding-left:' + ((level-1)*12) + 'px;\"><a href=\"#' + id + '\">' + indent + h.textContent + '</a></li>';
+    tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
   });
 })();
 </script>
 <% } %>
-<section class="main">
-  <div class="left-box">
-    <div class="article-container">
-      <div class="article-content markdown-body">
-        <%- content %>
-      </div>
-    </div>
-  </div>
-</section>
