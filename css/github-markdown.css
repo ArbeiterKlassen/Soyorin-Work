@@ -546,6 +546,7 @@ color: var(--text-link-hover);
 }
 
 .markdown-body .code-holder {
+    counter-reset: codeline;
 width: 100%;
     height: auto;
     border-radius: 3px;
@@ -563,7 +564,7 @@ background-color:rgba(27,31,35,.05);
     margin:0;
     padding:.2em .4em;
     color:var(--text-primary);
-    transition: color 0.5s #006ebc ease-in-out;
+    transition: color 0.3s ease-in-out; transition-delay: 0.5s;
 }
 
 .markdown-body .code-holder code:hover {
@@ -845,3 +846,17 @@ width: 90%;
     transition: color 0.5s ease-in-out;
 }
 
+
+.markdown-body .code-line {
+    display: block;
+    counter-increment: codeline;
+}
+.markdown-body .code-line::before {
+    content: counter(codeline);
+    display: inline-block;
+    width: 2em;
+    margin-right: 1em;
+    text-align: right;
+    color: var(--text-light);
+    user-select: none;
+}

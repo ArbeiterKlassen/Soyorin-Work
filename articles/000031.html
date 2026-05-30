@@ -168,122 +168,122 @@
 <p>OpenVINS: A Research Platform for Visual-Inertial Estimation, Geneva et al., ICRA 2020. RTAB-Map: A Framework for 3D Mapping and Localization, Labbe and Michaud, IJRR 2019. ROS Navigation Stack, Marder-Eppstein et al., ICRA 2010.</p>
 <p><h2>Appendix A. System Architecture Diagram</h2></p>
 <p>
-<div class="code-holder"><code>                         Gazebo Simulation<br>
-                    TurtleBot3 House World (12m x 12m)<br>
- ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐<br>
- │ RGB Cam  │  │ Depth Cam│  │   IMU    │  │  Laser Scanner   │<br>
- │ 640x480  │  │ 640x480  │  │  333Hz   │  │  360 deg, 5Hz    │<br>
- │  28Hz    │  │  28Hz    │  │          │  │                  │<br>
- └────┬─────┘  └────┬─────┘  └────┬─────┘  └────────┬─────────┘<br>
-      │              │            │                  │<br>
-      ▼              ▼            ▼                  │<br>
- ┌───────────────┐   │    ┌────────────────┐         │<br>
- │ Pseudo-Stereo │◄──┘    │   OpenVINS     │         │<br>
- │ disparity=d   │──right─│   max_cameras=2│         │<br>
- │ =fx*B/Z       │ image  │   ZUPT init    │         │<br>
- └───────────────┘        └───────┬────────┘         │<br>
-                                  │ /odomimu          │<br>
-                                  ▼                   │<br>
-                         ┌────────────────┐           │<br>
-                         │   RTAB-Map     │◄──────────┘<br>
-                         │  RGBD SLAM     │  /scan<br>
-                         │  odom_frame_id │<br>
-                         │  =global       │<br>
-                         └───────┬────────┘<br>
-                                 │ /grid_map<br>
-                                 ▼<br>
-                         ┌────────────────┐<br>
-                         │ map_server     │<br>
-                         │ AMCL +         │<br>
-                         │ move_base      │<br>
-                         └────────────────┘<br>
-&nbsp;</code></div></p>
+<div class="code-holder"><code><span class="code-line">                         Gazebo Simulation</span>
+<span class="code-line">                    TurtleBot3 House World (12m x 12m)</span>
+<span class="code-line"> ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐</span>
+<span class="code-line"> │ RGB Cam  │  │ Depth Cam│  │   IMU    │  │  Laser Scanner   │</span>
+<span class="code-line"> │ 640x480  │  │ 640x480  │  │  333Hz   │  │  360 deg, 5Hz    │</span>
+<span class="code-line"> │  28Hz    │  │  28Hz    │  │          │  │                  │</span>
+<span class="code-line"> └────┬─────┘  └────┬─────┘  └────┬─────┘  └────────┬─────────┘</span>
+<span class="code-line">      │              │            │                  │</span>
+<span class="code-line">      ▼              ▼            ▼                  │</span>
+<span class="code-line"> ┌───────────────┐   │    ┌────────────────┐         │</span>
+<span class="code-line"> │ Pseudo-Stereo │◄──┘    │   OpenVINS     │         │</span>
+<span class="code-line"> │ disparity=d   │──right─│   max_cameras=2│         │</span>
+<span class="code-line"> │ =fx*B/Z       │ image  │   ZUPT init    │         │</span>
+<span class="code-line"> └───────────────┘        └───────┬────────┘         │</span>
+<span class="code-line">                                  │ /odomimu          │</span>
+<span class="code-line">                                  ▼                   │</span>
+<span class="code-line">                         ┌────────────────┐           │</span>
+<span class="code-line">                         │   RTAB-Map     │◄──────────┘</span>
+<span class="code-line">                         │  RGBD SLAM     │  /scan</span>
+<span class="code-line">                         │  odom_frame_id │</span>
+<span class="code-line">                         │  =global       │</span>
+<span class="code-line">                         └───────┬────────┘</span>
+<span class="code-line">                                 │ /grid_map</span>
+<span class="code-line">                                 ▼</span>
+<span class="code-line">                         ┌────────────────┐</span>
+<span class="code-line">                         │ map_server     │</span>
+<span class="code-line">                         │ AMCL +         │</span>
+<span class="code-line">                         │ move_base      │</span>
+<span class="code-line">                         └────────────────┘</span>
+<span class="code-line">&nbsp;</span></code></div></p>
 <p>
 <h2>Appendix B. Launch Commands</h2></p>
 <p>The complete system is started with a single launch file that orchestrates Gazebo, the pseudo-stereo warping node, OpenVINS in stereo mode, RTAB-Map with the VIO odometry bridge, the odometry-to-transform publisher, and all static transform bridges required for the transform tree.</p>
 <p>
-<div class="code-holder"><code>source ~/catkin_ws_ov/devel/setup.bash<br>
-export TURTLEBOT3_MODEL=waffle<br>
-roslaunch ov_msckf turtlebot3_house_stereo.launch gui:=true headless:=false rviz:=false<br>
-&nbsp;</code></div></p>
+<div class="code-holder"><code><span class="code-line">source ~/catkin_ws_ov/devel/setup.bash</span>
+<span class="code-line">export TURTLEBOT3_MODEL=waffle</span>
+<span class="code-line">roslaunch ov_msckf turtlebot3_house_stereo.launch gui:=true headless:=false rviz:=false</span>
+<span class="code-line">&nbsp;</span></code></div></p>
 <p>
 For headless operation on resource-constrained machines, set gui to false, disabling the Gazebo client and reducing CPU load. However, manual teleoperation requires the GUI for visual feedback.</p>
 <p>Once the system initializes, indicated by OpenVINS printing "successful initialization" to the terminal, manual teleoperation can begin. The robot is driven through the house environment using the TurtleBot3 keyboard teleoperation package, which publishes Twist messages directly to the cmd_vel topic at ten hertz.</p>
 <p>
-<div class="code-holder"><code>export TURTLEBOT3_MODEL=waffle<br>
-source ~/catkin_ws_ov/devel/setup.bash<br>
-roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch<br>
-&nbsp;</code></div></p>
+<div class="code-holder"><code><span class="code-line">export TURTLEBOT3_MODEL=waffle</span>
+<span class="code-line">source ~/catkin_ws_ov/devel/setup.bash</span>
+<span class="code-line">roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch</span>
+<span class="code-line">&nbsp;</span></code></div></p>
 <p>
 After completing the desired trajectory, the accumulated occupancy grid is exported to disk using map_server's map_saver utility, which writes a Portable GrayMap image and a corresponding YAML metadata file describing the resolution, origin, and occupancy thresholds.</p>
 <p>
-<div class="code-holder"><code>rosrun map_server map_saver map:=/rtabmap/grid_map -f ~/catkin_ws_ov/maps/house_living<br>
-&nbsp;</code></div></p>
+<div class="code-holder"><code><span class="code-line">rosrun map_server map_saver map:=/rtabmap/grid_map -f ~/catkin_ws_ov/maps/house_living</span>
+<span class="code-line">&nbsp;</span></code></div></p>
 <p>
 The exported map is post-processed with a conservative noise filter that removes isolated occupied cells while preserving doorframes and narrow passages that would be incorrectly filled by aggressive morphological operations or Hough line detection.</p>
 <p>
-<div class="code-holder"><code>python3 ~/catkin_ws_ov/scripts/postprocess_map.py \<br>
-  ~/catkin_ws_ov/maps/house_living.yaml \<br>
-  ~/catkin_ws_ov/maps/house_living_final.pgm<br>
-&nbsp;</code></div></p>
+<div class="code-holder"><code><span class="code-line">python3 ~/catkin_ws_ov/scripts/postprocess_map.py \</span>
+<span class="code-line">  ~/catkin_ws_ov/maps/house_living.yaml \</span>
+<span class="code-line">  ~/catkin_ws_ov/maps/house_living_final.pgm</span>
+<span class="code-line">&nbsp;</span></code></div></p>
 <p>
 <h2>Appendix C. File Index</h2></p>
 <p>The project tree below shows all files created or modified during this work. Paths are relative to the catkin workspace root at ~/catkin_ws_ov.</p>
 <p>
-<div class="code-holder"><code>src/open_vins/ov_msckf/<br>
-  launch/<br>
-    turtlebot3_house_stereo.launch    -- main system launch with TF chain<br>
-    nav_clean.launch                  -- navigation stack launch<br>
-    explore.launch                    -- frontier exploration with move_base<br>
-  scripts/<br>
-    pseudo_stereo.py                  -- depth-to-disparity right-image warping<br>
-    odom_tf_pub.py                    -- odometry-to-TF bridge at 30Hz<br>
-    frontier_explore.py              -- cv2-based frontier detection<br>
-    postprocess_map.py               -- noise-only occupancy grid filter<br>
-    full_explore.py                  -- open-loop 26-segment exploration path<br>
-    bounce_explore.py                -- laser-reactive bounce exploration<br>
-    laser_circle.py                  -- wall-following circular exploration<br>
-    circle_table.py                  -- hardcoded rectangle around table<br>
-    random_explore.py                -- random-walk exploration<br>
-    bump_go.py                       -- bump-and-reverse exploration<br>
-    amcl_tf_pub.py                   -- AMCL pose to transform bridge<br>
-    analyze_imu_noise.py             -- Allan variance IMU noise analysis<br>
-    tf_debug.py                      -- TF2 buffer diagnostic utility<br>
-    map_tf_broadcaster.py            -- RTAB-Map mapData to TF bridge<br>
-  gazebo_models/urdf/<br>
-    turtlebot3_waffle_openvins.urdf.xacro    -- robot kinematics<br>
-    turtlebot3_waffle_openvins.gazebo.xacro  -- sensor plugins<br>
-&nbsp;<br>
-config/<br>
-  rgbd_stereo/<br>
-    estimator_config.yaml            -- ZUPT init, 600 features, MLE disabled<br>
-    kalibr_imu_chain.yaml            -- noise_density 0.00083, RW 1e-6/1e-7<br>
-    kalibr_imucam_chain.yaml         -- cam0(/rgb) + cam1(/right), B=0.08m<br>
-  rgbd_mono/<br>
-    estimator_config.yaml            -- monocular config (preserved for reference)<br>
-    kalibr_imu_chain.yaml<br>
-    kalibr_imucam_chain.yaml<br>
-  nav/<br>
-    costmap_common_params.yaml       -- obstacle range, footprint, inflation<br>
-    global_costmap_params.yaml       -- static map layer, 30x30m<br>
-    local_costmap_params.yaml        -- rolling window, 4x4m<br>
-    dwa_local_planner_params.yaml    -- max 0.22 m/s, accel limits<br>
-    navfn_global_planner_params.yaml -- allow_unknown, tolerance<br>
-&nbsp;<br>
-maps/<br>
-  house_living.pgm + .yaml          -- manual living room, 257x183<br>
-  house_living_final.pgm + .yaml    -- post-processed version<br>
-  house_corridor.pgm + .yaml        -- corridor-detection explorer<br>
-  house_bounce2.pgm + .yaml         -- bounce explorer with hysteresis<br>
-  house_auto.pgm + .yaml            -- wall-follow laser circle<br>
-  house_v3.pgm + .yaml              -- manual full-house drive, 254x205<br>
-  house_full.pgm + .yaml            -- early open-loop, 118x88<br>
-  house_final.pgm + .yaml           -- early post-processed<br>
-&nbsp;<br>
-docs/<br>
-  openvins.md                        -- this document<br>
-  full_pipeline.md                   -- earlier pipeline overview<br>
-&nbsp;</code></div></p>
+<div class="code-holder"><code><span class="code-line">src/open_vins/ov_msckf/</span>
+<span class="code-line">  launch/</span>
+<span class="code-line">    turtlebot3_house_stereo.launch    -- main system launch with TF chain</span>
+<span class="code-line">    nav_clean.launch                  -- navigation stack launch</span>
+<span class="code-line">    explore.launch                    -- frontier exploration with move_base</span>
+<span class="code-line">  scripts/</span>
+<span class="code-line">    pseudo_stereo.py                  -- depth-to-disparity right-image warping</span>
+<span class="code-line">    odom_tf_pub.py                    -- odometry-to-TF bridge at 30Hz</span>
+<span class="code-line">    frontier_explore.py              -- cv2-based frontier detection</span>
+<span class="code-line">    postprocess_map.py               -- noise-only occupancy grid filter</span>
+<span class="code-line">    full_explore.py                  -- open-loop 26-segment exploration path</span>
+<span class="code-line">    bounce_explore.py                -- laser-reactive bounce exploration</span>
+<span class="code-line">    laser_circle.py                  -- wall-following circular exploration</span>
+<span class="code-line">    circle_table.py                  -- hardcoded rectangle around table</span>
+<span class="code-line">    random_explore.py                -- random-walk exploration</span>
+<span class="code-line">    bump_go.py                       -- bump-and-reverse exploration</span>
+<span class="code-line">    amcl_tf_pub.py                   -- AMCL pose to transform bridge</span>
+<span class="code-line">    analyze_imu_noise.py             -- Allan variance IMU noise analysis</span>
+<span class="code-line">    tf_debug.py                      -- TF2 buffer diagnostic utility</span>
+<span class="code-line">    map_tf_broadcaster.py            -- RTAB-Map mapData to TF bridge</span>
+<span class="code-line">  gazebo_models/urdf/</span>
+<span class="code-line">    turtlebot3_waffle_openvins.urdf.xacro    -- robot kinematics</span>
+<span class="code-line">    turtlebot3_waffle_openvins.gazebo.xacro  -- sensor plugins</span>
+<span class="code-line">&nbsp;</span>
+<span class="code-line">config/</span>
+<span class="code-line">  rgbd_stereo/</span>
+<span class="code-line">    estimator_config.yaml            -- ZUPT init, 600 features, MLE disabled</span>
+<span class="code-line">    kalibr_imu_chain.yaml            -- noise_density 0.00083, RW 1e-6/1e-7</span>
+<span class="code-line">    kalibr_imucam_chain.yaml         -- cam0(/rgb) + cam1(/right), B=0.08m</span>
+<span class="code-line">  rgbd_mono/</span>
+<span class="code-line">    estimator_config.yaml            -- monocular config (preserved for reference)</span>
+<span class="code-line">    kalibr_imu_chain.yaml</span>
+<span class="code-line">    kalibr_imucam_chain.yaml</span>
+<span class="code-line">  nav/</span>
+<span class="code-line">    costmap_common_params.yaml       -- obstacle range, footprint, inflation</span>
+<span class="code-line">    global_costmap_params.yaml       -- static map layer, 30x30m</span>
+<span class="code-line">    local_costmap_params.yaml        -- rolling window, 4x4m</span>
+<span class="code-line">    dwa_local_planner_params.yaml    -- max 0.22 m/s, accel limits</span>
+<span class="code-line">    navfn_global_planner_params.yaml -- allow_unknown, tolerance</span>
+<span class="code-line">&nbsp;</span>
+<span class="code-line">maps/</span>
+<span class="code-line">  house_living.pgm + .yaml          -- manual living room, 257x183</span>
+<span class="code-line">  house_living_final.pgm + .yaml    -- post-processed version</span>
+<span class="code-line">  house_corridor.pgm + .yaml        -- corridor-detection explorer</span>
+<span class="code-line">  house_bounce2.pgm + .yaml         -- bounce explorer with hysteresis</span>
+<span class="code-line">  house_auto.pgm + .yaml            -- wall-follow laser circle</span>
+<span class="code-line">  house_v3.pgm + .yaml              -- manual full-house drive, 254x205</span>
+<span class="code-line">  house_full.pgm + .yaml            -- early open-loop, 118x88</span>
+<span class="code-line">  house_final.pgm + .yaml           -- early post-processed</span>
+<span class="code-line">&nbsp;</span>
+<span class="code-line">docs/</span>
+<span class="code-line">  openvins.md                        -- this document</span>
+<span class="code-line">  full_pipeline.md                   -- earlier pipeline overview</span>
+<span class="code-line">&nbsp;</span></code></div></p>
 <p>
 <h2>Appendix D. Future Extensions</h2></p>
 <p>The EGO Planner from ZJU FAST Lab offers gradient-based trajectory generation using Euclidean Signed Distance Fields for collision checking. The integration pathway connects OpenVINS odometry for pose estimation, the depth camera for online ESDF construction via a voxel hashing library such as Voxblox, and EGO Planner's B-spline trajectory optimization. The RTAB-Map grid map provides a global reference for A-star path planning to guide the local planner through the house.</p>
