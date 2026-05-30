@@ -50,19 +50,28 @@ writeFileSync(join(cssDest, 'variables.css'), vars);
 
 // 2. 生成文章页
 console.log('Generating articles...');
-for (const art of data.articles) {
+// Sort articles by number descending (newest first) for prev/next navigation
+const sortedArticles = [...data.articles].sort((a, b) => b.number - a.number);
+for (let idx = 0; idx < sortedArticles.length; idx++) {
+  const art = sortedArticles[idx];
   const num = art.number;
   const filename = num.toString().padStart(6, '0') + '.html';
   const bodyPath = join(root, 'src/articles', filename);
-  
+
   let content = '';
   if (existsSync(bodyPath)) {
     content = readFileSync(bodyPath, 'utf-8');
   }
-  
+
+  // Prev (older) = next in sorted array, Next (newer) = prev in sorted array
+  const prevArticle = idx < sortedArticles.length - 1 ? sortedArticles[idx + 1] : null;
+  const nextArticle = idx > 0 ? sortedArticles[idx - 1] : null;
+
   const bodyHtml = ejs.render(articleTpl, {
     hasToc: art.hasToc,
-    content
+    content,
+    prev: prevArticle,
+    next: nextArticle
   });
   
   const html = ejs.render(baseTpl, {
