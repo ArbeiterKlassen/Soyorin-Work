@@ -351,8 +351,8 @@
 }
 .column_box {
     width: 100%;
-    padding: 12px 16px;
-    background-color: white;
+    padding: 12px 24px;
+    background-color: var(--bg-card);
     border-radius: 10px;
     overflow: hidden;
 }
