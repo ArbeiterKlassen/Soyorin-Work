@@ -296,16 +296,18 @@ function output(){
             }
         }
     };
-    container.innerHTML += '<li class=\"person-intro-detail\" data-search-header=\"1\"><h2 style=\"text-align:center\">\"'+str.join(' ')+'\" 的搜索结果 ('+time+' 条)</h2><hr></li>';
+    var resultHTML = '';
     var inity = 2020;
     for(var i = 0;i<artmenu.length;i++){
         if(ifcan[i]){
             time += 1;
             var date = artmenu[i].time.split('-');
-            if(parseInt(date[0]) > inity){ inity = parseInt(date[0]); container.innerHTML += '<li class=\"person-intro-detail gradient-text\">'+inity+'</li>'; }
-            container.innerHTML += '<li class=\"person-intro-detail\"><span class=\"date\">'+date[1]+'-'+date[2]+' </span><a href=\"'+artmenu[i].links+'\" class=\"title\">'+artmenu[i].name+'</a></li>';
+            if(parseInt(date[0]) > inity){ inity = parseInt(date[0]); resultHTML += '<li class=\"person-intro-detail gradient-text\">'+inity+'</li>'; }
+            resultHTML += '<li class=\"person-intro-detail\"><span class=\"date\">'+date[1]+'-'+date[2]+' </span><a href=\"'+artmenu[i].links+'\" class=\"title\">'+artmenu[i].name+'</a></li>';
         }
     }
+    container.innerHTML += '<li class=\"person-intro-detail\" data-search-header=\"1\"><h2 style=\"text-align:center\">\"'+str.join(' ')+'\" 的搜索结果 ('+time+' 条)</h2><hr></li>';
+    container.innerHTML += resultHTML;
     if(time == 0){
         container.innerHTML += '<li class=\"person-intro-detail\"><h3>无结果</h3></li>';
     }
