@@ -144,7 +144,7 @@ const pageConfigs = [
     headpicTitle: '<div style="color:rgb(0,102,255);display: inline;">文</div>章分类',
     headpicSubtitle: '<div style="color:rgb(0,102,255);display: inline;">A</div>rtikel-Kategorien',
     cssFiles: ['index.css', 'sign.css', 'archive.css'],
-    extraHead: ''
+    extraHead: '<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"><style>.search {width: 100%;position: relative;display: flex;}.searchTerm {width: 100%;border: 1px solid var(--border-light);border-right: none;padding: 8px 12px;height: 36px;border-radius: 5px 0 0 5px;outline: none;color: var(--text-primary);background: var(--bg-secondary);}.searchTerm:focus{color: var(--text-primary);border-color: var(--text-link);}.searchButton {width: 40px;height: 36px;border: 1px solid var(--text-link);background: var(--text-link);text-align: center;color: #fff;border-radius: 0 5px 5px 0;cursor: pointer;font-size: 20px;}details {transition: height 0.5s ease;overflow: hidden;}summary {cursor: pointer;color: var(--text-primary);}details:not([open]) > div {height: 0;}</style>'
   },
   {
     file: 'categories.html',
