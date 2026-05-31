@@ -4,6 +4,7 @@
     margin: 20px auto;
     background-color: var(--bg-card);
     overflow: hidden;
+    padding: 15px 20px;
     box-shadow: 0 0 10px rgba(184, 197, 214, .5);
     -moz-box-shadow: 0 0 10px rgba(184, 197, 214, .5);
     transition: ease-in-out 0.3s;
