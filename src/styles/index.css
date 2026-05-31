@@ -12,9 +12,9 @@
     position: relative;
     border-radius: 10px;
     border-width: 3px;
-    border-color: rgba(0, 0, 0, 0.616);
+    border-color: var(--border-color);
     border-style: dashed;
-    background-color: rgb(255, 255, 255);
+    background-color: var(--bg-primary);
 }
 
 .headpic{
@@ -568,6 +568,7 @@
 
 @media screen and (max-width: 1200px) {
     .article {
+        max-width: 100%;
         width: 100%;
         margin: 0 auto;
         padding-top: 60px;
@@ -755,7 +756,7 @@ width: 98%;
     position: relative;
     border-radius: 10px;
     border-width: 3px;
-    border-color: rgba(0, 0, 0, 0.616);
+    border-color: var(--border-color);
     border-style: dashed;
     background-color: var(--bg-primary);
 }

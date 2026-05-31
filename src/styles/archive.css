@@ -2,7 +2,8 @@
 
 .article {
 min-height: 550px;
-    width: 1142px;
+    max-width: 1142px;
+    width: 100%;
     margin: 60px auto 10px auto;
     display: block;
     overflow: hidden;
