@@ -96,13 +96,24 @@
       btn.style.background = (k === key) ? 'var(--text-link)' : 'var(--bg-secondary)';
       btn.style.color = (k === key) ? '#fff' : 'var(--text-primary)';
     });
-    renderList();
+    applySort();
   }
 
   function toggleOrder() {
     sortAsc = !sortAsc;
     var btn = document.getElementById('sort-asc');
     if (btn) btn.innerHTML = sortAsc ? '↑ 正序' : '↓ 倒序';
+    applySort();
+  }
+
+  function applySort() {
+    // If search results are showing, re-sort them in place
+    var div3 = document.getElementById('3');
+    if (div3 && div3.innerHTML.trim()) {
+      reSortSearchResults();
+      return;
+    }
+    // Otherwise re-sort the full list
     renderList();
   }
 
@@ -142,21 +153,6 @@
     if (!container) return;
     container.innerHTML = buildListHTML(sorted);
   }
-
-  // Hook into output() to re-sort search results when sort changes
-  var origOutput = output;
-  output = function() {
-    origOutput();
-    // After search, if results are in div#3, re-sort them
-    setTimeout(function(){
-      var div3 = document.getElementById('3');
-      if (div3 && div3.innerHTML.trim() && sortKey !== 'time' || sortAsc) {
-        // Re-run the search which calls output again with current sort
-        var str = document.getElementById('inpele').value.trim();
-        if (str) reSortSearchResults();
-      }
-    }, 50);
-  };
 
   function reSortSearchResults() {
     // Re-trigger search - the results respect current sortKey/sortAsc via callback
