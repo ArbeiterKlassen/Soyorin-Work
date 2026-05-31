@@ -585,6 +585,7 @@
         width: 96%;
         margin: 0 2%;
         clear: both;
+    overflow: hidden;
     }
 
     .result-box {
@@ -597,6 +598,7 @@
         width: 96%;
         margin: 0 2%;
         clear: both;
+    overflow: hidden;
     }
 
     #article-holder {
