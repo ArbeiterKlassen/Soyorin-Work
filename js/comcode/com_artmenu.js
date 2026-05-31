@@ -272,22 +272,19 @@ function output(){
         else { print_content_to(div1.querySelector('ul')); }
         return;
     }
-    str = str.split(/\s+/);//字符串拆分
+    str = str.split(/\s+/);
     clearcontent('1');
     clearcontent('3');
+    // Recreate article-list in div#1 for unified styling
+    document.getElementById('1').innerHTML = '<ul id=\"article-list\" style=\"list-style:none;padding:12px 0;\"></ul>';
+    var container = document.getElementById('article-list');
     var ifcan = new Array (artmenu.length);
     for(var i = 0;i<artmenu.length;i++)ifcan[i] = true;
-    document.getElementById('3').innerHTML += '<ul style=\"list-style:none;padding:12px 0;\">';
-    document.getElementById('3').innerHTML += '<li class="person-intro-detail"><h2 style="text-align:center">\"'+str.join(' ')+'\" 的搜索结果</h2><hr></li>';
     var time = 0;
     if(searchmode == 1)for(var i = 0;i<artmenu.length;i++){
         for(var j = 0;j<str.length;j++){
             if((artmenu[i].time.indexOf(str[j]) != -1 || artmenu[i].name.indexOf(str[j]) != -1 || artmenu[i].author.indexOf(str[j]) != -1) && ifcan[i])
-            {
-                ifcan[i] = true;
-            }else{
-                ifcan[i] = false;
-            }
+            { ifcan[i] = true; }else{ ifcan[i] = false; }
         }
     };
     if(searchmode == 2){
@@ -295,22 +292,20 @@ function output(){
         for(var i = 0;i<artmenu.length;i++){
             for(var j = 0;j<str.length;j++){
                 if((artmenu[i].time.indexOf(str[j]) != -1 || artmenu[i].name.indexOf(str[j]) != -1 || artmenu[i].author.indexOf(str[j]) != -1))
-                {
-                    ifcan[i] = true;
-                }
+                { ifcan[i] = true; }
             }
         }
     };
+    container.innerHTML += '<li class=\"person-intro-detail\"><h2 style=\"text-align:center\">\"'+str.join(' ')+'\" 的搜索结果</h2><hr></li>';
     for(var i = 0;i<artmenu.length;i++){
         if(ifcan[i]){
             time += 1;
-            document.getElementById('3').innerHTML += '<li class="person-intro-detail"><strong>'+artmenu[i].name+'</strong>&ensp;<a href="'+artmenu[i].links+'">[点此前往]</a><p style="text-align:right;color:var(--text-muted);">'+artmenu[i].author+' &ensp; '+artmenu[i].time+'</p><hr></li>';
+            container.innerHTML += '<li class=\"person-intro-detail\"><strong>'+artmenu[i].name+'</strong>&ensp;<a href=\"'+artmenu[i].links+'\">[点此前往]</a><p style=\"text-align:right;color:var(--text-muted);\">'+artmenu[i].author+' &ensp; '+artmenu[i].time+'</p><hr></li>';
         }
     }
     if(time == 0){
-        document.getElementById('3').innerHTML += '<li class="person-intro-detail"><h3>无结果</h3></li>';
+        container.innerHTML += '<li class=\"person-intro-detail\"><h3>无结果</h3></li>';
     }
-    document.getElementById('3').innerHTML += '</ul>';
 }
 function print_essays(){
     var max = artmenu.length;

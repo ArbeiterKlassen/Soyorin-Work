@@ -301,43 +301,32 @@
   }
 
   function reSortSearchResults() {
-    // Re-trigger search - the results respect current sortKey/sortAsc via callback
     var str = document.getElementById('inpele').value.trim();
     if (!str) { renderList(); return; }
     var terms = str.split(/\\s+/);
-    var ifcan = new Array(artmenu.length);
-    for (var i = 0; i < artmenu.length; i++) ifcan[i] = (searchmode === 1);
-    if (searchmode === 1) {
-      for (var i = 0; i < artmenu.length; i++) {
-        for (var j = 0; j < terms.length; j++) {
-          if (!(artmenu[i].time.indexOf(terms[j]) !== -1 || artmenu[i].name.indexOf(terms[j]) !== -1 || artmenu[i].author.indexOf(terms[j]) !== -1)) ifcan[i] = false;
-        }
-      }
-    } else {
-      for (var i = 0; i < artmenu.length; i++) ifcan[i] = false;
-      for (var i = 0; i < artmenu.length; i++) {
-        for (var j = 0; j < terms.length; j++) {
-          if (artmenu[i].time.indexOf(terms[j]) !== -1 || artmenu[i].name.indexOf(terms[j]) !== -1 || artmenu[i].author.indexOf(terms[j]) !== -1) ifcan[i] = true;
-        }
-      }
-    }
     var results = [];
-    for (var i = 0; i < artmenu.length; i++) { if (ifcan[i]) results.push(artmenu[i]); }
-    results = sortData(results);
-    var div3 = document.getElementById('3');
-    if (div3) {
-      clearcontent('1');
-      var h = '<ul style=\"list-style:none;padding:12px 0;\"><li class=\"person-intro-detail\"><h2 style=\"text-align:center\">\"'+terms.join(' ')+'\" ('+results.length+' 条)</h2><hr></li>';
-      var inity = 2020;
-      for (var i = 0; i < results.length; i++) {
-        var date = results[i].time.split('-');
-        if (parseInt(date[0]) > inity) { inity = parseInt(date[0]); h += '<li class=\"person-intro-detail gradient-text\">'+inity+'</li>'; }
-        h += '<li class=\"person-intro-detail\"><span class=\"date\">'+date[1]+'-'+date[2]+' </span><a href=\"'+results[i].links+'\" class=\"title\">'+results[i].name+'</a></li>';
+    for (var i = 0; i < artArticles.length; i++) {
+      var match = searchmode === 1;
+      for (var j = 0; j < terms.length; j++) {
+        var found = artArticles[i].time.indexOf(terms[j]) !== -1 || artArticles[i].name.indexOf(terms[j]) !== -1 || artArticles[i].author.indexOf(terms[j]) !== -1;
+        if (searchmode === 1 && !found) match = false;
+        if (searchmode === 2 && found) match = true;
       }
-      if (results.length === 0) h += '<li class=\"person-intro-detail\"><h3>无结果</h3></li>';
-      h += '</ul>';
-      div3.innerHTML = h;
+      if (match) results.push(artArticles[i]);
     }
+    results = sortData(results);
+    var container = document.getElementById('article-list');
+    if (!container) {
+      clearcontent('1');
+      clearcontent('3');
+      document.getElementById('1').innerHTML = '<ul id=\"article-list\" style=\"list-style:none;padding:12px 0;\"></ul>';
+      container = document.getElementById('article-list');
+    }
+    clearcontent('3');
+    var h = '<li class=\"person-intro-detail\"><h2 style=\"text-align:center\">\"'+terms.join(' ')+'\" ('+results.length+' 条)</h2><hr></li>';
+    h += buildListHTML(results);
+    if (results.length === 0) h += '<li class=\"person-intro-detail\"><h3>无结果</h3></li>';
+    container.innerHTML = h;
   }
 
   // Initial render
