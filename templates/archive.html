@@ -253,13 +253,15 @@
   }
 
   function applySort() {
-    // If search results are showing, re-sort them in place
-    var div3 = document.getElementById('3');
-    if (div3 && div3.innerHTML.trim()) {
-      reSortSearchResults();
-      return;
+    // Check if search results are showing
+    var container = document.getElementById('article-list');
+    if (container) {
+      var firstLi = container.querySelector('li');
+      if (firstLi && firstLi.getAttribute('data-search-header') === '1') {
+        reSortSearchResults();
+        return;
+      }
     }
-    // Otherwise re-sort the full list
     renderList();
   }
 
