@@ -672,20 +672,14 @@
         margin: 5px 1%;
     }
 
-    .column-container {
-        width: 98%;
-        margin: 6px 1%;
-        font-size: 14px;
+    .column-container { width: 100%; margin: 6px 0; font-size: 14px;
     }
 
     .column-container a {
         font-size: 14px;
     }
 
-    .column-container-wider {
-        width: 98%;
-        margin: 6px 1%;
-        font-size: 14px;
+    .column-container-wider { width: 100%; margin: 6px 0; font-size: 14px;
     }
 
     .column-container-wider a {
@@ -735,7 +729,7 @@ width: 98%;
     border-radius: 10px;
     border-width: 3px;
     border-color: var(--border-color);
-    border-style: dashed;
+    border-style: none;
     background-color: var(--bg-primary);
 }
 
