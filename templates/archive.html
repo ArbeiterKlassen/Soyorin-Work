@@ -161,11 +161,11 @@
       </div>
       <div style="display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
         <span style="font-size:12px;color:var(--text-muted);">排序:</span>
-        <button id="sort-time" onclick="sortArticles('time')" style="cursor:pointer;border:none;background:var(--text-link);color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;">时间</button>
-        <button id="sort-name" onclick="sortArticles('name')" style="cursor:pointer;border:none;background:var(--bg-secondary);color:var(--text-primary);padding:3px 12px;border-radius:12px;font-size:12px;">名称</button>
-        <button id="sort-author" onclick="sortArticles('author')" style="cursor:pointer;border:none;background:var(--bg-secondary);color:var(--text-primary);padding:3px 12px;border-radius:12px;font-size:12px;">作者</button>
+        <button id="sort-time" onclick="sortArticles('time')" style="cursor:pointer;border:none;background:var(--text-link);color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;transition:all 0.3s ease;">时间</button>
+        <button id="sort-name" onclick="sortArticles('name')" style="cursor:pointer;border:none;background:var(--bg-secondary);color:var(--text-primary);padding:3px 12px;border-radius:12px;font-size:12px;transition:all 0.3s ease;">名称</button>
+        <button id="sort-author" onclick="sortArticles('author')" style="cursor:pointer;border:none;background:var(--bg-secondary);color:var(--text-primary);padding:3px 12px;border-radius:12px;font-size:12px;transition:all 0.3s ease;">作者</button>
         <span style="color:var(--text-light);font-size:12px;">|</span>
-        <button id="sort-asc" onclick="toggleOrder()" style="cursor:pointer;border:none;background:var(--bg-secondary);color:var(--text-primary);padding:3px 12px;border-radius:12px;font-size:12px;" title="正序/倒序">↓ 倒序</button>
+        <button id="sort-asc" onclick="toggleOrder()" style="cursor:pointer;border:none;background:var(--bg-secondary);color:var(--text-primary);padding:3px 12px;border-radius:12px;font-size:12px;transition:all 0.3s ease;" title="正序/倒序">↓ 倒序</button>
       </div>
       <div style="text-align:center;margin-bottom:10px;">
         <button onclick="{searchmode = 1;document.getElementById('strict').style.color='var(--text-link)';document.getElementById('loose').style.color='var(--text-muted)';}" style="cursor:pointer;background:none;border:none;font-size:12px;padding:3px 8px;color:var(--text-link);" type="button" id="strict">严格搜索</button>
@@ -262,8 +262,18 @@
       else return va < vb ? 1 : -1;
     });
 
+    // Recreate container if search destroyed it
     var container = document.getElementById('article-list');
+    if (!container) {
+      var div1 = document.getElementById('1');
+      if (!div1) return;
+      clearcontent('1');
+      clearcontent('3');
+      div1.innerHTML = '<ul id=\"article-list\" style=\"list-style:none;padding:12px 0;\"></ul>';
+      container = document.getElementById('article-list');
+    }
     if (!container) return;
+
     var h = '<li class=\"column-title\"><span class=\"at-sort b-b-ece fl\"><a class=\"at-sort-comment-a c-666 fl\" style=\"font-family:Georgia,Times New Roman,Times,serif;\">文章</a></span></li>';
     var inity = 2020;
     for (var i = 0; i < sorted.length; i++) {
