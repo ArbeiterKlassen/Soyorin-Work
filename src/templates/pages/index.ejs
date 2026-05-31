@@ -194,7 +194,7 @@
               var h = '<div class=\"pagination\">';
               h += '<span class=\"pagination-info\">'+count+' 篇 / '+pages+' 页</span>';
               for(var i = 1; i <= pages; i++){
-                h += '<a class=\"pagination-btn'+(i==page?' active':'')+'\" href=\"./index.html?page='+i+'\">'+i+'</a>';
+                h += '<a class=\"pagination-btn'+(i==page?' active':'')+'\" href=\"javascript:void(0)\" onclick=\"page='+i+';print_page(page);page_chooser();window.scrollTo({top:document.querySelector(\'#pages-container\').offsetTop-80,behavior:\'smooth\'});\">'+i+'</a>';
               }
               h += '</div>';
               document.getElementById('chooser-container').innerHTML = h;
