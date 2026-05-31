@@ -8,17 +8,27 @@
       <p style="color:var(--text-muted);">推荐的书/游戏/歌</p>
     </div>
 
+    <style>
+      .tab-section { opacity: 0; max-height: 0; overflow: hidden; transition: opacity 0.4s ease, max-height 0.5s ease; }
+      .tab-section.active { opacity: 1; max-height: 5000px; }
+      .tab-btn { cursor:pointer;padding:6px 20px;border:none;border-radius:20px;font-size:14px;transition:all 0.35s cubic-bezier(0.4,0,0.2,1); }
+      .tab-btn:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    </style>
     <script>
       function selectTab(id){
         ['book','play','game'].forEach(function(t){
-          document.getElementById(t).style.display = (t===id) ? 'block' : 'none';
+          var el = document.getElementById(t);
           var btn = document.getElementById('tab-'+t);
           if (t===id) {
+            el.classList.add('active');
             btn.style.background = 'var(--text-link)';
             btn.style.color = '#fff';
+            btn.style.transform = 'scale(1.05)';
           } else {
+            el.classList.remove('active');
             btn.style.background = 'var(--bg-secondary)';
             btn.style.color = 'var(--text-primary)';
+            btn.style.transform = 'scale(1)';
           }
         });
       }
@@ -26,12 +36,12 @@
 
     <div class="sign-container" style="padding:15px;margin-bottom:15px;">
       <div style="display:flex;gap:12px;margin-bottom:15px;flex-wrap:wrap;">
-        <button id="tab-book" onclick="selectTab('book')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--text-link);color:#fff;font-size:14px;transition:all 0.3s ease;">书单</button>
-        <button id="tab-play" onclick="selectTab('play')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--bg-secondary);color:var(--text-primary);font-size:14px;transition:all 0.3s ease;">歌单</button>
-        <button id="tab-game" onclick="selectTab('game')" style="cursor:pointer;padding:6px 20px;border:none;border-radius:20px;background:var(--bg-secondary);color:var(--text-primary);font-size:14px;transition:all 0.3s ease;">游戏</button>
+        <button id="tab-book" onclick="selectTab('book')" class="tab-btn" style="background:var(--text-link);color:#fff;">书单</button>
+        <button id="tab-play" onclick="selectTab('play')" class="tab-btn" style="background:var(--bg-secondary);color:var(--text-primary);">歌单</button>
+        <button id="tab-game" onclick="selectTab('game')" class="tab-btn" style="background:var(--bg-secondary);color:var(--text-primary);">游戏</button>
       </div>
 
-      <div id="book">
+      <div id="book" class="tab-section active">
         <div style="border-style:dashed;width:80%;height:auto;padding:5px;border-width:3px;border-color:rgb(0,102,255);border-radius:10px;margin:10px auto;">
           <p style="text-align:center;font-size:15px;font-family:Impact,sans-serif;color:rgb(0,102,255);">不那么硬核的</p>
         </div>
@@ -76,11 +86,11 @@
         </div>
       </div>
 
-      <div id="play" style="display:none;">
+      <div id="play" class="tab-section">
         <p style="text-align:center;color:var(--text-muted);padding:40px 0;">歌单建设中...</p>
       </div>
 
-      <div id="game" style="display:none;">
+      <div id="game" class="tab-section">
         <p style="text-align:center;color:var(--text-muted);padding:40px 0;">游戏列表建设中...</p>
       </div>
     </div>
