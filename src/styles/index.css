@@ -999,3 +999,19 @@ background: #222;
 .person-intro-detail h1,.person-intro-detail h2,.person-intro-detail h3,.person-intro-detail h4,.person-intro-detail h5,.person-intro-detail h6,.person-intro-detail p,.person-intro-detail span,.person-intro-detail div { margin:6px 0; padding:0; text-indent:0; font-size:inherit; font-weight:inherit; }
 
 .person-intro-detail.gradient-text h2 { font-family: "Times New Roman", Times, serif; }
+
+/* Pagination transition animations */
+#pages-container .article-card { animation: fadeInUp 0.4s ease both; }
+#pages-container .article-card:nth-child(1) { animation-delay: 0.05s; }
+#pages-container .article-card:nth-child(2) { animation-delay: 0.1s; }
+#pages-container .article-card:nth-child(3) { animation-delay: 0.15s; }
+#pages-container .article-card:nth-child(4) { animation-delay: 0.2s; }
+#pages-container .article-card:nth-child(5) { animation-delay: 0.25s; }
+#pages-container .article-card:nth-child(6) { animation-delay: 0.3s; }
+#pages-container .article-card:nth-child(7) { animation-delay: 0.35s; }
+#pages-container .article-card:nth-child(8) { animation-delay: 0.4s; }
+#pages-container .article-card:nth-child(9) { animation-delay: 0.45s; }
+#pages-container .article-card:nth-child(10) { animation-delay: 0.5s; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.pagination-btn { transition: all 0.25s ease; }
+.pagination-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
