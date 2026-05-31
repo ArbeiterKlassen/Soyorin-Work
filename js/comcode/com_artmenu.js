@@ -267,8 +267,9 @@ function output(){
         clearcontent('1');
         clearcontent('3');
         var div1 = document.getElementById('1');
-        div1.innerHTML = '<ul style=\"list-style:none;padding:12px 0;\"></ul>';
-        print_content_to(div1.querySelector('ul'));
+        div1.innerHTML = '<ul id=\"article-list\" style=\"list-style:none;padding:12px 0;\"></ul>';
+        if (typeof renderList === 'function') { renderList(); }
+        else { print_content_to(div1.querySelector('ul')); }
         return;
     }
     str = str.split(/\s+/);//字符串拆分
