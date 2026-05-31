@@ -27,9 +27,7 @@
         <button onclick="{searchmode = 2;document.getElementById('loose').style.color='var(--text-link)';document.getElementById('strict').style.color='var(--text-muted)';}" style="cursor:pointer;background:none;border:none;font-size:12px;padding:3px 8px;color:var(--text-muted);" type="button" id="loose">宽泛搜索</button>
       </div>
       <div id="1">
-        <ul style="list-style:none;padding:12px 0;">
-          <script>print_content();</script>
-        </ul>
+        <ul id="article-list" style="list-style:none;padding:12px 0;"></ul>
       </div>
       <div id="3"></div>
     </div>
@@ -69,14 +67,32 @@
     </div>
   </article>
 </div>
+<style>
+  .sort-btn { cursor:pointer;border:none;padding:3px 12px;border-radius:12px;font-size:12px;transition:all 0.3s ease; }
+  .sort-btn:hover { transform:translateY(-1px); }
+  #article-list li { animation: fadeIn 0.3s ease both; }
+  #article-list li:nth-child(1) { animation-delay: 0.02s; }
+  #article-list li:nth-child(2) { animation-delay: 0.04s; }
+  #article-list li:nth-child(3) { animation-delay: 0.06s; }
+  #article-list li:nth-child(4) { animation-delay: 0.08s; }
+  #article-list li:nth-child(5) { animation-delay: 0.10s; }
+  #article-list li:nth-child(6) { animation-delay: 0.12s; }
+  #article-list li:nth-child(7) { animation-delay: 0.14s; }
+  #article-list li:nth-child(8) { animation-delay: 0.16s; }
+  #article-list li:nth-child(9) { animation-delay: 0.18s; }
+  #article-list li:nth-child(10) { animation-delay: 0.20s; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+</style>
 <script>
   var sortKey = 'time';
   var sortAsc = false;
+  var artArticles = artmenu.filter(function(a){ return a.type === 'art'; });
 
   function sortArticles(key) {
     sortKey = key;
     ['time','name','author'].forEach(function(k){
       var btn = document.getElementById('sort-'+k);
+      if (!btn) return;
       btn.style.background = (k === key) ? 'var(--text-link)' : 'var(--bg-secondary)';
       btn.style.color = (k === key) ? '#fff' : 'var(--text-primary)';
     });
@@ -86,13 +102,12 @@
   function toggleOrder() {
     sortAsc = !sortAsc;
     var btn = document.getElementById('sort-asc');
-    btn.innerHTML = sortAsc ? '↑ 正序' : '↓ 倒序';
+    if (btn) btn.innerHTML = sortAsc ? '↑ 正序' : '↓ 倒序';
     renderList();
   }
 
   function renderList() {
-    var filtered = artmenu.filter(function(a){ return a.type === 'art'; });
-    filtered.sort(function(a, b){
+    var sorted = artArticles.slice().sort(function(a, b){
       var va, vb;
       if (sortKey === 'time') { va = a.time; vb = b.time; }
       else if (sortKey === 'name') { va = a.name; vb = b.name; }
@@ -101,14 +116,18 @@
       else return va < vb ? 1 : -1;
     });
 
-    var container = document.querySelector('#1 ul');
+    var container = document.getElementById('article-list');
+    if (!container) return;
     var h = '<li class=\"column-title\"><span class=\"at-sort b-b-ece fl\"><a class=\"at-sort-comment-a c-666 fl\" style=\"font-family:Georgia,Times New Roman,Times,serif;\">文章</a></span></li>';
     var inity = 2020;
-    for (var i = 0; i < filtered.length; i++) {
-      var date = filtered[i].time.split('-');
-      if (parseInt(date[0]) > inity) { inity++; h += '<li class=\"person-intro-detail gradient-text\">'+inity+'</li>'; }
-      h += '<li class=\"person-intro-detail\"><span class=\"date\">'+date[1]+'-'+date[2]+' </span><a href=\"'+filtered[i].links+'\" class=\"title\">'+filtered[i].name+'</a></li>';
+    for (var i = 0; i < sorted.length; i++) {
+      var date = sorted[i].time.split('-');
+      if (parseInt(date[0]) > inity) { inity = parseInt(date[0]); h += '<li class=\"person-intro-detail gradient-text\">'+inity+'</li>'; }
+      h += '<li class=\"person-intro-detail\"><span class=\"date\">'+date[1]+'-'+date[2]+' </span><a href=\"'+sorted[i].links+'\" class=\"title\">'+sorted[i].name+'</a></li>';
     }
     container.innerHTML = h;
   }
+
+  // Initial render
+  renderList();
 </script>
