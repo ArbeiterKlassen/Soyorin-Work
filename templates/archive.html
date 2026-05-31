@@ -155,14 +155,22 @@
     </div>
     <script type="text/javascript" src="../js/comcode/com_artmenu.js"></script>
     <div class="sign-container">
-      <div class="search" style="margin-bottom:15px;">
+      <div class="search" style="margin-bottom:10px;">
         <input type="text" class="searchTerm" placeholder="搜索文章..." id="inpele" style="background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-light);">
         <button class="searchButton" onclick="{output()}" style="background:var(--text-link);color:#fff;"><i class="fa fa-search"></i></button>
       </div>
+      <div style="display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+        <span style="font-size:12px;color:var(--text-muted);">排序:</span>
+        <button id="sort-time" onclick="sortArticles('time')" style="cursor:pointer;border:none;background:var(--text-link);color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;">时间</button>
+        <button id="sort-name" onclick="sortArticles('name')" style="cursor:pointer;border:none;background:var(--bg-secondary);color:var(--text-primary);padding:3px 12px;border-radius:12px;font-size:12px;">名称</button>
+        <button id="sort-author" onclick="sortArticles('author')" style="cursor:pointer;border:none;background:var(--bg-secondary);color:var(--text-primary);padding:3px 12px;border-radius:12px;font-size:12px;">作者</button>
+        <span style="color:var(--text-light);font-size:12px;">|</span>
+        <button id="sort-asc" onclick="toggleOrder()" style="cursor:pointer;border:none;background:var(--bg-secondary);color:var(--text-primary);padding:3px 12px;border-radius:12px;font-size:12px;" title="正序/倒序">↓ 倒序</button>
+      </div>
       <div style="text-align:center;margin-bottom:10px;">
-        <button onclick="{searchmode = 1;document.getElementById('strict').style.color='var(--text-link)';document.getElementById('loose').style.color='var(--text-muted)';}" style="cursor:pointer;background:none;border:none;font-size:14px;padding:5px 10px;color:var(--text-link);" type="button" id="strict">严格搜索</button>
+        <button onclick="{searchmode = 1;document.getElementById('strict').style.color='var(--text-link)';document.getElementById('loose').style.color='var(--text-muted)';}" style="cursor:pointer;background:none;border:none;font-size:12px;padding:3px 8px;color:var(--text-link);" type="button" id="strict">严格搜索</button>
         <span style="color:var(--text-light);">|</span>
-        <button onclick="{searchmode = 2;document.getElementById('loose').style.color='var(--text-link)';document.getElementById('strict').style.color='var(--text-muted)';}" style="cursor:pointer;background:none;border:none;font-size:14px;padding:5px 10px;color:var(--text-muted);" type="button" id="loose">宽泛搜索</button>
+        <button onclick="{searchmode = 2;document.getElementById('loose').style.color='var(--text-link)';document.getElementById('strict').style.color='var(--text-muted)';}" style="cursor:pointer;background:none;border:none;font-size:12px;padding:3px 8px;color:var(--text-muted);" type="button" id="loose">宽泛搜索</button>
       </div>
       <div id="1">
         <ul style="list-style:none;padding:12px 0;">
@@ -207,6 +215,50 @@
     </div>
   </article>
 </div>
+<script>
+  var sortKey = 'time';
+  var sortAsc = false;
+
+  function sortArticles(key) {
+    sortKey = key;
+    ['time','name','author'].forEach(function(k){
+      var btn = document.getElementById('sort-'+k);
+      btn.style.background = (k === key) ? 'var(--text-link)' : 'var(--bg-secondary)';
+      btn.style.color = (k === key) ? '#fff' : 'var(--text-primary)';
+    });
+    renderList();
+  }
+
+  function toggleOrder() {
+    sortAsc = !sortAsc;
+    var btn = document.getElementById('sort-asc');
+    btn.innerHTML = sortAsc ? '↑ 正序' : '↓ 倒序';
+    renderList();
+  }
+
+  function renderList() {
+    var filtered = artmenu.filter(function(a){ return a.type === 'art'; });
+    filtered.sort(function(a, b){
+      var va, vb;
+      if (sortKey === 'time') { va = a.time; vb = b.time; }
+      else if (sortKey === 'name') { va = a.name; vb = b.name; }
+      else { va = a.author; vb = b.author; }
+      if (sortAsc) return va > vb ? 1 : -1;
+      else return va < vb ? 1 : -1;
+    });
+
+    var container = document.querySelector('#1 ul');
+    var h = '<li class=\"column-title\"><span class=\"at-sort b-b-ece fl\"><a class=\"at-sort-comment-a c-666 fl\" style=\"font-family:Georgia,Times New Roman,Times,serif;\">文章</a></span></li>';
+    var inity = 2020;
+    for (var i = 0; i < filtered.length; i++) {
+      var date = filtered[i].time.split('-');
+      if (parseInt(date[0]) > inity) { inity++; h += '<li class=\"person-intro-detail gradient-text\">'+inity+'</li>'; }
+      h += '<li class=\"person-intro-detail\"><span class=\"date\">'+date[1]+'-'+date[2]+' </span><a href=\"'+filtered[i].links+'\" class=\"title\">'+filtered[i].name+'</a></li>';
+    }
+    container.innerHTML = h;
+  }
+</script>
+
 
   <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--bg-card); box-shadow: var(--shadow-card);" onclick="var d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" title="切换深色/浅色模式">
     <span id="theme-icon">☀️</span>
