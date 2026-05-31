@@ -319,10 +319,9 @@
 }
 
 .column-container {
-    float: left;
     width: 362px;
-    margin-left: 5px;
-    margin-top: 20px;
+    max-width: 100%;
+    margin: 20px 5px;
     box-shadow: 0 0 10px rgba(184, 197, 214, .5);
     -moz-box-shadow: 0 0 10px rgba(184, 197, 214, .5);
     transition: ease-in-out 0.3s;
@@ -335,10 +334,9 @@
 }
 
 .column-container-wider {
-    float: left;
     width: 724px;
-    margin-left: 5px;
-    margin-top: 20px;
+    max-width: 100%;
+    margin: 20px 5px;
     box-shadow: 0 0 10px rgba(184, 197, 214, .5);
     -moz-box-shadow: 0 0 10px rgba(184, 197, 214, .5);
     transition: ease-in-out 0.3s;
