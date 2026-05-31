@@ -31,7 +31,8 @@
 }
 .article {
     box-sizing: border-box;
-    width: 1152px;
+    max-width: 1152px;
+    width: 100%;
     margin: 60px auto 10px auto;
     display: block;
     overflow: hidden;
@@ -321,12 +322,8 @@
 }
 
 .column-container {}
-}
-
-
 
 .column-container-wider {}
-}
 
 
 .column_box {
@@ -810,8 +807,6 @@ width: 100%;
     color: #c0c0c0;
 }
 
-[data-theme="dark"] 
-[data-theme="dark"] 
 [data-theme="dark"] .column_box {
     box-sizing: border-box;
 width: 100%;
