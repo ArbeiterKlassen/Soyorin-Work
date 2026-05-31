@@ -1,13 +1,13 @@
 <div class="headpage"><div class="headpage-cover"></div></div>
 <section class="main">
-  <div class="left-box"<%- hasToc ? ' style="width:830px;margin:0 auto;float:none;"' : '' %>>
+  <div class="left-box"<%- hasToc ? ' style="max-width:830px;width:100%;margin:0 auto;float:none;"' : '' %>>
     <div class="article-container">
       <div class="article-content markdown-body">
         <%- content %>
       </div>
     </div>
     <% if (typeof prev !== 'undefined') { %>
-    <div class="article-nav" style="max-width:830px;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+    <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
       <div><% if (prev) { %><a href="../articles/<%= String(prev.number).padStart(6,'0') %>.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← <%= prev.name %></a><% } %></div>
       <div><% if (next) { %><a href="../articles/<%= String(next.number).padStart(6,'0') %>.html" style="color:var(--text-link);text-decoration:none;font-size:14px;"><%= next.name %> →</a><% } %></div>
     </div>
