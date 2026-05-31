@@ -61,6 +61,17 @@
   },
   "articles": [
     {
+      "number": 32,
+      "class": "eup",
+      "links": "../articles/000032.html",
+      "time": "2026-06-01",
+      "author": "AKlassen",
+      "name": "革命威望与执政稳定的张力：建国前三十年毛泽东思想的困境及诸运动的政治经济学考察",
+      "headpic": "https://img.soyorin.work/article-img/eup.jpg",
+      "detail": "以学术对话体形式，围绕1949-1976年间毛泽东思想的实践困境展开研讨。核心论题：革命威望与执政稳定之间的结构性不对等，涵盖革命党转型、党内认同缺失、群众路线异化与社会主义建设路径选择。",
+      "hasToc": true
+    },
+    {
       "number": 31,
       "class": "code",
       "links": "../articles/000031.html",
