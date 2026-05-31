@@ -252,8 +252,8 @@
     renderList();
   }
 
-  function renderList() {
-    var sorted = artArticles.slice().sort(function(a, b){
+  function sortData(arr) {
+    return arr.slice().sort(function(a, b){
       var va, vb;
       if (sortKey === 'time') { va = a.time; vb = b.time; }
       else if (sortKey === 'name') { va = a.name; vb = b.name; }
@@ -261,8 +261,21 @@
       if (sortAsc) return va > vb ? 1 : -1;
       else return va < vb ? 1 : -1;
     });
+  }
 
-    // Recreate container if search destroyed it
+  function buildListHTML(arr) {
+    var h = '<li class=\"column-title\"><span class=\"at-sort b-b-ece fl\"><a class=\"at-sort-comment-a c-666 fl\" style=\"font-family:Georgia,Times New Roman,Times,serif;\">文章</a></span></li>';
+    var inity = 2020;
+    for (var i = 0; i < arr.length; i++) {
+      var date = arr[i].time.split('-');
+      if (parseInt(date[0]) > inity) { inity = parseInt(date[0]); h += '<li class=\"person-intro-detail gradient-text\">'+inity+'</li>'; }
+      h += '<li class=\"person-intro-detail\"><span class=\"date\">'+date[1]+'-'+date[2]+' </span><a href=\"'+arr[i].links+'\" class=\"title\">'+arr[i].name+'</a></li>';
+    }
+    return h;
+  }
+
+  function renderList() {
+    var sorted = sortData(artArticles);
     var container = document.getElementById('article-list');
     if (!container) {
       var div1 = document.getElementById('1');
@@ -273,15 +286,62 @@
       container = document.getElementById('article-list');
     }
     if (!container) return;
+    container.innerHTML = buildListHTML(sorted);
+  }
 
-    var h = '<li class=\"column-title\"><span class=\"at-sort b-b-ece fl\"><a class=\"at-sort-comment-a c-666 fl\" style=\"font-family:Georgia,Times New Roman,Times,serif;\">文章</a></span></li>';
-    var inity = 2020;
-    for (var i = 0; i < sorted.length; i++) {
-      var date = sorted[i].time.split('-');
-      if (parseInt(date[0]) > inity) { inity = parseInt(date[0]); h += '<li class=\"person-intro-detail gradient-text\">'+inity+'</li>'; }
-      h += '<li class=\"person-intro-detail\"><span class=\"date\">'+date[1]+'-'+date[2]+' </span><a href=\"'+sorted[i].links+'\" class=\"title\">'+sorted[i].name+'</a></li>';
+  // Hook into output() to re-sort search results when sort changes
+  var origOutput = output;
+  output = function() {
+    origOutput();
+    // After search, if results are in div#3, re-sort them
+    setTimeout(function(){
+      var div3 = document.getElementById('3');
+      if (div3 && div3.innerHTML.trim() && sortKey !== 'time' || sortAsc) {
+        // Re-run the search which calls output again with current sort
+        var str = document.getElementById('inpele').value.trim();
+        if (str) reSortSearchResults();
+      }
+    }, 50);
+  };
+
+  function reSortSearchResults() {
+    // Re-trigger search - the results respect current sortKey/sortAsc via callback
+    var str = document.getElementById('inpele').value.trim();
+    if (!str) { renderList(); return; }
+    var terms = str.split(/\\s+/);
+    var ifcan = new Array(artmenu.length);
+    for (var i = 0; i < artmenu.length; i++) ifcan[i] = (searchmode === 1);
+    if (searchmode === 1) {
+      for (var i = 0; i < artmenu.length; i++) {
+        for (var j = 0; j < terms.length; j++) {
+          if (!(artmenu[i].time.indexOf(terms[j]) !== -1 || artmenu[i].name.indexOf(terms[j]) !== -1 || artmenu[i].author.indexOf(terms[j]) !== -1)) ifcan[i] = false;
+        }
+      }
+    } else {
+      for (var i = 0; i < artmenu.length; i++) ifcan[i] = false;
+      for (var i = 0; i < artmenu.length; i++) {
+        for (var j = 0; j < terms.length; j++) {
+          if (artmenu[i].time.indexOf(terms[j]) !== -1 || artmenu[i].name.indexOf(terms[j]) !== -1 || artmenu[i].author.indexOf(terms[j]) !== -1) ifcan[i] = true;
+        }
+      }
     }
-    container.innerHTML = h;
+    var results = [];
+    for (var i = 0; i < artmenu.length; i++) { if (ifcan[i]) results.push(artmenu[i]); }
+    results = sortData(results);
+    var div3 = document.getElementById('3');
+    if (div3) {
+      clearcontent('1');
+      var h = '<ul style=\"list-style:none;padding:12px 0;\"><li class=\"person-intro-detail\"><h2 style=\"text-align:center\">\"'+terms.join(' ')+'\" ('+results.length+' 条)</h2><hr></li>';
+      var inity = 2020;
+      for (var i = 0; i < results.length; i++) {
+        var date = results[i].time.split('-');
+        if (parseInt(date[0]) > inity) { inity = parseInt(date[0]); h += '<li class=\"person-intro-detail gradient-text\">'+inity+'</li>'; }
+        h += '<li class=\"person-intro-detail\"><span class=\"date\">'+date[1]+'-'+date[2]+' </span><a href=\"'+results[i].links+'\" class=\"title\">'+results[i].name+'</a></li>';
+      }
+      if (results.length === 0) h += '<li class=\"person-intro-detail\"><h3>无结果</h3></li>';
+      h += '</ul>';
+      div3.innerHTML = h;
+    }
   }
 
   // Initial render
