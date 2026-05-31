@@ -106,7 +106,8 @@ color: var(--text-link);
 
 /*左容器*/
 .article-container {
-width: 830px;
+max-width: 830px;
+    width: 100%;
     margin: 20px auto;
     padding: 20px;
     background-color: var(--bg-primary);
