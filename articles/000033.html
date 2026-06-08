@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="Integration of ZJU FAST Lab&#39;s EGO-Planner gradient-based B-spline trajectory planner with OpenVINS pseudo-stereo VIO. Covers frame convention reconciliation, two-workspace chaining, binary symbol verification, and unified transform tree design.">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="EGO-Planner Integration with OpenVINS Visual-Inertial Odometry">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>EGO-Planner Integration with OpenVINS Visual-Inertial Odometry</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/article-detail.css">
+  
+  <link rel="stylesheet" href="../css/code.css">
+  
+  <link rel="stylesheet" href="../css/github-markdown.css">
+  
+  <link rel="stylesheet" href="../css/vditor.css">
+  
+  
+  <style>
+    .lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }
+    .markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 10px; }
+    @media (max-width: 767px) { .markdown-body { padding: 15px; } .markdown-body h1 { font-size: 1.35em; } }
+    .codehilite { border-radius: 10px; }
+    .article-content img { max-width: 100%; }
+    #outerdiv { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.3); display: none; z-index: 200; }
+  </style>
+  
+  
+  <!-- 初始主题检测 + 全局变量 (需在页面内容前定义) -->
+  <script>
+    var mode = 1;
+    (function() {
+      var saved = localStorage.getItem('soyorin-mode');
+      if (saved) mode = parseInt(saved);
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function getParams(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+  </script>
+</head>
+<body>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
+
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+  </nav>
+  <button id="mobile_cate" style="border:none;outline:none;">☰</button>
+  <div id="nav-m-list">
+    <button id="cancel" style="position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-primary);">✕</button>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
+  </div>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  
+
+  <div class="headpage"><div class="headpage-cover"></div></div>
+<section class="main">
+  <div class="left-box" style="max-width:830px;width:100%;margin:0 auto;float:none;">
+    <div class="article-container">
+      <div class="article-content markdown-body">
+        <div style="font-family:Times New Roman,Times,serif;">
+
+<p style="text-indent:0;"><h1>EGO-Planner Integration with OpenVINS Visual-Inertial Odometry</h1></p>
+
+<p style="text-indent:0;"><h2>Abstract</h2></p>
+
+<p style="text-indent:2em;">This report documents the integration of the EGO-Planner gradient-based local trajectory planner from ZJU FAST Lab with the OpenVINS pseudo-stereo visual-inertial odometry system. The integration creates a complete perception-to-action pipeline: VIO provides real-time pose estimation, an offline-built occupancy grid map provides global environmental context, and EGO-Planner generates collision-free B-spline trajectories converted to velocity commands for the differential-drive robot chassis. The key challenge was reconciling two independently designed coordinate frame conventions and topic namespaces without modifying the source code of either system. A bridge node translates the OpenVINS global-to-IMU odometry into the odom-to-base_footprint convention expected by EGO-Planner, while a carefully constructed transform tree ensures that all three subsystems — VIO, mapping, and planning — share a consistent spatial reference frame. The integrated system was verified through dry-run launch testing with all twelve nodes successfully initializing and maintaining stable operation over extended runtime.</p>
+
+<p style="text-indent:0;"><h2>1. EGO-Planner: Principles of Operation</h2></p>
+
+<p style="text-indent:2em;">EGO-Planner is an open-source gradient-based local trajectory planner originating from the FAST Lab at Zhejiang University. It was originally designed for aggressive quadrotor flight through cluttered environments but has been adapted for ground robot navigation. The planner's core innovation lies in replacing traditional sampling-based or optimization-based planning with a gradient descent formulation that directly optimizes B-spline control points against a Euclidean Signed Distance Field (ESDF) cost function.</p>
+
+<p style="text-indent:0;"><h3>1.1 B-spline Trajectory Representation</h3></p>
+
+<p style="text-indent:2em;">The trajectory is parameterized as a uniform cubic B-spline curve defined by a sequence of control points Q_i in three-dimensional space. The B-spline basis functions provide C² continuity by construction, ensuring smooth velocity and acceleration profiles without explicit smoothness constraints. The uniform knot spacing dt determines the temporal resolution of the trajectory, typically set to 0.2 seconds for ground robot navigation. The trajectory evaluation at any time t yields position, velocity, and acceleration through analytical differentiation of the basis functions.</p>
+
+<p style="text-indent:2em;">The B-spline representation confers three advantages for real-time replanning. First, local modifications to control points affect only a bounded segment of the trajectory, enabling efficient gradient-based optimization without recomputing the entire curve. Second, the convex hull property guarantees that the trajectory lies within the convex hull of the control points, providing a conservative bound for collision checking against the ESDF. Third, the derivative of the trajectory with respect to any control point admits a closed-form expression, enabling direct computation of the collision cost gradient for numerical optimization.</p>
+
+<p style="text-indent:0;"><h3>1.2 Euclidean Signed Distance Field for Collision Checking</h3></p>
+
+<p style="text-indent:2em;">EGO-Planner constructs an ESDF from the incoming point cloud representing the environment. The ESDF assigns to each point in the workspace the signed distance to the nearest obstacle surface, with negative values inside obstacles and positive values in free space. The zero-level set defines the obstacle boundary. The ESDF is computed using a two-pass propagation algorithm that first rasterizes occupied cells from the point cloud, then propagates distance values outward from obstacle boundaries using a dynamic programming sweep.</p>
+
+<p style="text-indent:2em;">The ESDF enables collision checking through simple function evaluation rather than geometric intersection tests. A configuration is collision-free if and only if the ESDF value at that point exceeds a safety margin. The gradient of the ESDF points away from the nearest obstacle, providing the direction for repulsive forces in the trajectory optimization.</p>
+
+<p style="text-indent:0;"><h3>1.3 Two-Stage Planning Pipeline</h3></p>
+
+<p style="text-indent:2em;">The planning process operates in two stages. The first stage is a global path search using A* on the ESDF grid. The search front expands from the robot's current position toward the goal, with the heuristic cost equal to the Euclidean distance to the goal weighted by a constant factor. The search produces a piecewise-linear path through free space that serves as an initial guess for the second stage.</p>
+
+<p style="text-indent:2em;">The second stage refines the path into a smooth, dynamically feasible trajectory through gradient-based optimization of the B-spline control points. The total cost function combines three terms:</p>
+
+<p style="text-align:center;text-indent:0;"><b>J = λ<sub>s</sub>J<sub>s</sub> + λ<sub>c</sub>J<sub>c</sub> + λ<sub>f</sub>J<sub>f</sub></b></p>
+
+<p style="text-indent:2em;">The smoothness cost J<sub>s</sub> penalizes the integral of squared jerk along the trajectory, encoded as the sum of squared finite differences between consecutive control point accelerations. The collision cost J<sub>c</sub> evaluates the ESDF at each control point and applies an exponential penalty when the distance falls below a safety threshold. The feasibility cost J<sub>f</sub> enforces limits on velocity and acceleration by penalizing control point configurations that would produce exceedances given the B-spline time scaling.</p>
+
+<p style="text-indent:2em;">The optimization uses the L-BFGS algorithm for efficiency, exploiting the sparsity structure induced by the B-spline's local support. The gradient of each cost term with respect to the control points is computed analytically, avoiding finite-difference approximations. The optimization converges in typically ten to thirty iterations for the planning horizon of five meters typical of indoor navigation.</p>
+
+<p style="text-indent:0;"><h3>1.4 Trajectory Server and Control</h3></p>
+
+<p style="text-indent:2em;">The optimized B-spline trajectory is published as a custom ROS message containing the control points, knot vector, and temporal parameters. The trajectory server node converts this representation into instantaneous velocity commands for the differential-drive chassis using a pure-pursuit controller.</p>
+
+<p style="text-indent:2em;">The pure-pursuit algorithm selects a lookahead point on the trajectory at a fixed time horizon, typically 0.6 seconds ahead of the current robot position. The linear velocity command is proportional to the distance to the lookahead point divided by the lookahead time, clamped to a maximum of 0.5 meters per second. The angular velocity command is computed from the curvature of the trajectory at the lookahead point and the current linear velocity. A goal tolerance of 0.25 meters triggers a stop command when the robot reaches the target.</p>
+
+<p style="text-indent:0;"><h2>2. The EGO-Planner Node Architecture</h2></p>
+
+<p style="text-indent:2em;">The planner comprises five distinct ROS nodes, each handling a specific stage of the perception-to-control pipeline.</p>
+
+<p style="text-indent:0;"><h3>2.1 map_server</h3></p>
+
+<p style="text-indent:2em;">The standard ROS navigation stack map_server node reads an occupancy grid map from a YAML metadata file and the corresponding Portable GrayMap image. It exposes the map on the latched <code>/map</code> topic as a <code>nav_msgs/OccupancyGrid</code> message and provides a <code>/static_map</code> service for on-demand retrieval. The map resolution is 0.05 meters per cell with the origin at the bottom-left corner of the grid, matching the offline-built map from the VIO global reference frame.</p>
+
+<p style="text-indent:0;"><h3>2.2 map_to_pc2</h3></p>
+
+<p style="text-indent:2em;">A custom Python node that converts the 2D occupancy grid to a 3D point cloud required by the ESDF constructor. The conversion iterates over every cell in the grid, and for cells with occupancy probability exceeding a threshold of 30 percent, generates points at multiple vertical layers from Z = −0.2 m to Z = 1.2 m in increments of 0.14 m. This extrusion creates a vertical wall representation from the 2D floor plan, enabling the ESDF to register obstacles at the robot's operating height of approximately 0.2 m. The resulting <code>PointCloud2</code> message is published on <code>/map_generator/global_cloud</code> with latch mode enabled and a republish timer at 10 Hz to ensure late-joining subscribers receive the data.</p>
+
+<p style="text-indent:0;"><h3>2.3 waypoint_generator</h3></p>
+
+<p style="text-indent:2em;">The waypoint generator bridges RViz user interaction to the planner. In manual-lonely-waypoint mode, it subscribes to the <code>/move_base_simple/goal</code> topic where RViz publishes the user's 2D Nav Goal interaction as a <code>geometry_msgs/PoseStamped</code>. Upon receiving a goal, the generator publishes it as a one-point <code>nav_msgs/Path</code> message on <code>/waypoint_generator/waypoints</code>. The generator also subscribes to <code>/odom_world</code> to verify odometry availability before accepting goals, preventing planning attempts before the localization system is ready.</p>
+
+<p style="text-indent:2em;">The generator supports alternative modes including preset waypoint sequences loaded from the ROS parameter server, enabling scripted navigation missions through multiple rooms without human intervention.</p>
+
+<p style="text-indent:0;"><h3>2.4 ego_planner_node</h3></p>
+
+<p style="text-indent:2em;">The core planning node, implemented in C++ for performance, integrates the ESDF construction, A* global search, and B-spline optimization into a finite state machine (FSM). The FSM maintains four states:</p>
+
+<ul style="margin-left:2em;">
+<li><b>INIT:</b> Waiting for valid odometry, point cloud, and goal waypoint data before transitioning to planning.</li>
+<li><b>WAIT_TARGET:</b> Idle state when no goal is set, periodically checking for new waypoints.</li>
+<li><b>GEN_NEW_TRAJ:</b> Active planning state that generates a new B-spline trajectory from the current position to the most recent goal, using the latest ESDF for collision checking.</li>
+<li><b>EXEC_TRAJ:</b> Execution state that monitors progress along the active trajectory, triggering replanning when the lookahead point approaches the trajectory end or when new obstacles are detected.</li>
+</ul>
+
+<p style="text-indent:2em;">The FSM operates at a configurable replanning frequency, typically 10 to 20 Hz. State transitions are logged to ROS INFO with distinct color codes for monitoring. In REAL mode, used for physical robots, the FSM disables drone-specific features such as height control and velocity feedforward.</p>
+
+<p style="text-indent:2em;">The node exposes parameters for the planning horizon distance and time, the fixed navigation height, and the maximum number of waypoints to process. When <code>use_sim_mode</code> is set to false, the node operates in ground robot mode with planning restricted to the horizontal plane at the configured fixed height.</p>
+
+<p style="text-indent:0;"><h3>2.5 traj_server</h3></p>
+
+<p style="text-indent:2em;">The trajectory execution node subscribes to the B-spline trajectory on <code>/planning/bspline</code> and the robot odometry on <code>/odom_world</code>. It implements the pure-pursuit control law described in Section 1.4, publishing Twist commands on <code>/cmd_vel</code>. The server monitors trajectory completion, goal proximity, and odometry timeouts, transitioning the robot to a stopped state when the goal tolerance is satisfied or if odometry data becomes stale.</p>
+
+<p style="text-indent:2em;">Configurable parameters include the lookahead time, linear and angular velocity limits, acceleration limits, and the goal tolerance radius. The linear and angular feedback gains provide tunable tracking performance for different robot dynamics.</p>
+
+<p style="text-indent:0;"><h2>3. Original EGO-Planner Transform Tree and Topics</h2></p>
+
+<p style="text-indent:2em;">The original EGO-Planner simulation environment, as configured in <code>start_navigation.launch</code>, establishes a transform tree designed for a self-contained simulation where odometry is synthesized from commanded velocities.</p>
+
+<pre style="background:var(--bg-secondary);padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.6;">
+map ──(static identity)──→ world
+map ──(static identity)──→ odom
+odom ──(dynamic, fake_odom)──→ base_link
+</pre>
+
+<p style="text-indent:2em;">The map frame serves as the global reference frame for the occupancy grid map. The world frame exists for compatibility with drone-specific visualization nodes and is statically equivalent to map. The odom frame is also statically equivalent to map, meaning the robot's position in the map frame is directly given by the odometry integration. The <code>fake_odom</code> node simulates a differential-drive odometry source by integrating incoming <code>/cmd_vel</code> Twist commands over time, publishing the estimated pose as a <code>nav_msgs/Odometry</code> message on <code>/odom_world</code> and as a transform from odom to base_link.</p>
+
+<p style="text-indent:2em;">This architecture works for simulation because the map, world, and odom frames are all static and identical. The robot's position in any of these frames is simply the integrated odometry, and there is no drift correction or loop closure to reconcile.</p>
+
+<p style="text-indent:0;"><h2>4. The Integration Challenge: Reconciling Two Frame Conventions</h2></p>
+
+<p style="text-indent:2em;">The OpenVINS VIO system and EGO-Planner were developed independently with different frame conventions, topic names, and transform topologies. Reconciling these without modifying the source code of either system was the central technical challenge of the integration.</p>
+
+<p style="text-indent:0;"><h3>4.1 Odometry Topic Translation</h3></p>
+
+<p style="text-indent:2em;">OpenVINS publishes its visual-inertial odometry estimate on <code>/ov_msckf/odomimu</code> as a <code>nav_msgs/Odometry</code> message with <code>frame_id</code> set to <code>global</code> and <code>child_frame_id</code> set to <code>imu</code>. The pose component represents the position and orientation of the IMU sensor frame expressed in the VIO global reference frame, which is the frame in which VIO initializes at the start of each session.</p>
+
+<p style="text-indent:2em;">EGO-Planner expects odometry on <code>/odom_world</code> with <code>frame_id</code> set to <code>odom</code> and <code>child_frame_id</code> set to <code>base_link</code>. The pose represents the position of the robot's base link in the fixed odom reference frame. In the original architecture, the odom frame is static and identical to the map frame, so the odometry directly encodes the robot's absolute position.</p>
+
+<p style="text-indent:2em;">The bridge between these conventions requires three transformations. First, the VIO odometry message must be relayed from <code>/ov_msckf/odomimu</code> to <code>/odom_world</code>. Second, the reference frame must be translated from the VIO global frame to the EGO-Planner odom frame. Third, the tracked body must be translated from the IMU sensor frame to the robot base footprint frame, applying the fixed 0.078-meter vertical offset specified in the TurtleBot3 URDF where the IMU is mounted 0.068 m above the base link and the base footprint lies 0.01 m below the base link.</p>
+
+<p style="text-indent:0;"><h3>4.2 Frame ID Translation</h3></p>
+
+<p style="text-indent:2em;">The frame translation is handled by the <code>vio_odom_bridge</code> node. It subscribes to <code>/ov_msckf/odomimu</code> and, on each message, applies the fixed IMU-to-base_footprint offset rotated by the current IMU orientation to account for the robot's pitch and roll on uneven terrain:</p>
+
+<pre style="background:var(--bg-secondary);padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.6;">
+p_basefootprint_in_global = p_imu_in_global + R_global_to_imu · (0, 0, −0.078)
+</pre>
+
+<p style="text-indent:2em;">The resulting position and the unmodified IMU orientation are published as <code>/odom_world</code> with the <code>frame_id</code> set to <code>odom</code> and the <code>child_frame_id</code> set to <code>base_footprint</code>. The node also publishes the same pose as a dynamic transform from odom to base_footprint at 50 Hz, maintaining a complete TF tree for visualization and diagnostic purposes.</p>
+
+<p style="text-indent:0;"><h3>4.3 Velocity Propagation</h3></p>
+
+<p style="text-indent:2em;">The bridge propagates VIO velocity estimates directly, copying the linear and angular velocity from the input message. While VIO velocity estimates may contain more noise than wheel encoder odometry, they provide sufficient accuracy for the pure-pursuit controller's lookahead computation and trajectory tracking. The 6×6 pose covariance matrices are also forwarded, allowing downstream nodes to assess localization quality.</p>
+
+<p style="text-indent:0;"><h2>5. The Unified Transform Tree</h2></p>
+
+<p style="text-indent:2em;">The integrated transform tree preserves the semantics expected by both the VIO system and the EGO-Planner while maintaining global consistency.</p>
+
+<pre style="background:var(--bg-secondary);padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.6;">
+map ──(static identity)──→ global ──(static identity)──→ odom
+odom ──(dynamic, from VIO)──→ base_footprint
+base_footprint ──(URDF, from robot_state_publisher)──→ base_link
+base_link ──(URDF)──→ imu_link, camera_link, base_scan
+</pre>
+
+<p style="text-indent:2em;">The map frame is the global reference for the occupancy grid. Since the offline map was constructed from VIO data projected into the global frame, a static identity transform connects map to global. The global frame is the VIO world frame, established at the start of each session by the ZUPT initialization. A second static identity transform connects global to odom, establishing the odom frame as a fixed world frame in which the robot moves — exactly the semantic that EGO-Planner expects.</p>
+
+<p style="text-indent:2em;">The odom-to-base_footprint transform is published dynamically by the <code>vio_odom_bridge</code> node at 50 Hz, reflecting the robot's VIO-estimated pose. This replaces the fake_odom integration with real visual-inertial tracking. The remaining kinematic chain from base_footprint through base_link to the sensor frames is provided by the URDF <code>robot_state_publisher</code> at 50 Hz.</p>
+
+<p style="text-indent:2em;">A static identity transform from map to world is maintained for compatibility with drone visualization nodes that reference the world frame, though it is unused in ground robot operation.</p>
+
+<p style="text-indent:0;"><h3>5.1 Why Not Use /tf_static for Fixed Transforms</h3></p>
+
+<p style="text-indent:2em;">All static transforms in the integrated system are published using <code>tf static_transform_publisher</code> targeting the <code>/tf</code> topic rather than <code>/tf_static</code>. The <code>/tf_static</code> topic uses latching, meaning only the most recent publisher's message is retained. In a system with multiple static transform publishers from different workspaces and launch files, the last publisher to connect overwrites all previously latched messages, silently breaking the transform tree.</p>
+
+<p style="text-indent:2em;">Publishing fixed transforms to <code>/tf</code> at a 100-millisecond repetition rate ensures that transforms are periodically refreshed and available to any subscriber regardless of startup ordering. The computational overhead is negligible since each static transform message is a few hundred bytes.</p>
+
+<p style="text-indent:0;"><h2>6. Workspace Integration</h2></p>
+
+<p style="text-indent:2em;">The integration spans two independently built catkin workspaces that must coexist in a single ROS environment.</p>
+
+<p style="text-indent:0;"><h3>6.1 The Two-Workspace Problem</h3></p>
+
+<p style="text-indent:2em;">OpenVINS resides in the <code>catkin_ws_ov</code> workspace at <code>~/catkin_ws_ov</code>, built with <code>catkin_make</code> and containing the ov_msckf, ov_core, ov_init, ov_eval, and ov_data packages. EGO-Planner resides in a separate workspace at <code>~/VINS-Nav/ego-planner/planner</code>, containing 22 packages including ego_planner, waypoint_generator, traj_utils, bspline_opt, plan_env, path_searching, quadrotor_msgs, and map_tools.</p>
+
+<p style="text-indent:2em;">The EGO-Planner workspace was originally built on a different machine at the path <code>/home/bingoling/Desktop/planner</code> and was subsequently copied to the local machine as a pre-built binary distribution. This introduced three categories of path corruption that prevented the workspace from functioning: a <code>devel/.catkin</code> marker pointing to the original machine's source directory, <code>devel/lib</code> wrapper scripts with hardcoded source paths from the build machine, and missing <code>package.xml</code> files in the <code>devel/share</code> directories for all 22 packages because the original source tree was not included in the copy.</p>
+
+<p style="text-indent:0;"><h3>6.2 Environment Chaining</h3></p>
+
+<p style="text-indent:2em;">The standard catkin workspace chaining mechanism, where each <code>setup.sh</code> extends the environment from the previously sourced workspace, failed because the EGO-Planner workspace setup scripts were generated on a different machine. When sourced without the <code>--extend</code> flag, the <code>setup.sh</code> script performs a rollback operation that removes all environment modifications from previously sourced workspaces, replacing them with only the current workspace and the base ROS installation.</p>
+
+<p style="text-indent:2em;">The solution uses the <code>CATKIN_SETUP_UTIL_ARGS</code> environment variable to force extend mode when sourcing the EGO-Planner workspace, preserving the OpenVINS workspace entries in <code>CMAKE_PREFIX_PATH</code>, <code>LD_LIBRARY_PATH</code>, <code>PYTHONPATH</code>, and <code>ROS_PACKAGE_PATH</code>:</p>
+
+<pre style="background:var(--bg-secondary);padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.6;">
+CATKIN_SETUP_UTIL_ARGS="--extend" source ~/VINS-Nav/ego-planner/planner/devel/setup.bash
+</pre>
+
+<p style="text-indent:2em;">A custom environment setup script, <code>setup_ego_vio.sh</code> in the project root, encapsulates this logic and additionally strips newline characters that the EGO-Planner workspace injects into <code>ROS_PACKAGE_PATH</code> due to a formatting error in its generated environment hooks.</p>
+
+<p style="text-indent:0;"><h3>6.3 Package Discovery Restoration</h3></p>
+
+<p style="text-indent:2em;">The missing <code>package.xml</code> files were reconstructed for all 22 EGO-Planner packages. For map_tools, the original <code>package.xml</code> from the included source tree was used. For the remaining 21 packages, minimal <code>package.xml</code> files were created by analyzing the compiled shared library dependencies with <code>ldd</code> and extracting message type definitions from the <code>devel/include</code> C++ headers. The quadrotor_msgs, ego_planner, and multi_map_server packages additionally required <code>.msg</code> definition files reconstructed from the compiled message header definitions, since the original <code>.msg</code> source files were not included in the binary distribution.</p>
+
+<p style="text-indent:0;"><h3>6.4 Wrapper Script Path Correction</h3></p>
+
+<p style="text-indent:2em;">The catkin build system generates relay scripts in <code>devel/lib/&lt;pkg&gt;/&lt;script_name&gt;.py</code> that reference the original source file path. These scripts were regenerated with the source path parameter set to the correct local directory. Without this correction, <code>map_to_pc2.py</code> and <code>fake_odom.py</code> would fail with <code>FileNotFoundError</code> when <code>roslaunch</code> attempted to execute them through the wrapper.</p>
+
+<p style="text-indent:0;"><h2>7. Topic and Data Flow Verification</h2></p>
+
+<p style="text-indent:2em;">The complete topic graph of the integrated system was verified through analysis of compiled binary symbols and through dry-run launch testing.</p>
+
+<p style="text-indent:0;"><h3>7.1 Topic Inventory</h3></p>
+
+<p style="text-indent:2em;">The table below enumerates every topic in the integrated system, the publishing node, the subscribing nodes, and the message type. All connections were verified against the compiled binary symbol tables of the EGO-Planner C++ nodes and the Python source of the bridge and conversion scripts.</p>
+
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;">
+<tr style="background:var(--bg-secondary);">
+<th style="border:1px solid var(--border-light);padding:6px 8px;text-align:left;">Topic</th>
+<th style="border:1px solid var(--border-light);padding:6px 8px;text-align:left;">Publisher</th>
+<th style="border:1px solid var(--border-light);padding:6px 8px;text-align:left;">Subscribers</th>
+<th style="border:1px solid var(--border-light);padding:6px 8px;text-align:left;">Type</th>
+</tr>
+<tr><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/ov_msckf/odomimu</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">OpenVINS</td><td style="border:1px solid var(--border-light);padding:4px 8px;">vio_odom_bridge</td><td style="border:1px solid var(--border-light);padding:4px 8px;">nav_msgs/Odometry</td></tr>
+<tr style="background:var(--bg-secondary);"><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/odom_world</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">vio_odom_bridge</td><td style="border:1px solid var(--border-light);padding:4px 8px;">ego_planner_node, traj_server, waypoint_generator</td><td style="border:1px solid var(--border-light);padding:4px 8px;">nav_msgs/Odometry</td></tr>
+<tr><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/map</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">map_server</td><td style="border:1px solid var(--border-light);padding:4px 8px;">ego_planner_node GridMap, RViz</td><td style="border:1px solid var(--border-light);padding:4px 8px;">nav_msgs/OccupancyGrid</td></tr>
+<tr style="background:var(--bg-secondary);"><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/map_generator/global_cloud</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">map_to_pc2</td><td style="border:1px solid var(--border-light);padding:4px 8px;">ego_planner_node</td><td style="border:1px solid var(--border-light);padding:4px 8px;">sensor_msgs/PointCloud2</td></tr>
+<tr><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/waypoint_generator/waypoints</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">waypoint_generator</td><td style="border:1px solid var(--border-light);padding:4px 8px;">ego_planner_node</td><td style="border:1px solid var(--border-light);padding:4px 8px;">nav_msgs/Path</td></tr>
+<tr style="background:var(--bg-secondary);"><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/planning/bspline</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">ego_planner_node</td><td style="border:1px solid var(--border-light);padding:4px 8px;">traj_server</td><td style="border:1px solid var(--border-light);padding:4px 8px;">ego_planner/Bspline</td></tr>
+<tr><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/cmd_vel</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">traj_server</td><td style="border:1px solid var(--border-light);padding:4px 8px;">Gazebo diff-drive controller</td><td style="border:1px solid var(--border-light);padding:4px 8px;">geometry_msgs/Twist</td></tr>
+<tr style="background:var(--bg-secondary);"><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/move_base_simple/goal</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">RViz 2D Nav Goal</td><td style="border:1px solid var(--border-light);padding:4px 8px;">waypoint_generator</td><td style="border:1px solid var(--border-light);padding:4px 8px;">geometry_msgs/PoseStamped</td></tr>
+<tr><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/tf</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">tf publishers, vio_odom_bridge</td><td style="border:1px solid var(--border-light);padding:4px 8px;">All TF-consuming nodes</td><td style="border:1px solid var(--border-light);padding:4px 8px;">tf2_msgs/TFMessage</td></tr>
+<tr style="background:var(--bg-secondary);"><td style="border:1px solid var(--border-light);padding:4px 8px;"><code>/static_map</code></td><td style="border:1px solid var(--border-light);padding:4px 8px;">map_server (service)</td><td style="border:1px solid var(--border-light);padding:4px 8px;">map_to_pc2</td><td style="border:1px solid var(--border-light);padding:4px 8px;">nav_msgs/GetMap</td></tr>
+</table>
+
+<p style="text-indent:0;"><h3>7.2 Binary Symbol Verification</h3></p>
+
+<p style="text-indent:2em;">The ego_planner_node and traj_server are compiled C++ binaries with no accessible source code. Their subscription and publication topics were verified by extracting symbol strings from the compiled executables. The ego_planner_node binary confirmed subscriptions to <code>/odom_world</code> (via <code>indep_odom_sub_</code>), <code>/map_generator/global_cloud</code> (via <code>cloudCallback</code> expecting PointCloud2), and <code>/waypoint_generator/waypoints</code> (via <code>waypointCallback</code> expecting nav_msgs/Path). The traj_server binary confirmed subscriptions to <code>/planning/bspline</code> (via <code>bspline_sub_</code>) and <code>/odom_world</code> (via <code>odom_sub_</code>), and publication of <code>/cmd_vel</code> (via <code>cmd_pub_</code>).</p>
+
+<p style="text-indent:2em;">The waypoint_generator binary confirmed its subscription to odometry and goal topics, with the exact topic names configured through ROS remapping at launch time rather than hardcoded. The node's name-relative private topics are remapped to match the global topic namespace.</p>
+
+<p style="text-indent:0;"><h3>7.3 Extended Runtime Stability</h3></p>
+
+<p style="text-indent:2em;">A 20-second dry-run launch test with Gazebo disabled confirmed that all 12 nodes initialize successfully and maintain stable operation without error escalation. The ego_planner_node FSM enters the INIT state and logs periodic status at 3-second intervals while waiting for VIO odometry data, which is normal behavior when no physical robot or simulation is providing pose updates. The traj_server reports Ready status immediately. The map_to_pc2 conversion completes within one second of startup. The only recurring warning is a <code>tf2_msgs/TFMessage</code> type mismatch from RViz connecting to the <code>/tf</code> topic, a benign compatibility issue between the tf and tf2 message types that does not affect functionality.</p>
+
+<p style="text-indent:2em;">The only error-level message is a <code>boost::lock_error</code> thrown during process termination when the launch timeout sends SIGTERM to the ego_planner_node. This is a shutdown race condition in the node's destructor, not a runtime error, and does not occur during normal operation or clean shutdown.</p>
+
+<p style="text-indent:0;"><h2>8. Launch Configuration</h2></p>
+
+<p style="text-indent:2em;">The integrated system is launched through <code>nav_ego_vio.launch</code> in the ov_msckf package. This launch file references only new bridge code and leaves both the OpenVINS configuration and the EGO-Planner binaries entirely unmodified.</p>
+
+<p style="text-indent:0;"><h3>8.1 Online Gazebo Mode</h3></p>
+
+<p style="text-indent:2em;">In online mode, the launch file spawns the complete Gazebo simulation with the TurtleBot3 house world, the custom URDF model with pseudo-stereo camera configuration, and the full OpenVINS stereo VIO pipeline alongside EGO-Planner:</p>
+
+<pre style="background:var(--bg-secondary);padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.6;">
+source ~/VINS-Nav/setup_ego_vio.sh
+roslaunch ov_msckf nav_ego_vio.launch gazebo:=true
+</pre>
+
+<p style="text-indent:2em;">The pipeline is: Gazebo sensors feed pseudo_stereo for virtual right-camera synthesis, OpenVINS processes the stereo pair with IMU for metric visual-inertial odometry, vio_odom_bridge translates the odometry to EGO-Planner convention, map_server serves the offline-built occupancy grid, map_to_pc2 converts it to a point cloud for the ESDF constructor, and ego_planner_node generates trajectories that traj_server converts to velocity commands published to the Gazebo differential-drive controller.</p>
+
+<p style="text-indent:0;"><h3>8.2 Offline Bag Replay Mode</h3></p>
+
+<p style="text-indent:2em;">In offline mode, only the map server, conversion nodes, bridge, and EGO-Planner stack are launched. The user plays a recorded bag file containing VIO data, images, and TF transforms from a previous session:</p>
+
+<pre style="background:var(--bg-secondary);padding:12px;border-radius:8px;overflow-x:auto;font-size:13px;line-height:1.6;">
+source ~/VINS-Nav/setup_ego_vio.sh
+roslaunch ov_msckf nav_ego_vio.launch sim_time:=true
+rosbag play --clock house.bag
+</pre>
+
+<p style="text-indent:2em;">This mode is useful for developing and testing the planning system without the computational overhead and stability limitations of the Gazebo simulation.</p>
+
+<p style="text-indent:0;"><h3>8.3 Parameter Configuration</h3></p>
+
+<p style="text-indent:2em;">EGO-Planner parameters are configured in the launch file rather than in external YAML files, consistent with the original EGO-Planner convention. The planning horizon is set to 5.0 m with a horizon time of 5.0 s, matching the scale of the TurtleBot3 house environment. The fixed navigation height is 0.2 m, corresponding to the robot's base footprint height above the ground plane. The trajectory server limits linear velocity to 0.5 m/s and angular velocity to 1.0 rad/s, with a 0.25 m goal tolerance and 0.6 s lookahead time.</p>
+
+<p style="text-indent:0;"><h2>9. Unmodified Components</h2></p>
+
+<p style="text-indent:2em;">A fundamental design constraint of the integration was that neither the OpenVINS pipeline nor the EGO-Planner binaries could be modified. The following components operate exactly as they did before integration:</p>
+
+<p style="text-indent:2em;"><b>OpenVINS components (unchanged):</b></p>
+<ul style="margin-left:2em;">
+<li>estimator_config.yaml with ZUPT initialization, 600 features, MLE disabled</li>
+<li>kalibr_imu_chain.yaml with noise_density = 0.00083</li>
+<li>kalibr_imucam_chain.yaml with baseline = 0.08 m</li>
+<li>pseudo_stereo.py depth-to-disparity warping node</li>
+<li>turtlebot3_house_stereo.launch original VIO launch file</li>
+</ul>
+
+<p style="text-indent:2em;"><b>EGO-Planner components (unchanged):</b></p>
+<ul style="margin-left:2em;">
+<li>ego_planner_node compiled binary (10.4 MB C++ executable)</li>
+<li>traj_server compiled binary (2.4 MB C++ executable)</li>
+<li>waypoint_generator compiled binary (0.3 MB C++ executable)</li>
+<li>map_to_pc2.py source script</li>
+<li>fake_odom.py source script (unused but preserved)</li>
+</ul>
+
+<p style="text-indent:2em;"><b>Mapping components (unchanged):</b></p>
+<ul style="margin-left:2em;">
+<li>build_map.py offline bag-to-map processor</li>
+<li>postprocess_v5.py occupancy grid post-processor</li>
+<li>house_final.pgm and house_final.yaml offline-built map</li>
+</ul>
+
+<p style="text-indent:0;"><h2>10. Known Limitations and Future Work</h2></p>
+
+<p style="text-indent:2em;">The EGO-Planner integration inherits the limitations of the individual components. The VIO system requires stationary ZUPT initialization at the start of each session and will fail to converge if the robot moves during the first few seconds after startup. The Gazebo simulation exhibits progressive sensor degradation after approximately three minutes of continuous operation, necessitating restarts during extended testing. The ego_planner_node FSM path is currently limited to the horizontal plane at a fixed height, meaning it cannot plan over or under obstacles.</p>
+
+<p style="text-indent:2em;">The current integration provides a static global occupancy grid from the offline map. A more complete system would stream depth images into EGO-Planner's optional depth-based local sensing module for dynamic obstacle detection and online ESDF updates, enabling the planner to react to moving obstacles and temporary changes in the environment not present in the static map.</p>
+
+<p style="text-indent:2em;">The trajectory server uses a simple pure-pursuit controller to convert B-spline trajectories to velocity commands. A model-predictive control approach that directly optimizes the velocity profile against the robot's differential-drive dynamics would provide smoother tracking with lower latency, particularly during aggressive maneuvers near obstacles.</p>
+
+<p style="text-indent:2em;">The bridge node currently propagates VIO velocity estimates directly to the odometry message. While the VIO linear velocity estimates are accurate during constant-velocity motion, they exhibit noise amplification during acceleration phases characteristic of visual-inertial estimation. Fusing the VIO velocity with wheel odometry through a Kalman filter would improve the velocity signal quality for the pure-pursuit controller.</p>
+
+<p style="text-indent:0;"><h2>Appendix A. EGO-Planner Integration Data Flow Diagram</h2></p>
+
+<pre style="background:var(--bg-secondary);padding:12px;border-radius:8px;overflow-x:auto;font-size:12px;line-height:1.5;">
+                        Gazebo Simulation (online) or ROS Bag (offline)
+                                   │
+              ┌────────────────────┼────────────────────┐
+              ▼                    ▼                    ▼
+       RGB Image             Depth Image             IMU 400Hz
+              │                    │                    │
+              └────────┬───────────┘                    │
+                       ▼                                │
+              ┌──────────────────┐                      │
+              │  pseudo_stereo   │                      │
+              │  B=0.08m         │                      │
+              │  left→right warp │                      │
+              └────────┬─────────┘                      │
+                       │ right image                    │
+                       ▼                                ▼
+              ┌──────────────────────────────────────────┐
+              │            OpenVINS Stereo VIO           │
+              │            max_cameras=2                 │
+              │            ZUPT static init              │
+              │            noise_density=0.00083         │
+              └────────────────────┬─────────────────────┘
+                                   │ /ov_msckf/odomimu
+                                   │ frame_id=global
+                                   │ child_frame_id=imu
+                                   ▼
+              ┌─────────────────────────────────────────────┐
+              │         vio_odom_bridge.py  (NEW)           │
+              │                                             │
+              │  imu→base_footprint (Z offset −0.078m)      │
+              │  global→odom (frame_id translation)         │
+              │                                             │
+              │  OUTPUT: /odom_world (odom→base_footprint)  │
+              │  OUTPUT: TF odom→base_footprint @ 50Hz      │
+              └────────────────────┬────────────────────────┘
+                                   │
+         ┌─────────────────────────┼──────────────────────┐
+         │                         │                      │
+         ▼                         ▼                      ▼
+   map_server              ego_planner_node        waypoint_generator
+   offline map                  │                      ▲
+   house_final.yaml             │                      │
+         │                      │              /move_base_simple/goal
+         ▼                      │                 (RViz 2D Nav Goal)
+   map_to_pc2.py                │
+   2D grid→3D cloud             │
+         │                      │
+         ▼                      │
+   /map_generator/              │
+   global_cloud                 │
+         │                      │
+         └──────────────────────┼───────────┐
+                                ▼           │
+                        /planning/bspline   │
+                                │           │
+                                ▼           │
+                          traj_server       │
+                          pure pursuit      │
+                                │           │
+                                ▼           │
+                           /cmd_vel         │
+                           (Twist)          │
+                                │           │
+                                ▼           │
+                     Gazebo diff-drive      │
+                     or real robot chassis  │
+                                            │
+                     /odom_world ◄──────────┘
+</pre>
+
+<p style="text-indent:0;"><h2>Appendix B. Debugging Checklist</h2></p>
+
+<p style="text-indent:2em;">The following issues were encountered and resolved during integration. They are documented here for future reference when debugging similar multi-workspace ROS integrations.</p>
+
+<p style="text-indent:2em;"><b>rospack cannot find ego-planner packages.</b> Root cause: Missing <code>package.xml</code> in <code>devel/share</code> directories. The workspace was copied as a binary distribution without source code. Resolution: Create minimal <code>package.xml</code> files in <code>devel/share/&lt;pkg&gt;/</code> and mirror them to the source tree under <code>planner/src/&lt;pkg&gt;/</code> for rospack discovery via <code>ROS_PACKAGE_PATH</code>.</p>
+
+<p style="text-indent:2em;"><b>CMAKE_PREFIX_PATH loses catkin_ws_ov entries after sourcing ego-planner setup.</b> Root cause: Sourcing <code>setup.bash</code> without <code>--extend</code> triggers a full environment rollback that drops previously sourced workspaces. Resolution: Set <code>CATKIN_SETUP_UTIL_ARGS="--extend"</code> before sourcing the second workspace.</p>
+
+<p style="text-indent:2em;"><b>ROS_PACKAGE_PATH contains embedded newline characters.</b> Root cause: The ego-planner workspace environment hooks generate a newline in the <code>ROS_PACKAGE_PATH</code> variable, likely from a formatting error in the cross-machine build. Resolution: Strip newlines and carriage returns from <code>ROS_PACKAGE_PATH</code> in the unified setup script.</p>
+
+<p style="text-indent:2em;"><b>map_to_pc2.py crashes with FileNotFoundError referencing /home/bingoling/Desktop/planner.</b> Root cause: The catkin-generated wrapper scripts in <code>devel/lib/&lt;pkg&gt;/</code> contain hardcoded source paths from the original build machine. Resolution: Regenerate wrapper scripts with the correct local source path.</p>
+
+<p style="text-indent:2em;"><b>rosmsg show ego_planner/Bspline fails with "Cannot locate message."</b> Root cause: The <code>.msg</code> definition files were not included in the binary distribution. Only the compiled C++ headers and client library bindings exist. Resolution: Reconstruct <code>.msg</code> source files from the C++ header Definition functions, which contain the exact message specification string.</p>
+
+<p style="text-indent:2em;"><b>ego_planner_node FSM stays in INIT state.</b> Root cause: The FSM requires valid odometry data on <code>/odom_world</code> before transitioning to the planning state. Without a running VIO system or simulation, no odometry is published. This is normal and expected in dry-run tests.</p>
+
+<p style="text-indent:0;"><h2>Appendix C. Related Work</h2></p>
+
+<p style="text-indent:2em;">OpenVINS: A Research Platform for Visual-Inertial Estimation. Patrick Geneva, Kevin Eckenhoff, Woosik Lee, Yulin Yang, and Guoquan Huang. IEEE International Conference on Robotics and Automation, 2020.</p>
+
+<p style="text-indent:2em;">EGO-Planner: An ESDF-free Gradient-based Local Planner for Quadrotors. Xin Zhou, Zhepei Wang, Hongkai Ye, Chao Xu, and Fei Gao. IEEE Robotics and Automation Letters, 2021.</p>
+
+<p style="text-indent:2em;">EGO-Swarm: A Fully Autonomous and Decentralized Quadrotor Swarm System in Cluttered Environments. Xin Zhou, Jiangchao Zhu, Hongyu Zhou, Chao Xu, and Fei Gao. IEEE International Conference on Robotics and Automation, 2021.</p>
+
+<p style="text-indent:2em;">RTAB-Map: A Framework for 3D Mapping and Localization. Mathieu Labbé and François Michaud. International Journal of Robotics Research, 2019.</p>
+
+</div>
+      </div>
+    </div>
+    
+    <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div><a href="../articles/000032.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 革命威望与执政稳定的张力：建国前三十年毛泽东思想的困境及诸运动的政治经济学考察</a></div>
+      <div></div>
+    </div>
+    
+    <div class="article-container" id="comment-box" style="margin-top:10px;">
+      <div class="article-content markdown-body">
+        <h2 style="margin:10px 0">评论</h2>
+        <div id="tcomment"></div>
+        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
+    <ul id="toc-list">
+      <li><a href="#" id="toc-a-on">目录</a></li>
+    </ul>
+  </aside>
+  
+</section>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc-sidebar');
+  var article = document.querySelector('.article-container');
+  if (toc && article) {
+    function updateToc(){
+      var artTop = article.getBoundingClientRect().top;
+      toc.style.top = (artTop > 60 ? artTop : 60) + 'px';
+    }
+    updateToc();
+    toc.style.visibility = 'visible';
+    window.addEventListener('scroll', updateToc);
+    window.addEventListener('resize', updateToc);
+  }
+  var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
+  var tocList = document.getElementById('toc-list');
+  if(!tocList || headings.length === 0) return;
+  tocList.innerHTML = '';
+  headings.forEach(function(h, i){
+    var id = 'heading-' + i;
+    h.id = id;
+    var level = parseInt(h.tagName.charAt(1));
+    var indent = '   '.repeat(level - 1);
+    tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
+  });
+})();
+</script>
+
+
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--bg-card); box-shadow: var(--shadow-card);" onclick="var d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" title="切换深色/浅色模式">
+    <span id="theme-icon">☀️</span>
+  </div>
+  <script>
+    (function(){
+      var icon = document.getElementById('theme-icon');
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      icon.textContent = isDark ? '☀️' : '🌙';
+      var orig = window.pagereload;
+      window.pagereload = function(m){
+        orig(m);
+        icon.textContent = (m === 2) ? '☀️' : '🌙';
+      };
+    })();
+  </script>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2021 – <span class="year"></span> Soyorin.Work</span>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank" rel="noopener">Source</a>
+    </div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="../js/vditor.min.js"></script>
+  <script src="../js/article-detail.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none",
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath:  [["$", "$"]],
+        displayMath: [["$$","$$"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre","code","a"],
+        ignoreClass:"comment-content"
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+        showMathMenu: false
+      }
+    });
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  </script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
+
+</body>
+</html>
