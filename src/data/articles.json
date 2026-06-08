@@ -61,6 +61,17 @@
   },
   "articles": [
     {
+      "number": 33,
+      "class": "code",
+      "links": "../articles/000033.html",
+      "time": "2026-06-01",
+      "author": "cuitianxu",
+      "name": "EGO-Planner Integration with OpenVINS Visual-Inertial Odometry",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "Integration of ZJU FAST Lab's EGO-Planner gradient-based B-spline trajectory planner with OpenVINS pseudo-stereo VIO. Covers frame convention reconciliation, two-workspace chaining, binary symbol verification, and unified transform tree design.",
+      "hasToc": true
+    },
+    {
       "number": 32,
       "class": "eup",
       "links": "../articles/000032.html",
