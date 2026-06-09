@@ -1,0 +1,227 @@
+<div style="font-family:Times New Roman,Times,serif;">
+
+<p style="text-indent:0;"><h1>PCA与SVD关系的证明</h1></p>
+
+<p style="text-indent:0;"><h2>1. 问题设定</h2></p>
+
+<p style="text-indent:2em;">设数据矩阵为 $X \in \mathbb{R}^{N \times D}$，其中 $N$ 表示样本数，$D$ 表示原始特征维度。PCA 的目标是把数据从 $D$ 维降到 $L$ 维，其中 $L \lt D$。</p>
+
+<p style="text-indent:2em;">设投影矩阵为 $V \in \mathbb{R}^{D \times L}$，并要求 $V$ 的列向量两两正交且归一，即 $V^T V = I_L$。</p>
+
+<p style="text-indent:2em;">PCA 的重构为 $X V V^T$。因此 PCA 可以写成最小化重构误差的问题：</p>
+
+<p style="text-align:center;text-indent:0;">$$\min_{V^T V = I_L} \| X - X V V^T \|_F^2$$</p>
+
+<p style="text-indent:2em;">下面证明这个问题等价于最大化 $\operatorname{tr}(V^T X^T X V)$。</p>
+
+<p style="text-indent:0;"><h2>2. 最小化重构误差等价于最大化投影方差</h2></p>
+
+<p style="text-indent:2em;">由 Frobenius 范数和 trace 的关系：$\|A\|_F^2 = \operatorname{tr}(A^T A)$，可得</p>
+
+<p style="text-align:center;text-indent:0;">$$\|X - X V V^T\|_F^2 = \operatorname{tr}\!\left((X - X V V^T)^T (X - X V V^T)\right)$$</p>
+
+<p style="text-indent:2em;">因为 $(X - X V V^T)^T = X^T - V V^T X^T$，所以</p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{aligned} \|X - X V V^T\|_F^2 & = \operatorname{tr}\!\left((X^T - V V^T X^T)(X - X V V^T)\right) \\ & = \operatorname{tr}\!\left(X^T X - X^T X V V^T - V V^T X^T X + V V^T X^T X V V^T\right) \end{aligned}$$</p>
+
+<p style="text-indent:2em;">由 trace 的线性性：</p>
+
+<p style="text-align:center;text-indent:0;">$$\|X - X V V^T\|_F^2 = \operatorname{tr}(X^T X) - \operatorname{tr}(X^T X V V^T) - \operatorname{tr}(V V^T X^T X) + \operatorname{tr}(V V^T X^T X V V^T)$$</p>
+
+<p style="text-indent:2em;">下面逐项化简。首先，由 trace 的循环不变性：</p>
+
+<p style="text-align:center;text-indent:0;">$$\operatorname{tr}(X^T X V V^T) = \operatorname{tr}(V^T X^T X V)$$</p>
+
+<p style="text-indent:2em;">同理，$\operatorname{tr}(V V^T X^T X) = \operatorname{tr}(V^T X^T X V)$。</p>
+
+<p style="text-indent:2em;">对于最后一项：</p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{aligned} \operatorname{tr}(V V^T X^T X V V^T) & = \operatorname{tr}(V^T V \, V^T X^T X V) \\ & = \operatorname{tr}(I_L \, V^T X^T X V) \\ & = \operatorname{tr}(V^T X^T X V) \end{aligned}$$</p>
+
+<p style="text-indent:2em;">因此，</p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{aligned} \|X - X V V^T\|_F^2 & = \operatorname{tr}(X^T X) - \operatorname{tr}(V^T X^T X V) - \operatorname{tr}(V^T X^T X V) + \operatorname{tr}(V^T X^T X V) \\ & = \operatorname{tr}(X^T X) - \operatorname{tr}(V^T X^T X V) \end{aligned}$$</p>
+
+<p style="text-indent:2em;">由于 $\operatorname{tr}(X^T X)$ 与 $V$ 无关，所以</p>
+
+<p style="text-align:center;text-indent:0;">$$\min_{V^T V = I_L} \|X - X V V^T\|_F^2$$</p>
+
+<p style="text-indent:2em;">等价于</p>
+
+<p style="text-align:center;text-indent:0;">$$\max_{V^T V = I_L} \operatorname{tr}(V^T X^T X V)$$</p>
+
+<p style="text-indent:2em;">因此，PCA 问题可以转化为</p>
+
+<p style="text-align:center;text-indent:0;">$$\max_{V \in \mathbb{R}^{D \times L},\; V^T V = I_L} \operatorname{tr}(V^T X^T X V)$$</p>
+
+<p style="text-indent:0;"><h2>3. 对 $X^T X$ 做特征值分解</h2></p>
+
+<p style="text-indent:2em;">令 $C = X^T X$。因为 $C$ 是实对称半正定矩阵，所以可以正交对角化：</p>
+
+<p style="text-align:center;text-indent:0;">$$C = V_c \Lambda V_c^T$$</p>
+
+<p style="text-indent:2em;">其中 $V_c \in \mathbb{R}^{D \times D}$，$V_c^T V_c = V_c V_c^T = I_D$，并且 $\Lambda = \operatorname{diag}(\lambda_1, \lambda_2, \ldots, \lambda_D)$。由于 $C = X^T X$ 是半正定矩阵，所以 $\lambda_i \ge 0$。不妨令特征值按从大到小排列：</p>
+
+<p style="text-align:center;text-indent:0;">$$\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_D \ge 0$$</p>
+
+<p style="text-indent:2em;">于是，</p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{aligned} V^T X^T X V & = V^T C V \\ & = V^T V_c \Lambda V_c^T V \end{aligned}$$</p>
+
+<p style="text-indent:2em;">令 $W = V_c^T V$。因为 $V_c \in \mathbb{R}^{D \times D}$，$V \in \mathbb{R}^{D \times L}$，所以 $W \in \mathbb{R}^{D \times L}$。并且</p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{aligned} W^T W & = (V_c^T V)^T (V_c^T V) \\ & = V^T V_c V_c^T V \\ & = V^T I_D V \\ & = V^T V \\ & = I_L \end{aligned}$$</p>
+
+<p style="text-indent:2em;">所以 $W$ 也是列正交矩阵。于是</p>
+
+<p style="text-align:center;text-indent:0;">$$\operatorname{tr}(V^T X^T X V) = \operatorname{tr}(W^T \Lambda W)$$</p>
+
+<p style="text-indent:2em;">因此原问题等价于</p>
+
+<p style="text-align:center;text-indent:0;">$$\max_{W \in \mathbb{R}^{D \times L},\; W^T W = I_L} \operatorname{tr}(W^T \Lambda W)$$</p>
+
+<p style="text-indent:0;"><h2>4. 展开 $\operatorname{tr}(W^T \Lambda W)$</h2></p>
+
+<p style="text-indent:2em;">设</p>
+
+<p style="text-align:center;text-indent:0;">$$W = \begin{bmatrix} w_1^T \\ w_2^T \\ \vdots \\ w_D^T \end{bmatrix}$$</p>
+
+<p style="text-indent:2em;">其中 $w_i^T$ 表示 $W$ 的第 $i$ 行，因此 $w_i \in \mathbb{R}^L$。</p>
+
+<p style="text-indent:2em;">因为 $\Lambda = \operatorname{diag}(\lambda_1, \lambda_2, \ldots, \lambda_D)$，所以</p>
+
+<p style="text-align:center;text-indent:0;">$$\Lambda W = \begin{bmatrix} \lambda_1 w_1^T \\ \lambda_2 w_2^T \\ \vdots \\ \lambda_D w_D^T \end{bmatrix}$$</p>
+
+<p style="text-indent:2em;">于是，</p>
+
+<p style="text-align:center;text-indent:0;">$$W^T \Lambda W = \sum_{i=1}^{D} \lambda_i w_i w_i^T$$</p>
+
+<p style="text-indent:2em;">因此，</p>
+
+<p style="text-align:center;text-indent:0;">$$\operatorname{tr}(W^T \Lambda W) = \operatorname{tr}\!\left(\sum_{i=1}^{D} \lambda_i w_i w_i^T\right) = \sum_{i=1}^{D} \lambda_i \operatorname{tr}(w_i w_i^T)$$</p>
+
+<p style="text-indent:2em;">因为 $\operatorname{tr}(w_i w_i^T) = w_i^T w_i = \|w_i\|_2^2$，所以</p>
+
+<p style="text-align:center;text-indent:0;">$$\operatorname{tr}(W^T \Lambda W) = \sum_{i=1}^{D} \lambda_i \|w_i\|_2^2$$</p>
+
+<p style="text-indent:2em;">令 $a_i = \|w_i\|_2^2$，则目标函数变为 $\sum_{i=1}^{D} \lambda_i a_i$。下面分析 $a_i$ 的约束。</p>
+
+<p style="text-indent:2em;">因为 $W^T W = I_L$，所以</p>
+
+<p style="text-align:center;text-indent:0;">$$\sum_{i=1}^{D} a_i = \sum_{i=1}^{D} \|w_i\|_2^2 = \operatorname{tr}(W^T W) = \operatorname{tr}(I_L) = L$$</p>
+
+<p style="text-indent:2em;">同时，由于 $W$ 是列正交矩阵，所以 $W W^T$ 是一个正交投影矩阵。它的第 $i$ 个对角元为</p>
+
+<p style="text-align:center;text-indent:0;">$$(W W^T)_{ii} = w_i^T w_i = \|w_i\|_2^2 = a_i$$</p>
+
+<p style="text-indent:2em;">正交投影矩阵的对角元满足 $0 \le (W W^T)_{ii} \le 1$，所以 $0 \le a_i \le 1$。</p>
+
+<p style="text-indent:2em;">于是问题变成：</p>
+
+<p style="text-align:center;text-indent:0;">$$\max \sum_{i=1}^{D} \lambda_i a_i, \quad \text{s.t.} \quad \sum_{i=1}^{D} a_i = L,\; 0 \le a_i \le 1$$</p>
+
+<p style="text-indent:2em;">由于 $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_D$，为了使 $\sum_{i=1}^{D} \lambda_i a_i$ 最大，就应该把权重 $a_i$ 尽量放到最大的前 $L$ 个特征值上。因此最优情况为</p>
+
+<p style="text-align:center;text-indent:0;">$$a_1 = a_2 = \cdots = a_L = 1, \quad a_{L+1} = a_{L+2} = \cdots = a_D = 0$$</p>
+
+<p style="text-indent:2em;">此时最大值为 $\sum_{i=1}^{L} \lambda_i$。</p>
+
+<p style="text-indent:0;"><h2>5. 最优 $W$ 的形式</h2></p>
+
+<p style="text-indent:2em;">由 $a_i = \|w_i\|_2^2$ 可知：当 $a_{L+1} = \cdots = a_D = 0$ 时，说明</p>
+
+<p style="text-align:center;text-indent:0;">$$w_{L+1} = w_{L+2} = \cdots = w_D = \mathbf{0}$$</p>
+
+<p style="text-indent:2em;">也就是说，最优的 $W$ 的后 $D - L$ 行全为零。同时，因为 $W^T W = I_L$，所以 $W$ 的前 $L$ 行构成的 $L \times L$ 矩阵必须是正交矩阵。</p>
+
+<p style="text-indent:2em;">因此，最一般的最优 $W$ 可以写成</p>
+
+<p style="text-align:center;text-indent:0;">$$W = \begin{bmatrix} I_L \\ \mathbf{0} \end{bmatrix} T$$</p>
+
+<p style="text-indent:2em;">其中 $T \in \mathbb{R}^{L \times L}$，$T^T T = I_L$。这里的 $T$ 是一个 $L \times L$ 的正交矩阵，表示在前 $L$ 维主子空间内部还可以做任意正交旋转。</p>
+
+<p style="text-indent:2em;">因为 $W = V_c^T V$，所以 $V = V_c W$。代入 $W$ 的最一般形式：</p>
+
+<p style="text-align:center;text-indent:0;">$$V = V_c \begin{bmatrix} I_L \\ \mathbf{0} \end{bmatrix} T$$</p>
+
+<p style="text-indent:2em;">而 $V_c \begin{bmatrix} I_L \\ \mathbf{0} \end{bmatrix} = V_c[:, 1\!:\!L]$，所以</p>
+
+<p style="text-align:center;text-indent:0;">$$V = V_c[:, 1\!:\!L] \, T$$</p>
+
+<p style="text-indent:2em;">因此，PCA 最优投影矩阵的一般形式为</p>
+
+<p style="text-align:center;text-indent:0;">$$V = V_c[:, 1\!:\!L] \, T, \quad T^T T = I_L$$</p>
+
+<p style="text-indent:2em;">这说明 PCA 真正确定的是由 $X^T X$ 的前 $L$ 个最大特征值对应特征向量张成的子空间，而不是某一个唯一的正交基。如果取 $T = I_L$，那么得到一个常用代表解：$V = V_c[:, 1\!:\!L]$。</p>
+
+<p style="text-indent:0;"><h2>6. 与 SVD 的关系</h2></p>
+
+<p style="text-indent:2em;">设 $X$ 的奇异值分解为</p>
+
+<p style="text-align:center;text-indent:0;">$$X = U \Sigma S^T$$</p>
+
+<p style="text-indent:2em;">其中 $U^T U = I$，$S^T S = I$。于是</p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{aligned} X^T X & = (U \Sigma S^T)^T (U \Sigma S^T) \\ & = S \Sigma^T U^T U \Sigma S^T \end{aligned}$$</p>
+
+<p style="text-indent:2em;">因为 $U^T U = I$，所以</p>
+
+<p style="text-align:center;text-indent:0;">$$X^T X = S \Sigma^T \Sigma S^T$$</p>
+
+<p style="text-indent:2em;">令 $\Lambda = \Sigma^T \Sigma$。由于 $\Sigma^T \Sigma$ 是对角矩阵，其对角元是奇异值的平方，所以 $\Lambda = \operatorname{diag}(\sigma_1^2, \sigma_2^2, \ldots, \sigma_D^2)$。因此</p>
+
+<p style="text-align:center;text-indent:0;">$$X^T X = S \Lambda S^T$$</p>
+
+<p style="text-indent:2em;">这正是 $X^T X$ 的特征值分解。所以 $X^T X$ 的特征向量矩阵就是 SVD 中的右奇异向量矩阵：$V_c = S$。并且 $\lambda_i = \sigma_i^2$。</p>
+
+<p style="text-indent:2em;">由前面已经证明的结论 $V = V_c[:, 1\!:\!L] \, T$，可得</p>
+
+<p style="text-align:center;text-indent:0;">$$V = S[:, 1\!:\!L] \, T, \quad T^T T = I_L$$</p>
+
+<p style="text-indent:2em;">也就是说，PCA 选择的投影方向，正是 SVD 中前 $L$ 个最大奇异值对应的右奇异向量所张成的子空间。如果取 $T = I_L$，那么得到常用的标准选择：$V = S[:, 1\!:\!L]$。</p>
+
+<p style="text-indent:0;"><h2>7. PCA 降维结果与 SVD 的关系</h2></p>
+
+<p style="text-indent:2em;">令 $S_L = S[:, 1\!:\!L]$。由于最一般地有 $V = S_L T$，所以 PCA 降维后的数据为</p>
+
+<p style="text-align:center;text-indent:0;">$$X V = X S_L T$$</p>
+
+<p style="text-indent:2em;">由 SVD 分解 $X = U \Sigma S^T$，可得</p>
+
+<p style="text-align:center;text-indent:0;">$$X S_L = U \Sigma S^T S_L$$</p>
+
+<p style="text-indent:2em;">因为 $S$ 是正交矩阵，所以 $S^T S_L = \begin{bmatrix} I_L \\ \mathbf{0} \end{bmatrix}$。因此</p>
+
+<p style="text-align:center;text-indent:0;">$$X S_L = U \Sigma \begin{bmatrix} I_L \\ \mathbf{0} \end{bmatrix} = [\sigma_1 \mathbf{u}_1, \sigma_2 \mathbf{u}_2, \ldots, \sigma_L \mathbf{u}_L]$$</p>
+
+<p style="text-indent:2em;">这相当于只保留前 $L$ 个奇异值和对应的左奇异向量。记 $U_L = U[:, 1\!:\!L]$，并令 $\Sigma_L = \operatorname{diag}(\sigma_1, \sigma_2, \ldots, \sigma_L)$，于是 $X S_L = U_L \Sigma_L$。</p>
+
+<p style="text-indent:2em;">所以，</p>
+
+<p style="text-align:center;text-indent:0;">$$X V = X S_L T = U_L \Sigma_L T$$</p>
+
+<p style="text-indent:2em;">因此，PCA 降维后的结果一般为 $X V = U_L \Sigma_L T$。如果取 $T = I_L$，则得到标准形式：</p>
+
+<p style="text-align:center;text-indent:0;">$$X V = U_L \Sigma_L$$</p>
+
+<p style="text-indent:0;"><h2>8. 总结</h2></p>
+
+<p style="text-indent:2em;">我们证明了：</p>
+
+<p style="text-align:center;text-indent:0;">$$\min_{V^T V = I_L} \|X - X V V^T\|_F^2 \quad \Longleftrightarrow \quad \max_{V^T V = I_L} \operatorname{tr}(V^T X^T X V)$$</p>
+
+<p style="text-indent:2em;">令 $C = X^T X = V_c \Lambda V_c^T$，其中 $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_D$。则最大化问题的最优投影矩阵一般为</p>
+
+<p style="text-align:center;text-indent:0;">$$V = V_c[:, 1\!:\!L] \, T, \quad T^T T = I_L$$</p>
+
+<p style="text-indent:2em;">这说明 PCA 选择的是 $X^T X$ 的前 $L$ 个最大特征值对应特征向量张成的子空间。又因为 $X = U \Sigma S^T$ 推出 $X^T X = S \Sigma^T \Sigma S^T$，所以 $V_c = S$。因此</p>
+
+<p style="text-align:center;text-indent:0;">$$V = S[:, 1\!:\!L] \, T, \quad T^T T = I_L$$</p>
+
+<p style="text-indent:2em;">其中 $T$ 是任意 $L \times L$ 正交矩阵，表示在主成分子空间内部的正交旋转。如果取 $T = I_L$，则得到通常写法：$V = S[:, 1\!:\!L]$。</p>
+
+<p style="text-indent:2em;">此时 PCA 降维后的数据为 $X V = U_L \Sigma_L$。一般情况下，则为 $X V = U_L \Sigma_L T$。</p>
+
+<p style="text-indent:2em;">该证明完整地展示了 PCA 最小化重构误差、最大化投影方差、特征值分解以及 SVD 之间的等价关系，并指出 PCA 的投影方向存在一个正交变换 $T$ 的自由度——PCA 确定的是子空间而非唯一基向量。</p>
+
+</div>

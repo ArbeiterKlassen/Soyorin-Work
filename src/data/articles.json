@@ -61,6 +61,17 @@
   },
   "articles": [
     {
+      "number": 34,
+      "class": "code",
+      "links": "../articles/000034.html",
+      "time": "2026-06-01",
+      "author": "lzh",
+      "name": "PCA与SVD关系的证明",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "从最小化重构误差出发，严格证明PCA优化问题等价于最大化投影方差，通过对X^T X特征值分解和trace展开得到最优投影矩阵，并建立与SVD的等价关系：右奇异向量张成的子空间即为PCA投影方向。",
+      "hasToc": true
+    },
+    {
       "number": 33,
       "class": "code",
       "links": "../articles/000033.html",

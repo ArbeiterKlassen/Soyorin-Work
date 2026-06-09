@@ -8,6 +8,7 @@ function insertHtml(html) {
   }
 }
 var artmenu = [
+    {number:34,type:"art",class:"code",subtype:"normal",links:"../articles/000034.html",time:"2026-6-1",author:"lzh",name:"PCA与SVD关系的证明",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"从重构误差最小化到投影方差最大化的等价性证明，PCA与SVD关系的严格数学推导"},
     {number:33,type:"art",class:"code",subtype:"normal",links:"../articles/000033.html",time:"2026-6-1",author:"cuitianxu",name:"EGO-Planner Integration with OpenVINS Visual-Inertial Odometry",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"Integration of EGO-Planner B-spline trajectory planner with OpenVINS pseudo-stereo VIO"},
     {number:32,type:"art",class:"eup",subtype:"normal",links:"../articles/000032.html",time:"2026-6-1",author:"AKlassen",name:"革命威望与执政稳定的张力：建国前三十年毛泽东思想的困境及诸运动的政治经济学考察",headpic:"https://img.soyorin.work/article-img/eup.jpg",detail:"以学术对话体形式，围绕1949-1976年间毛泽东思想的实践困境展开六维度研讨"},
     {number:31,type:"art",class:"code",subtype:"normal",links:"../articles/000031.html",time:"2026-5-30",author:"cuitianxu",name:"Pseudo-Stereo Visual-Inertial SLAM with OpenVINS and RTAB-Map",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"OpenVINS pseudo-stereo visual-inertial SLAM in Gazebo simulation"},
