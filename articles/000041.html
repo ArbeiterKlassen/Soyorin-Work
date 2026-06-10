@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="电磁波干涉与行驻波状态、反射系数与透射系数推导、驻波比SWR、斯涅耳定律与菲涅耳公式、全反射临界角与布儒斯特角">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="电磁波的传播">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>电磁波的传播</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/article-detail.css">
+  
+  <link rel="stylesheet" href="../css/code.css">
+  
+  <link rel="stylesheet" href="../css/github-markdown.css">
+  
+  <link rel="stylesheet" href="../css/vditor.css">
+  
+  
+  <style>
+    .lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }
+    .markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 10px; }
+    @media (max-width: 767px) { .markdown-body { padding: 15px; } .markdown-body h1 { font-size: 1.35em; } }
+    .codehilite { border-radius: 10px; }
+    .article-content img { max-width: 100%; }
+    #outerdiv { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.3); display: none; z-index: 200; }
+  </style>
+  
+  
+  <!-- 初始主题检测 + 全局变量 (需在页面内容前定义) -->
+  <script>
+    var mode = 1;
+    (function() {
+      var saved = localStorage.getItem('soyorin-mode');
+      if (saved) mode = parseInt(saved);
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function getParams(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+  </script>
+</head>
+<body>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
+
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+  </nav>
+  <button id="mobile_cate" style="border:none;outline:none;">☰</button>
+  <div id="nav-m-list">
+    <button id="cancel" style="position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-primary);">✕</button>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
+  </div>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  
+
+  <div class="headpage"><div class="headpage-cover"></div></div>
+<section class="main">
+  <div class="left-box" style="max-width:830px;width:100%;margin:0 auto;float:none;">
+    <div class="article-container">
+      <div class="article-content markdown-body">
+        <div style="font-family:Times New Roman,Times,serif;">
+<h1 style="text-indent:0;">电磁波的传播</h1>
+<p style="text-align:center;font-size:16px;color:var(--text-muted);">电磁场理论·第七章</p>
+
+<h2 style="text-indent:0;">电磁波的干涉</h2>
+
+<p style="text-indent:2em;">空间两列或多列同频率电磁波相遇时，合成场强等于各列波场强的<strong>矢量叠加</strong>，干涉现象取决于各列波的相位差。</p>
+
+<p style="text-indent:2em;">对于同频率、初相位固定的两列波 $\dot{\mathbf{E}}_1$ 和 $\dot{\mathbf{E}}_2$，合成场振幅为：</p>
+
+$$
+|\dot{\mathbf{E}}|^2 = |\dot{\mathbf{E}}_1|^2 + |\dot{\mathbf{E}}_2|^2 + 2|\dot{\mathbf{E}}_1||\dot{\mathbf{E}}_2|\cos(\Delta\phi)
+$$
+
+<p style="text-indent:2em;">其中 $\Delta\phi = \phi_2-\phi_1$ 为相位差。干涉加强（$\Delta\phi=2n\pi$）和干涉相消（$\Delta\phi=(2n+1)\pi$）。</p>
+
+<p style="text-indent:2em;"><strong>注意：</strong>若两电场矢量相互垂直（如 $\mathbf{E}_1\parallel\hat{\mathbf{e}}_x$，$\mathbf{E}_2\parallel\hat{\mathbf{e}}_y$），则无干涉条纹，但合成场矢量的振动方向会发生变化——这引出<strong>极化</strong>的概念。</p>
+
+<h2 style="text-indent:0;">反射与行驻波</h2>
+
+<h3 style="text-indent:0;">垂直入射模型</h3>
+
+<p style="text-indent:2em;">平面波从媒质1（$\varepsilon_1,\mu_1$）垂直入射到媒质2（$\varepsilon_2,\mu_2$）的分界面（$z=0$）。</p>
+
+<p style="text-indent:2em;">入射波（沿 $+z$）：</p>
+
+$$
+\dot{\mathbf{E}}_i = \hat{\mathbf{e}}_x E_{i0}e^{-\mathrm{j} k_1 z},\quad \dot{\mathbf{H}}_i = \hat{\mathbf{e}}_y\frac{E_{i0}}{\eta_1}e^{-\mathrm{j} k_1 z}
+$$
+
+<p style="text-indent:2em;">反射波（沿 $-z$）：</p>
+
+$$
+\dot{\mathbf{E}}_r = \hat{\mathbf{e}}_x E_{r0}e^{+\mathrm{j} k_1 z},\quad \dot{\mathbf{H}}_r = -\hat{\mathbf{e}}_y\frac{E_{r0}}{\eta_1}e^{+\mathrm{j} k_1 z}
+$$
+
+<p style="text-indent:2em;">透射波（沿 $+z$）：</p>
+
+$$
+\dot{\mathbf{E}}_t = \hat{\mathbf{e}}_x E_{t0}e^{-\mathrm{j} k_2 z},\quad \dot{\mathbf{H}}_t = \hat{\mathbf{e}}_y\frac{E_{t0}}{\eta_2}e^{-\mathrm{j} k_2 z}
+$$
+
+<p style="text-indent:2em;">其中 $k_i=\omega\sqrt{\mu_i\varepsilon_i}$，$\eta_i=\sqrt{\mu_i/\varepsilon_i}$。</p>
+
+<h3 style="text-indent:0;">反射系数与透射系数</h3>
+
+<p style="text-indent:2em;">在界面 $z=0$ 处，切向电场和切向磁场连续：</p>
+
+$$
+E_{i0} + E_{r0} = E_{t0},\qquad \frac{E_{i0}}{\eta_1} - \frac{E_{r0}}{\eta_1} = \frac{E_{t0}}{\eta_2}
+$$
+
+<p style="text-indent:2em;">解此方程组得：</p>
+
+<p style="text-indent:2em;"><strong>反射系数（电场）：</strong></p>
+
+$$
+\boxed{\Gamma = \frac{E_{r0}}{E_{i0}} = \frac{\eta_2-\eta_1}{\eta_2+\eta_1}}
+$$
+
+<p style="text-indent:2em;"><strong>透射系数（电场）：</strong></p>
+
+$$
+\boxed{\tau = \frac{E_{t0}}{E_{i0}} = \frac{2\eta_2}{\eta_2+\eta_1} = 1+\Gamma}
+$$
+
+<p style="text-indent:2em;">关系：$\tau = 1+\Gamma$，且当 $\eta_1=\eta_2$ 时 $\Gamma=0$（无反射——匹配）。</p>
+
+<h3 style="text-indent:0;">行驻波与驻波比</h3>
+
+<p style="text-indent:2em;">媒质1中合成电场：</p>
+
+$$
+\begin{aligned}
+\dot{E}_1(z) &= E_{i0}e^{-\mathrm{j} k_1 z} + \Gamma E_{i0}e^{+\mathrm{j} k_1 z} \\
+&= E_{i0}e^{-\mathrm{j} k_1 z}\left(1 + \Gamma e^{2\mathrm{j} k_1 z}\right)
+\end{aligned}
+$$
+
+<p style="text-indent:2em;">振幅：</p>
+
+$$
+|\dot{E}_1(z)| = |E_{i0}|\sqrt{1+|\Gamma|^2+2|\Gamma|\cos(2k_1z+\phi_\Gamma)}
+$$
+
+<p style="text-indent:2em;">定义<strong>驻波比（SWR 或 VSWR）：</strong></p>
+
+$$
+\boxed{\mathrm{SWR} = \frac{|\dot{E}|_{\max}}{|\dot{E}|_{\min}} = \frac{1+|\Gamma|}{1-|\Gamma|}}
+$$
+
+<p style="text-indent:2em;">特殊情形：</p>
+<ul>
+<li>$\Gamma=0$（匹配）：SWR$=1$，纯行波；</li>
+<li>$|\Gamma|=1$（全反射）：SWR$\to\infty$，纯驻波；</li>
+<li>$0<|\Gamma|<1$：行驻波。</li>
+</ul>
+
+<h3 style="text-indent:0;">介质的等效波阻抗</h3>
+
+<p style="text-indent:2em;">在距离界面 $z = -l$ 处看入的等效波阻抗：</p>
+
+$$
+\eta_{\text{in}}(l) = \eta_1\frac{\eta_2+\mathrm{j}\eta_1\tan(k_1 l)}{\eta_1+\mathrm{j}\eta_2\tan(k_1 l)}
+$$
+
+<p style="text-indent:2em;">当 $l = \lambda/4$ 时：$\eta_{\text{in}} = \eta_1^2/\eta_2$（四分之一波长阻抗变换器）。</p>
+
+<p style="text-indent:2em;">当 $l = \lambda/2$ 时：$\eta_{\text{in}} = \eta_2$（半波长阻抗重复性）。</p>
+
+<h2 style="text-indent:0;">斯涅耳定律</h2>
+
+<p style="text-indent:2em;">平面波以入射角 $\theta_i$ 从媒质1入射到媒质2的分界面。</p>
+
+<p style="text-indent:2em;"><strong>反射定律</strong>：$\theta_r = \theta_i$（反射角等于入射角）。</p>
+
+<p style="text-indent:2em;"><strong>折射定律（斯涅耳定律）</strong>：</p>
+
+$$
+\boxed{\frac{\sin\theta_i}{\sin\theta_t} = \frac{k_2}{k_1} = \frac{n_2}{n_1}}
+$$
+
+<p style="text-indent:2em;">其中 $n=c/v$ 为折射率。当 $n_2 < n_1$ 时，存在全反射临界角：</p>
+
+$$
+\theta_c = \arcsin\frac{n_2}{n_1}
+$$
+
+<h2 style="text-indent:0;">菲涅耳公式</h2>
+
+<h3 style="text-indent:0;">垂直极化波（TE波，$\mathbf{E}\perp$ 入射面）</h3>
+
+<p style="text-indent:2em;">反射系数：</p>
+
+$$
+\Gamma_{\perp} = \frac{\eta_2\cos\theta_i - \eta_1\cos\theta_t}{\eta_2\cos\theta_i + \eta_1\cos\theta_t}
+$$
+
+<p style="text-indent:2em;">透射系数：</p>
+
+$$
+\tau_{\perp} = \frac{2\eta_2\cos\theta_i}{\eta_2\cos\theta_i + \eta_1\cos\theta_t}
+$$
+
+<h3 style="text-indent:0;">平行极化波（TM波，$\mathbf{E}\parallel$ 入射面）</h3>
+
+<p style="text-indent:2em;">反射系数：</p>
+
+$$
+\Gamma_{\parallel} = \frac{\eta_2\cos\theta_t - \eta_1\cos\theta_i}{\eta_2\cos\theta_t + \eta_1\cos\theta_i}
+$$
+
+<h2 style="text-indent:0;">全反射与全透射</h2>
+
+<p style="text-indent:2em;"><strong>全反射：</strong>当 $n_1>n_2$ 且 $\theta_i\geq\theta_c$ 时，$\Gamma_{\perp}=\Gamma_{\parallel}=1$，无透射能量。但分界面处仍有衰减的倏逝波（evanescent wave）。</p>
+
+<p style="text-indent:2em;"><strong>全透射（布儒斯特角）：</strong>当 $\Gamma_{\parallel}=0$ 时（仅对平行极化），入射角满足：</p>
+
+$$
+\boxed{\tan\theta_B = \frac{n_2}{n_1}}
+$$
+
+<p style="text-indent:2em;">此时反射波中只有垂直极化分量——布儒斯特窗效应。</p>
+
+<p style="text-indent:2em;">对于非磁性介质（$\mu_1\approx\mu_2\approx\mu_0$），$\theta_B = \arctan\sqrt{\varepsilon_2/\varepsilon_1}$。</p>
+
+<h2 style="text-indent:0;">本章核心公式汇总</h2>
+
+<table style="border-collapse:collapse;width:80%;margin:20px auto;text-align:center;">
+<thead>
+<tr>
+<td style="border:1px solid #999;padding:8px;font-weight:bold;">项目</td>
+<td style="border:1px solid #999;padding:8px;font-weight:bold;">公式</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #999;padding:8px;">反射系数（垂直入射）</td>
+<td style="border:1px solid #999;padding:8px;">$\Gamma = \dfrac{\eta_2-\eta_1}{\eta_2+\eta_1}$</td>
+</tr>
+<tr>
+<td style="border:1px solid #999;padding:8px;">透射系数</td>
+<td style="border:1px solid #999;padding:8px;">$\tau = \dfrac{2\eta_2}{\eta_2+\eta_1} = 1+\Gamma$</td>
+</tr>
+<tr>
+<td style="border:1px solid #999;padding:8px;">驻波比</td>
+<td style="border:1px solid #999;padding:8px;">$\mathrm{SWR} = \dfrac{1+|\Gamma|}{1-|\Gamma|}$</td>
+</tr>
+<tr>
+<td style="border:1px solid #999;padding:8px;">斯涅耳定律</td>
+<td style="border:1px solid #999;padding:8px;">$\dfrac{\sin\theta_i}{\sin\theta_t} = \dfrac{n_2}{n_1}$</td>
+</tr>
+<tr>
+<td style="border:1px solid #999;padding:8px;">全反射临界角</td>
+<td style="border:1px solid #999;padding:8px;">$\theta_c = \arcsin(n_2/n_1)$</td>
+</tr>
+<tr>
+<td style="border:1px solid #999;padding:8px;">布儒斯特角</td>
+<td style="border:1px solid #999;padding:8px;">$\tan\theta_B = n_2/n_1$</td>
+</tr>
+<tr>
+<td style="border:1px solid #999;padding:8px;">$\lambda/4$ 阻抗变换</td>
+<td style="border:1px solid #999;padding:8px;">$\eta_{\text{in}} = \eta_1^2/\eta_2$</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+      </div>
+    </div>
+    
+    <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div><a href="../articles/000040.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 均匀平面波</a></div>
+      <div><a href="../articles/000042.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">电磁波的辐射 →</a></div>
+    </div>
+    
+    <div class="article-container" id="comment-box" style="margin-top:10px;">
+      <div class="article-content markdown-body">
+        <h2 style="margin:10px 0">评论</h2>
+        <div id="tcomment"></div>
+        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
+    <ul id="toc-list">
+      <li><a href="#" id="toc-a-on">目录</a></li>
+    </ul>
+  </aside>
+  
+</section>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc-sidebar');
+  var article = document.querySelector('.article-container');
+  if (toc && article) {
+    function updateToc(){
+      var artTop = article.getBoundingClientRect().top;
+      toc.style.top = (artTop > 60 ? artTop : 60) + 'px';
+    }
+    updateToc();
+    toc.style.visibility = 'visible';
+    window.addEventListener('scroll', updateToc);
+    window.addEventListener('resize', updateToc);
+  }
+  var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
+  var tocList = document.getElementById('toc-list');
+  if(!tocList || headings.length === 0) return;
+  tocList.innerHTML = '';
+  headings.forEach(function(h, i){
+    var id = 'heading-' + i;
+    h.id = id;
+    var level = parseInt(h.tagName.charAt(1));
+    var indent = '   '.repeat(level - 1);
+    tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
+  });
+})();
+</script>
+
+
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--bg-card); box-shadow: var(--shadow-card);" onclick="var d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" title="切换深色/浅色模式">
+    <span id="theme-icon">☀️</span>
+  </div>
+  <script>
+    (function(){
+      var icon = document.getElementById('theme-icon');
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      icon.textContent = isDark ? '☀️' : '🌙';
+      var orig = window.pagereload;
+      window.pagereload = function(m){
+        orig(m);
+        icon.textContent = (m === 2) ? '☀️' : '🌙';
+      };
+    })();
+  </script>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2021 – <span class="year"></span> Soyorin.Work</span>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank" rel="noopener">Source</a>
+    </div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="../js/vditor.min.js"></script>
+  <script src="../js/article-detail.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none",
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath:  [["$", "$"]],
+        displayMath: [["$$","$$"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre","code","a"],
+        ignoreClass:"comment-content"
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+        showMathMenu: false
+      }
+    });
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
+
+</body>
+</html>

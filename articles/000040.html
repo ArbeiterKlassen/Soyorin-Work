@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="理想介质与导电介质中平面波的完整推导：亥姆霍兹方程解、波阻抗与波速、趋肤深度、电磁波极化（线/圆/椭圆）、相速度与群速度">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="均匀平面波">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>均匀平面波</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/article-detail.css">
+  
+  <link rel="stylesheet" href="../css/code.css">
+  
+  <link rel="stylesheet" href="../css/github-markdown.css">
+  
+  <link rel="stylesheet" href="../css/vditor.css">
+  
+  
+  <style>
+    .lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }
+    .markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 10px; }
+    @media (max-width: 767px) { .markdown-body { padding: 15px; } .markdown-body h1 { font-size: 1.35em; } }
+    .codehilite { border-radius: 10px; }
+    .article-content img { max-width: 100%; }
+    #outerdiv { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.3); display: none; z-index: 200; }
+  </style>
+  
+  
+  <!-- 初始主题检测 + 全局变量 (需在页面内容前定义) -->
+  <script>
+    var mode = 1;
+    (function() {
+      var saved = localStorage.getItem('soyorin-mode');
+      if (saved) mode = parseInt(saved);
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function getParams(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+  </script>
+</head>
+<body>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
+
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+  </nav>
+  <button id="mobile_cate" style="border:none;outline:none;">☰</button>
+  <div id="nav-m-list">
+    <button id="cancel" style="position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-primary);">✕</button>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
+  </div>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  
+
+  <div class="headpage"><div class="headpage-cover"></div></div>
+<section class="main">
+  <div class="left-box" style="max-width:830px;width:100%;margin:0 auto;float:none;">
+    <div class="article-container">
+      <div class="article-content markdown-body">
+        <div style="font-family:Times New Roman,Times,serif;">
+
+<h1 style="text-indent:0;">均匀平面波</h1>
+<p style="text-align:center;font-size:16px;color:var(--text-muted);">电磁场理论 · 第六章</p>
+
+<h2 style="text-indent:0;">理想介质空间中的平面电磁波</h2>
+
+<h3 style="text-indent:0;">均匀平面波的定义</h3>
+
+<p style="text-indent:2em;">均匀平面波是最简单的电磁波解：等相位面为平面，且在等相位面上各点的场强大小和方向均相同（即场量仅沿传播方向变化）。</p>
+
+<h3 style="text-indent:0;">亥姆霍兹方程与平面波解</h3>
+
+<p style="text-indent:2em;">在无源（$\rho=0,\;\mathbf{J}=0$）、线性、均匀、各向同性理想介质（$\sigma=0$）中，时谐场的亥姆霍兹方程为：</p>
+
+$$
+\nabla^2\dot{\mathbf{E}} + k^2\dot{\mathbf{E}} = 0,\qquad k = \omega\sqrt{\mu\varepsilon}
+$$
+
+<p style="text-indent:2em;">设波沿 $+z$ 方向传播，且 $\dot{\mathbf{E}}$ 仅随 $z$ 变化、只有 $x$ 分量：$\dot{\mathbf{E}} = \dot{E}_x(z)\hat{\mathbf{e}}_{x}$。方程简化为：</p>
+
+$$
+\frac{\mathrm{d}^2\dot{E}_x}{\mathrm{d}z^2} + k^2\dot{E}_x = 0
+$$
+
+<p style="text-indent:2em;">通解：</p>
+
+$$
+\dot{E}_x(z) = A e^{-\mathrm{j} kz} + B e^{+\mathrm{j} kz}
+$$
+
+<p style="text-indent:2em;">时域形式：</p>
+
+$$
+\mathbf{E}(z,t) = \operatorname{Re}[(A e^{-\mathrm{j} kz} + B e^{+\mathrm{j} kz})e^{\mathrm{j}\omega t}] = |A|\cos(\omega t - kz + \phi_A) + |B|\cos(\omega t + kz + \phi_B)
+$$
+
+<p style="text-indent:2em;">第一项代表沿 $+z$ 方向传播的波（正向波），第二项代表沿 $-z$ 方向传播的波（反向波）。</p>
+
+<h3 style="text-indent:0;">平面波的基本性质</h3>
+
+<h4 style="text-indent:0;">波速与波长</h4>
+
+<p style="text-indent:2em;">相速度（等相位面移动速度）：</p>
+
+$$
+\boxed{v_p = \frac{\omega}{k} = \frac{1}{\sqrt{\mu\varepsilon}}}
+$$
+
+<p style="text-indent:2em;">真空中：$c = 1/\sqrt{\mu_0\varepsilon_0}$。</p>
+
+<p style="text-indent:2em;">波长：$\lambda = 2\pi/k = v_p/f$。</p>
+
+<h4 style="text-indent:0;">波阻抗</h4>
+
+<p style="text-indent:2em;">由麦克斯韦方程 $\nabla\times\dot{\mathbf{E}} = -\mathrm{j}\omega\mu\dot{\mathbf{H}}$ 求磁场。对正向波 $\dot{\mathbf{E}} = \dot{E}_0 e^{-\mathrm{j} kz}\hat{\mathbf{e}}_{x}$：</p>
+
+$$
+\dot{\mathbf{H}} = \frac{\mathrm{j}}{\omega\mu}\nabla\times\dot{\mathbf{E}}
+    = \frac{\mathrm{j}}{\omega\mu}\left(-\mathrm{j} k \dot{E}_0 e^{-\mathrm{j} kz}\right)\hat{\mathbf{e}}_{y}
+    = \frac{k}{\omega\mu}\dot{E}_0 e^{-\mathrm{j} kz}\hat{\mathbf{e}}_{y}
+    = \frac{\dot{E}_0}{\eta} e^{-\mathrm{j} kz}\hat{\mathbf{e}}_{y}
+$$
+
+<p style="text-indent:2em;">定义<b>波阻抗（本征阻抗）</b>：</p>
+
+$$
+\boxed{\eta = \frac{|\dot{\mathbf{E}}|}{|\dot{\mathbf{H}}|} = \frac{\omega\mu}{k} = \sqrt{\frac{\mu}{\varepsilon}}}
+$$
+
+<p style="text-indent:2em;">真空波阻抗：$\eta_0 = \sqrt{\mu_0/\varepsilon_0} \approx 377\;\Omega$（即 $120\pi\;\Omega$）。</p>
+
+<h4 style="text-indent:0;">电场与磁场的关系</h4>
+
+$$
+\boxed{\dot{\mathbf{H}} = \frac{1}{\eta}\hat{\mathbf{e}}_{k}\times\dot{\mathbf{E}}},\qquad
+\boxed{\dot{\mathbf{E}} = -\eta\,\hat{\mathbf{e}}_{k}\times\dot{\mathbf{H}}}
+$$
+
+<p style="text-indent:2em;">其中 $\hat{\mathbf{e}}_{k}$ 为传播方向的单位矢量。</p>
+
+<p style="text-indent:2em;">电磁场矢量满足：</p>
+
+<ol>
+<li>$\mathbf{E}\perp\mathbf{H}$（横电磁波 TEM）；</li>
+<li>$\mathbf{E}\perp\hat{\mathbf{e}}_{k}$，$\mathbf{H}\perp\hat{\mathbf{e}}_{k}$（横波）；</li>
+<li>$\mathbf{E}\times\mathbf{H}$ 指向传播方向（$\hat{\mathbf{e}}_{k}$）；</li>
+<li>$\mathbf{E}$ 和 $\mathbf{H}$ 同相（理想介质中）。</li>
+</ol>
+
+<h4 style="text-indent:0;">波数的物理意义</h4>
+
+$$
+k = \omega\sqrt{\mu\varepsilon} = \frac{2\pi}{\lambda}
+$$
+
+<p style="text-indent:2em;">$k$ 表示单位长度上的相位变化，单位为 $\mathrm{rad/m}$。</p>
+
+<h3 style="text-indent:0;">沿任意方向传播的平面波</h3>
+
+<p style="text-indent:2em;">设传播方向单位矢量为 $\hat{\mathbf{e}}_{k}$（波矢 $\mathbf{k}=k\hat{\mathbf{e}}_{k}$），则平面波表达式为：</p>
+
+$$
+\boxed{\dot{\mathbf{E}}(\mathbf{r}) = \dot{\mathbf{E}}_0 e^{-\mathrm{j}\mathbf{k}\cdot\mathbf{r}}},\qquad
+\dot{\mathbf{H}}(\mathbf{r}) = \frac{1}{\eta}\hat{\mathbf{e}}_{k}\times\dot{\mathbf{E}}(\mathbf{r})
+$$
+
+<p style="text-indent:2em;">其中 $\dot{\mathbf{E}}_0$ 需满足 $\mathbf{k}\cdot\dot{\mathbf{E}}_0 = 0$（横波条件）。</p>
+
+<hr>
+
+<h2 style="text-indent:0;">导电介质中的平面波</h2>
+
+<h3 style="text-indent:0;">导电介质中的亥姆霍兹方程</h3>
+
+<p style="text-indent:2em;">导电介质（$\sigma\neq 0$）中，安培-麦克斯韦定律含传导电流项：</p>
+
+$$
+\nabla\times\dot{\mathbf{H}} = \sigma\dot{\mathbf{E}} + \mathrm{j}\omega\varepsilon\dot{\mathbf{E}} = \mathrm{j}\omega\left(\varepsilon - \mathrm{j}\frac{\sigma}{\omega}\right)\dot{\mathbf{E}} = \mathrm{j}\omega\varepsilon_c\dot{\mathbf{E}}
+$$
+
+<p style="text-indent:2em;">定义<b>复介电常数</b>：</p>
+
+$$
+\boxed{\varepsilon_c = \varepsilon - \mathrm{j}\frac{\sigma}{\omega} = \varepsilon\left(1 - \mathrm{j}\frac{\sigma}{\omega\varepsilon}\right)}
+$$
+
+<p style="text-indent:2em;">复波数：$\gamma = \mathrm{j}\omega\sqrt{\mu\varepsilon_c} = \alpha + \mathrm{j}\beta$，其中 $\alpha$ 为衰减常数，$\beta$ 为相位常数。</p>
+
+<h3 style="text-indent:0;">良导体近似</h3>
+
+<p style="text-indent:2em;">当 $\sigma \gg \omega\varepsilon$（良导体条件），近似有：</p>
+
+$$
+\begin{aligned}
+\alpha &\approx \beta \approx \sqrt{\frac{\omega\mu\sigma}{2}} \\
+\eta_c &= \sqrt{\frac{\mathrm{j}\omega\mu}{\sigma}} \approx (1+\mathrm{j})\sqrt{\frac{\omega\mu}{2\sigma}} \quad\text{（复波阻抗，感性）}
+\end{aligned}
+$$
+
+<p style="text-indent:2em;"><b>趋肤深度：</b>电磁波幅值衰减到表面值 $1/e$ 的深度。</p>
+
+$$
+\boxed{\delta = \frac{1}{\alpha} = \sqrt{\frac{2}{\omega\mu\sigma}}}
+$$
+
+<p style="text-indent:2em;">良导体中电场和磁场的相位差约为 $45^\circ$。</p>
+
+<h3 style="text-indent:0;">导电介质中的平面波解</h3>
+
+$$
+\dot{\mathbf{E}} = \dot{\mathbf{E}}_0 e^{-\alpha z} e^{-\mathrm{j}\beta z}
+$$
+
+<p style="text-indent:2em;">波幅按 $e^{-\alpha z}$ 指数衰减。</p>
+
+<hr>
+
+<h2 style="text-indent:0;">电磁波的极化</h2>
+
+<p style="text-indent:2em;">极化描述电场矢量末端在垂直于传播方向的平面内的运动轨迹。</p>
+
+<h3 style="text-indent:0;">线极化</h3>
+
+<p style="text-indent:2em;">设 $\dot{\mathbf{E}} = (\hat{\mathbf{e}}_{x}E_{x0} \pm \hat{\mathbf{e}}_{y}E_{y0})e^{-\mathrm{j} kz}$（两分量同相或反相），合成电场方向始终沿固定直线。</p>
+
+<p style="text-indent:2em;">条件：$\Delta\phi = \phi_y-\phi_x = 0$ 或 $\pi$。</p>
+
+<h3 style="text-indent:0;">圆极化</h3>
+
+<p style="text-indent:2em;">$\dot{\mathbf{E}} = (E_0\hat{\mathbf{e}}_{x} \pm \mathrm{j} E_0\hat{\mathbf{e}}_{y})e^{-\mathrm{j} kz}$（两分量振幅相等，相位差 $\pi/2$）。</p>
+
+<p style="text-indent:2em;">条件：$E_{x0}=E_{y0}$ 且 $\Delta\phi = \pm\pi/2$。</p>
+
+<ul>
+<li>$\Delta\phi = +\pi/2$（$y$ 超前 $x$）：左旋圆极化</li>
+<li>$\Delta\phi = -\pi/2$（$x$ 超前 $y$）：右旋圆极化</li>
+</ul>
+
+<h3 style="text-indent:0;">椭圆极化</h3>
+
+<p style="text-indent:2em;">一般情况下（任意振幅比和相位差），轨迹为椭圆。极化椭圆的长短轴比称为<b>轴比</b>（AR）。</p>
+
+<hr>
+
+<h2 style="text-indent:0;">相速度和群速度</h2>
+
+<h3 style="text-indent:0;">相速度</h3>
+
+<p style="text-indent:2em;">单频正弦波的等相位面移动速度：</p>
+
+$$
+v_p = \frac{\omega}{\beta}
+$$
+
+<p style="text-indent:2em;">在非色散介质中（$\varepsilon,\mu$ 不随 $\omega$ 变化），$v_p$ 为常数。真空中 $v_p=c$。</p>
+
+<h3 style="text-indent:0;">群速度</h3>
+
+<p style="text-indent:2em;">窄带信号包络的传播速度：</p>
+
+$$
+\boxed{v_g = \frac{\mathrm{d}\omega}{\mathrm{d}\beta}}
+$$
+
+<p style="text-indent:2em;">群速度与相速度的关系：</p>
+
+$$
+v_g = v_p - \lambda\frac{\mathrm{d} v_p}{\mathrm{d}\lambda}
+$$
+
+<p style="text-indent:2em;">正常色散（$v_g<v_p$）和反常色散（$v_g>v_p$）均可出现。非色散介质中 $v_g=v_p$。</p>
+
+<h3 style="text-indent:0;">本章核心公式</h3>
+
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+<tr style="border-bottom:1px solid #ccc;">
+<th style="padding:8px 12px;text-align:center;border:1px solid #ccc;">项目</th>
+<th style="padding:8px 12px;text-align:center;border:1px solid #ccc;">公式</th>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #ccc;">波数</td>
+<td style="padding:8px 12px;border:1px solid #ccc;">$k=\omega\sqrt{\mu\varepsilon}=2\pi/\lambda$</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #ccc;">波阻抗</td>
+<td style="padding:8px 12px;border:1px solid #ccc;">$\eta=\sqrt{\mu/\varepsilon}$，真空中 $\eta_0\approx397\;\Omega$</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #ccc;">电场-磁场关系</td>
+<td style="padding:8px 12px;border:1px solid #ccc;">$\dot{\mathbf{H}}=\frac{1}{\eta}\hat{\mathbf{e}}_{k}\times\dot{\mathbf{E}}$</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #ccc;">复介电常数</td>
+<td style="padding:8px 12px;border:1px solid #ccc;">$\varepsilon_c=\varepsilon-\mathrm{j}\frac{\sigma}{\omega}$</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #ccc;">趋肤深度</td>
+<td style="padding:8px 12px;border:1px solid #ccc;">$\delta=\sqrt{2/(\omega\mu\sigma)}$</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #ccc;">复波阻抗（良导体）</td>
+<td style="padding:8px 12px;border:1px solid #ccc;">$\eta_c\approx(1+\mathrm{j})\sqrt{\omega\mu/(2\sigma)}$</td>
+</tr>
+</table>
+
+</div>
+
+      </div>
+    </div>
+    
+    <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div><a href="../articles/000039.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 时变电磁场</a></div>
+      <div><a href="../articles/000041.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">电磁波的传播 →</a></div>
+    </div>
+    
+    <div class="article-container" id="comment-box" style="margin-top:10px;">
+      <div class="article-content markdown-body">
+        <h2 style="margin:10px 0">评论</h2>
+        <div id="tcomment"></div>
+        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
+    <ul id="toc-list">
+      <li><a href="#" id="toc-a-on">目录</a></li>
+    </ul>
+  </aside>
+  
+</section>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc-sidebar');
+  var article = document.querySelector('.article-container');
+  if (toc && article) {
+    function updateToc(){
+      var artTop = article.getBoundingClientRect().top;
+      toc.style.top = (artTop > 60 ? artTop : 60) + 'px';
+    }
+    updateToc();
+    toc.style.visibility = 'visible';
+    window.addEventListener('scroll', updateToc);
+    window.addEventListener('resize', updateToc);
+  }
+  var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
+  var tocList = document.getElementById('toc-list');
+  if(!tocList || headings.length === 0) return;
+  tocList.innerHTML = '';
+  headings.forEach(function(h, i){
+    var id = 'heading-' + i;
+    h.id = id;
+    var level = parseInt(h.tagName.charAt(1));
+    var indent = '   '.repeat(level - 1);
+    tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
+  });
+})();
+</script>
+
+
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--bg-card); box-shadow: var(--shadow-card);" onclick="var d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" title="切换深色/浅色模式">
+    <span id="theme-icon">☀️</span>
+  </div>
+  <script>
+    (function(){
+      var icon = document.getElementById('theme-icon');
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      icon.textContent = isDark ? '☀️' : '🌙';
+      var orig = window.pagereload;
+      window.pagereload = function(m){
+        orig(m);
+        icon.textContent = (m === 2) ? '☀️' : '🌙';
+      };
+    })();
+  </script>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2021 – <span class="year"></span> Soyorin.Work</span>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank" rel="noopener">Source</a>
+    </div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="../js/vditor.min.js"></script>
+  <script src="../js/article-detail.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none",
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath:  [["$", "$"]],
+        displayMath: [["$$","$$"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre","code","a"],
+        ignoreClass:"comment-content"
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+        showMathMenu: false
+      }
+    });
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
+
+</body>
+</html>
