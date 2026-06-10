@@ -1,0 +1,174 @@
+<div style="font-family:Times New Roman,Times,serif;">
+
+<p style="text-indent:0;"><h1>时变电磁场</h1></p>
+
+<p style="text-indent:0;"><h2>一、时变电磁场的势函数</h2></p>
+
+<p style="text-indent:0;"><h2>1. 波动方程</h2></p>
+
+<p style="text-indent:2em;">从麦克斯韦方程组出发，在均匀、线性、各向同性无源介质中（$\rho=0,\;\mathbf{J}=0$），对法拉第定律取旋度：</p>
+
+<p style="text-align:center;text-indent:0;">$$\nabla\times(\nabla\times\mathbf{E}) = -\mu\frac{\partial}{\partial t}(\nabla\times\mathbf{H}) = -\mu\varepsilon\frac{\partial^2\mathbf{E}}{\partial t^2}$$</p>
+
+<p style="text-indent:2em;">利用矢量恒等式 $\nabla\times(\nabla\times\mathbf{E}) = \nabla(\nabla\cdot\mathbf{E}) - \nabla^2\mathbf{E}$ 及无源条件 $\nabla\cdot\mathbf{E}=0$：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\nabla^2\mathbf{E} - \mu\varepsilon\frac{\partial^2\mathbf{E}}{\partial t^2} = 0}$$</p>
+
+<p style="text-indent:2em;">同理得磁场波动方程：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\nabla^2\mathbf{H} - \mu\varepsilon\frac{\partial^2\mathbf{H}}{\partial t^2} = 0}$$</p>
+
+<p style="text-indent:2em;">波速：$v = 1/\sqrt{\mu\varepsilon}$。真空中 $c = 1/\sqrt{\mu_0\varepsilon_0}\approx 3\times 10^8\;\mathrm{m/s}$。</p>
+
+<p style="text-indent:0;"><h2>2. 势函数及其规范</h2></p>
+
+<p style="text-indent:2em;">由 $\nabla\cdot\mathbf{B}=0$，引入动态矢量位 $\mathbf{A}(\mathbf{r},t)$：</p>
+
+<p style="text-align:center;text-indent:0;">$$\mathbf{B} = \nabla\times\mathbf{A}$$</p>
+
+<p style="text-indent:2em;">代入法拉第定律：$\nabla\times\mathbf{E} = -\partial(\nabla\times\mathbf{A})/\partial t$，即：</p>
+
+<p style="text-align:center;text-indent:0;">$$\nabla\times\left(\mathbf{E} + \frac{\partial\mathbf{A}}{\partial t}\right) = 0$$</p>
+
+<p style="text-indent:2em;">引入动态标量位 $\phi(\mathbf{r},t)$：</p>
+
+<p style="text-align:center;text-indent:0;">$$\mathbf{E} = -\nabla\phi - \frac{\partial\mathbf{A}}{\partial t}$$</p>
+
+<p style="text-indent:0;"><h3>2.1 达朗贝尔方程</h3></p>
+
+<p style="text-indent:2em;">将 $\mathbf{E},\mathbf{B}$ 用势函数表示代入麦克斯韦方程组，并利用洛伦兹规范：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\nabla\cdot\mathbf{A} + \mu\varepsilon\frac{\partial\phi}{\partial t} = 0}$$</p>
+
+<p style="text-indent:2em;">得达朗贝尔方程（非齐次波动方程）：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\nabla^2\mathbf{A} - \mu\varepsilon\frac{\partial^2\mathbf{A}}{\partial t^2} = -\mu\mathbf{J}}$$</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\nabla^2\phi - \mu\varepsilon\frac{\partial^2\phi}{\partial t^2} = -\frac{\rho}{\varepsilon}}$$</p>
+
+<p style="text-indent:0;"><h3>2.2 库仑规范</h3></p>
+
+<p style="text-indent:2em;">另一种常用规范：$\nabla\cdot\mathbf{A}=0$。此时标量位满足泊松方程，但矢量位方程较复杂。</p>
+
+<p style="text-indent:0;"><h2>3. 推迟势</h2></p>
+
+<p style="text-indent:2em;">达朗贝尔方程的解——推迟势。空间 $\mathbf{r}$ 处、$t$ 时刻的势由较早时刻 $t-R/v$ 的源分布决定（电磁作用以有限速度传播）：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\phi(\mathbf{r},t) = \frac{1}{4\pi\varepsilon}\iiint_V \frac{\rho(\mathbf{r}',t-R/v)}{R}\,dV'}$$</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\mathbf{A}(\mathbf{r},t) = \frac{\mu}{4\pi}\iiint_V \frac{\mathbf{J}(\mathbf{r}',t-R/v)}{R}\,dV'}$$</p>
+
+<p style="text-indent:2em;">其中 $R=|\mathbf{r}-\mathbf{r}'|$，$v=1/\sqrt{\mu\varepsilon}$。</p>
+
+<p style="text-indent:2em;">物理意义：观测点的势不是由当前时刻的源决定，而是由推迟时刻 $t-R/v$ 的源决定。这体现了电磁相互作用的有限传播速度。</p>
+
+<hr>
+
+<p style="text-indent:0;"><h2>二、时变电磁场的时谐展开</h2></p>
+
+<p style="text-indent:0;"><h2>4. 时谐场的基本概念</h2></p>
+
+<p style="text-indent:2em;">时谐场（Time-Harmonic Field）是正弦稳态电磁场——各场量随时间按正弦（余弦）规律变化。对于时谐场，采用<em>复数表示法（相量法）</em>将时域偏微分方程转化为频域偏微分方程，大为简化。</p>
+
+<p style="text-indent:0;"><h3>4.1 复数表示法</h3></p>
+
+<p style="text-indent:2em;">时域瞬时值 $\to$ 复振幅（相量）：</p>
+
+<p style="text-align:center;text-indent:0;">$$\mathbf{E}(\mathbf{r},t) = \operatorname{Re}\left[\dot{\mathbf{E}}(\mathbf{r})e^{\mathrm{j}\omega t}\right]$$</p>
+
+<p style="text-indent:2em;">其中 $\dot{\mathbf{E}}(\mathbf{r})$ 为复振幅矢量，仅与空间坐标有关。时间导数转化为代数运算：$\partial/\partial t \to \mathrm{j}\omega$。</p>
+
+<p style="text-indent:0;"><h3>4.2 频域麦克斯韦方程组</h3></p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{aligned} \nabla\times\dot{\mathbf{E}} &= -\mathrm{j}\omega\mu\dot{\mathbf{H}} \\ \nabla\times\dot{\mathbf{H}} &= \dot{\mathbf{J}} + \mathrm{j}\omega\varepsilon\dot{\mathbf{E}} \\ \nabla\cdot\dot{\mathbf{D}} &= \dot{\rho} \\ \nabla\cdot\dot{\mathbf{B}} &= 0 \end{aligned}$$</p>
+
+<p style="text-indent:0;"><h3>4.3 频域波动方程（亥姆霍兹方程）</h3></p>
+
+<p style="text-indent:2em;">无源区域：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\nabla^2\dot{\mathbf{E}} + k^2\dot{\mathbf{E}} = 0},\qquad \boxed{\nabla^2\dot{\mathbf{H}} + k^2\dot{\mathbf{H}} = 0}$$</p>
+
+<p style="text-indent:2em;">其中 $k = \omega\sqrt{\mu\varepsilon}$ 为波数（传播常数）。</p>
+
+<p style="text-indent:0;"><h3>4.4 洛伦兹规范与达朗贝尔方程的频域形式</h3></p>
+
+<p style="text-align:center;text-indent:0;">$$\nabla\cdot\dot{\mathbf{A}} + \mathrm{j}\omega\mu\varepsilon\dot{\phi} = 0$$</p>
+
+<p style="text-align:center;text-indent:0;">$$\nabla^2\dot{\mathbf{A}} + k^2\dot{\mathbf{A}} = -\mu\dot{\mathbf{J}},\qquad \nabla^2\dot{\phi} + k^2\dot{\phi} = -\frac{\dot{\rho}}{\varepsilon}$$</p>
+
+<hr>
+
+<p style="text-indent:0;"><h2>三、电磁波的能量——坡印廷定理</h2></p>
+
+<p style="text-indent:0;"><h2>5. 坡印廷定理（时域）</h2></p>
+
+<p style="text-indent:2em;">将法拉第定律 $\nabla\times\mathbf{E}=-\partial\mathbf{B}/\partial t$ 点乘 $\mathbf{H}$，安培-麦克斯韦定律 $\nabla\times\mathbf{H}=\mathbf{J}+\partial\mathbf{D}/\partial t$ 点乘 $\mathbf{E}$，两式相减：</p>
+
+<p style="text-align:center;text-indent:0;">$$\mathbf{H}\cdot(\nabla\times\mathbf{E}) - \mathbf{E}\cdot(\nabla\times\mathbf{H}) = -\mathbf{H}\cdot\frac{\partial\mathbf{B}}{\partial t} - \mathbf{E}\cdot\mathbf{J} - \mathbf{E}\cdot\frac{\partial\mathbf{D}}{\partial t}$$</p>
+
+<p style="text-indent:2em;">利用矢量恒等式 $\nabla\cdot(\mathbf{E}\times\mathbf{H}) = \mathbf{H}\cdot(\nabla\times\mathbf{E}) - \mathbf{E}\cdot(\nabla\times\mathbf{H})$，在线性各向同性介质中 $\mathbf{D}=\varepsilon\mathbf{E},\;\mathbf{B}=\mu\mathbf{H}$：</p>
+
+<p style="text-align:center;text-indent:0;">$$\nabla\cdot(\mathbf{E}\times\mathbf{H}) = -\mathbf{E}\cdot\mathbf{J} - \frac{\partial}{\partial t}\left(\frac{1}{2}\varepsilon E^2 + \frac{1}{2}\mu H^2\right)$$</p>
+
+<p style="text-indent:2em;">定义<em>坡印廷矢量</em>（能流密度矢量）：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\mathbf{S} = \mathbf{E}\times\mathbf{H}}$$</p>
+
+<p style="text-indent:2em;">单位为 $\mathrm{W/m^2}$。方向为电磁能量传播方向。</p>
+
+<p style="text-indent:2em;"><em>坡印廷定理的积分形式：</em></p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\oiint_S \mathbf{S}\cdot\,d\mathbf{S} = -\iiint_V \mathbf{E}\cdot\mathbf{J}\,dV - \frac{d}{dt}\iiint_V (w_e + w_m)\,dV}$$</p>
+
+<p style="text-indent:2em;">物理意义：流入闭合面 $S$ 的电磁功率 = 体积内消耗的焦耳热功率 + 体积内电磁储能的增加率。</p>
+
+<p style="text-indent:0;"><h2>6. 复坡印廷定理</h2></p>
+
+<p style="text-indent:2em;">时谐场中，定义<em>复坡印廷矢量</em>：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\dot{\mathbf{S}} = \frac{1}{2}\dot{\mathbf{E}}\times\dot{\mathbf{H}}^*}$$</p>
+
+<p style="text-indent:2em;">复坡印廷定理：</p>
+
+<p style="text-align:center;text-indent:0;">$$\oiint_S \dot{\mathbf{S}}\cdot\,d\mathbf{S} = -\frac{1}{2}\iiint_V \sigma|\dot{\mathbf{E}}|^2\,dV + \mathrm{j}\,2\omega\iiint_V (w_{m,\text{av}} - w_{e,\text{av}})\,dV$$</p>
+
+<p style="text-indent:2em;">实部：有功功率（欧姆损耗）。虚部：无功功率（磁场储能与电场储能之差）。</p>
+
+<p style="text-indent:2em;">平均坡印廷矢量（时均能流密度）：</p>
+
+<p style="text-align:center;text-indent:0;">$$\mathbf{S}_{\text{av}} = \operatorname{Re}[\dot{\mathbf{S}}] = \frac{1}{2}\operatorname{Re}[\dot{\mathbf{E}}\times\dot{\mathbf{H}}^*]$$</p>
+
+<p style="text-indent:0;"><h2>7. 本章核心公式</h2></p>
+
+<table style="width:100%;border-collapse:collapse;margin:12px 0;text-indent:0;">
+<tr style="background-color:#f5f5f5;">
+<th style="border:1px solid #ccc;padding:8px;font-weight:bold;text-align:center;">项目</th>
+<th style="border:1px solid #ccc;padding:8px;font-weight:bold;text-align:center;">核心公式</th>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:8px;">波动方程（时域）</td>
+<td style="border:1px solid #ccc;padding:8px;">$\nabla^2\mathbf{E}-\mu\varepsilon\frac{\partial^2\mathbf{E}}{\partial t^2}=0$</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:8px;">达朗贝尔方程</td>
+<td style="border:1px solid #ccc;padding:8px;">$\nabla^2\mathbf{A}-\mu\varepsilon\frac{\partial^2\mathbf{A}}{\partial t^2}=-\mu\mathbf{J}$</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:8px;">推迟势</td>
+<td style="border:1px solid #ccc;padding:8px;">$\phi(\mathbf{r},t)=\frac{1}{4\pi\varepsilon}\iiint\frac{\rho(\mathbf{r}', t-R/v)}{R}\,dV'$</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:8px;">亥姆霍兹方程</td>
+<td style="border:1px solid #ccc;padding:8px;">$\nabla^2\dot{\mathbf{E}}+k^2\dot{\mathbf{E}}=0$，$k=\omega\sqrt{\mu\varepsilon}$</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:8px;">坡印廷矢量</td>
+<td style="border:1px solid #ccc;padding:8px;">$\mathbf{S}=\mathbf{E}\times\mathbf{H}$</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc;padding:8px;">复坡印廷矢量</td>
+<td style="border:1px solid #ccc;padding:8px;">$\dot{\mathbf{S}}=\frac{1}{2}\dot{\mathbf{E}}\times\dot{\mathbf{H}}^*$</td>
+</tr>
+</table>
+
+</div>

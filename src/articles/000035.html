@@ -1,0 +1,1219 @@
+<div style="font-family:Times New Roman,Times,serif;">
+
+<h1 style="text-indent:0;">矢量分析与场论基础</h1>
+
+<h2 style="text-indent:0;">正交曲线坐标系及其变换</h2>
+
+<h2 style="text-indent:0;">正交曲线坐标系概述</h2>
+
+<p style="text-indent:2em;">在三维空间中，空间任意一点的位置需要由三个相互独立的坐标来确定，这三个坐标构成的系统称为<b>坐标系</b>。若三个坐标轴在空间每一点都相互正交，则称为<b>正交曲线坐标系</b>。</p>
+
+<p style="text-indent:2em;">电磁场问题中，根据几何形状的对称性选择合适的坐标系，可以极大地简化问题。常用的三种正交坐标系为：</p>
+<ol>
+    <li>直角坐标系（Cartesian）—— 适用于矩形结构</li>
+    <li>圆柱坐标系（Cylindrical）—— 适用于圆柱形结构</li>
+    <li>球坐标系（Spherical）—— 适用于球形结构</li>
+</ol>
+
+<p style="text-indent:2em;">在任意正交曲线坐标系中，一个关键的概念是<b>拉梅系数（Lam\'{e} coefficients）</b>$h_1,h_2,h_3$，它表示坐标 $q_i$ 变化一个单位时空间位置移动的实际弧长：</p>
+$$ \,dl_i = h_i\,dq_i \quad (i=1,2,3) $$
+
+<p style="text-indent:2em;">体积元为：</p>
+$$ \,dV = h_1h_2h_3\,dq_1dq_2dq_3 $$
+
+<h3 style="text-indent:0;">直角坐标系</h3>
+
+<h4 style="text-indent:0;">坐标定义</h4>
+
+<p style="text-indent:2em;">坐标变量：$(x,y,z)$，各坐标取值范围均为 $(-\infty,+\infty)$。</p>
+
+<p style="text-indent:2em;">位置矢量：</p>
+$$ \mathbf{r} = x\hat{\mathbf{e}}_{x} + y\hat{\mathbf{e}}_{y} + z\hat{\mathbf{e}}_{z} $$
+
+<p style="text-indent:2em;">方向矢量 $\hat{\mathbf{e}}_{x},\hat{\mathbf{e}}_{y},\hat{\mathbf{e}}_{z}$ 是<b>常矢量</b>——方向不随空间位置改变。这是直角坐标系独有的优点。</p>
+
+<h4 style="text-indent:0;">弧长微元与体积元</h4>
+
+<p style="text-indent:2em;">线元矢量：</p>
+$$ d\mathbf{l} = dx\,\hat{\mathbf{e}}_{x} + dy\,\hat{\mathbf{e}}_{y} + dz\,\hat{\mathbf{e}}_{z} $$
+
+<p style="text-indent:2em;">各坐标方向的弧长微元：</p>
+$$ dl_x = dx,\quad dl_y = dy,\quad dl_z = dz $$
+
+<p style="text-indent:2em;">拉梅系数：</p>
+$$ \boxed{h_1 = h_x = 1,\quad h_2 = h_y = 1,\quad h_3 = h_z = 1} $$
+
+<p style="text-indent:2em;">体积元：</p>
+$$ \,dV = dx\,dy\,dz $$
+
+<h3 style="text-indent:0;">圆柱坐标系</h3>
+
+<h4 style="text-indent:0;">坐标定义</h4>
+
+<p style="text-indent:2em;">坐标变量 $(\rho,\varphi,z)$ 与直角坐标的关系：</p>
+$$\begin{aligned}
+    \rho &= \sqrt{x^2+y^2}, \quad \rho \in [0,\infty) \\
+    \varphi &= \arctan\frac{y}{x}, \quad \varphi \in [0,2\pi) \\
+    z &= z, \quad z \in (-\infty,\infty)
+\end{aligned}$$
+
+<p style="text-indent:2em;">逆变换（圆柱 $\to$ 直角）：</p>
+$$\begin{aligned}
+    x &= \rho\cos\varphi \\
+    y &= \rho\sin\varphi \\
+    z &= z
+\end{aligned}$$
+
+<p style="text-indent:2em;">方向矢量 $\hat{\mathbf{e}}_{\rho},\hat{\mathbf{e}}_{\varphi},\hat{\mathbf{e}}_{z}$ 中，$\hat{\mathbf{e}}_{\rho}$ 和 $\hat{\mathbf{e}}_{\varphi}$ 是<b>变矢量</b>（随 $\varphi$ 变化），$\hat{\mathbf{e}}_{z}$ 是常矢量。</p>
+
+<h4 style="text-indent:0;">弧长微元与拉梅系数</h4>
+
+<p style="text-indent:2em;">圆柱坐标系中，弧长微元为：</p>
+$$\begin{aligned}
+    dl_\rho &= d\rho \\
+    dl_\varphi &= \rho\,d\varphi \\
+    dl_z &= dz
+\end{aligned}$$
+
+<p style="text-indent:2em;">因此拉梅系数为：</p>
+$$ \boxed{h_1 = h_\rho = 1,\quad h_2 = h_\varphi = \rho,\quad h_3 = h_z = 1} $$
+
+<p style="text-indent:2em;">体积元：</p>
+$$ \,dV = \rho\,d\rho\,d\varphi\,dz $$
+
+<h3 style="text-indent:0;">球坐标系</h3>
+
+<h4 style="text-indent:0;">坐标定义</h4>
+
+<p style="text-indent:2em;">坐标变量 $(r,\theta,\varphi)$ 与直角坐标的关系：</p>
+$$\begin{aligned}
+    r &= \sqrt{x^2+y^2+z^2}, \quad r \in [0,\infty) \\
+    \theta &= \arctan\frac{\sqrt{x^2+y^2}}{z}, \quad \theta \in [0,\pi] \\
+    \varphi &= \arctan\frac{y}{x}, \quad \varphi \in [0,2\pi)
+\end{aligned}$$
+
+<p style="text-indent:2em;">逆变换（球 $\to$ 直角）：</p>
+$$\begin{aligned}
+    x &= r\sin\theta\cos\varphi \\
+    y &= r\sin\theta\sin\varphi \\
+    z &= r\cos\theta
+\end{aligned}$$
+
+<p style="text-indent:2em;">三个方向矢量 $\hat{\mathbf{e}}_{r},\hat{\mathbf{e}}_{\theta},\hat{\mathbf{e}}_{\varphi}$ 均为<b>变矢量</b>（随 $\theta,\varphi$ 变化）。</p>
+
+<h4 style="text-indent:0;">弧长微元与拉梅系数</h4>
+
+<p style="text-indent:2em;">球坐标系中，弧长微元为：</p>
+$$\begin{aligned}
+    dl_r &= dr \\
+    dl_\theta &= r\,d\theta \\
+    dl_\varphi &= r\sin\theta\,d\varphi
+\end{aligned}$$
+
+<p style="text-indent:2em;">因此拉梅系数为：</p>
+$$ \boxed{h_1 = h_r = 1,\quad h_2 = h_\theta = r,\quad h_3 = h_\varphi = r\sin\theta} $$
+
+<p style="text-indent:2em;">体积元：</p>
+$$ \,dV = r^2\sin\theta\,dr\,d\theta\,d\varphi $$
+
+<h3 style="text-indent:0;">三种坐标系拉梅系数汇总</h3>
+
+<p style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 三种正交曲线坐标系的拉梅系数与体积元</p>
+<table style="border-collapse:collapse;margin:0 auto;text-align:center;">
+<tr style="border-bottom:1px solid #ccc;">
+<th style="padding:4px 8px;border:1px solid #ccc;">坐标系</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">$h_1$</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">$h_2$</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">$h_3$</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">体积元 $dV$</th>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">直角 $(x,y,z)$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$dx\,dy\,dz$</td>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">圆柱 $(\rho,\varphi,z)$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\rho$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\rho\,d\rho\,d\varphi\,dz$</td>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">球 $(r,\theta,\varphi)$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$r$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$r\sin\theta$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$r^2\sin\theta\,dr\,d\theta\,d\varphi$</td>
+</tr>
+</table>
+
+<h2 style="text-indent:0;">坐标变换</h2>
+
+<h3 style="text-indent:0;">坐标变量的变换</h3>
+
+<p style="text-indent:2em;">任意正交曲线坐标系 $(q_1,q_2,q_3)$ 与直角坐标 $(x,y,z)$ 之间存在一一对应的变换关系：</p>
+$$\begin{aligned}
+    q_1 &= q_1(x,y,z), \quad q_2 = q_2(x,y,z), \quad q_3 = q_3(x,y,z) \\
+    x &= x(q_1,q_2,q_3), \quad y = y(q_1,q_2,q_3), \quad z = z(q_1,q_2,q_3)
+\end{aligned}$$
+
+<p style="text-indent:2em;">三种坐标系之间的变换关系已在上述各节中给出。值得指出的是，圆柱坐标与球坐标之间也可以直接变换：</p>
+$$\begin{aligned}
+    \rho &= r\sin\theta, \quad \varphi = \varphi, \quad z = r\cos\theta
+\end{aligned}$$
+
+<h3 style="text-indent:0;">方向矢量的变换</h3>
+
+<p style="text-indent:2em;">任意正交曲线坐标系的方向矢量与直角坐标系的方向矢量之间的变换可表示为矩阵形式：</p>
+$$ \begin{pmatrix}
+        \hat{\mathbf{e}}_{q_1} \\[3pt] \hat{\mathbf{e}}_{q_2} \\[3pt] \hat{\mathbf{e}}_{q_3}
+    \end{pmatrix}
+    = \mathbf{M}
+    \begin{pmatrix}
+        \hat{\mathbf{e}}_{x} \\[3pt] \hat{\mathbf{e}}_{y} \\[3pt] \hat{\mathbf{e}}_{z}
+    \end{pmatrix} $$
+
+<p style="text-indent:2em;">其中变换矩阵 $\mathbf{M}$ 的元素由坐标变换的偏导数决定。矩阵 $\mathbf{M}$ 的第 $i$ 行第 $j$ 列元素为：</p>
+$$ M_{ij} = \frac{1}{\kappa_i}\,\frac{\partial q_i}{\partial x_j} $$
+
+<p style="text-indent:2em;">归一化系数 $\kappa_i$ 为：</p>
+$$ \kappa_i = \sqrt{\left(\frac{\partial q_i}{\partial x}\right)^2
+                     + \left(\frac{\partial q_i}{\partial y}\right)^2
+                     + \left(\frac{\partial q_i}{\partial z}\right)^2} $$
+
+<h4 style="text-indent:0;">直角坐标与圆柱坐标的方向矢量变换</h4>
+
+$$ \boxed{
+    \begin{pmatrix} \hat{\mathbf{e}}_{\rho} \\[3pt] \hat{\mathbf{e}}_{\varphi} \\[3pt] \hat{\mathbf{e}}_{z} \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \cos\varphi & \sin\varphi & 0 \\
+        -\sin\varphi & \cos\varphi & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix} \hat{\mathbf{e}}_{x} \\[3pt] \hat{\mathbf{e}}_{y} \\[3pt] \hat{\mathbf{e}}_{z} \end{pmatrix}
+    } $$
+
+<h4 style="text-indent:0;">直角坐标与球坐标的方向矢量变换</h4>
+
+$$ \boxed{
+    \begin{pmatrix} \hat{\mathbf{e}}_{r} \\[3pt] \hat{\mathbf{e}}_{\theta} \\[3pt] \hat{\mathbf{e}}_{\varphi} \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \sin\theta\cos\varphi & \sin\theta\sin\varphi & \cos\theta \\
+        \cos\theta\cos\varphi & \cos\theta\sin\varphi & -\sin\theta \\
+        -\sin\varphi & \cos\varphi & 0
+    \end{pmatrix}
+    \begin{pmatrix} \hat{\mathbf{e}}_{x} \\[3pt] \hat{\mathbf{e}}_{y} \\[3pt] \hat{\mathbf{e}}_{z} \end{pmatrix}
+    } $$
+
+<h4 style="text-indent:0;">推导示例：球坐标方向矢量变换矩阵</h4>
+
+<p style="text-indent:2em;">下面我们以球坐标为例，具体推导方向矢量变换矩阵。由坐标变换关系：</p>
+$$ x = r\sin\theta\cos\varphi,\quad y = r\sin\theta\sin\varphi,\quad z = r\cos\theta $$
+
+<p style="text-indent:2em;">首先计算归一化系数。对于坐标 $q_1 = r$：</p>
+$$\begin{aligned}
+    \frac{\partial r}{\partial x} &= \frac{x}{r} = \sin\theta\cos\varphi, \quad
+    \frac{\partial r}{\partial y} = \frac{y}{r} = \sin\theta\sin\varphi, \quad
+    \frac{\partial r}{\partial z} = \frac{z}{r} = \cos\theta \\
+    \kappa_1 &= \sqrt{(\sin\theta\cos\varphi)^2 + (\sin\theta\sin\varphi)^2 + \cos^2\theta} = 1
+\end{aligned}$$
+
+<p style="text-indent:2em;">对于坐标 $q_2 = \theta$：</p>
+$$\begin{aligned}
+    \frac{\partial\theta}{\partial x} &= \frac{\partial}{\partial x}\arctan\frac{\sqrt{x^2+y^2}}{z}
+    = \frac{\cos\theta\cos\varphi}{r} \\
+    \frac{\partial\theta}{\partial y} &= \frac{\cos\theta\sin\varphi}{r} \\
+    \frac{\partial\theta}{\partial z} &= -\frac{\sin\theta}{r} \\
+    \kappa_2 &= \frac{1}{r}\sqrt{(\cos\theta\cos\varphi)^2 + (\cos\theta\sin\varphi)^2 + \sin^2\theta} = \frac{1}{r}
+\end{aligned}$$
+
+<p style="text-indent:2em;">对于坐标 $q_3 = \varphi$：</p>
+$$\begin{aligned}
+    \frac{\partial\varphi}{\partial x} &= -\frac{\sin\varphi}{r\sin\theta},\quad
+    \frac{\partial\varphi}{\partial y} = \frac{\cos\varphi}{r\sin\theta},\quad
+    \frac{\partial\varphi}{\partial z} = 0 \\
+    \kappa_3 &= \frac{1}{r\sin\theta}
+\end{aligned}$$
+
+<p style="text-indent:2em;">于是：</p>
+$$\begin{aligned}
+    \hat{\mathbf{e}}_{r} &= \frac{1}{\kappa_1}\left(\frac{\partial r}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial r}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial r}{\partial z}\hat{\mathbf{e}}_{z}\right)
+            = \sin\theta\cos\varphi\,\hat{\mathbf{e}}_{x} + \sin\theta\sin\varphi\,\hat{\mathbf{e}}_{y} + \cos\theta\,\hat{\mathbf{e}}_{z} \\
+    \hat{\mathbf{e}}_{\theta} &= \frac{1}{\kappa_2}\left(\frac{\partial\theta}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\theta}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\theta}{\partial z}\hat{\mathbf{e}}_{z}\right)
+                 = \cos\theta\cos\varphi\,\hat{\mathbf{e}}_{x} + \cos\theta\sin\varphi\,\hat{\mathbf{e}}_{y} - \sin\theta\,\hat{\mathbf{e}}_{z} \\
+    \hat{\mathbf{e}}_{\varphi} &= \frac{1}{\kappa_3}\left(\frac{\partial\varphi}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\varphi}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\varphi}{\partial z}\hat{\mathbf{e}}_{z}\right)
+                  = -\sin\varphi\,\hat{\mathbf{e}}_{x} + \cos\varphi\,\hat{\mathbf{e}}_{y}
+\end{aligned}$$
+
+<p style="text-indent:2em;">写成矩阵形式即得变换矩阵。容易验证变换矩阵是正交矩阵（$\mathbf{M}^{-1} = \mathbf{M}^T$），且 $\hat{\mathbf{e}}_{r}\cdot\hat{\mathbf{e}}_{\theta}=\hat{\mathbf{e}}_{r}\cdot\hat{\mathbf{e}}_{\varphi}=\hat{\mathbf{e}}_{\theta}\cdot\hat{\mathbf{e}}_{\varphi}=0$（方向矢量相互正交）。</p>
+
+<h2 style="text-indent:0;">空间曲线段的弧长</h2>
+
+<p style="text-indent:2em;">在任意曲线坐标系 $(q_1,q_2,q_3)$ 中，位置矢量 $\mathbf{r} = \mathbf{r}(q_1,q_2,q_3)$ 的全微分为：</p>
+$$ d\mathbf{r} = \frac{\partial\mathbf{r}}{\partial q_1}dq_1 + \frac{\partial\mathbf{r}}{\partial q_2}dq_2 + \frac{\partial\mathbf{r}}{\partial q_3}dq_3 $$
+
+<p style="text-indent:2em;">空间中弧长微元的平方为：</p>
+$$ (ds)^2 = d\mathbf{r}\cdot d\mathbf{r}
+    = \sum_{i=1}^{3}\sum_{j=1}^{3} \frac{\partial\mathbf{r}}{\partial q_i}\cdot\frac{\partial\mathbf{r}}{\partial q_j}\,dq_i dq_j $$
+
+<p style="text-indent:2em;">对于正交曲线坐标系，交叉项为零（$\frac{\partial\mathbf{r}}{\partial q_i}\cdot\frac{\partial\mathbf{r}}{\partial q_j}=0,\; i\neq j$），故：</p>
+$$ (ds)^2 = h_1^2(dq_1)^2 + h_2^2(dq_2)^2 + h_3^2(dq_3)^2 $$
+
+<p style="text-indent:2em;">其中拉梅系数定义为：</p>
+$$ \boxed{h_i = \left\lVert\frac{\partial\mathbf{r}}{\partial q_i}\right\rVert} $$
+
+<h2 style="text-indent:0;">矢量及其运算</h2>
+
+<h2 style="text-indent:0;">矢量基本运算</h2>
+
+<h3 style="text-indent:0;">标量积（点积）</h3>
+
+<p style="text-indent:2em;">两个矢量 $\mathbf{A}$ 和 $\mathbf{B}$ 的标量积定义为：</p>
+$$ \mathbf{A}\cdot\mathbf{B} = |\mathbf{A}||\mathbf{B}|\cos\theta $$
+
+<p style="text-indent:2em;">其中 $\theta$ 为两矢量的夹角。在直角坐标系中：</p>
+$$ \mathbf{A}\cdot\mathbf{B} = A_xB_x + A_yB_y + A_zB_z $$
+
+<p style="text-indent:2em;">标量积满足交换律和分配律：</p>
+$$\begin{aligned}
+    \mathbf{A}\cdot\mathbf{B} &= \mathbf{B}\cdot\mathbf{A} \\
+    \mathbf{A}\cdot(\mathbf{B}+\mathbf{C}) &= \mathbf{A}\cdot\mathbf{B} + \mathbf{A}\cdot\mathbf{C}
+\end{aligned}$$
+
+<h3 style="text-indent:0;">矢量积（叉积）</h3>
+
+<p style="text-indent:2em;">两个矢量 $\mathbf{A}$ 和 $\mathbf{B}$ 的矢量积定义为：</p>
+$$ \mathbf{A}\times\mathbf{B} = |\mathbf{A}||\mathbf{B}|\sin\theta\;\hat{\mathbf{e}}_{n} $$
+
+<p style="text-indent:2em;">其中 $\hat{\mathbf{e}}_{n}$ 为右手定则确定的单位法向矢量（垂直于 $\mathbf{A}$ 和 $\mathbf{B}$ 所在平面）。</p>
+
+<p style="text-indent:2em;">在直角坐标系中，叉积可写成行列式形式：</p>
+$$ \mathbf{A}\times\mathbf{B} = \begin{vmatrix}
+        \hat{\mathbf{e}}_{x} & \hat{\mathbf{e}}_{y} & \hat{\mathbf{e}}_{z} \\
+        A_x & A_y & A_z \\
+        B_x & B_y & B_z
+    \end{vmatrix}
+    = (A_yB_z - A_zB_y)\hat{\mathbf{e}}_{x} + (A_zB_x - A_xB_z)\hat{\mathbf{e}}_{y} + (A_xB_y - A_yB_x)\hat{\mathbf{e}}_{z} $$
+
+<p style="text-indent:2em;">矢量积满足反交换律：</p>
+$$\begin{aligned}
+    \mathbf{A}\times\mathbf{B} &= -\mathbf{B}\times\mathbf{A} \\
+    \mathbf{A}\times(\mathbf{B}+\mathbf{C}) &= \mathbf{A}\times\mathbf{B} + \mathbf{A}\times\mathbf{C}
+\end{aligned}$$
+
+<h3 style="text-indent:0;">三重积</h3>
+
+<p style="text-indent:2em;">标量三重积（混合积）：</p>
+$$ \mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})
+    = \begin{vmatrix}
+        A_x & A_y & A_z \\
+        B_x & B_y & B_z \\
+        C_x & C_y & C_z
+    \end{vmatrix} $$
+
+<p style="text-indent:2em;">满足轮换对称性：</p>
+$$ \mathbf{A}\cdot(\mathbf{B}\times\mathbf{C}) = \mathbf{B}\cdot(\mathbf{C}\times\mathbf{A}) = \mathbf{C}\cdot(\mathbf{A}\times\mathbf{B}) $$
+
+<p style="text-indent:2em;">矢量三重积（Back-Cab 规则）：</p>
+$$ \boxed{\mathbf{A}\times(\mathbf{B}\times\mathbf{C}) = \mathbf{B}(\mathbf{A}\cdot\mathbf{C}) - \mathbf{C}(\mathbf{A}\cdot\mathbf{B})} $$
+
+<h2 style="text-indent:0;">方向余弦</h2>
+
+<p style="text-indent:2em;">矢量 $\mathbf{A}$ 与三个坐标轴的夹角 $\alpha,\beta,\gamma$ 的余弦值称为<b>方向余弦</b>：</p>
+$$ \cos\alpha = \frac{A_x}{|\mathbf{A}|},\quad
+    \cos\beta  = \frac{A_y}{|\mathbf{A}|},\quad
+    \cos\gamma = \frac{A_z}{|\mathbf{A}|} $$
+
+<p style="text-indent:2em;">方向余弦满足归一化条件：</p>
+$$ \cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1 $$
+
+<p style="text-indent:2em;">利用方向余弦，单位矢量可表示为：</p>
+$$ \hat{\mathbf{e}}_{A} = \frac{\mathbf{A}}{|\mathbf{A}|} = \cos\alpha\,\hat{\mathbf{e}}_{x} + \cos\beta\,\hat{\mathbf{e}}_{y} + \cos\gamma\,\hat{\mathbf{e}}_{z} $$
+
+<h2 style="text-indent:0;">矢量函数的导数</h2>
+
+<p style="text-indent:2em;">设矢量函数 $\mathbf{A}(t) = A_x(t)\hat{\mathbf{e}}_{x} + A_y(t)\hat{\mathbf{e}}_{y} + A_z(t)\hat{\mathbf{e}}_{z}$，若各分量均可导，则：</p>
+$$ \frac{d\mathbf{A}}{dt} = \frac{d A_x}{dt}\hat{\mathbf{e}}_{x} + \frac{d A_y}{dt}\hat{\mathbf{e}}_{y} + \frac{d A_z}{dt}\hat{\mathbf{e}}_{z} $$
+
+<p style="text-indent:2em;">矢量函数求导满足以下运算法则：</p>
+$$\begin{aligned}
+    \frac{d}{dt}(\mathbf{A}+\mathbf{B}) &= \frac{d\mathbf{A}}{dt} + \frac{d\mathbf{B}}{dt} \\
+    \frac{d}{dt}(f\mathbf{A}) &= \frac{df}{dt}\mathbf{A} + f\frac{d\mathbf{A}}{dt} \\
+    \frac{d}{dt}(\mathbf{A}\cdot\mathbf{B}) &= \frac{d\mathbf{A}}{dt}\cdot\mathbf{B} + \mathbf{A}\cdot\frac{d\mathbf{B}}{dt} \\
+    \frac{d}{dt}(\mathbf{A}\times\mathbf{B}) &= \frac{d\mathbf{A}}{dt}\times\mathbf{B} + \mathbf{A}\times\frac{d\mathbf{B}}{dt}
+\end{aligned}$$
+
+<p style="text-indent:2em;"><b>注意：</b>在圆柱坐标系和球坐标系中，方向矢量本身是位置的函数，因此对坐标求导时方向矢量也会发生变化。例如在圆柱坐标系中：</p>
+$$\begin{aligned}
+    \frac{\partial\hat{\mathbf{e}}_{\rho}}{\partial\varphi} &= \hat{\mathbf{e}}_{\varphi}, &
+    \frac{\partial\hat{\mathbf{e}}_{\varphi}}{\partial\varphi} &= -\hat{\mathbf{e}}_{\rho}
+\end{aligned}$$
+
+<p style="text-indent:2em;">这一性质在后续推导梯度、散度、旋度的曲线坐标表达式时至关重要。</p>
+
+<h2 style="text-indent:0;">标量场及其梯度</h2>
+
+<h2 style="text-indent:0;">场的基本概念</h2>
+
+<h3 style="text-indent:0;">标量场</h3>
+
+<p style="text-indent:2em;">如果在空间区域 $\Omega$ 中的每一点 $M(x,y,z)$ 都对应一个确定的标量值 $\phi$，则称 $\phi$ 是定义在 $\Omega$ 上的一个<b>标量场</b>，记作 $\phi(x,y,z)$ 或 $\phi(\mathbf{r})$。</p>
+
+<p style="text-indent:2em;">常见的标量场示例：</p>
+<ul>
+    <li>温度场 $T(x,y,z)$；</li>
+    <li>电位场 $V(x,y,z)$；</li>
+    <li>大气压力场 $p(x,y,z)$。</li>
+</ul>
+
+<h3 style="text-indent:0;">矢量场</h3>
+
+<p style="text-indent:2em;">如果空间区域 $\Omega$ 中每一点都对应一个确定的矢量 $\mathbf{F}$，则称 $\mathbf{F}$ 是一个<b>矢量场</b>，记作 $\mathbf{F}(x,y,z)$ 或 $\mathbf{F}(\mathbf{r})$。</p>
+
+<p style="text-indent:2em;">常见的矢量场示例：</p>
+<ul>
+    <li>静电场 $\mathbf{E}(x,y,z)$；</li>
+    <li>磁场 $\mathbf{B}(x,y,z)$；</li>
+    <li>流体速度场 $\mathbf{v}(x,y,z)$。</li>
+</ul>
+
+<h3 style="text-indent:0;">场的分类</h3>
+
+<p style="text-indent:2em;">按时间依赖性分类：</p>
+<ul>
+    <li><b>静态场（稳恒场）</b>：不随时间变化，$\phi(\mathbf{r})$ 或 $\mathbf{F}(\mathbf{r})$；</li>
+    <li><b>时变场（动态场）</b>：随时间变化，$\phi(\mathbf{r},t)$ 或 $\mathbf{F}(\mathbf{r},t)$。</li>
+</ul>
+
+<p style="text-indent:2em;">按空间分布分类：</p>
+<ul>
+    <li><b>均匀场</b>：场量不随空间位置变化；</li>
+    <li><b>非均匀场</b>：场量随空间位置变化。</li>
+</ul>
+
+<h2 style="text-indent:0;">标量场的等值面</h2>
+
+<p style="text-indent:2em;">标量场 $\phi(x,y,z)$ 中，满足 $\phi(x,y,z)=C$（常数）的所有点构成的曲面称为<b>等值面</b>。</p>
+
+<p style="text-indent:2em;">等值面的性质：</p>
+<ol>
+    <li>在 $\nabla\phi \neq 0$ 的点，不同 $C$ 值的等值面互不相交；</li>
+    <li>等值面密集处场变化剧烈，稀疏处场变化缓慢；</li>
+    <li>三维空间中，等值面是二维曲面；二维问题中称为等值线。</li>
+</ol>
+
+<p style="text-indent:2em;"><b>核心问题：</b>如何定量描述标量场在空间不同方向上的变化快慢？哪个方向变化最快？</p>
+
+<h2 style="text-indent:0;">方向导数</h2>
+
+<h3 style="text-indent:0;">定义</h3>
+
+<p style="text-indent:2em;">设标量场 $\phi$ 在点 $M$ 的某邻域内有定义，$\hat{\mathbf{e}}_{l}$ 为一给定方向的单位矢量。若极限</p>
+$$ \frac{\partial\phi}{\partial l}\bigg|_M
+    = \lim_{\Delta l \to 0}\frac{\phi(M+\Delta l\,\hat{\mathbf{e}}_{l}) - \phi(M)}{\Delta l} $$
+
+<p style="text-indent:2em;">存在，则称此极限值为函数 $\phi$ 在点 $M$ 处沿方向 $\hat{\mathbf{e}}_{l}$ 的<b>方向导数</b>。</p>
+
+<p style="text-indent:2em;">方向导数表示标量场沿某一特定方向的空间变化率。</p>
+
+<h3 style="text-indent:0;">直角坐标系中的计算公式</h3>
+
+<p style="text-indent:2em;">设 $\hat{\mathbf{e}}_{l}$ 的方向余弦为 $(\cos\alpha,\;\cos\beta,\;\cos\gamma)$，即：</p>
+$$ \hat{\mathbf{e}}_{l} = \cos\alpha\,\hat{\mathbf{e}}_{x} + \cos\beta\,\hat{\mathbf{e}}_{y} + \cos\gamma\,\hat{\mathbf{e}}_{z} $$
+
+<p style="text-indent:2em;">下面推导方向导数的表达式。由全微分：</p>
+$$ d\phi = \frac{\partial\phi}{\partial x}dx + \frac{\partial\phi}{\partial y}dy + \frac{\partial\phi}{\partial z}dz $$
+
+<p style="text-indent:2em;">沿 $\hat{\mathbf{e}}_{l}$ 方向移动微小距离 $\Delta l$ 时，坐标的变化量为：</p>
+$$ \Delta x = \Delta l\cos\alpha,\quad \Delta y = \Delta l\cos\beta,\quad \Delta z = \Delta l\cos\gamma $$
+
+<p style="text-indent:2em;">代入：</p>
+$$\begin{aligned}
+    \frac{\partial\phi}{\partial l}
+    &= \lim_{\Delta l \to 0}\frac{\Delta\phi}{\Delta l} \\
+    &= \lim_{\Delta l \to 0}\frac{1}{\Delta l}
+       \left(\frac{\partial\phi}{\partial x}\Delta x + \frac{\partial\phi}{\partial y}\Delta y + \frac{\partial\phi}{\partial z}\Delta z\right) \\
+    &= \frac{\partial\phi}{\partial x}\cos\alpha + \frac{\partial\phi}{\partial y}\cos\beta + \frac{\partial\phi}{\partial z}\cos\gamma
+\end{aligned}$$
+
+<h3 style="text-indent:0;">方向导数与梯度的关系</h3>
+
+<p style="text-indent:2em;">将上式写成点积形式：</p>
+$$ \frac{\partial\phi}{\partial l}
+    = \left(\frac{\partial\phi}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\phi}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z}\right)
+      \cdot (\cos\alpha\,\hat{\mathbf{e}}_{x} + \cos\beta\,\hat{\mathbf{e}}_{y} + \cos\gamma\,\hat{\mathbf{e}}_{z})
+    = \nabla\phi \cdot \hat{\mathbf{e}}_{l} $$
+
+<p style="text-indent:2em;">这里我们自然地引入了<b>梯度</b>的概念：</p>
+$$ \boxed{\nabla\phi \equiv \frac{\partial\phi}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\phi}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z}} $$
+
+<p style="text-indent:2em;">$\nabla$（读作 nabla 或 del）是一个矢量微分算子，在直角坐标系中定义为：</p>
+$$ \nabla = \hat{\mathbf{e}}_{x}\frac{\partial}{\partial x} + \hat{\mathbf{e}}_{y}\frac{\partial}{\partial y} + \hat{\mathbf{e}}_{z}\frac{\partial}{\partial z} $$
+
+<h2 style="text-indent:0;">梯度（Gradient）</h2>
+
+<h3 style="text-indent:0;">梯度的定义</h3>
+
+<p style="text-indent:2em;">标量场 $\phi$ 的<b>梯度</b>是一个矢量，方向为 $\phi$ 增加最快的方向，其模等于该方向的最大变化率。记作 $\operatorname{grad}\phi$ 或 $\nabla\phi$。</p>
+
+<p style="text-indent:2em;">在直角坐标系中：</p>
+$$ \boxed{\operatorname{grad}\phi \equiv \nabla\phi = \frac{\partial\phi}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\phi}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z}} $$
+
+<h3 style="text-indent:0;">梯度指向变化最快方向的证明</h3>
+
+<p style="text-indent:2em;">方向导数与梯度的关系为：</p>
+$$ \frac{\partial\phi}{\partial l} = \nabla\phi \cdot \hat{\mathbf{e}}_{l} = |\nabla\phi||\hat{\mathbf{e}}_{l}|\cos\theta = |\nabla\phi|\cos\theta $$
+
+<p style="text-indent:2em;">其中 $\theta$ 为 $\nabla\phi$ 与 $\hat{\mathbf{e}}_{l}$ 的夹角。</p>
+
+<p style="text-indent:2em;">由于 $\cos\theta \leq 1$，当且仅当 $\theta = 0$（即 $\hat{\mathbf{e}}_{l}$ 与 $\nabla\phi$ 同向）时，方向导数取最大值 $|\nabla\phi|$。</p>
+
+<p style="text-indent:2em;">这就证明了：<b>梯度的方向就是标量场变化最快的方向，梯度的模等于该最大变化率。</b></p>
+
+<h3 style="text-indent:0;">梯度的基本性质</h3>
+
+<ol>
+    <li><p style="text-indent:2em;">梯度垂直于等值面：$\nabla\phi \perp \{\phi = C\}$（在 $\nabla\phi \neq 0$ 处）。</p>
+
+    <p style="text-indent:2em;"><b>证明：</b>在等值面 $\phi=C$ 上任取一条曲线 $\mathbf{r}(t)$，有 $\phi(\mathbf{r}(t)) = C$（常数）。对 $t$ 求导：</p>
+    $$ \frac{d\phi}{dt} = \nabla\phi \cdot \frac{d\mathbf{r}}{dt} = 0 $$
+    <p style="text-indent:2em;">$\frac{d\mathbf{r}}{dt}$ 是等值面上任意切向矢量，$\nabla\phi$ 与任意切向矢量点积为零，说明 $\nabla\phi$ 垂直于等值面。</p></li>
+
+    <li><p style="text-indent:2em;">梯度指向 $\phi$ 增加最快的方向。</p></li>
+
+    <li><p style="text-indent:2em;">$\nabla\phi = 0$ 的点称为<b>临界点</b>（或驻点），该处方向导数为零。</p></li>
+</ol>
+
+<h3 style="text-indent:0;">不同坐标系中的梯度表达式</h3>
+
+<h4 style="text-indent:0;">直角坐标系</h4>
+
+$$ \nabla\phi = \frac{\partial\phi}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\phi}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z} $$
+
+<h4 style="text-indent:0;">圆柱坐标系</h4>
+
+<p style="text-indent:2em;">在圆柱坐标系中，考虑到弧长微元 $dl_\rho = d\rho$、$dl_\varphi = \rho d\varphi$、$dl_z = dz$，梯度各分量等于标量函数沿该方向的单位弧长变化率：</p>
+$$ \boxed{\nabla\phi = \frac{\partial\phi}{\partial\rho}\hat{\mathbf{e}}_{\rho} + \frac{1}{\rho}\frac{\partial\phi}{\partial\varphi}\hat{\mathbf{e}}_{\varphi} + \frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z}} $$
+
+<h4 style="text-indent:0;">球坐标系</h4>
+
+<p style="text-indent:2em;">同理，由球坐标的弧长微元 $dl_r = dr$、$dl_\theta = r d\theta$、$dl_\varphi = r\sin\theta d\varphi$：</p>
+$$ \boxed{\nabla\phi = \frac{\partial\phi}{\partial r}\hat{\mathbf{e}}_{r} + \frac{1}{r}\frac{\partial\phi}{\partial\theta}\hat{\mathbf{e}}_{\theta} + \frac{1}{r\sin\theta}\frac{\partial\phi}{\partial\varphi}\hat{\mathbf{e}}_{\varphi}} $$
+
+<h4 style="text-indent:0;">任意正交曲线坐标系的一般公式</h4>
+
+$$ \boxed{\nabla\phi = \frac{1}{h_1}\frac{\partial\phi}{\partial q_1}\hat{\mathbf{e}}_{q_1} + \frac{1}{h_2}\frac{\partial\phi}{\partial q_2}\hat{\mathbf{e}}_{q_2} + \frac{1}{h_3}\frac{\partial\phi}{\partial q_3}\hat{\mathbf{e}}_{q_3}} $$
+
+<h3 style="text-indent:0;">梯度运算恒等式</h3>
+
+$$\begin{aligned}
+    \nabla C &= 0 \quad (C\text{为常数}) \\
+    \nabla(C\phi) &= C\,\nabla\phi \quad (C\text{为常数}) \\
+    \nabla(\phi\pm\psi) &= \nabla\phi \pm \nabla\psi \\
+    \nabla(\phi\,\psi) &= \phi\nabla\psi + \psi\nabla\phi \\
+    \nabla\left(\frac{\phi}{\psi}\right) &= \frac{\psi\nabla\phi - \phi\nabla\psi}{\psi^2} \quad (\psi\neq 0) \\
+    \nabla[f(\phi)] &= f'(\phi)\,\nabla\phi
+\end{aligned}$$
+
+<p style="text-indent:2em;"><b>证明 $\nabla[f(\phi)] = f'(\phi)\,\nabla\phi$：</b></p>
+
+<p style="text-indent:2em;">在直角坐标系中，由链式法则：</p>
+$$\begin{aligned}
+    \frac{\partial}{\partial x}f(\phi) &= f'(\phi)\frac{\partial\phi}{\partial x} \\
+    \frac{\partial}{\partial y}f(\phi) &= f'(\phi)\frac{\partial\phi}{\partial y} \\
+    \frac{\partial}{\partial z}f(\phi) &= f'(\phi)\frac{\partial\phi}{\partial z}
+\end{aligned}$$
+
+<p style="text-indent:2em;">因此：</p>
+$$\begin{aligned}
+    \nabla[f(\phi)]
+    &= \frac{\partial f}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial f}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial f}{\partial z}\hat{\mathbf{e}}_{z} \\
+    &= f'(\phi)\frac{\partial\phi}{\partial x}\hat{\mathbf{e}}_{x} + f'(\phi)\frac{\partial\phi}{\partial y}\hat{\mathbf{e}}_{y} + f'(\phi)\frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z} \\
+    &= f'(\phi)\left(\frac{\partial\phi}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\phi}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z}\right) \\
+    &= f'(\phi)\,\nabla\phi \quad\blacksquare
+\end{aligned}$$
+
+<p style="text-indent:2em;"><b>证明 $\nabla(\phi\psi) = \psi\nabla\phi + \phi\nabla\psi$：</b></p>
+$$\begin{aligned}
+    \nabla(\phi\psi)
+    &= \frac{\partial(\phi\psi)}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial(\phi\psi)}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial(\phi\psi)}{\partial z}\hat{\mathbf{e}}_{z} \\
+    &= \left(\frac{\partial\phi}{\partial x}\psi + \phi\frac{\partial\psi}{\partial x}\right)\hat{\mathbf{e}}_{x}
+     + \left(\frac{\partial\phi}{\partial y}\psi + \phi\frac{\partial\psi}{\partial y}\right)\hat{\mathbf{e}}_{y}
+     + \left(\frac{\partial\phi}{\partial z}\psi + \phi\frac{\partial\psi}{\partial z}\right)\hat{\mathbf{e}}_{z} \\
+    &= \psi\left(\frac{\partial\phi}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\phi}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z}\right)
+     + \phi\left(\frac{\partial\psi}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\psi}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\psi}{\partial z}\hat{\mathbf{e}}_{z}\right) \\
+    &= \psi\,\nabla\phi + \phi\,\nabla\psi \quad\blacksquare
+\end{aligned}$$
+
+<h2 style="text-indent:0;">矢量场及其散度</h2>
+
+<h2 style="text-indent:0;">矢量场的矢量线</h2>
+
+<p style="text-indent:2em;">矢量场 $\mathbf{F}(\mathbf{r})$ 中，<b>矢量线</b>是空间中的一条曲线，其上每一点的切线方向与该点处矢量场 $\mathbf{F}$ 的方向一致。</p>
+
+<p style="text-indent:2em;">矢量线满足的微分方程：</p>
+$$ \frac{dx}{F_x} = \frac{dy}{F_y} = \frac{dz}{F_z} $$
+
+<p style="text-indent:2em;">矢量线的疏密反映矢量场在该区域的强弱。例如：</p>
+<ul>
+    <li>静电场的电力线：始于正电荷，终于负电荷；</li>
+    <li>磁场的磁感线：是无头无尾的闭合曲线。</li>
+</ul>
+
+<h2 style="text-indent:0;">矢量场的通量（Flux）</h2>
+
+<h3 style="text-indent:0;">通量的定义</h3>
+
+<p style="text-indent:2em;">在矢量场 $\mathbf{F}$ 中，取一面元 $d\mathbf{S} = \hat{\mathbf{e}}_{n}\,dS$（$\hat{\mathbf{e}}_{n}$ 为单位法向量），则穿过该面元的<b>元通量</b>为：</p>
+$$ d\Psi = \mathbf{F}\cdot d\mathbf{S} = \mathbf{F}\cdot\hat{\mathbf{e}}_{n}\,dS = |\mathbf{F}|\cos\theta\,dS $$
+
+<p style="text-indent:2em;">其中 $\theta$ 为 $\mathbf{F}$ 与 $\hat{\mathbf{e}}_{n}$ 之间的夹角。</p>
+
+<p style="text-indent:2em;">矢量场穿过任意曲面 $S$ 的<b>通量</b>为：</p>
+$$ \Psi = \iint_S \mathbf{F}\cdot d\mathbf{S} = \iint_S \mathbf{F}\cdot\hat{\mathbf{e}}_{n}\,dS $$
+
+<p style="text-indent:2em;">对闭合曲面 $S$，通量记为：</p>
+$$ \Psi = \oiint_S \mathbf{F}\cdot d\mathbf{S} $$
+
+<p style="text-indent:2em;">约定闭合曲面方向矢量 $\hat{\mathbf{e}}_{n}$ 取<b>外法线方向</b>。</p>
+
+<h3 style="text-indent:0;">通量的物理意义</h3>
+
+<ol>
+    <li>$\Psi > 0$：穿出闭合曲面的净通量为正，说明曲面内部有<b>正源</b>（发出力线）；</li>
+    <li>$\Psi < 0$：穿入闭合曲面的净通量为正，说明曲面内部有<b>负源</b>（吸收力线，也称汇）；</li>
+    <li>$\Psi = 0$：进出平衡，说明曲面内部无源，或正负源相互抵消。</li>
+</ol>
+
+<p style="text-indent:2em;">通量描述的是<b>宏观区域</b>的发散特性，但无法精确确定源在区域内的具体位置和强度分布。为此，我们引入散度的概念。</p>
+
+<h2 style="text-indent:0;">矢量场的散度（Divergence）</h2>
+
+<h3 style="text-indent:0;">散度的定义</h3>
+
+<p style="text-indent:2em;">矢量场 $\mathbf{F}$ 在点 $M$ 处的<b>散度</b>定义为：</p>
+$$ \boxed{\operatorname{div}\mathbf{F} \equiv \nabla\cdot\mathbf{F}
+    = \lim_{\Delta V \to 0}\frac{1}{\Delta V}\oiint_{\partial(\Delta V)}\mathbf{F}\cdot d\mathbf{S}} $$
+
+<p style="text-indent:2em;">其中 $\Delta V$ 是包含点 $M$ 的微小体积元，$\partial(\Delta V)$ 为其闭合边界曲面。</p>
+
+<p style="text-indent:2em;"><b>散度的物理意义：</b>散度是单位体积的净通量，即<b>通量源密度</b>。它表征矢量场在每一点处的发散（或汇聚）强度：</p>
+<ul>
+    <li>$\nabla\cdot\mathbf{F} > 0$：该点存在正源（有矢量线发出）；</li>
+    <li>$\nabla\cdot\mathbf{F} < 0$：该点存在负源（矢量线在此终止）；</li>
+    <li>$\nabla\cdot\mathbf{F} = 0$：该点无源，称为<b>无散点</b>。</li>
+</ul>
+
+<p style="text-indent:2em;"><b>散度是一个标量。</b></p>
+
+<h3 style="text-indent:0;">直角坐标系中散度公式的推导</h3>
+
+<p style="text-indent:2em;">以点 $M(x,y,z)$ 为中心取一微小长方体：</p>
+$$ \Delta V = \Delta x\,\Delta y\,\Delta z $$
+
+<p style="text-indent:2em;">分别计算通过六个面的通量。</p>
+
+<p style="text-indent:2em;"><b>（1）$x$ 方向（左右两个面）：</b></p>
+
+<p style="text-indent:2em;">左面（$x$ 处，法线为 $-\hat{\mathbf{e}}_{x}$）：通量 $\approx -F_x(x,y,z)\,\Delta y\Delta z$</p>
+
+<p style="text-indent:2em;">右面（$x+\Delta x$ 处，法线为 $+\hat{\mathbf{e}}_{x}$）：通量 $\approx F_x(x+\Delta x,y,z)\,\Delta y\Delta z$</p>
+
+<p style="text-indent:2em;">净通量：</p>
+$$\begin{aligned}
+    \Delta\Psi_x &= [F_x(x+\Delta x,y,z) - F_x(x,y,z)]\,\Delta y\Delta z \\
+    &\approx \frac{\partial F_x}{\partial x}\,\Delta x\Delta y\Delta z
+\end{aligned}$$
+
+<p style="text-indent:2em;"><b>（2）$y$ 方向（前后两个面）：</b></p>
+$$ \Delta\Psi_y \approx \frac{\partial F_y}{\partial y}\,\Delta x\Delta y\Delta z $$
+
+<p style="text-indent:2em;"><b>（3）$z$ 方向（上下两个面）：</b></p>
+$$ \Delta\Psi_z \approx \frac{\partial F_z}{\partial z}\,\Delta x\Delta y\Delta z $$
+
+<p style="text-indent:2em;">六个面的总净通量：</p>
+$$ \Delta\Psi = \Delta\Psi_x + \Delta\Psi_y + \Delta\Psi_z
+    = \left(\frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}\right)\Delta V $$
+
+<p style="text-indent:2em;">取极限 $\Delta V \to 0$，得：</p>
+$$ \boxed{\nabla\cdot\mathbf{F} = \lim_{\Delta V\to 0}\frac{\Delta\Psi}{\Delta V}
+    = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}} $$
+
+<h3 style="text-indent:0;">不同坐标系中的散度公式</h3>
+
+<h4 style="text-indent:0;">圆柱坐标系</h4>
+
+<p style="text-indent:2em;">在圆柱坐标系中，散度公式可由极限定义推导。考虑到体积元 $dV = \rho\,d\rho\,d\varphi\,dz$，以及拉梅系数 $h_\rho = 1$、$h_\varphi = \rho$、$h_z = 1$，可得：</p>
+$$ \boxed{\nabla\cdot\mathbf{F} = \frac{1}{\rho}\frac{\partial}{\partial\rho}(\rho F_\rho) + \frac{1}{\rho}\frac{\partial F_\varphi}{\partial\varphi} + \frac{\partial F_z}{\partial z}} $$
+
+<h4 style="text-indent:0;">球坐标系</h4>
+
+<p style="text-indent:2em;">在球坐标系中，考虑到体积元 $dV = r^2\sin\theta\,dr\,d\theta\,d\varphi$，以及拉梅系数 $h_r = 1$、$h_\theta = r$、$h_\varphi = r\sin\theta$：</p>
+$$ \boxed{\nabla\cdot\mathbf{F} = \frac{1}{r^2}\frac{\partial}{\partial r}(r^2 F_r) + \frac{1}{r\sin\theta}\frac{\partial}{\partial\theta}(\sin\theta\,F_\theta) + \frac{1}{r\sin\theta}\frac{\partial F_\varphi}{\partial\varphi}} $$
+
+<h4 style="text-indent:0;">任意正交曲线坐标系的一般公式</h4>
+
+$$ \boxed{\nabla\cdot\mathbf{F} = \frac{1}{h_1h_2h_3}\left[
+        \frac{\partial}{\partial q_1}(h_2h_3F_1) +
+        \frac{\partial}{\partial q_2}(h_1h_3F_2) +
+        \frac{\partial}{\partial q_3}(h_1h_2F_3)
+    \right]} $$
+
+<p style="text-indent:2em;"><b>公式的推导思路：</b></p>
+
+<p style="text-indent:2em;">考虑以 $(q_1,q_2,q_3)$ 为中心的微小六面体。$q_1 = \text{常数}$ 的两个面面积为 $h_2h_3\,dq_2 dq_3$。通过 $q_1$ 处面的通量为 $-F_1\,h_2h_3\,dq_2 dq_3$，通过 $q_1+dq_1$ 处面的通量为 $(F_1h_2h_3 + \frac{\partial}{\partial q_1}(F_1h_2h_3)dq_1)\,dq_2 dq_3$。$q_1$ 方向的净通量为：</p>
+$$ \frac{\partial}{\partial q_1}(F_1h_2h_3)\,dq_1 dq_2 dq_3 $$
+
+<p style="text-indent:2em;">同理计算 $q_2$ 和 $q_3$ 方向的净通量，累加后除以体积 $h_1h_2h_3\,dq_1 dq_2 dq_3$，取极限即得以上公式。</p>
+
+<h3 style="text-indent:0;">散度运算恒等式</h3>
+
+$$\begin{aligned}
+    \nabla\cdot\mathbf{C} &= 0 \quad (\mathbf{C}\text{为常矢量}) \\
+    \nabla\cdot(\alpha\mathbf{F}) &= \alpha\,\nabla\cdot\mathbf{F} \quad (\alpha\text{为常数}) \\
+    \nabla\cdot(\mathbf{F}\pm\mathbf{G}) &= \nabla\cdot\mathbf{F} \pm \nabla\cdot\mathbf{G} \\
+    \nabla\cdot(f\,\mathbf{F}) &= f\,\nabla\cdot\mathbf{F} + \mathbf{F}\cdot\nabla f \\
+    \nabla\cdot(\mathbf{F}\times\mathbf{G}) &= \mathbf{G}\cdot(\nabla\times\mathbf{F}) - \mathbf{F}\cdot(\nabla\times\mathbf{G})
+\end{aligned}$$
+
+<p style="text-indent:2em;"><b>证明 $\nabla\cdot(f\mathbf{F}) = f\,\nabla\cdot\mathbf{F} + \mathbf{F}\cdot\nabla f$：</b></p>
+
+<p style="text-indent:2em;">在直角坐标系中：</p>
+$$\begin{aligned}
+    \nabla\cdot(f\mathbf{F})
+    &= \frac{\partial}{\partial x}(fF_x) + \frac{\partial}{\partial y}(fF_y) + \frac{\partial}{\partial z}(fF_z) \\
+    &= \left(\frac{\partial f}{\partial x}F_x + f\frac{\partial F_x}{\partial x}\right)
+     + \left(\frac{\partial f}{\partial y}F_y + f\frac{\partial F_y}{\partial y}\right)
+     + \left(\frac{\partial f}{\partial z}F_z + f\frac{\partial F_z}{\partial z}\right) \\
+    &= f\left(\frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}\right)
+     + \left(F_x\frac{\partial f}{\partial x} + F_y\frac{\partial f}{\partial y} + F_z\frac{\partial f}{\partial z}\right) \\
+    &= f\,\nabla\cdot\mathbf{F} + \mathbf{F}\cdot\nabla f \quad\blacksquare
+\end{aligned}$$
+
+<h2 style="text-indent:0;">高斯定理（散度定理）</h2>
+
+<p style="text-indent:2em;">矢量场 $\mathbf{F}$ 在闭合曲面 $S$ 上的通量等于其散度在 $S$ 所围体积 $V$ 内的体积分：</p>
+$$ \boxed{\oiint_S \mathbf{F}\cdot d\mathbf{S} = \iiint_V \nabla\cdot\mathbf{F}\,dV} $$
+
+<p style="text-indent:2em;">高斯定理将闭合面上的宏观通量与其内部每一点微观散度联系起来，是场论中最重要的积分定理之一。</p>
+
+<h2 style="text-indent:0;">通量源与散度的物理联系</h2>
+
+<p style="text-indent:2em;">在线性系统中，矢量场的散度与通量源密度成正比：</p>
+$$ \nabla\cdot\mathbf{F} = \kappa\,\rho_{\text{源}} $$
+
+<p style="text-indent:2em;">电磁学中的典型例子：</p>
+<ul>
+    <li>高斯定律：$\nabla\cdot\mathbf{D} = \rho$（电荷密度是电位移矢量的通量源）</li>
+    <li>磁高斯定律：$\nabla\cdot\mathbf{B} = 0$（磁场无散——无磁单极子）</li>
+    <li>电流连续性方程：$\nabla\cdot\mathbf{J} = -\partial\rho/\partial t$</li>
+</ul>
+
+<h2 style="text-indent:0;">矢量场的旋度</h2>
+
+<h2 style="text-indent:0;">矢量场的环量（Circulation）</h2>
+
+<p style="text-indent:2em;">矢量场 $\mathbf{F}$ 沿闭合曲线 $C$ 的<b>环量</b>定义为：</p>
+$$ \Gamma = \oint_C \mathbf{F}\cdot d\mathbf{l} $$
+
+<p style="text-indent:2em;">环量的物理意义：</p>
+<ul>
+    <li>$\Gamma \neq 0$：场沿闭合路径有净环量，表明存在<b>旋涡源</b>；</li>
+    <li>$\Gamma = 0$：场沿该闭合路径无旋（保守场），或正反抵消。</li>
+</ul>
+
+<p style="text-indent:2em;">电磁学中的环量实例：</p>
+<ul>
+    <li>法拉第电磁感应定律：$\displaystyle\oint_C \mathbf{E}\cdot d\mathbf{l} = -\frac{\partial}{\partial t}\iint_S \mathbf{B}\cdot d\mathbf{S}$</li>
+    <li>安培-麦克斯韦定律：$\displaystyle\oint_C \mathbf{H}\cdot d\mathbf{l} = I + \iint_S \frac{\partial\mathbf{D}}{\partial t}\cdot d\mathbf{S}$</li>
+</ul>
+
+<p style="text-indent:2em;">环量描述的是<b>宏观区域</b>的旋转特性。为了逐点描述场的旋转性质，引入旋度。</p>
+
+<h2 style="text-indent:0;">旋度（Curl）</h2>
+
+<h3 style="text-indent:0;">旋度的定义</h3>
+
+<p style="text-indent:2em;">矢量场 $\mathbf{F}$ 在点 $M$ 处的<b>旋度</b>是一个<b>矢量</b>，其沿方向 $\hat{\mathbf{e}}_{n}$ 的分量定义为：</p>
+$$ \boxed{(\nabla\times\mathbf{F})\cdot\hat{\mathbf{e}}_{n} = \lim_{\Delta S \to 0}\frac{1}{\Delta S}\oint_{\partial(\Delta S)}\mathbf{F}\cdot d\mathbf{l}} $$
+
+<p style="text-indent:2em;">其中 $\Delta S$ 是以 $\hat{\mathbf{e}}_{n}$ 为法线方向的小面元，$\partial(\Delta S)$ 为其边界环线（方向与 $\hat{\mathbf{e}}_{n}$ 满足右手定则）。</p>
+
+<p style="text-indent:2em;"><b>旋度矢量的物理意义：</b></p>
+<ul>
+    <li>旋度矢量的<b>方向</b>：使环量面密度取得最大值时小面元的法线方向；</li>
+    <li>旋度矢量的<b>大小</b>：最大环量面密度的值。</li>
+</ul>
+
+<h3 style="text-indent:0;">直角坐标系中旋度公式的推导</h3>
+
+<h4 style="text-indent:0;">$x$ 分量的推导</h4>
+
+<p style="text-indent:2em;">取垂直于 $x$ 轴的微小矩形面元 $\Delta S_x = \Delta y\,\Delta z$（位于 $x$ 处），边界按右手定则取逆时针方向（从 $+x$ 方向看去）：</p>
+
+<p style="text-indent:2em;">（四条边的走向：$+y$ 方向 $\to$ $+z$ 方向 $\to$ $-y$ 方向 $\to$ $-z$ 方向）</p>
+
+<p style="text-indent:2em;">沿四条边的线积分：</p>
+$$\begin{aligned}
+    \oint_{\partial(\Delta S_x)} \mathbf{F}\cdot d\mathbf{l}
+    &= F_y(y,z)\,\Delta y + F_z(y+\Delta y,z)\,\Delta z \\
+    &\quad - F_y(y,z+\Delta z)\,\Delta y - F_z(y,z)\,\Delta z
+\end{aligned}$$
+
+<p style="text-indent:2em;">利用泰勒展开：</p>
+$$\begin{aligned}
+    F_z(y+\Delta y,z) &\approx F_z(y,z) + \frac{\partial F_z}{\partial y}\Delta y \\
+    F_y(y,z+\Delta z) &\approx F_y(y,z) + \frac{\partial F_y}{\partial z}\Delta z
+\end{aligned}$$
+
+<p style="text-indent:2em;">代入：</p>
+$$\begin{aligned}
+    \oint \mathbf{F}\cdot d\mathbf{l}
+    &\approx \left(F_y + F_z\Delta y + \frac{\partial F_z}{\partial y}\Delta y\Delta z - F_y\Delta y - \frac{\partial F_y}{\partial z}\Delta y\Delta z - F_z\Delta z\right) \\
+    &\quad \text{（整理化简）} \\
+    &\approx \left(\frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z}\right)\Delta y\Delta z
+\end{aligned}$$
+
+<p style="text-indent:2em;">因此 $x$ 分量：</p>
+$$ (\nabla\times\mathbf{F})_x = \lim_{\Delta S_x\to 0}\frac{1}{\Delta y\Delta z}\oint \mathbf{F}\cdot d\mathbf{l}
+    = \frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z} $$
+
+<h4 style="text-indent:0;">$y$ 分量和 $z$ 分量</h4>
+
+<p style="text-indent:2em;">同理可得：</p>
+$$\begin{aligned}
+    (\nabla\times\mathbf{F})_y &= \frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x} \\
+    (\nabla\times\mathbf{F})_z &= \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}
+\end{aligned}$$
+
+<h4 style="text-indent:0;">完整的旋度公式</h4>
+
+<p style="text-indent:2em;">将三个分量合并，旋度可写成行列式形式：</p>
+$$ \boxed{\nabla\times\mathbf{F} = \begin{vmatrix}
+        \hat{\mathbf{e}}_{x} & \hat{\mathbf{e}}_{y} & \hat{\mathbf{e}}_{z} \\[6pt]
+        \displaystyle\frac{\partial}{\partial x} & \displaystyle\frac{\partial}{\partial y} & \displaystyle\frac{\partial}{\partial z} \\[12pt]
+        F_x & F_y & F_z
+    \end{vmatrix}} $$
+
+<p style="text-indent:2em;">展开即：</p>
+$$ \nabla\times\mathbf{F} = \left(\frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z}\right)\hat{\mathbf{e}}_{x}
+                       + \left(\frac{\partial F_x}{\partial z} - \frac{\partial F_z}{\partial x}\right)\hat{\mathbf{e}}_{y}
+                       + \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}\right)\hat{\mathbf{e}}_{z} $$
+
+<h3 style="text-indent:0;">不同坐标系中的旋度公式</h3>
+
+<h4 style="text-indent:0;">圆柱坐标系</h4>
+
+$$ \boxed{\nabla\times\mathbf{F} = \frac{1}{\rho}\begin{vmatrix}
+        \hat{\mathbf{e}}_{\rho} & \rho\hat{\mathbf{e}}_{\varphi} & \hat{\mathbf{e}}_{z} \\[6pt]
+        \displaystyle\frac{\partial}{\partial\rho} & \displaystyle\frac{\partial}{\partial\varphi} & \displaystyle\frac{\partial}{\partial z} \\[12pt]
+        F_\rho & \rho F_\varphi & F_z
+    \end{vmatrix}} $$
+
+<p style="text-indent:2em;">展开形式：</p>
+$$\begin{aligned}
+    \nabla\times\mathbf{F} = &\left(\frac{1}{\rho}\frac{\partial F_z}{\partial\varphi} - \frac{\partial F_\varphi}{\partial z}\right)\hat{\mathbf{e}}_{\rho} \\
+    &+ \left(\frac{\partial F_\rho}{\partial z} - \frac{\partial F_z}{\partial\rho}\right)\hat{\mathbf{e}}_{\varphi} \\
+    &+ \frac{1}{\rho}\left(\frac{\partial}{\partial\rho}(\rho F_\varphi) - \frac{\partial F_\rho}{\partial\varphi}\right)\hat{\mathbf{e}}_{z}
+\end{aligned}$$
+
+<h4 style="text-indent:0;">球坐标系</h4>
+
+$$ \boxed{\nabla\times\mathbf{F} = \frac{1}{r^2\sin\theta}\begin{vmatrix}
+        \hat{\mathbf{e}}_{r} & r\hat{\mathbf{e}}_{\theta} & r\sin\theta\,\hat{\mathbf{e}}_{\varphi} \\[6pt]
+        \displaystyle\frac{\partial}{\partial r} & \displaystyle\frac{\partial}{\partial\theta} & \displaystyle\frac{\partial}{\partial\varphi} \\[12pt]
+        F_r & r F_\theta & r\sin\theta\,F_\varphi
+    \end{vmatrix}} $$
+
+<h4 style="text-indent:0;">任意正交曲线坐标系的一般公式</h4>
+
+$$ \boxed{\nabla\times\mathbf{F} = \frac{1}{h_1h_2h_3}\begin{vmatrix}
+        h_1\hat{\mathbf{e}}_{q_1} & h_2\hat{\mathbf{e}}_{q_2} & h_3\hat{\mathbf{e}}_{q_3} \\[6pt]
+        \displaystyle\frac{\partial}{\partial q_1} & \displaystyle\frac{\partial}{\partial q_2} & \displaystyle\frac{\partial}{\partial q_3} \\[12pt]
+        h_1F_1 & h_2F_2 & h_3F_3
+    \end{vmatrix}} $$
+
+<h3 style="text-indent:0;">旋度运算恒等式</h3>
+
+$$\begin{aligned}
+    \nabla\times\mathbf{C} &= 0 \quad (\mathbf{C}\text{为常矢量}) \\
+    \nabla\times(\alpha\mathbf{F}) &= \alpha\,\nabla\times\mathbf{F} \quad (\alpha\text{为常数}) \\
+    \nabla\times(\mathbf{F}\pm\mathbf{G}) &= \nabla\times\mathbf{F} \pm \nabla\times\mathbf{G} \\
+    \nabla\times(f\,\mathbf{F}) &= f\,\nabla\times\mathbf{F} + \nabla f\times\mathbf{F} \\
+    \nabla\times(\mathbf{F}\times\mathbf{G}) &= \mathbf{F}(\nabla\cdot\mathbf{G}) - \mathbf{G}(\nabla\cdot\mathbf{F}) + (\mathbf{G}\cdot\nabla)\mathbf{F} - (\mathbf{F}\cdot\nabla)\mathbf{G} \\
+    \nabla\times(\nabla\times\mathbf{F}) &= \nabla(\nabla\cdot\mathbf{F}) - \nabla^2\mathbf{F}
+\end{aligned}$$
+
+<p style="text-indent:2em;"><b>证明 $\nabla\times(f\mathbf{F}) = f\,\nabla\times\mathbf{F} + \nabla f\times\mathbf{F}$：</b></p>
+
+<p style="text-indent:2em;">在直角坐标系中，考虑 $x$ 分量：</p>
+$$\begin{aligned}
+    [\nabla\times(f\mathbf{F})]_x &= \frac{\partial}{\partial y}(fF_z) - \frac{\partial}{\partial z}(fF_y) \\
+    &= \left(\frac{\partial f}{\partial y}F_z + f\frac{\partial F_z}{\partial y}\right) - \left(\frac{\partial f}{\partial z}F_y + f\frac{\partial F_y}{\partial z}\right) \\
+    &= f\left(\frac{\partial F_z}{\partial y} - \frac{\partial F_y}{\partial z}\right) + \left(\frac{\partial f}{\partial y}F_z - \frac{\partial f}{\partial z}F_y\right) \\
+    &= f[\nabla\times\mathbf{F}]_x + [\nabla f\times\mathbf{F}]_x
+\end{aligned}$$
+
+<p style="text-indent:2em;">三个分量均成立，故得证。$\blacksquare$</p>
+
+<h2 style="text-indent:0;">斯托克斯定理（Stokes' Theorem）</h2>
+
+<p style="text-indent:2em;">矢量场 $\mathbf{F}$ 沿闭合曲线 $C$ 的环量等于其旋度在 $C$ 所围曲面 $S$ 上的面积分：</p>
+$$ \boxed{\oint_C \mathbf{F}\cdot d\mathbf{l} = \iint_S (\nabla\times\mathbf{F})\cdot d\mathbf{S}} $$
+
+<p style="text-indent:2em;">其中曲线 $C$ 的绕行方向与曲面 $S$ 的法线方向满足右手定则。</p>
+
+<p style="text-indent:2em;">斯托克斯定理将闭合曲线上的环量（宏观量）与曲面上每一点旋度的通量（微观量之和）联系起来。</p>
+
+<h2 style="text-indent:0;">旋涡源与旋度的物理联系</h2>
+
+<p style="text-indent:2em;">在线性系统中，矢量场的旋度与旋涡源密度成正比：</p>
+$$ \nabla\times\mathbf{F} = \kappa\,\mathbf{J}_{\text{源}} $$
+
+<p style="text-indent:2em;">电磁学中的典型例子：</p>
+<ul>
+    <li>法拉第定律（微分形式）：$\nabla\times\mathbf{E} = -\partial\mathbf{B}/\partial t$（时变磁场是电场的旋涡源）</li>
+    <li>安培-麦克斯韦定律（微分形式）：$\nabla\times\mathbf{H} = \mathbf{J} + \partial\mathbf{D}/\partial t$（传导电流和位移电流是磁场的旋涡源）</li>
+</ul>
+
+<h2 style="text-indent:0;">例题：证明 $\nabla R = -\nabla' R = \hat{\mathbf{e}}_{R}$</h2>
+
+<p style="text-indent:2em;"><b>题目：</b>设 $\mathbf{R} = \mathbf{r} - \mathbf{r}' = (x-x')\hat{\mathbf{e}}_{x} + (y-y')\hat{\mathbf{e}}_{y} + (z-z')\hat{\mathbf{e}}_{z}$，$R = |\mathbf{R}|$。$\nabla$ 是对无撇坐标 $(\mathbf{r})$ 的梯度算子，$\nabla'$ 是对带撇坐标 $(\mathbf{r}')$ 的梯度算子。证明</p>
+$$ \nabla R = -\nabla' R = \hat{\mathbf{e}}_{R} $$
+<p style="text-indent:2em;">其中 $\hat{\mathbf{e}}_{R} = \mathbf{R}/R$。</p>
+
+<p style="text-indent:2em;"><b>证明：</b></p>
+
+<p style="text-indent:2em;">首先计算 $R$ 的表达式：</p>
+$$ R = \sqrt{(x-x')^2 + (y-y')^2 + (z-z')^2} $$
+
+<p style="text-indent:2em;">对 $x$ 求偏导：</p>
+$$ \frac{\partial R}{\partial x} = \frac{2(x-x')}{2R} = \frac{x-x'}{R} = \frac{R_x}{R} $$
+
+<p style="text-indent:2em;">同理：</p>
+$$ \frac{\partial R}{\partial y} = \frac{R_y}{R},\quad \frac{\partial R}{\partial z} = \frac{R_z}{R} $$
+
+<p style="text-indent:2em;">因此：</p>
+$$ \nabla R = \frac{\partial R}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial R}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial R}{\partial z}\hat{\mathbf{e}}_{z}
+    = \frac{R_x\hat{\mathbf{e}}_{x} + R_y\hat{\mathbf{e}}_{y} + R_z\hat{\mathbf{e}}_{z}}{R}
+    = \frac{\mathbf{R}}{R} = \hat{\mathbf{e}}_{R} $$
+
+<p style="text-indent:2em;">对 $x'$ 求偏导时，$R$ 中含 $(x-x')^2$，故：</p>
+$$ \frac{\partial R}{\partial x'} = \frac{-2(x-x')}{2R} = -\frac{R_x}{R} $$
+
+<p style="text-indent:2em;">同理 $\partial R/\partial y' = -R_y/R$，$\partial R/\partial z' = -R_z/R$，故：</p>
+$$ \nabla'R = -\frac{\mathbf{R}}{R} = -\hat{\mathbf{e}}_{R} $$
+
+<p style="text-indent:2em;">综上，$\nabla R = \hat{\mathbf{e}}_{R}$，$\nabla' R = -\hat{\mathbf{e}}_{R}$，即 $\nabla R = -\nabla' R = \hat{\mathbf{e}}_{R}$。$\blacksquare$</p>
+
+<h2 style="text-indent:0;">亥姆霍兹定理</h2>
+
+<h2 style="text-indent:0;">关于矢量场的三个基本问题</h2>
+
+<p style="text-indent:2em;"><b>问题一：</b>是否存在不同于通量源和旋涡源的第三种激励源？</p>
+
+<p style="text-indent:2em;"><b>问题二：</b>矢量场除了有散（发散特性）和有旋（旋转特性）之外，是否还有别的特性？</p>
+
+<p style="text-indent:2em;"><b>问题三：</b>需要什么条件才能唯一地确定一个矢量场？</p>
+
+<p style="text-indent:2em;">亥姆霍兹定理（Helmholtz Theorem）对这三个问题给出了完整的回答。</p>
+
+<h2 style="text-indent:0;">两个基本恒等式</h2>
+
+<h3 style="text-indent:0;">恒等式一：梯度场的旋度恒为零</h3>
+
+$$ \boxed{\nabla\times(\nabla\phi) \equiv 0} $$
+
+<p style="text-indent:2em;">简记：<b>梯无旋</b>。</p>
+
+<p style="text-indent:2em;"><b>物理意义：</b>任何标量函数的梯度场必然是无旋场。或者说，如果一个矢量场可以写成某个标量函数的梯度，则该矢量场必无旋（必为保守场）。</p>
+
+<p style="text-indent:2em;"><b>证明一（坐标法）：</b></p>
+
+<p style="text-indent:2em;">在直角坐标系中直接验证：</p>
+$$\begin{aligned}
+    \nabla\times(\nabla\phi) &= \begin{vmatrix}
+        \hat{\mathbf{e}}_{x} & \hat{\mathbf{e}}_{y} & \hat{\mathbf{e}}_{z} \\[6pt]
+        \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\[12pt]
+        \frac{\partial\phi}{\partial x} & \frac{\partial\phi}{\partial y} & \frac{\partial\phi}{\partial z}
+    \end{vmatrix} \\
+    &= \hat{\mathbf{e}}_{x}\left(\frac{\partial^2\phi}{\partial y\partial z} - \frac{\partial^2\phi}{\partial z\partial y}\right)
+     + \hat{\mathbf{e}}_{y}\left(\frac{\partial^2\phi}{\partial z\partial x} - \frac{\partial^2\phi}{\partial x\partial z}\right) \\
+    &\quad + \hat{\mathbf{e}}_{z}\left(\frac{\partial^2\phi}{\partial x\partial y} - \frac{\partial^2\phi}{\partial y\partial x}\right) \\
+    &= 0
+\end{aligned}$$
+
+<p style="text-indent:2em;">由 $\phi \in C^2$（二阶连续可微）的假设，混合偏导数可交换，每项括号内均为零。$\blacksquare$</p>
+
+<p style="text-indent:2em;"><b>证明二（积分定理法——更普遍的证明）：</b></p>
+
+<p style="text-indent:2em;">对任意闭合曲线 $C$ 所围的任意曲面 $S$，由斯托克斯定理：</p>
+$$ \iint_S \nabla\times(\nabla\phi)\cdot d\mathbf{S} = \oint_C \nabla\phi\cdot d\mathbf{l} $$
+
+<p style="text-indent:2em;">由梯度的定义，$\nabla\phi\cdot d\mathbf{l}$ 恰为 $\phi$ 的全微分：</p>
+$$ \nabla\phi\cdot d\mathbf{l} = \frac{\partial\phi}{\partial x}dx + \frac{\partial\phi}{\partial y}dy + \frac{\partial\phi}{\partial z}dz = d\phi $$
+
+<p style="text-indent:2em;">因此：</p>
+$$ \oint_C \nabla\phi\cdot d\mathbf{l} = \oint_C d\phi = \phi|_{\text{闭合回路}} = 0 $$
+
+<p style="text-indent:2em;">（沿闭合回路一周，$\phi$ 的值回到起点值，净变化为零。）</p>
+
+<p style="text-indent:2em;">由于曲面 $S$ 和曲线 $C$ 是任意的，被积函数必须恒为零：</p>
+$$ \nabla\times(\nabla\phi) \equiv 0 \quad\blacksquare $$
+
+<h3 style="text-indent:0;">恒等式二：旋度场的散度恒为零</h3>
+
+$$ \boxed{\nabla\cdot(\nabla\times\mathbf{A}) \equiv 0} $$
+
+<p style="text-indent:2em;">简记：<b>旋无散</b>。</p>
+
+<p style="text-indent:2em;"><b>物理意义：</b>任何矢量函数的旋度场必然是无散场。或者说，如果一个矢量场可以写成某个矢量函数的旋度，则该矢量场必无散（必为管量场）。</p>
+
+<p style="text-indent:2em;"><b>证明一（坐标法）：</b></p>
+
+<p style="text-indent:2em;">在直角坐标系中，$\nabla\times\mathbf{A}$ 的三个分量为：</p>
+$$\begin{aligned}
+    (\nabla\times\mathbf{A})_x &= \frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z} \\
+    (\nabla\times\mathbf{A})_y &= \frac{\partial A_x}{\partial z} - \frac{\partial A_z}{\partial x} \\
+    (\nabla\times\mathbf{A})_z &= \frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y}
+\end{aligned}$$
+
+<p style="text-indent:2em;">取其散度（对每个分量再求一次偏导并求和）：</p>
+$$\begin{aligned}
+    \nabla\cdot(\nabla\times\mathbf{A})
+    &= \frac{\partial}{\partial x}\left(\frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z}\right)
+     + \frac{\partial}{\partial y}\left(\frac{\partial A_x}{\partial z} - \frac{\partial A_z}{\partial x}\right)
+     + \frac{\partial}{\partial z}\left(\frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y}\right) \\
+    &= \left(\frac{\partial^2 A_z}{\partial x\partial y} - \frac{\partial^2 A_z}{\partial y\partial x}\right)
+     + \left(\frac{\partial^2 A_x}{\partial y\partial z} - \frac{\partial^2 A_x}{\partial z\partial y}\right)
+     + \left(\frac{\partial^2 A_y}{\partial z\partial x} - \frac{\partial^2 A_y}{\partial x\partial z}\right) \\
+    &= 0
+\end{aligned}$$
+
+<p style="text-indent:2em;">同样由 $\mathbf{A} \in C^2$ 的假设，混合偏导数可交换。$\blacksquare$</p>
+
+<p style="text-indent:2em;"><b>证明二（积分定理法——更普遍的证明）：</b></p>
+
+<p style="text-indent:2em;">对任意闭合曲面 $S$ 所围的任意体积 $V$，由高斯定理：</p>
+$$ \iiint_V \nabla\cdot(\nabla\times\mathbf{A})\,dV = \oiint_S (\nabla\times\mathbf{A})\cdot d\mathbf{S} $$
+
+<p style="text-indent:2em;">将闭合曲面 $S$ 分为以闭合曲线 $C$ 为共同边界的两片 $S_1$ 和 $S_2$。在 $S_1$ 上应用斯托克斯定理：</p>
+$$ \iint_{S_1} (\nabla\times\mathbf{A})\cdot d\mathbf{S} = \oint_C \mathbf{A}\cdot d\mathbf{l} $$
+
+<p style="text-indent:2em;">在 $S_2$ 上应用斯托克斯定理（注意 $S_2$ 的边界绕行方向与 $S_1$ 相反）：</p>
+$$ \iint_{S_2} (\nabla\times\mathbf{A})\cdot d\mathbf{S} = -\oint_C \mathbf{A}\cdot d\mathbf{l} $$
+
+<p style="text-indent:2em;">两式相加：</p>
+$$ \oiint_S (\nabla\times\mathbf{A})\cdot d\mathbf{S} = \oint_C \mathbf{A}\cdot d\mathbf{l} - \oint_C \mathbf{A}\cdot d\mathbf{l} = 0 $$
+
+<p style="text-indent:2em;">故：</p>
+$$ \iiint_V \nabla\cdot(\nabla\times\mathbf{A})\,dV = 0 $$
+
+<p style="text-indent:2em;">由于体积 $V$ 任意，被积函数必须恒为零：</p>
+$$ \nabla\cdot(\nabla\times\mathbf{A}) \equiv 0 \quad\blacksquare $$
+
+<h2 style="text-indent:0;">亥姆霍兹定理（Helmholtz Theorem）</h2>
+
+<h3 style="text-indent:0;">定理表述</h3>
+
+<p style="text-indent:2em;">在<b>无限大空间</b>中，一个矢量场 $\mathbf{F}(\mathbf{r})$ 由它的<b>散度</b> $\nabla\cdot\mathbf{F}$、<b>旋度</b> $\nabla\times\mathbf{F}$ 以及<b>边界条件</b>唯一确定。</p>
+
+<p style="text-indent:2em;">进一步地，该矢量场可以分解为一个无旋分量（纵场）和一个无散分量（横场）之和：</p>
+$$ \boxed{\mathbf{F} = -\nabla\phi + \nabla\times\mathbf{A}} $$
+
+<p style="text-indent:2em;">其中：</p>
+<ul>
+    <li>$\phi(\mathbf{r})$ 为<b>标量位函数</b>，由散度 $\nabla\cdot\mathbf{F}$ 确定；</li>
+    <li>$\mathbf{A}(\mathbf{r})$ 为<b>矢量位函数</b>，由旋度 $\nabla\times\mathbf{F}$ 确定。</li>
+</ul>
+
+<h3 style="text-indent:0;">定理的物理意义</h3>
+
+<p style="text-indent:2em;">亥姆霍兹定理说明：</p>
+<ol>
+    <li><p style="text-indent:2em;"><b>不存在第三种源</b>。矢量场的全部信息由两种独立的源——散度源（通量源）和旋度源（旋涡源）——完全描述。</p></li>
+
+    <li><p style="text-indent:2em;"><b>边界条件至关重要</b>。仅有散度和旋度不足以唯一确定一个矢量场，还必须加上适当的边界条件（如场在无穷远处趋于零、在边界上取给定值等）。</p></li>
+
+    <li><p style="text-indent:2em;"><b>场的分解</b>。任何矢量场可以分解为：</p>
+    <ul>
+        <li>$\mathbf{F}_l = -\nabla\phi$（纵场/无旋场）：由散度源产生，$\nabla\times\mathbf{F}_l = 0$，$\nabla\cdot\mathbf{F}_l = \nabla\cdot\mathbf{F}$；</li>
+        <li>$\mathbf{F}_t = \nabla\times\mathbf{A}$（横场/无散场）：由旋度源产生，$\nabla\cdot\mathbf{F}_t = 0$，$\nabla\times\mathbf{F}_t = \nabla\times\mathbf{F}$。</li>
+    </ul></li>
+</ol>
+
+<h3 style="text-indent:0;">推论：矢量场的分类</h3>
+
+<p style="text-indent:2em;">根据散度和旋度的取值，矢量场可分为以下类型：</p>
+
+<h4 style="text-indent:0;">无旋场（保守场 / 纵场）</h4>
+
+<p style="text-indent:2em;">条件：$\nabla\times\mathbf{F} = 0$（处处成立）。</p>
+
+<p style="text-indent:2em;">性质：</p>
+<ul>
+    <li>可以表示为标量位的梯度：$\mathbf{F} = -\nabla\phi$；</li>
+    <li>线积分与路径无关，沿任意闭合回路的环量为零；</li>
+    <li>电磁学实例：无时变磁场区域中的静电场 $\mathbf{E} = -\nabla V$。</li>
+</ul>
+
+<h4 style="text-indent:0;">无散场（管量场 / 横场）</h4>
+
+<p style="text-indent:2em;">条件：$\nabla\cdot\mathbf{F} = 0$（处处成立）。</p>
+
+<p style="text-indent:2em;">性质：</p>
+<ul>
+    <li>可以表示为矢量位的旋度：$\mathbf{F} = \nabla\times\mathbf{A}$；</li>
+    <li>穿过任意闭合曲面的净通量为零（力线没有起点和终点）；</li>
+    <li>电磁学实例：磁场 $\mathbf{B} = \nabla\times\mathbf{A}$（磁感线总是闭合的，无磁单极子）。</li>
+</ul>
+
+<h4 style="text-indent:0;">调和场</h4>
+
+<p style="text-indent:2em;">条件：$\nabla\cdot\mathbf{F} = 0$ 且 $\nabla\times\mathbf{F} = 0$（处处成立）。</p>
+
+<p style="text-indent:2em;">性质：</p>
+<ul>
+    <li>既无散又无旋，可由标量位表示 $\mathbf{F} = -\nabla\phi$；</li>
+    <li>标量位满足拉普拉斯方程：$\nabla^2\phi = 0$；</li>
+    <li>电磁学实例：无电荷区域的静电场。</li>
+</ul>
+
+<h2 style="text-indent:0;">拉普拉斯算子与矢量恒等式</h2>
+
+<h3 style="text-indent:0;">标量拉普拉斯算子</h3>
+
+<p style="text-indent:2em;">标量场的拉普拉斯算子定义为梯度的散度：</p>
+$$ \nabla^2\phi = \nabla\cdot(\nabla\phi) $$
+
+<p style="text-indent:2em;">在各坐标系中的表达式：</p>
+
+<p style="text-indent:2em;"><b>直角坐标：</b></p>
+$$ \nabla^2\phi = \frac{\partial^2\phi}{\partial x^2} + \frac{\partial^2\phi}{\partial y^2} + \frac{\partial^2\phi}{\partial z^2} $$
+
+<p style="text-indent:2em;"><b>圆柱坐标：</b></p>
+$$ \nabla^2\phi = \frac{1}{\rho}\frac{\partial}{\partial\rho}\left(\rho\frac{\partial\phi}{\partial\rho}\right)
+                  + \frac{1}{\rho^2}\frac{\partial^2\phi}{\partial\varphi^2}
+                  + \frac{\partial^2\phi}{\partial z^2} $$
+
+<p style="text-indent:2em;"><b>球坐标：</b></p>
+$$ \nabla^2\phi = \frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\phi}{\partial r}\right)
+                  + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial\phi}{\partial\theta}\right)
+                  + \frac{1}{r^2\sin^2\theta}\frac{\partial^2\phi}{\partial\varphi^2} $$
+
+<h3 style="text-indent:0;">重要的矢量拉普拉斯恒等式</h3>
+
+$$ \boxed{\nabla\times(\nabla\times\mathbf{F}) = \nabla(\nabla\cdot\mathbf{F}) - \nabla^2\mathbf{F}} $$
+
+<p style="text-indent:2em;">其中 $\nabla^2\mathbf{F}$ 为矢量拉普拉斯算子，在直角坐标系中分量作用于各分量：</p>
+$$ \nabla^2\mathbf{F} = (\nabla^2 F_x)\hat{\mathbf{e}}_{x} + (\nabla^2 F_y)\hat{\mathbf{e}}_{y} + (\nabla^2 F_z)\hat{\mathbf{e}}_{z} $$
+
+<p style="text-indent:2em;">（注意：在曲线坐标系中，矢量拉普拉斯的表达式更为复杂，因为方向矢量也是位置的函数。）</p>
+
+<h2 style="text-indent:0;">本章核心公式汇总</h2>
+
+<h3 style="text-indent:0;">三种基本运算</h3>
+
+<p style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 梯度、散度、旋度在三种坐标系中的公式</p>
+<table style="border-collapse:collapse;margin:0 auto;text-align:center;font-size:13px;">
+<tr style="border-bottom:1px solid #ccc;">
+<th style="padding:4px 8px;border:1px solid #ccc;">运算</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">直角坐标</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">圆柱坐标</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">球坐标</th>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\nabla\phi$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\displaystyle\frac{\partial\phi}{\partial x}\hat{\mathbf{e}}_{x} + \frac{\partial\phi}{\partial y}\hat{\mathbf{e}}_{y} + \frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z}$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\displaystyle\frac{\partial\phi}{\partial\rho}\hat{\mathbf{e}}_{\rho} + \frac{1}{\rho}\frac{\partial\phi}{\partial\varphi}\hat{\mathbf{e}}_{\varphi} + \frac{\partial\phi}{\partial z}\hat{\mathbf{e}}_{z}$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\displaystyle\frac{\partial\phi}{\partial r}\hat{\mathbf{e}}_{r} + \frac{1}{r}\frac{\partial\phi}{\partial\theta}\hat{\mathbf{e}}_{\theta} + \frac{1}{r\sin\theta}\frac{\partial\phi}{\partial\varphi}\hat{\mathbf{e}}_{\varphi}$</td>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\nabla\cdot\mathbf{F}$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\displaystyle\frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\displaystyle\frac{1}{\rho}\frac{\partial}{\partial\rho}(\rho F_\rho) + \frac{1}{\rho}\frac{\partial F_\varphi}{\partial\varphi} + \frac{\partial F_z}{\partial z}$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\displaystyle\frac{1}{r^2}\frac{\partial}{\partial r}(r^2F_r) + \frac{1}{r\sin\theta}\frac{\partial}{\partial\theta}(\sin\theta F_\theta) + \frac{1}{r\sin\theta}\frac{\partial F_\varphi}{\partial\varphi}$</td>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\nabla\times\mathbf{F}$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\begin{vmatrix}\hat{\mathbf{e}}_{x}&\hat{\mathbf{e}}_{y}&\hat{\mathbf{e}}_{z}\\[3pt]\partial_x&\partial_y&\partial_z\\[3pt]F_x&F_y&F_z\end{vmatrix}$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\displaystyle\frac{1}{\rho}\begin{vmatrix}\hat{\mathbf{e}}_{\rho}&\rho\hat{\mathbf{e}}_{\varphi}&\hat{\mathbf{e}}_{z}\\[3pt]\partial_\rho&\partial_\varphi&\partial_z\\[3pt]F_\rho&\rho F_\varphi&F_z\end{vmatrix}$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\displaystyle\frac{1}{r^2\sin\theta}\begin{vmatrix}\hat{\mathbf{e}}_{r}&r\hat{\mathbf{e}}_{\theta}&r\sin\theta\hat{\mathbf{e}}_{\varphi}\\[3pt]\partial_r&\partial_\theta&\partial_\varphi\\[3pt]F_r&rF_\theta&r\sin\theta F_\varphi\end{vmatrix}$</td>
+</tr>
+</table>
+
+<h3 style="text-indent:0;">拉梅系数速查</h3>
+
+<p style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 三种坐标系的拉梅系数与体积元</p>
+<table style="border-collapse:collapse;margin:0 auto;text-align:center;">
+<tr style="border-bottom:1px solid #ccc;">
+<th style="padding:4px 8px;border:1px solid #ccc;">坐标系</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">$h_1$</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">$h_2$</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">$h_3$</th>
+<th style="padding:4px 8px;border:1px solid #ccc;">体积元 $dV$</th>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">直角 $(x,y,z)$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$dx\,dy\,dz$</td>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">圆柱 $(\rho,\varphi,z)$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\rho$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$\rho\,d\rho\,d\varphi\,dz$</td>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">球 $(r,\theta,\varphi)$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$1$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$r$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$r\sin\theta$</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">$r^2\sin\theta\,dr\,d\theta\,d\varphi$</td>
+</tr>
+</table>
+
+<h3 style="text-indent:0;">两个基本恒等式</h3>
+
+$$ \boxed{\nabla\times(\nabla\phi) \equiv 0} \qquad \text{（梯无旋）} $$
+
+$$ \boxed{\nabla\cdot(\nabla\times\mathbf{A}) \equiv 0} \qquad \text{（旋无散）} $$
+
+<h3 style="text-indent:0;">两个积分定理</h3>
+
+<p style="text-indent:2em;">高斯定理（散度定理）：</p>
+$$ \boxed{\oiint_S \mathbf{F}\cdot d\mathbf{S} = \iiint_V \nabla\cdot\mathbf{F}\,dV} $$
+
+<p style="text-indent:2em;">斯托克斯定理：</p>
+$$ \boxed{\oint_C \mathbf{F}\cdot d\mathbf{l} = \iint_S (\nabla\times\mathbf{F})\cdot d\mathbf{S}} $$
+
+<h3 style="text-indent:0;">亥姆霍兹定理</h3>
+
+$$ \boxed{\mathbf{F} = -\nabla\phi + \nabla\times\mathbf{A}} $$
+
+<p style="text-indent:2em;">散度 $+$ 旋度 $+$ 边界条件 $\;\Longrightarrow\;$ 唯一确定矢量场。</p>
+
+<h2 style="text-indent:0;">第一章作业</h2>
+
+<ol>
+    <li><b>习题9</b> 练习坐标变换与方向矢量的矩阵表示。</li>
+    <li><b>习题10</b> 练习标量场的梯度计算。</li>
+    <li><b>习题16</b> 练习矢量场的散度计算。</li>
+    <li><b>习题21</b> 练习矢量场的旋度计算。</li>
+</ol>
+
+<p style="text-indent:2em;"><b>补充证明题：</b></p>
+<ol>
+    <li>利用高斯定理及斯托克斯定理在更普遍的意义下证明 $\nabla\times(\nabla\phi) = 0$。</li>
+    <li>利用高斯定理及斯托克斯定理在更普遍的意义下证明 $\nabla\cdot(\nabla\times\mathbf{A}) = 0$。</li>
+</ol>
+
+</div>

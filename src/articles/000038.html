@@ -1,0 +1,209 @@
+<div style="font-family:Times New Roman,Times,serif;">
+<h1 style="text-indent:0;text-align:center;">电磁场解析方法</h1>
+
+<h2 style="text-indent:0;">静态电磁场的唯一性定理</h2>
+
+<h2 style="text-indent:0;">定解问题的分类</h2>
+
+<p style="text-indent:2em;">电磁场定解问题可分为三类：</p>
+<ol>
+<li><b>正向问题（正演）：</b>已知源分布和介质特性及边界形状，求场的分布。</li>
+<li><b>逆向问题（反演-1）：</b>已知场和介质特性，求边界形状。</li>
+<li><b>逆向问题（反演-2）：</b>已知场和边界分布，求介质特性参数。</li>
+</ol>
+
+<h2 style="text-indent:0;">唯一性定理</h2>
+
+<h3 style="text-indent:0;">定理陈述</h3>
+
+<p style="text-indent:2em;">设区域 $V$ 内源分布已知，在区域边界 $S$ 上给定电位值 $\phi|_S$（第一类）或电位的法向导数 $\partial\phi/\partial n|_S$（第二类），则在 $V$ 内满足泊松方程的解是<b>唯一</b>的。</p>
+
+<h3 style="text-indent:0;">证明（反证法）</h3>
+
+<p style="text-indent:2em;">设区域 $V$ 内存在两个不同的解 $\phi_1$ 和 $\phi_2$ 均满足泊松方程和边界条件：</p>
+
+$$
+\begin{aligned}
+\nabla^2\phi_1 &= -\frac{\rho}{\varepsilon},\quad \nabla^2\phi_2 = -\frac{\rho}{\varepsilon} \\
+\phi_1|_S &= \phi_2|_S = \psi\quad\text{或}\quad \frac{\partial\phi_1}{\partial n}\bigg|_S = \frac{\partial\phi_2}{\partial n}\bigg|_S = \xi
+\end{aligned}
+$$
+
+<p style="text-indent:2em;">令差值函数 $\Phi = \phi_1 - \phi_2$，则：</p>
+
+$$
+\nabla^2\Phi = 0\;\;(\mathbf{r}\in V),\qquad \Phi|_S = 0\;\text{或}\;\frac{\partial\Phi}{\partial n}\bigg|_S = 0
+$$
+
+<p style="text-indent:2em;">利用格林第一恒等式：</p>
+
+$$
+\iiint_V (\Phi\nabla^2\Phi + \nabla\Phi\cdot\nabla\Phi)\,dV = \oiint_S \Phi\frac{\partial\Phi}{\partial n}\,dS
+$$
+
+<p style="text-indent:2em;">代入 $\nabla^2\Phi=0$ 和边界条件（$\Phi|_S=0$ 或 $\partial\Phi/\partial n|_S=0$），右边面积分为零：</p>
+
+$$
+\iiint_V |\nabla\Phi|^2\,dV = 0
+$$
+
+<p style="text-indent:2em;">由此 $\nabla\Phi\equiv 0$，即 $\Phi$ 为常数。在第一类边界条件下 $\Phi|_S=0$，故 $\Phi\equiv 0$，即 $\phi_1\equiv\phi_2$。$\quad\blacksquare$</p>
+
+<h3 style="text-indent:0;">物理意义</h3>
+
+<p style="text-indent:2em;">唯一性定理保证：只要找到满足泊松方程和边界条件的<b>任何一个</b>解（无论是用何种方法得到的），它就是<b>唯一的正确解</b>。这为各种近似解法和数值解法提供了理论基础。</p>
+
+<hr>
+
+<h2 style="text-indent:0;">分离变量法</h2>
+
+<h2 style="text-indent:0;">方法概述</h2>
+
+<p style="text-indent:2em;">分离变量法是求解拉普拉斯方程 $\nabla^2\phi=0$ 的基本解析方法。核心思想：将偏微分方程分解为几个常微分方程，分别求解后通过边界条件确定系数。</p>
+
+<h2 style="text-indent:0;">直角坐标系中的分离变量法</h2>
+
+<p style="text-indent:2em;">设 $\phi(x,y,z) = X(x)Y(y)Z(z)$，代入 $\nabla^2\phi=0$：</p>
+
+$$
+YZ\frac{d^2 X}{d x^2} + XZ\frac{d^2 Y}{d y^2} + XY\frac{d^2 Z}{d z^2} = 0
+$$
+
+<p style="text-indent:2em;">除以 $XYZ$：</p>
+
+$$
+\frac{1}{X}\frac{d^2 X}{d x^2} + \frac{1}{Y}\frac{d^2 Y}{d y^2} + \frac{1}{Z}\frac{d^2 Z}{d z^2} = 0
+$$
+
+<p style="text-indent:2em;">引入分离常数 $k_x^2, k_y^2, k_z^2$，满足 $k_x^2+k_y^2+k_z^2=0$，得三个独立的常微分方程：</p>
+
+$$
+\frac{d^2 X}{d x^2} + k_x^2 X = 0,\quad
+\frac{d^2 Y}{d y^2} + k_y^2 Y = 0,\quad
+\frac{d^2 Z}{d z^2} + k_z^2 Z = 0
+$$
+
+<p style="text-indent:2em;">各方程的解为三角函数或双曲函数（或指数函数），具体形式取决于边界条件。</p>
+
+<p style="text-indent:2em;"><b>典型本征函数：</b></p>
+
+$$
+\begin{aligned}
+k_x^2 > 0 &: \quad X(x) = A\cos(k_x x) + B\sin(k_x x) \\
+k_x^2 = 0 &: \quad X(x) = A + Bx \\
+k_x^2 < 0 &: \quad X(x) = A\cosh(|k_x|x) + B\sinh(|k_x|x)
+\end{aligned}
+$$
+
+<p style="text-indent:2em;">通解为所有可能解的线性叠加：</p>
+
+$$
+\phi(x,y,z) = \sum_{m,n} (A_{mn}\cos k_x x + B_{mn}\sin k_x x)(C_{mn}\cos k_y y + D_{mn}\sin k_y y)(E_{mn}e^{k_z z} + F_{mn}e^{-k_z z})
+$$
+
+<h2 style="text-indent:0;">圆柱坐标系中的分离变量法</h2>
+
+<p style="text-indent:2em;">设 $\phi(\rho,\varphi,z) = R(\rho)\Phi(\varphi)Z(z)$，代入柱坐标拉普拉斯方程，分离得：</p>
+
+$$
+\begin{aligned}
+\frac{d^2 Z}{d z^2} - k^2 Z &= 0 \\
+\frac{d^2\Phi}{d\varphi^2} + n^2\Phi &= 0 \quad\Rightarrow\quad \Phi(\varphi) = C\cos(n\varphi) + D\sin(n\varphi) \\
+\rho^2\frac{d^2 R}{d\rho^2} + \rho\frac{d R}{d\rho} + (k^2\rho^2 - n^2)R &= 0 \quad\text{（Bessel方程）}
+\end{aligned}
+$$
+
+<p style="text-indent:2em;">$R(\rho)$ 的通解为 Bessel 函数：$R(\rho) = AJ_n(k\rho) + BN_n(k\rho)$（$k^2>0$），或修正 Bessel 函数（$k^2<0$）。</p>
+
+<h2 style="text-indent:0;">球坐标系中的分离变量法</h2>
+
+<p style="text-indent:2em;">在轴对称情况下（与 $\varphi$ 无关），$\phi(r,\theta) = R(r)\Theta(\theta)$，分离得：</p>
+
+$$
+\begin{aligned}
+\frac{d}{dr}\left(r^2\frac{d R}{dr}\right) - l(l+1)R &= 0 \quad\Rightarrow\quad R = Ar^l + Br^{-(l+1)} \\
+\frac{1}{\sin\theta}\frac{d}{d\theta}\left(\sin\theta\frac{d\Theta}{d\theta}\right) + l(l+1)\Theta &= 0 \quad\Rightarrow\quad \Theta = P_l(\cos\theta)
+\end{aligned}
+$$
+
+<p style="text-indent:2em;">其中 $P_l$ 为勒让德多项式。通解：</p>
+
+$$
+\phi(r,\theta) = \sum_{l=0}^{\infty}\left(A_l r^l + \frac{B_l}{r^{l+1}}\right)P_l(\cos\theta)
+$$
+
+<hr>
+
+<h2 style="text-indent:0;">镜像法</h2>
+
+<h2 style="text-indent:0;">方法原理</h2>
+
+<p style="text-indent:2em;">镜像法的基本思想：用位于求解区域外的<b>虚拟电荷（镜像电荷）</b>代替导体界面上的感应电荷（或介质界面上的极化电荷），使得区域内的场与原问题等价。</p>
+
+<p style="text-indent:2em;">镜像法的理论依据是<b>唯一性定理</b>：只要替代后的配置在求解区域内满足相同的泊松方程和边界条件，解就是唯一正确的。</p>
+
+<h2 style="text-indent:0;">平面镜像</h2>
+
+<h3 style="text-indent:0;">点电荷对无限大导体平面的镜像</h3>
+
+<p style="text-indent:2em;">点电荷 $q$ 位于距无限大接地导体平面 $h$ 处。镜像电荷 $-q$ 位于平面对称位置（距界面 $h$ 的导体内部）。求解区域（$z>0$）内的电位为：</p>
+
+$$
+\phi(x,y,z) = \frac{1}{4\pi\varepsilon_0}\left(\frac{q}{R_1} - \frac{q}{R_2}\right)
+$$
+
+<p style="text-indent:2em;">其中 $R_1=\sqrt{x^2+y^2+(z-h)^2}$，$R_2=\sqrt{x^2+y^2+(z+h)^2}$。</p>
+
+<p style="text-indent:2em;">导体表面的感应电荷密度：</p>
+
+$$
+\rho_s = -\varepsilon_0\frac{\partial\phi}{\partial z}\bigg|_{z=0} = -\frac{qh}{2\pi(x^2+y^2+h^2)^{3/2}}
+$$
+
+<p style="text-indent:2em;">总感应电荷：$\iint_S\rho_s\,dS = -q$（等于镜像电荷）。</p>
+
+<h3 style="text-indent:0;">点电荷对介质分界面的镜像</h3>
+
+<p style="text-indent:2em;">两种介质 $\varepsilon_1$（$z>0$）和 $\varepsilon_2$（$z<0$），点电荷 $q$ 在介质1中距界面 $h$ 处。</p>
+
+<p style="text-indent:2em;">求介质1中电场：镜像电荷 $q' = \frac{\varepsilon_1-\varepsilon_2}{\varepsilon_1+\varepsilon_2}q$ 位于界面下方对称位置。</p>
+
+<p style="text-indent:2em;">求介质2中电场：等效电荷 $q'' = \frac{2\varepsilon_2}{\varepsilon_1+\varepsilon_2}q$ 位于原电荷位置（代替 $q$ 和界面上极化电荷的总效果）。</p>
+
+<h2 style="text-indent:0;">球面镜像</h2>
+
+<p style="text-indent:2em;">点电荷 $q$ 置于接地导体球外距球心 $d$ 处（球半径 $a$）。镜像电荷 $q'$ 位于球内距球心 $b$ 处：</p>
+
+$$
+q' = -\frac{a}{d}q,\qquad b = \frac{a^2}{d}
+$$
+
+<p style="text-indent:2em;">球外区域的电位由 $q$ 和 $q'$ 共同产生。</p>
+
+<h2 style="text-indent:0;">本章核心公式</h2>
+
+<table style="width:100%;border-collapse:collapse;margin:1em auto;">
+<tr style="background-color:var(--bg-secondary, #f5f5f5);">
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>方法</b></th>
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>核心公式</b></th>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">分离变量（直角）</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">$\phi = \sum (Ae^{k_xx}+Be^{-k_xx})(C\cos k_yy+D\sin k_yy)(E\cosh k_zz+F\sinh k_zz)$</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">分离变量（球）</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">$\phi = \sum_l (A_l r^l + B_l/r^{l+1})P_l(\cos\theta)$</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">平面镜像</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">$q'=-q$（接地导体），$q'=\frac{\varepsilon_1-\varepsilon_2}{\varepsilon_1+\varepsilon_2}q$（介质分界）</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">球面镜像</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">$q'=-\frac{a}{d}q,\; b=\frac{a^2}{d}$</td>
+</tr>
+</table>
+
+<p style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 本章核心公式</p>
+</div>

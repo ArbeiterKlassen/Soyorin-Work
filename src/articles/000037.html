@@ -1,0 +1,215 @@
+<div style="font-family:Times New Roman,Times,serif;">
+
+<p style="text-indent:0;"><h1>静态电磁场</h1></p>
+
+<p style="text-indent:0;"><h2>静电场的定解问题</h2></p>
+
+<p style="text-indent:0;"><h3>电位函数与边界条件</h3></p>
+
+<p style="text-indent:2em;">静电场的基本方程：</p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{aligned}
+\nabla\times\mathbf{E} &= 0 \quad\text{（无旋场）}\\
+\nabla\cdot\mathbf{D} &= \rho \quad\text{（有散场）}
+\end{aligned}$$</p>
+
+<p style="text-indent:2em;">由无旋性引入电位函数：$\mathbf{E} = -\nabla\phi$。代入高斯定律得泊松方程：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\nabla^2\phi = -\frac{\rho}{\varepsilon}}$$</p>
+
+<p style="text-indent:2em;">在无源区域（$\rho=0$）退化为拉普拉斯方程：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\nabla^2\phi = 0}$$</p>
+
+<p style="text-indent:0;"><h3>电位的边界条件</h3></p>
+
+<p style="text-indent:2em;">由电场在介质分界面的边界条件 $\hat{\mathbf{e}}_{n}\cdot(\mathbf{D}_2-\mathbf{D}_1)=\rho_s$ 和 $\hat{\mathbf{e}}_{n}\times(\mathbf{E}_2-\mathbf{E}_1)=0$，用电位表示为：</p>
+
+<p style="text-indent:2em;"><b>第一类边界条件（Dirichlet）：</b>电位在边界上给定值。</p>
+
+<p style="text-align:center;text-indent:0;">$$\phi_1 = \phi_2 \quad\text{（在分界面上）}$$</p>
+
+<p style="text-indent:2em;"><b>第二类边界条件（Neumann）：</b>电位的法向导数在边界上给定值。</p>
+
+<p style="text-align:center;text-indent:0;">$$\varepsilon_2\frac{\partial\phi_2}{\partial n} - \varepsilon_1\frac{\partial\phi_1}{\partial n} = -\rho_s$$</p>
+
+<p style="text-indent:0;"><h3>导体边界条件</h3></p>
+
+<p style="text-indent:2em;">静电平衡时，导体内部 $\mathbf{E}=0$，导体为等势体。若导体表面为 $S$，其外侧介质中的电位满足：</p>
+
+<p style="text-align:center;text-indent:0;">$$\phi|_S = \text{常数}\quad\text{或}\quad \frac{\partial\phi}{\partial n}\bigg|_S = -\frac{\rho_s}{\varepsilon}$$</p>
+
+<p style="text-indent:0;"><h3>静电场的定解问题</h3></p>
+
+<p style="text-indent:2em;">均匀介质空间 $\Omega$ 中静电场的定解问题可综合表述为：</p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{cases}
+\nabla^2\phi = -\dfrac{\rho}{\varepsilon}, & \mathbf{r}\in\Omega \\
+\phi|_{S_1} = \psi(\mathbf{r}), & \text{（第一类边界）} \\
+\varepsilon\dfrac{\partial\phi}{\partial n}\big|_{S_2} = \xi(\mathbf{r}), & \text{（第二类边界）} \\
+\phi|_{S} = \psi(\mathbf{r}),\;\; \varepsilon\dfrac{\partial\phi}{\partial n}\big|_{S} = \xi(\mathbf{r}), & \text{（混合边界）}
+\end{cases}$$</p>
+
+<p style="text-indent:0;"><h4>典型例题</h4></p>
+
+<p style="text-indent:2em;"><b>【例】电偶极子的电位与电场。</b>电偶极子由相距 $L$ 的等量异号电荷 $(\pm q)$ 组成，电偶极矩 $\mathbf{p}=qL\hat{\mathbf{e}}_{z}$。在远场区（$r\gg L$）：</p>
+
+<p style="text-align:center;text-indent:0;">$$\phi = \frac{q}{4\pi\varepsilon_0}\left(\frac{1}{R_1}-\frac{1}{R_2}\right) \approx \frac{\mathbf{p}\cdot\hat{\mathbf{e}}_{r}}{4\pi\varepsilon_0 r^2} = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2}$$</p>
+
+<p style="text-align:center;text-indent:0;">$$\mathbf{E} = -\nabla\phi = \frac{p}{4\pi\varepsilon_0 r^3}(2\cos\theta\,\hat{\mathbf{e}}_{r}+\sin\theta\,\hat{\mathbf{e}}_{\theta})$$</p>
+
+<p style="text-indent:0;"><h3>静电场能量与静电力</h3></p>
+
+<p style="text-indent:0;"><h4>静电场能量</h4></p>
+
+<p style="text-indent:2em;">电荷体系的总静电能可表示为：</p>
+
+<p style="text-align:center;text-indent:0;">$$W_e = \frac{1}{2}\iiint_V \rho\phi \,dV$$</p>
+
+<p style="text-indent:2em;">用场量表示（更普遍的表达式）：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{W_e = \frac{1}{2}\iiint_V \mathbf{D}\cdot\mathbf{E} \,dV}$$</p>
+
+<p style="text-indent:2em;">电场能量密度：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{w_e = \frac{1}{2}\mathbf{D}\cdot\mathbf{E} = \frac{1}{2}\varepsilon E^2}$$</p>
+
+<p style="text-indent:0;"><h4>电容</h4></p>
+
+<p style="text-indent:2em;">两导体间的电容：</p>
+
+<p style="text-align:center;text-indent:0;">$$C = \frac{Q}{U} = \frac{\iint_S \mathbf{D}\cdot\,d\mathbf{S}}{\int_A^B \mathbf{E}\cdot\,d\mathbf{l}}$$</p>
+
+<p style="text-indent:2em;">利用能量法：$W_e = \frac{1}{2}CU^2 = \frac{Q^2}{2C}$。</p>
+
+<p style="text-indent:0;"><h4>静电力（虚位移法）</h4></p>
+
+<p style="text-indent:2em;">带电导体所受的静电力可通过虚功原理计算。保持电荷不变时：</p>
+
+<p style="text-align:center;text-indent:0;">$$\mathbf{F} = -\nabla W_e\big|_{Q=\text{const}}$$</p>
+
+<p style="text-indent:2em;">保持电位不变时：</p>
+
+<p style="text-align:center;text-indent:0;">$$\mathbf{F} = +\nabla W_e\big|_{\phi=\text{const}}$$</p>
+
+<hr>
+
+<p style="text-indent:0;"><h2>恒定电流的磁场</h2></p>
+
+<p style="text-indent:0;"><h3>磁矢势及其方程</h3></p>
+
+<p style="text-indent:2em;">稳恒磁场的基本方程：</p>
+
+<p style="text-align:center;text-indent:0;">$$\begin{aligned}
+\nabla\cdot\mathbf{B} &= 0 \quad\text{（无散场）}\\
+\nabla\times\mathbf{H} &= \mathbf{J} \quad\text{（有旋场）}
+\end{aligned}$$</p>
+
+<p style="text-indent:2em;">由无散性引入磁矢势：$\mathbf{B} = \nabla\times\mathbf{A}$。在线性均匀介质中（$\mathbf{B}=\mu\mathbf{H}$），代入安培环路定理，并取库仑规范 $\nabla\cdot\mathbf{A}=0$，得矢量泊松方程：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{\nabla^2\mathbf{A} = -\mu\mathbf{J}}$$</p>
+
+<p style="text-indent:2em;">在直角坐标系中，三个分量各自满足标量泊松方程：</p>
+
+<p style="text-align:center;text-indent:0;">$$\nabla^2 A_x = -\mu J_x,\quad \nabla^2 A_y = -\mu J_y,\quad \nabla^2 A_z = -\mu J_z$$</p>
+
+<p style="text-indent:0;"><h4>电场与磁场的对比</h4></p>
+
+<table style="border-collapse:collapse; width:90%; margin:0 auto;">
+<caption style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 静态电场与静态磁场的对偶关系</caption>
+<tr>
+  <th style="border:1px solid #ccc; padding:6px 10px; background:#f5f5f5; text-align:center;">静电场</th>
+  <th style="border:1px solid #ccc; padding:6px 10px; background:#f5f5f5; text-align:center;">稳恒磁场</th>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\nabla\times\mathbf{E}=0$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\nabla\cdot\mathbf{B}=0$</td>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\mathbf{E}=-\nabla\phi$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\mathbf{B}=\nabla\times\mathbf{A}$</td>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\nabla^2\phi=-\rho/\varepsilon$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\nabla^2\mathbf{A}=-\mu\mathbf{J}$</td>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\phi=\dfrac{1}{4\pi\varepsilon}\displaystyle\iiint\dfrac{\rho}{R}\,dV'$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\mathbf{A}=\dfrac{\mu}{4\pi}\displaystyle\iiint\dfrac{\mathbf{J}}{R}\,dV'$</td>
+</tr>
+</table>
+
+<p style="text-indent:2em;">由于磁矢势和电位满足同一类方程，两者有相同的求解方法和相似的结果。</p>
+
+<p style="text-indent:0;"><h4>标量磁位</h4></p>
+
+<p style="text-indent:2em;">在无电流区域（$\mathbf{J}=0$），$\nabla\times\mathbf{H}=0$，可引入标量磁位 $\phi_m$：</p>
+
+<p style="text-align:center;text-indent:0;">$$\mathbf{H} = -\nabla\phi_m$$</p>
+
+<p style="text-indent:2em;">$\phi_m$ 满足拉普拉斯方程：$\nabla^2\phi_m = 0$。</p>
+
+<p style="text-indent:0;"><h3>静态磁场能量</h3></p>
+
+<p style="text-indent:0;"><h4>磁场能量</h4></p>
+
+<p style="text-indent:2em;">电流体系的磁场能量：</p>
+
+<p style="text-align:center;text-indent:0;">$$W_m = \frac{1}{2}\iiint_V \mathbf{J}\cdot\mathbf{A} \,dV$$</p>
+
+<p style="text-indent:2em;">用场量表示：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{W_m = \frac{1}{2}\iiint_V \mathbf{B}\cdot\mathbf{H} \,dV}$$</p>
+
+<p style="text-indent:2em;">磁场能量密度：</p>
+
+<p style="text-align:center;text-indent:0;">$$\boxed{w_m = \frac{1}{2}\mathbf{B}\cdot\mathbf{H} = \frac{1}{2}\mu H^2 = \frac{B^2}{2\mu}}$$</p>
+
+<p style="text-indent:0;"><h4>电感</h4></p>
+
+<p style="text-indent:2em;">自感 $L$ 和互感 $M$ 可通过磁场能量计算：</p>
+
+<p style="text-align:center;text-indent:0;">$$W_m = \frac{1}{2}LI^2 \quad\text{或}\quad W_m = \frac{1}{2}L_1I_1^2 + MI_1I_2 + \frac{1}{2}L_2I_2^2$$</p>
+
+<p style="text-indent:0;"><h3>本章核心公式</h3></p>
+
+<table style="border-collapse:collapse; width:95%; margin:0 auto;">
+<caption style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 静态电磁场核心公式汇总</caption>
+<tr>
+  <th style="border:1px solid #ccc; padding:6px 10px; background:#f5f5f5; text-align:center;"></th>
+  <th style="border:1px solid #ccc; padding:6px 10px; background:#f5f5f5; text-align:center;">静电场</th>
+  <th style="border:1px solid #ccc; padding:6px 10px; background:#f5f5f5; text-align:center;">稳恒磁场</th>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">基本方程</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\nabla\times\mathbf{E}=0,\;\nabla\cdot\mathbf{D}=\rho$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\nabla\cdot\mathbf{B}=0,\;\nabla\times\mathbf{H}=\mathbf{J}$</td>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">位函数</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\mathbf{E}=-\nabla\phi$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\mathbf{B}=\nabla\times\mathbf{A}$</td>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">位方程</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\nabla^2\phi=-\rho/\varepsilon$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$\nabla^2\mathbf{A}=-\mu\mathbf{J}$</td>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">能量密度</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$w_e=\frac{1}{2}\varepsilon E^2$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$w_m=\frac{1}{2}\mu H^2$</td>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">总能量</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$W_e=\frac{1}{2}\iiint\mathbf{D}\cdot\mathbf{E}\,dV$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$W_m=\frac{1}{2}\iiint\mathbf{B}\cdot\mathbf{H}\,dV$</td>
+</tr>
+<tr>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">储能元件</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$W_e=\frac{1}{2}CU^2$</td>
+  <td style="border:1px solid #ccc; padding:6px 10px; text-align:center;">$W_m=\frac{1}{2}LI^2$</td>
+</tr>
+</table>
+
+</div>

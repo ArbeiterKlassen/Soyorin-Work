@@ -61,6 +61,94 @@
   },
   "articles": [
     {
+      "number": 42,
+      "class": "code",
+      "links": "../articles/000042.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "电磁波的辐射",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "天线辐射场三分区（近场/远场/感应区）、电偶极子与磁偶极子辐射场完整推导、广义Maxwell方程组与电磁对偶性原理",
+      "hasToc": true
+    },
+    {
+      "number": 41,
+      "class": "code",
+      "links": "../articles/000041.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "电磁波的传播",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "电磁波干涉与行驻波状态、反射系数与透射系数推导、驻波比SWR、斯涅耳定律与菲涅耳公式、全反射临界角与布儒斯特角",
+      "hasToc": true
+    },
+    {
+      "number": 40,
+      "class": "code",
+      "links": "../articles/000040.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "均匀平面波",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "理想介质与导电介质中平面波的完整推导：亥姆霍兹方程解、波阻抗与波速、趋肤深度、电磁波极化（线/圆/椭圆）、相速度与群速度",
+      "hasToc": true
+    },
+    {
+      "number": 39,
+      "class": "code",
+      "links": "../articles/000039.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "时变电磁场",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "波动方程推导、动态势函数与洛伦兹规范、达朗贝尔方程与推迟势、时谐场复振幅展开与频域Helmholtz方程、坡印廷定理与复坡印廷矢量",
+      "hasToc": true
+    },
+    {
+      "number": 38,
+      "class": "code",
+      "links": "../articles/000038.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "电磁场解析方法",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "静态电磁场唯一性定理及其证明、分离变量法（直角/圆柱/球坐标系）求解拉普拉斯方程、镜像法（平面镜像与球面镜像）的原理与应用",
+      "hasToc": true
+    },
+    {
+      "number": 37,
+      "class": "code",
+      "links": "../articles/000037.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "静态电磁场",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "静电场定解问题与电位函数、电容与静电力虚位移法、稳恒磁场磁矢势与矢量泊松方程、电感与磁场能量计算、静态电场与磁场的对偶关系",
+      "hasToc": true
+    },
+    {
+      "number": 36,
+      "class": "code",
+      "links": "../articles/000036.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "宏观电磁场理论基础",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "电荷守恒与电流连续性方程、库仑定律与静电场高斯定律、毕奥-萨伐尔定律与稳恒磁场、媒质电磁特性（极化/磁化/传导）、Maxwell方程组完整形式与边界条件",
+      "hasToc": true
+    },
+    {
+      "number": 35,
+      "class": "code",
+      "links": "../articles/000035.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "矢量分析与场论基础",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "正交曲线坐标系与拉梅系数、矢量基本运算与三重积、标量场梯度与方向导数完整推导、矢量场散度与旋度定义及公式、亥姆霍兹定理与两个基本恒等式的多种证明",
+      "hasToc": true
+    },
+    {
       "number": 34,
       "class": "code",
       "links": "../articles/000034.html",

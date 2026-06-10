@@ -1,0 +1,849 @@
+<div style="font-family:Times New Roman,Times,serif;">
+
+<h1 style="text-indent:0;">宏观电磁场理论基础</h1>
+
+<h2 style="text-indent:0;">电荷与电荷守恒定律</h2>
+
+<h3 style="text-indent:0;">电荷与电荷密度</h3>
+
+<p style="text-indent:2em;">电荷是物质的基本属性。自然界存在正、负两种电荷。微观上电荷具有分离性（量子化），宏观上可视为连续分布。</p>
+
+<h4 style="text-indent:0;">体电荷密度</h4>
+
+<p style="text-indent:2em;">电荷连续分布在体积 $V$ 内，定义体电荷密度：</p>
+
+$$ \boxed{\rho(\mathbf{r}) = \lim_{\Delta V \to 0}\frac{\Delta q}{\Delta V} = \frac{\,dq}{\,dV}} $$
+
+<p style="text-indent:2em;">单位为 $\mathrm{C/m^3}$。体积 $V$ 内的总电荷量为：</p>
+
+$$ q = \iiint_V \rho(\mathbf{r})\,dV $$
+
+<h4 style="text-indent:0;">面电荷密度</h4>
+
+<p style="text-indent:2em;">电荷连续分布在厚度可忽略不计的表面薄层 $S$ 上，定义面电荷密度：</p>
+
+$$ \boxed{\rho_s(\mathbf{r}) = \lim_{\Delta S \to 0}\frac{\Delta q}{\Delta S} = \frac{\,dq}{\,dS}} $$
+
+<p style="text-indent:2em;">单位为 $\mathrm{C/m^2}$。面积 $S$ 上的总电荷量为：</p>
+
+$$ q = \iint_S \rho_s(\mathbf{r})\,dS $$
+
+<h4 style="text-indent:0;">线电荷密度</h4>
+
+<p style="text-indent:2em;">电荷连续分布在直径可忽略不计的细线 $l$ 上，定义线电荷密度：</p>
+
+$$ \boxed{\rho_l(\mathbf{r}) = \lim_{\Delta l \to 0}\frac{\Delta q}{\Delta l} = \frac{\,dq}{\,dl}} $$
+
+<p style="text-indent:2em;">单位为 $\mathrm{C/m}$。$l$ 上的总电荷量为：</p>
+
+$$ q = \int_l \rho_l(\mathbf{r})\,dl $$
+
+<h4 style="text-indent:0;">点电荷</h4>
+
+<p style="text-indent:2em;">当电荷集中在很小的区域，且所讨论的场区域远离电荷所在区域时，可用点电荷模型。其密度用 $\delta$ 函数表示：</p>
+
+$$ \rho(\mathbf{r}) = q\,\delta(\mathbf{r} - \mathbf{r}') $$
+
+<h3 style="text-indent:0;">电流与电流密度</h3>
+
+<p style="text-indent:2em;">电荷的定向运动形成电流。</p>
+
+<h4 style="text-indent:0;">电流强度</h4>
+
+<p style="text-indent:2em;">单位时间内通过某一截面的电荷量：</p>
+
+$$ I = \lim_{\Delta t \to 0}\frac{\Delta q}{\Delta t} = \frac{\,dq}{\,dt} $$
+
+<p style="text-indent:2em;">单位为 $\mathrm{A}$（安培）。电流强度是宏观概念。</p>
+
+<h4 style="text-indent:0;">体电流密度</h4>
+
+<p style="text-indent:2em;">电流在体积内流动，定义体电流密度矢量 $\mathbf{J}(\mathbf{r})$。其方向为正电荷运动方向，大小等于单位时间通过垂直于电流方向单位面积的电荷量。</p>
+
+<p style="text-indent:2em;">通过任意曲面 $S$ 的电流强度与电流密度的关系：</p>
+
+$$ I = \iint_S \mathbf{J}\cdot\,d\mathbf{S} $$
+
+<p style="text-indent:2em;">$\mathbf{J}$ 的单位为 $\mathrm{A/m^2}$。</p>
+
+<h4 style="text-indent:0;">面电流密度与线电流</h4>
+
+<p style="text-indent:2em;">当电流在厚度可忽略的薄层中流动时，定义面电流密度 $\mathbf{J}_s$（单位为 $\mathrm{A/m}$）。对于导线中的线电流，可用 $I\,d\mathbf{l}$ 表示电流元。</p>
+
+<h3 style="text-indent:0;">电荷守恒定律</h3>
+
+<h4 style="text-indent:0;">定律表述</h4>
+
+<p style="text-indent:2em;">孤立系统的电荷总量保持不变。在任何时刻，系统中正负电荷的代数和保持不变。</p>
+
+<h4 style="text-indent:0;">电流连续性方程</h4>
+
+<p style="text-indent:2em;">考虑体积 $V$ 内电荷量随时间的变化。单位时间内流出闭合曲面 $S$ 的电荷量等于 $V$ 内电荷的减少量：</p>
+
+$$ \oiint_S \mathbf{J}\cdot\,d\mathbf{S} = -\frac{\,d}{\,dt}\iiint_V \rho\,dV $$
+
+<p style="text-indent:2em;">利用高斯定理将面积分化为体积分：</p>
+
+$$ \iiint_V \nabla\cdot\mathbf{J}\,dV = -\iiint_V \frac{\partial\rho}{\partial t}\,dV $$
+
+<p style="text-indent:2em;">由于体积 $V$ 任意，被积函数相等：</p>
+
+$$ \boxed{\nabla\cdot\mathbf{J} + \frac{\partial\rho}{\partial t} = 0} $$
+
+<p style="text-indent:2em;">此即<b>电流连续性方程</b>，是电荷守恒定律的微分形式。</p>
+
+<p style="text-indent:2em;">对于稳恒电流（不随时间变化），$\partial\rho/\partial t = 0$，故：</p>
+
+$$ \nabla\cdot\mathbf{J} = 0 $$
+
+<p style="text-indent:2em;">此时电流线是闭合的（稳恒电流条件）。</p>
+
+<h2 style="text-indent:0;">库仑定律与静电场</h2>
+
+<h3 style="text-indent:0;">库仑定律</h3>
+
+<p style="text-indent:2em;">真空中两点电荷之间的作用力为（实验定律）：</p>
+
+$$ \boxed{\mathbf{F}_{12} = \frac{1}{4\pi\varepsilon_0}\frac{q_1q_2}{R^2}\,\hat{\mathbf{e}}_{R}} $$
+
+<p style="text-indent:2em;">其中 $\mathbf{R} = \mathbf{r}_1 - \mathbf{r}_2$，$R = |\mathbf{R}|$，$\hat{\mathbf{e}}_{R} = \mathbf{R}/R$。$\varepsilon_0 = 8.85\times 10^{-12}\,\mathrm{F/m}$ 为真空介电常数。</p>
+
+<h3 style="text-indent:0;">电场强度</h3>
+
+<p style="text-indent:2em;">任何电荷在其周围空间激发电场。电场强度的定义为：单位正试验电荷在电场中所受的力。</p>
+
+$$ \boxed{\mathbf{E}(\mathbf{r}) = \lim_{q_0\to 0}\frac{\mathbf{F}(\mathbf{r})}{q_0}} $$
+
+<p style="text-indent:2em;">对于点电荷 $q$（位于 $\mathbf{r}'$），其在 $\mathbf{r}$ 处产生的电场强度为：</p>
+
+$$ \mathbf{E}(\mathbf{r}) = \frac{q}{4\pi\varepsilon_0}\frac{\mathbf{R}}{R^3}
+    = \frac{q}{4\pi\varepsilon_0}\frac{\mathbf{r} - \mathbf{r}'}{|\mathbf{r} - \mathbf{r}'|^3} $$
+
+<p style="text-indent:2em;">对于连续分布电荷，利用叠加原理：</p>
+
+<p style="text-indent:2em;"><b>体电荷分布：</b></p>
+
+$$ \mathbf{E}(\mathbf{r}) = \frac{1}{4\pi\varepsilon_0}\iiint_V \rho(\mathbf{r}')\frac{\mathbf{r} - \mathbf{r}'}{|\mathbf{r} - \mathbf{r}'|^3}\,dV' $$
+
+<p style="text-indent:2em;"><b>面电荷分布：</b></p>
+
+$$ \mathbf{E}(\mathbf{r}) = \frac{1}{4\pi\varepsilon_0}\iint_S \rho_s(\mathbf{r}')\frac{\mathbf{r} - \mathbf{r}'}{|\mathbf{r} - \mathbf{r}'|^3}\,dS' $$
+
+<p style="text-indent:2em;"><b>线电荷分布：</b></p>
+
+$$ \mathbf{E}(\mathbf{r}) = \frac{1}{4\pi\varepsilon_0}\int_l \rho_l(\mathbf{r}')\frac{\mathbf{r} - \mathbf{r}'}{|\mathbf{r} - \mathbf{r}'|^3}\,dl' $$
+
+<h3 style="text-indent:0;">静电场的基本性质</h3>
+
+<h4 style="text-indent:0;">性质一：静电场是有散场 —— 高斯定律</h4>
+
+<p style="text-indent:2em;"><b>积分形式：</b>电场强度穿出任意闭合曲面 $S$ 的通量等于 $S$ 所围体积内总电荷的 $1/\varepsilon_0$ 倍。</p>
+
+$$ \boxed{\oiint_S \mathbf{E}\cdot\,d\mathbf{S} = \frac{q}{\varepsilon_0} = \frac{1}{\varepsilon_0}\iiint_V \rho\,dV} $$
+
+<p style="text-indent:2em;">由高斯定理（散度定理）：</p>
+
+$$ \oiint_S \mathbf{E}\cdot\,d\mathbf{S} = \iiint_V \nabla\cdot\mathbf{E}\,dV $$
+
+<p style="text-indent:2em;">比较两式，由 $V$ 的任意性得<b>微分形式</b>：</p>
+
+$$ \boxed{\nabla\cdot\mathbf{E} = \frac{\rho}{\varepsilon_0}} $$
+
+<p style="text-indent:2em;"><b>推导验证：</b>可由库仑电场直接验证 $\nabla\cdot\mathbf{E} = \rho/\varepsilon_0$。对于点电荷：</p>
+
+$$\begin{aligned}
+    \mathbf{E} &= \frac{q}{4\pi\varepsilon_0}\frac{\mathbf{R}}{R^3} \\
+    \nabla\cdot\left(\frac{\mathbf{R}}{R^3}\right) &= 4\pi\delta(\mathbf{R})
+\end{aligned}$$
+
+<p style="text-indent:2em;">因此 $\nabla\cdot\mathbf{E} = (q/\varepsilon_0)\delta(\mathbf{R})$，对应 $\rho = q\delta(\mathbf{R})$。</p>
+
+<h4 style="text-indent:0;">性质二：静电场是无旋场 —— 电位函数</h4>
+
+<p style="text-indent:2em;">库仑电场满足：</p>
+
+$$ \boxed{\nabla\times\mathbf{E} = 0} $$
+
+<p style="text-indent:2em;"><b>证明：</b>由库仑定律，电场可写为 $\mathbf{E} = -\nabla\phi$，其中：</p>
+
+$$ \phi(\mathbf{r}) = \frac{q}{4\pi\varepsilon_0 R} $$
+
+<p style="text-indent:2em;">而梯度的旋度恒为零（$\nabla\times\nabla\phi \equiv 0$），故 $\nabla\times\mathbf{E} = 0$。</p>
+
+<p style="text-indent:2em;">积分形式（斯托克斯定理）：</p>
+
+$$ \oint_C \mathbf{E}\cdot\,d\mathbf{l} = 0 $$
+
+<p style="text-indent:2em;">即静电场中沿任意闭合回路的环量为零，说明静电场是保守场。</p>
+
+<h4 style="text-indent:0;">电位（电势）函数</h4>
+
+<p style="text-indent:2em;">因 $\nabla\times\mathbf{E} = 0$，电场可表示为标量电位的负梯度：</p>
+
+$$ \boxed{\mathbf{E} = -\nabla\phi} $$
+
+<p style="text-indent:2em;">电位函数的物理意义：将单位正电荷从参考点 $P_0$ 移到 $P$，电场力作的功的负值。</p>
+
+$$ \phi(P) = -\int_{P_0}^{P} \mathbf{E}\cdot\,d\mathbf{l} $$
+
+<p style="text-indent:2em;">点电荷的电位：$\phi = \dfrac{q}{4\pi\varepsilon_0 R}$（参考点取无穷远）。</p>
+
+<p style="text-indent:2em;">电位与电场强度的关系满足泊松/拉普拉斯方程：</p>
+
+$$ \nabla^2\phi = -\frac{\rho}{\varepsilon_0} \quad\text{（泊松方程）} $$
+
+<p style="text-indent:2em;">在无源区域 $(\rho = 0)$：</p>
+
+$$ \nabla^2\phi = 0 \quad\text{（拉普拉斯方程）} $$
+
+<h3 style="text-indent:0;">电偶极子</h3>
+
+<h4 style="text-indent:0;">定义</h4>
+
+<p style="text-indent:2em;">电偶极子由两个相距很小距离 $l$ 的等量异号点电荷 $(\pm q)$ 构成。电偶极矩：</p>
+
+$$ \boxed{\mathbf{p} = q\mathbf{l}} $$
+
+<p style="text-indent:2em;">其中 $\mathbf{l}$ 从负电荷指向正电荷，$|\mathbf{l}| = l$。</p>
+
+<h4 style="text-indent:0;">电偶极子的电场</h4>
+
+<p style="text-indent:2em;">在远场区域（$r \gg l$），电偶极子产生的电场为：</p>
+
+$$ \boxed{\mathbf{E} = \frac{1}{4\pi\varepsilon_0}\frac{3(\mathbf{p}\cdot\hat{\mathbf{e}}_{r})\hat{\mathbf{e}}_{r} - \mathbf{p}}{r^3}} $$
+
+<p style="text-indent:2em;">在球坐标系中（$\mathbf{p} = p\hat{\mathbf{e}}_{z}$）：</p>
+
+$$ \mathbf{E} = \frac{p}{4\pi\varepsilon_0 r^3}(2\cos\theta\,\hat{\mathbf{e}}_{r} + \sin\theta\,\hat{\mathbf{e}}_{\theta}) $$
+
+<p style="text-indent:2em;"><b>推导要点：</b>两电荷电场叠加，利用 $r\gg l$ 做泰勒展开：</p>
+
+$$\begin{aligned}
+    R_{\pm} &= |\mathbf{r} \mp \mathbf{l}/2| \approx r\left(1 \mp \frac{l}{2r}\cos\theta\right) \\
+    \frac{1}{R_{\pm}^3} &\approx \frac{1}{r^3}\left(1 \pm \frac{3l}{2r}\cos\theta\right)
+\end{aligned}$$
+
+<p style="text-indent:2em;">代入叠加公式并保留一阶小量，即可得电偶极子电场表达式。</p>
+
+<h2 style="text-indent:0;">安培定律与电流的磁场</h2>
+
+<h3 style="text-indent:0;">毕奥-萨伐尔定律（Biot--Savart Law）</h3>
+
+<p style="text-indent:2em;">电流元 $I\,d\mathbf{l}$ 在空间激发的磁感应强度由毕奥-萨伐尔定律给出：</p>
+
+$$ \boxed{\,d\mathbf{B} = \frac{\mu_0}{4\pi}\frac{I\,d\mathbf{l}\times\hat{\mathbf{e}}_{R}}{R^2}} $$
+
+<p style="text-indent:2em;">其中 $\mu_0 = 4\pi\times 10^{-7}\,\mathrm{H/m}$（真空磁导率），$\mathbf{R} = \mathbf{r} - \mathbf{r}'$。</p>
+
+<p style="text-indent:2em;">对于体电流分布 $\mathbf{J}(\mathbf{r}')$：</p>
+
+$$ \boxed{\mathbf{B}(\mathbf{r}) = \frac{\mu_0}{4\pi}\iiint_V \frac{\mathbf{J}(\mathbf{r}')\times\mathbf{R}}{R^3}\,dV'} $$
+
+<h3 style="text-indent:0;">磁矢位（Magnetic Vector Potential）</h3>
+
+<p style="text-indent:2em;">利用恒等式 $\nabla(R^{-1}) = -\mathbf{R}/R^3$，可将毕奥-萨伐尔公式改写为：</p>
+
+$$ \mathbf{B}(\mathbf{r}) = \frac{\mu_0}{4\pi}\iiint_V \mathbf{J}(\mathbf{r}')\times\left(-\nabla\frac{1}{R}\right)dV'
+    = \nabla\times\left[\frac{\mu_0}{4\pi}\iiint_V \frac{\mathbf{J}(\mathbf{r}')}{R}\,dV'\right] $$
+
+<p style="text-indent:2em;">定义<b>磁矢位</b>：</p>
+
+$$ \boxed{\mathbf{A}(\mathbf{r}) = \frac{\mu_0}{4\pi}\iiint_V \frac{\mathbf{J}(\mathbf{r}')}{R}\,dV'} $$
+
+<p style="text-indent:2em;">则有：</p>
+
+$$ \boxed{\mathbf{B} = \nabla\times\mathbf{A}} $$
+
+<p style="text-indent:2em;">磁矢位的引入使磁场计算大为简化。在库仑规范（$\nabla\cdot\mathbf{A}=0$）下，$\mathbf{A}$ 满足矢量泊松方程：</p>
+
+$$ \nabla^2\mathbf{A} = -\mu_0\mathbf{J} $$
+
+<h3 style="text-indent:0;">稳恒磁场的基本性质</h3>
+
+<h4 style="text-indent:0;">性质一：磁场是无散场</h4>
+
+$$ \boxed{\nabla\cdot\mathbf{B} = 0} $$
+
+<p style="text-indent:2em;"><b>证明：</b>由 $\mathbf{B} = \nabla\times\mathbf{A}$，而旋度的散度恒为零。</p>
+
+<p style="text-indent:2em;">积分形式（磁通连续性定理/磁场高斯定理）：</p>
+
+$$ \oiint_S \mathbf{B}\cdot\,d\mathbf{S} = 0 $$
+
+<p style="text-indent:2em;">物理意义：磁感线无起点也无终点，总是闭合的。不存在磁单极子。</p>
+
+<h4 style="text-indent:0;">性质二：稳恒磁场是有旋场 —— 安培环路定理</h4>
+
+$$ \boxed{\nabla\times\mathbf{B} = \mu_0\mathbf{J}} $$
+
+<p style="text-indent:2em;"><b>推导：</b>由 $\mathbf{B} = \nabla\times\mathbf{A}$ 及矢量恒等式：</p>
+
+$$\begin{aligned}
+    \nabla\times\mathbf{B} &= \nabla\times(\nabla\times\mathbf{A}) = \nabla(\nabla\cdot\mathbf{A}) - \nabla^2\mathbf{A}
+\end{aligned}$$
+
+<p style="text-indent:2em;">在库仑规范 $\nabla\cdot\mathbf{A} = 0$ 下，$\nabla^2\mathbf{A} = -\mu_0\mathbf{J}$，故：</p>
+
+$$ \nabla\times\mathbf{B} = \mu_0\mathbf{J} $$
+
+<p style="text-indent:2em;">积分形式（安培环路定理）：</p>
+
+$$ \boxed{\oint_C \mathbf{B}\cdot\,d\mathbf{l} = \mu_0 I = \mu_0\iint_S \mathbf{J}\cdot\,d\mathbf{S}} $$
+
+<h4 style="text-indent:0;">性质三：洛伦兹力</h4>
+
+<p style="text-indent:2em;">电磁场对带电粒子的作用力为电场力和磁场力之和：</p>
+
+$$ \boxed{\mathbf{F} = q(\mathbf{E} + \mathbf{v}\times\mathbf{B})} $$
+
+<p style="text-indent:2em;">电流元受磁场力（安培力）：</p>
+
+$$ \,d\mathbf{F} = I\,d\mathbf{l}\times\mathbf{B} $$
+
+<h3 style="text-indent:0;">磁偶极子——小电流环</h3>
+
+<p style="text-indent:2em;">小电流环（环面积 $S$，电流 $I$）在远场产生的磁场与电偶极子电场形式类似。定义磁偶极矩：</p>
+
+$$ \boxed{\mathbf{m} = I\mathbf{S}} $$
+
+<p style="text-indent:2em;">其中 $\mathbf{S}$ 的方向由右手定则确定。</p>
+
+<p style="text-indent:2em;">磁偶极子在远场产生的磁矢位和磁场：</p>
+
+$$\begin{aligned}
+    \mathbf{A} &= \frac{\mu_0}{4\pi}\frac{\mathbf{m}\times\hat{\mathbf{e}}_{r}}{r^2} \\
+    \mathbf{B} &= \frac{\mu_0}{4\pi}\frac{3(\mathbf{m}\cdot\hat{\mathbf{e}}_{r})\hat{\mathbf{e}}_{r} - \mathbf{m}}{r^3}
+\end{aligned}$$
+
+<h2 style="text-indent:0;">媒质的电磁特性</h2>
+
+<p style="text-indent:2em;">媒质在外部电磁场作用下表现出三种形态：<b>极化</b>（外部电场）、<b>磁化</b>（外部磁场）、<b>传导</b>（外部电场）。</p>
+
+<h3 style="text-indent:0;">介质的极化</h3>
+
+<h4 style="text-indent:0;">极化机理与极化强度</h4>
+
+<p style="text-indent:2em;">外加电场使介质中分子/原子的正负电荷中心发生位移，产生电偶极矩。定义<b>极化强度</b>为单位体积内的电偶极矩：</p>
+
+$$ \boxed{\mathbf{P} = \lim_{\Delta V\to 0}\frac{\sum \mathbf{p}_i}{\Delta V}} $$
+
+<p style="text-indent:2em;">单位为 $\mathrm{C/m^2}$。</p>
+
+<h4 style="text-indent:0;">束缚电荷（极化电荷）</h4>
+
+<p style="text-indent:2em;">极化使体积元内出现净余电荷——束缚电荷。极化电荷体密度与极化强度的关系：</p>
+
+$$ \boxed{\rho_p = -\nabla\cdot\mathbf{P}} $$
+
+<p style="text-indent:2em;"><b>推导：</b>穿过闭合面 $S$ 的极化电荷量为 $\oiint_S \mathbf{P}\cdot\,d\mathbf{S}$。$V$ 内净余极化电荷为穿出电荷的负值：</p>
+
+$$ q_p = -\oiint_S \mathbf{P}\cdot\,d\mathbf{S} = -\iiint_V \nabla\cdot\mathbf{P}\,dV $$
+
+<p style="text-indent:2em;">故 $\rho_p = \,dq_p/\,dV = -\nabla\cdot\mathbf{P}$。</p>
+
+<p style="text-indent:2em;">极化电荷面密度（在介质表面）：</p>
+
+$$ \rho_{sp} = \mathbf{P}\cdot\hat{\mathbf{e}}_{n} $$
+
+<h4 style="text-indent:0;">电位移矢量与介质中的高斯定理</h4>
+
+<p style="text-indent:2em;">介质中的总电场 = 外加电场 + 极化电荷电场。高斯定理在介质中修正为：</p>
+
+$$ \nabla\cdot(\varepsilon_0\mathbf{E}) = \rho + \rho_p = \rho - \nabla\cdot\mathbf{P} $$
+
+<p style="text-indent:2em;">整理得：</p>
+
+$$ \nabla\cdot(\varepsilon_0\mathbf{E} + \mathbf{P}) = \rho $$
+
+<p style="text-indent:2em;">定义<b>电位移矢量</b>：</p>
+
+$$ \boxed{\mathbf{D} = \varepsilon_0\mathbf{E} + \mathbf{P}} $$
+
+<p style="text-indent:2em;">则介质中的高斯定理为：</p>
+
+$$ \boxed{\nabla\cdot\mathbf{D} = \rho} $$
+
+<p style="text-indent:2em;">积分形式：</p>
+
+$$ \oiint_S \mathbf{D}\cdot\,d\mathbf{S} = \iiint_V \rho\,dV = q $$
+
+<p style="text-indent:2em;">$\mathbf{D}$ 是辅助量，不代表真正的电场。$\mathbf{E}$ 才是基本场量。</p>
+
+<h4 style="text-indent:0;">线性各向同性介质的本构关系</h4>
+
+<p style="text-indent:2em;">对于线性、均匀、各向同性介质，极化强度与电场呈线性关系：</p>
+
+$$ \mathbf{P} = \varepsilon_0\chi_e\mathbf{E} $$
+
+<p style="text-indent:2em;">其中 $\chi_e$ 为介质的电极化率（无量纲）。</p>
+
+<p style="text-indent:2em;">则电位移矢量为：</p>
+
+$$ \mathbf{D} = \varepsilon_0(1+\chi_e)\mathbf{E} = \varepsilon_0\varepsilon_r\mathbf{E} = \varepsilon\mathbf{E} $$
+
+<p style="text-indent:2em;">其中 $\varepsilon_r = 1+\chi_e$ 为相对介电常数，$\varepsilon = \varepsilon_0\varepsilon_r$ 为介质的（绝对）介电常数。</p>
+
+<h4 style="text-indent:0;">例题：均匀介质内极化电荷与自由电荷的关系</h4>
+
+<p style="text-indent:2em;"><b>证明：</b>均匀介质内，$\rho_p = -(1-\varepsilon_0/\varepsilon)\rho$。</p>
+
+<p style="text-indent:2em;"><b>证：</b>由 $\nabla\cdot\mathbf{D} = \rho$ 且 $\mathbf{D} = \varepsilon\mathbf{E}$（均匀介质 $\varepsilon$ 为常数），则：</p>
+
+$$ \nabla\cdot\mathbf{E} = \frac{\rho}{\varepsilon} $$
+
+<p style="text-indent:2em;">又 $\mathbf{P} = \mathbf{D} - \varepsilon_0\mathbf{E} = (\varepsilon-\varepsilon_0)\mathbf{E}$，故：</p>
+
+$$ \rho_p = -\nabla\cdot\mathbf{P} = -(\varepsilon-\varepsilon_0)\nabla\cdot\mathbf{E}
+    = -\frac{\varepsilon-\varepsilon_0}{\varepsilon}\rho
+    = -\left(1-\frac{\varepsilon_0}{\varepsilon}\right)\rho \quad\blacksquare $$
+
+<p style="text-indent:2em;">当 $\varepsilon = \varepsilon_0$（真空）时，$\rho_p = 0$，无极化电荷。</p>
+
+<h3 style="text-indent:0;">介质的磁化</h3>
+
+<h4 style="text-indent:0;">磁化机理与磁化强度</h4>
+
+<p style="text-indent:2em;">外加磁场使介质中分子磁矩取向排列（或改变分子电流）。定义<b>磁化强度</b>为单位体积内的磁偶极矩：</p>
+
+$$ \boxed{\mathbf{M} = \lim_{\Delta V\to 0}\frac{\sum \mathbf{m}_i}{\Delta V}} $$
+
+<p style="text-indent:2em;">单位为 $\mathrm{A/m}$。</p>
+
+<h4 style="text-indent:0;">磁化电流</h4>
+
+<p style="text-indent:2em;">磁化产生的等效电流——磁化电流（束缚电流）。磁化电流体密度为：</p>
+
+$$ \boxed{\mathbf{J}_m = \nabla\times\mathbf{M}} $$
+
+<p style="text-indent:2em;">磁化电流面密度（在介质表面）：</p>
+
+$$ \mathbf{J}_{sm} = \mathbf{M}\times\hat{\mathbf{e}}_{n} $$
+
+<h4 style="text-indent:0;">磁场强度与介质中的安培环路定理</h4>
+
+<p style="text-indent:2em;">考虑磁化电流后，安培环路定理修正为：</p>
+
+$$ \nabla\times\mathbf{B} = \mu_0(\mathbf{J} + \mathbf{J}_m) = \mu_0(\mathbf{J} + \nabla\times\mathbf{M}) $$
+
+<p style="text-indent:2em;">整理：</p>
+
+$$ \nabla\times\left(\frac{\mathbf{B}}{\mu_0} - \mathbf{M}\right) = \mathbf{J} $$
+
+<p style="text-indent:2em;">定义<b>磁场强度</b>：</p>
+
+$$ \boxed{\mathbf{H} = \frac{\mathbf{B}}{\mu_0} - \mathbf{M}} $$
+
+<p style="text-indent:2em;">则介质中的安培环路定理为：</p>
+
+$$ \boxed{\nabla\times\mathbf{H} = \mathbf{J}} $$
+
+<p style="text-indent:2em;">积分形式：</p>
+
+$$ \oint_C \mathbf{H}\cdot\,d\mathbf{l} = \iint_S \mathbf{J}\cdot\,d\mathbf{S} = I $$
+
+<h4 style="text-indent:0;">线性各向同性磁介质的本构关系</h4>
+
+<p style="text-indent:2em;">对于线性、均匀、各向同性磁介质：</p>
+
+$$ \mathbf{M} = \chi_m\mathbf{H} $$
+
+<p style="text-indent:2em;">其中 $\chi_m$ 为磁化率（无量纲）。</p>
+
+<p style="text-indent:2em;">则磁感应强度为：</p>
+
+$$ \mathbf{B} = \mu_0(\mathbf{H}+\mathbf{M}) = \mu_0(1+\chi_m)\mathbf{H} = \mu_0\mu_r\mathbf{H} = \mu\mathbf{H} $$
+
+<p style="text-indent:2em;">其中 $\mu_r = 1+\chi_m$ 为相对磁导率，$\mu = \mu_0\mu_r$ 为磁导率。</p>
+
+<p style="text-indent:2em;">按 $\mu_r$ 分类：</p>
+
+<ul>
+    <li>抗磁质：$\mu_r < 1$（$\chi_m < 0$，很小）</li>
+    <li>顺磁质：$\mu_r > 1$（$\chi_m > 0$，很小）</li>
+    <li>铁磁质：$\mu_r \gg 1$（$\chi_m$ 很大，非线性）</li>
+</ul>
+
+<h3 style="text-indent:0;">导电媒质与传导</h3>
+
+<p style="text-indent:2em;">在外电场作用下，导电介质中自由电子产生定向运动，形成传导电流。</p>
+
+<h4 style="text-indent:0;">欧姆定律的微分形式</h4>
+
+$$ \boxed{\mathbf{J} = \sigma\mathbf{E}} $$
+
+<p style="text-indent:2em;">其中 $\sigma$ 为电导率，单位为 $\mathrm{S/m}$（西门子/米）。</p>
+
+<p style="text-indent:2em;">这是欧姆定律的微观形式。对于均匀截面的导线，积分后得 $U = IR$。</p>
+
+<h4 style="text-indent:0;">导电媒质分类</h4>
+
+<ul>
+    <li>理想介质（绝缘体）：$\sigma = 0$</li>
+    <li>良导体：$\sigma \to \infty$</li>
+    <li>半导体：介于上述两者之间</li>
+</ul>
+
+<p style="text-indent:2em;"><b>理想导体内部性质：</b>静电平衡时，理想导体内部 $\mathbf{E}=0$、$\rho=0$。外加电荷仅分布在导体表面。</p>
+
+<h2 style="text-indent:0;">电磁感应定律与位移电流</h2>
+
+<h3 style="text-indent:0;">法拉第电磁感应定律</h3>
+
+<h4 style="text-indent:0;">实验发现</h4>
+
+<p style="text-indent:2em;">变化的磁场产生感应电场。当穿过闭合线圈的磁通量发生变化时，回路中产生感应电动势：</p>
+
+$$ \boxed{\mathcal{E} = -\frac{\,d\Phi}{\,dt}} $$
+
+<p style="text-indent:2em;">其中磁通量 $\Phi = \iint_S \mathbf{B}\cdot\,d\mathbf{S}$，负号表示感应电流的磁场方向总是反抗原磁通的变化（楞次定律）。</p>
+
+<h4 style="text-indent:0;">微分形式</h4>
+
+<p style="text-indent:2em;">由电动势定义 $\mathcal{E} = \oint_C \mathbf{E}\cdot\,d\mathbf{l}$ 及斯托克斯定理：</p>
+
+$$ \oint_C \mathbf{E}\cdot\,d\mathbf{l} = \iint_S (\nabla\times\mathbf{E})\cdot\,d\mathbf{S}
+    = -\frac{\,d}{\,dt}\iint_S \mathbf{B}\cdot\,d\mathbf{S}
+    = -\iint_S \frac{\partial\mathbf{B}}{\partial t}\cdot\,d\mathbf{S} $$
+
+<p style="text-indent:2em;">由于曲面 $S$ 任意，得：</p>
+
+$$ \boxed{\nabla\times\mathbf{E} = -\frac{\partial\mathbf{B}}{\partial t}} $$
+
+<p style="text-indent:2em;">这是Maxwell方程组之一，表明<b>变化的磁场是电场的旋涡源</b>。</p>
+
+<p style="text-indent:2em;"><b>物理意义：</b>时变磁场激发出涡旋电场，这种电场不仅存在于导体回路中，也存在于空间的任意点。</p>
+
+<h3 style="text-indent:0;">位移电流</h3>
+
+<h4 style="text-indent:0;">问题的提出</h4>
+
+<p style="text-indent:2em;">安培环路定理的原始形式 $\nabla\times\mathbf{H} = \mathbf{J}$ 在时变场中存在矛盾。对其取散度：</p>
+
+$$ \nabla\cdot(\nabla\times\mathbf{H}) = \nabla\cdot\mathbf{J} = 0 $$
+
+<p style="text-indent:2em;">但由电荷守恒定律（电流连续性方程），时变场中 $\nabla\cdot\mathbf{J} = -\partial\rho/\partial t \neq 0$。矛盾！</p>
+
+<h4 style="text-indent:0;">麦克斯韦的修正</h4>
+
+<p style="text-indent:2em;">麦克斯韦在安培环路定理中加入<b>位移电流</b>项：</p>
+
+$$ \boxed{\mathbf{J}_d = \frac{\partial\mathbf{D}}{\partial t}} $$
+
+<p style="text-indent:2em;">修正后的安培-麦克斯韦定律：</p>
+
+$$ \boxed{\nabla\times\mathbf{H} = \mathbf{J} + \frac{\partial\mathbf{D}}{\partial t}} $$
+
+<p style="text-indent:2em;"><b>验证一致性：</b>对上式取散度：</p>
+
+$$ \nabla\cdot(\nabla\times\mathbf{H}) = \nabla\cdot\mathbf{J} + \nabla\cdot\left(\frac{\partial\mathbf{D}}{\partial t}\right)
+    = \nabla\cdot\mathbf{J} + \frac{\partial}{\partial t}(\nabla\cdot\mathbf{D})
+    = \nabla\cdot\mathbf{J} + \frac{\partial\rho}{\partial t} = 0 $$
+
+<p style="text-indent:2em;">与电流连续性方程一致！</p>
+
+<h4 style="text-indent:0;">位移电流的物理意义</h4>
+
+<p style="text-indent:2em;">位移电流本质上不是真正的电荷运动，而是时变电场的效应。变化的电场同样可以激发磁场——这是麦克斯韦最重要的洞见之一，直接预言了电磁波的存在。</p>
+
+<h2 style="text-indent:0;">麦克斯韦方程组</h2>
+
+<h3 style="text-indent:0;">麦克斯韦的贡献：两个推广与两个假设</h3>
+
+<ol>
+    <li><b>推广一：</b>将静电场高斯定理 $\nabla\cdot\mathbf{D} = \rho$ 推广至时变场。</li>
+    <li><b>推广二：</b>将磁通连续性定理 $\nabla\cdot\mathbf{B} = 0$ 推广至时变场。</li>
+    <li><b>假设一（涡旋电场假设）：</b>变化的磁场产生感应电场是普适的物理效应（推广法拉第定律至空间任意点）。</li>
+    <li><b>假设二（位移电流假设）：</b>变化的电场与传导电流同样可以激发磁场（在安培环路定理中加入 $\partial\mathbf{D}/\partial t$ 项）。</li>
+</ol>
+
+<h3 style="text-indent:0;">麦克斯韦方程组的完整形式</h3>
+
+<h4 style="text-indent:0;">微分形式（时域）</h4>
+
+$$\begin{aligned}
+    \nabla\times\mathbf{E} &= -\frac{\partial\mathbf{B}}{\partial t} \quad &\text{（法拉第定律）} \\
+    \nabla\times\mathbf{H} &= \mathbf{J} + \frac{\partial\mathbf{D}}{\partial t} \quad &\text{（安培-麦克斯韦定律）} \\
+    \nabla\cdot\mathbf{D} &= \rho \quad &\text{（高斯定律）} \\
+    \nabla\cdot\mathbf{B} &= 0 \quad &\text{（磁通连续性）}
+\end{aligned}$$
+
+<h4 style="text-indent:0;">积分形式（时域）</h4>
+
+$$\begin{aligned}
+    \oint_C \mathbf{E}\cdot\,d\mathbf{l} &= -\frac{\,d}{\,dt}\iint_S \mathbf{B}\cdot\,d\mathbf{S} \\
+    \oint_C \mathbf{H}\cdot\,d\mathbf{l} &= \iint_S \mathbf{J}\cdot\,d\mathbf{S} + \frac{\,d}{\,dt}\iint_S \mathbf{D}\cdot\,d\mathbf{S} \\
+    \oiint_S \mathbf{D}\cdot\,d\mathbf{S} &= \iiint_V \rho\,dV \\
+    \oiint_S \mathbf{B}\cdot\,d\mathbf{S} &= 0
+\end{aligned}$$
+
+<h4 style="text-indent:0;">本构关系（辅助方程）</h4>
+
+<p style="text-indent:2em;">仅有上述微分方程是不完备的（5个独立方程，16个未知分量），还需补充介质本构关系：</p>
+
+$$\begin{aligned}
+    \mathbf{D} &= \varepsilon\mathbf{E} \\
+    \mathbf{B} &= \mu\mathbf{H} \\
+    \mathbf{J} &= \sigma\mathbf{E}
+\end{aligned}$$
+
+<p style="text-indent:2em;">（以上为各向同性线性介质。对各向异性介质，$\varepsilon$、$\mu$、$\sigma$ 为张量。）</p>
+
+<h3 style="text-indent:0;">麦克斯韦方程组的物理意义</h3>
+
+<ol>
+    <li><p style="text-indent:2em;"><b>电场是有散有旋的矢量场。</b>电荷是电场的通量源（$\nabla\cdot\mathbf{D}=\rho$），时变磁场是电场的旋涡源（$\nabla\times\mathbf{E}=-\partial\mathbf{B}/\partial t$）。</p></li>
+    <li><p style="text-indent:2em;"><b>磁场是无散有旋的矢量场。</b>磁感线无起点和终点（$\nabla\cdot\mathbf{B}=0$），传导电流和时变电场（位移电流）是磁场的旋涡源（$\nabla\times\mathbf{H}=\mathbf{J}+\partial\mathbf{D}/\partial t$）。</p></li>
+    <li><p style="text-indent:2em;"><b>电场与磁场相互耦合。</b>时变的电场和时变的磁场相互激发，形成统一的电磁场。电磁场的运动基本形态是<b>波动</b>——一旦在某点某时刻有电磁扰动产生，将通过电场与磁场之间的相互激发而向四周传播。</p></li>
+</ol>
+
+<h3 style="text-indent:0;">洛伦兹力公式</h3>
+
+<p style="text-indent:2em;">电磁场对带电粒子的作用力：</p>
+
+$$ \boxed{\mathbf{F} = q(\mathbf{E} + \mathbf{v}\times\mathbf{B})} $$
+
+<p style="text-indent:2em;">对于连续分布电荷和电流：</p>
+
+$$ \mathbf{f} = \rho\mathbf{E} + \mathbf{J}\times\mathbf{B} $$
+
+<p style="text-indent:2em;">其中 $\mathbf{f}$ 为力密度（单位体积的力）。</p>
+
+<h2 style="text-indent:0;">电磁场的边界条件</h2>
+
+<p style="text-indent:2em;">在实际电磁问题中，不同媒质的分界面两侧电磁特性参数不同，导致电磁场在界面处不连续。边界条件由麦克斯韦方程组的积分形式导出。</p>
+
+<h3 style="text-indent:0;">法向边界条件</h3>
+
+<p style="text-indent:2em;">在分界面处取一扁平圆柱体（高度 $h\to 0$），分别对 $\mathbf{D}$ 和 $\mathbf{B}$ 应用高斯定律。</p>
+
+<h4 style="text-indent:0;">电位移矢量的法向边界条件</h4>
+
+<p style="text-indent:2em;">由 $\oiint_S \mathbf{D}\cdot\,d\mathbf{S} = q$，当 $h\to 0$ 时柱壁面积趋于零：</p>
+
+$$ \mathbf{D}_2\cdot\hat{\mathbf{e}}_{n}\,\Delta S - \mathbf{D}_1\cdot\hat{\mathbf{e}}_{n}\,\Delta S = \rho_s\,\Delta S $$
+
+<p style="text-indent:2em;">即：</p>
+
+$$ \boxed{\hat{\mathbf{e}}_{n}\cdot(\mathbf{D}_2 - \mathbf{D}_1) = \rho_s}
+    \quad\text{或}\quad
+    \boxed{D_{2n} - D_{1n} = \rho_s} $$
+
+<p style="text-indent:2em;"><b>物理意义：</b>电位移矢量的法向分量在分界面上不连续，突变量等于分界面上的自由面电荷密度。</p>
+
+<h4 style="text-indent:0;">磁感应强度的法向边界条件</h4>
+
+<p style="text-indent:2em;">由 $\oiint_S \mathbf{B}\cdot\,d\mathbf{S} = 0$，同理得：</p>
+
+$$ \boxed{\hat{\mathbf{e}}_{n}\cdot(\mathbf{B}_2 - \mathbf{B}_1) = 0}
+    \quad\text{或}\quad
+    \boxed{B_{2n} = B_{1n}} $$
+
+<p style="text-indent:2em;"><b>物理意义：</b>磁感应强度的法向分量在分界面上总是连续的。</p>
+
+<h3 style="text-indent:0;">切向边界条件</h3>
+
+<p style="text-indent:2em;">在分界面处取一矩形环（高度 $h\to 0$），分别对 $\mathbf{E}$ 和 $\mathbf{H}$ 应用积分形式的麦克斯韦方程。</p>
+
+<h4 style="text-indent:0;">电场强度的切向边界条件</h4>
+
+<p style="text-indent:2em;">由法拉第定律 $\oint_C \mathbf{E}\cdot\,d\mathbf{l} = -\frac{\,d}{\,dt}\iint_S \mathbf{B}\cdot\,d\mathbf{S}$，当 $h\to 0$ 时：</p>
+
+$$ \mathbf{E}_2\cdot\hat{\mathbf{e}}_{t}\,\Delta l - \mathbf{E}_1\cdot\hat{\mathbf{e}}_{t}\,\Delta l = 0 $$
+
+<p style="text-indent:2em;">用叉乘形式表示为（$\hat{\mathbf{e}}_{n}$ 从媒质1指向媒质2）：</p>
+
+$$ \boxed{\hat{\mathbf{e}}_{n}\times(\mathbf{E}_2 - \mathbf{E}_1) = 0}
+    \quad\text{或}\quad
+    \boxed{E_{2t} = E_{1t}} $$
+
+<p style="text-indent:2em;"><b>物理意义：</b>电场强度的切向分量在分界面上总是连续的。</p>
+
+<h4 style="text-indent:0;">磁场强度的切向边界条件</h4>
+
+<p style="text-indent:2em;">由安培-麦克斯韦定律：</p>
+
+$$ \oint_C \mathbf{H}\cdot\,d\mathbf{l} = \iint_S \mathbf{J}\cdot\,d\mathbf{S} + \frac{\,d}{\,dt}\iint_S \mathbf{D}\cdot\,d\mathbf{S} $$
+
+<p style="text-indent:2em;">当 $h\to 0$ 时，$\mathbf{D}$ 通量趋于零。若有面电流 $\mathbf{J}_s$，则：</p>
+
+$$ \boxed{\hat{\mathbf{e}}_{n}\times(\mathbf{H}_2 - \mathbf{H}_1) = \mathbf{J}_s}
+    \quad\text{或}\quad
+    \boxed{H_{2t} - H_{1t} = J_s} $$
+
+<p style="text-indent:2em;"><b>物理意义：</b>磁场强度的切向分量在分界面上不连续，突变量等于面自由电流密度。</p>
+
+<h3 style="text-indent:0;">边界条件总结</h3>
+
+<p style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 一般媒质分界面的边界条件（$\hat{\mathbf{e}}_{n}$ 从媒质1指向媒质2）</p>
+
+<table style="width:100%;border-collapse:collapse;">
+<tr style="border-bottom:1px solid #ccc;">
+<th style="padding:6px 10px;text-align:left;"><b>场量</b></th>
+<th style="padding:6px 10px;text-align:left;"><b>一般形式</b></th>
+<th style="padding:6px 10px;text-align:left;"><b>物理含义</b></th>
+</tr>
+<tr style="border-bottom:1px solid #ccc;">
+<td style="padding:6px 10px;">$\mathbf{D}$（法向）</td>
+<td style="padding:6px 10px;">$\hat{\mathbf{e}}_{n}\cdot(\mathbf{D}_2 - \mathbf{D}_1) = \rho_s$</td>
+<td style="padding:6px 10px;">有自由面电荷时法向不连续</td>
+</tr>
+<tr style="border-bottom:1px solid #ccc;">
+<td style="padding:6px 10px;">$\mathbf{B}$（法向）</td>
+<td style="padding:6px 10px;">$\hat{\mathbf{e}}_{n}\cdot(\mathbf{B}_2 - \mathbf{B}_1) = 0$</td>
+<td style="padding:6px 10px;">法向分量总连续</td>
+</tr>
+<tr style="border-bottom:1px solid #ccc;">
+<td style="padding:6px 10px;">$\mathbf{E}$（切向）</td>
+<td style="padding:6px 10px;">$\hat{\mathbf{e}}_{n}\times(\mathbf{E}_2 - \mathbf{E}_1) = 0$</td>
+<td style="padding:6px 10px;">切向分量总连续</td>
+</tr>
+<tr>
+<td style="padding:6px 10px;">$\mathbf{H}$（切向）</td>
+<td style="padding:6px 10px;">$\hat{\mathbf{e}}_{n}\times(\mathbf{H}_2 - \mathbf{H}_1) = \mathbf{J}_s$</td>
+<td style="padding:6px 10px;">有面电流时切向不连续</td>
+</tr>
+</table>
+
+<hr>
+
+<h3 style="text-indent:0;">特殊媒质分界面的边界条件</h3>
+
+<h4 style="text-indent:0;">两种理想介质的分界面（$\sigma_1 = \sigma_2 = 0$）</h4>
+
+<p style="text-indent:2em;">无自由面电荷和面电流（$\rho_s = 0,\; \mathbf{J}_s = 0$）：</p>
+
+$$\begin{aligned}
+    D_{1n} &= D_{2n} \quad\Rightarrow\quad \varepsilon_1 E_{1n} = \varepsilon_2 E_{2n} \\
+    B_{1n} &= B_{2n} \quad\Rightarrow\quad \mu_1 H_{1n} = \mu_2 H_{2n} \\
+    E_{1t} &= E_{2t} \\
+    H_{1t} &= H_{2t}
+\end{aligned}$$
+
+<h4 style="text-indent:0;">理想导体与理想介质的分界面</h4>
+
+<p style="text-indent:2em;">设媒质1为理想导体（$\sigma_1\to\infty$），媒质2为理想介质。理想导体内部 $\mathbf{E}_1=0$，$\mathbf{B}_1=0$，$\mathbf{D}_1=0$，$\mathbf{H}_1=0$：</p>
+
+$$\begin{aligned}
+    D_{2n} &= \rho_s \\
+    B_{2n} &= 0 \\
+    E_{2t} &= 0 \\
+    H_{2t} &= J_s
+\end{aligned}$$
+
+<p style="text-indent:2em;">物理意义：在理想导体表面，电场仅有法向分量（垂直于表面），磁场仅有切向分量（平行于表面）。</p>
+
+<h2 style="text-indent:0;">本章核心公式汇总</h2>
+
+<h3 style="text-indent:0;">电磁学实验定律</h3>
+
+<p style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 基本实验定律汇总</p>
+
+<table style="width:100%;border-collapse:collapse;">
+<tr style="border-bottom:1px solid #ccc;">
+<th style="padding:6px 10px;text-align:left;"><b>定律</b></th>
+<th style="padding:6px 10px;text-align:left;"><b>公式</b></th>
+<th style="padding:6px 10px;text-align:left;"><b>说明</b></th>
+</tr>
+<tr style="border-bottom:1px solid #ccc;">
+<td style="padding:6px 10px;">库仑定律</td>
+<td style="padding:6px 10px;">$\mathbf{F} = \dfrac{1}{4\pi\varepsilon_0}\dfrac{q_1q_2}{R^2}\hat{\mathbf{e}}_{R}$</td>
+<td style="padding:6px 10px;">点电荷作用力</td>
+</tr>
+<tr style="border-bottom:1px solid #ccc;">
+<td style="padding:6px 10px;">高斯定律（真空）</td>
+<td style="padding:6px 10px;">$\nabla\cdot\mathbf{E} = \rho/\varepsilon_0$</td>
+<td style="padding:6px 10px;">电场有散</td>
+</tr>
+<tr style="border-bottom:1px solid #ccc;">
+<td style="padding:6px 10px;">毕奥-萨伐尔定律</td>
+<td style="padding:6px 10px;">$\,d\mathbf{B} = \dfrac{\mu_0}{4\pi}\dfrac{I\,d\mathbf{l}\times\hat{\mathbf{e}}_{R}}{R^2}$</td>
+<td style="padding:6px 10px;">电流元磁场</td>
+</tr>
+<tr style="border-bottom:1px solid #ccc;">
+<td style="padding:6px 10px;">安培环路定理（真空）</td>
+<td style="padding:6px 10px;">$\nabla\times\mathbf{B} = \mu_0\mathbf{J}$</td>
+<td style="padding:6px 10px;">稳恒磁场有旋</td>
+</tr>
+<tr>
+<td style="padding:6px 10px;">法拉第定律</td>
+<td style="padding:6px 10px;">$\nabla\times\mathbf{E} = -\partial\mathbf{B}/\partial t$</td>
+<td style="padding:6px 10px;">时变磁场生电场</td>
+</tr>
+</table>
+
+<hr>
+
+<h3 style="text-indent:0;">媒质中的本构关系</h3>
+
+<p style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 线性各向同性媒质的本构关系</p>
+
+<table style="width:100%;border-collapse:collapse;">
+<tr style="border-bottom:1px solid #ccc;">
+<th style="padding:6px 10px;text-align:left;"><b>媒质类型</b></th>
+<th style="padding:6px 10px;text-align:left;"><b>本构关系</b></th>
+<th style="padding:6px 10px;text-align:left;"><b>参数</b></th>
+<th style="padding:6px 10px;text-align:left;"><b>单位</b></th>
+</tr>
+<tr style="border-bottom:1px solid #ccc;">
+<td style="padding:6px 10px;">电介质</td>
+<td style="padding:6px 10px;">$\mathbf{D} = \varepsilon_0\varepsilon_r\mathbf{E} = \varepsilon\mathbf{E}$</td>
+<td style="padding:6px 10px;">$\varepsilon_r = 1+\chi_e$</td>
+<td style="padding:6px 10px;">$\mathrm{F/m}$</td>
+</tr>
+<tr style="border-bottom:1px solid #ccc;">
+<td style="padding:6px 10px;">磁介质</td>
+<td style="padding:6px 10px;">$\mathbf{B} = \mu_0\mu_r\mathbf{H} = \mu\mathbf{H}$</td>
+<td style="padding:6px 10px;">$\mu_r = 1+\chi_m$</td>
+<td style="padding:6px 10px;">$\mathrm{H/m}$</td>
+</tr>
+<tr>
+<td style="padding:6px 10px;">导电媒质</td>
+<td style="padding:6px 10px;">$\mathbf{J} = \sigma\mathbf{E}$</td>
+<td style="padding:6px 10px;">$\sigma$</td>
+<td style="padding:6px 10px;">$\mathrm{S/m}$</td>
+</tr>
+</table>
+
+<hr>
+
+<h3 style="text-indent:0;">麦克斯韦方程组（完整形式）</h3>
+
+<p style="text-indent:2em;"><b>微分形式：</b></p>
+
+$$ \boxed{
+    \begin{aligned}
+        \nabla\times\mathbf{E} &= -\frac{\partial\mathbf{B}}{\partial t} \\
+        \nabla\times\mathbf{H} &= \mathbf{J} + \frac{\partial\mathbf{D}}{\partial t} \\
+        \nabla\cdot\mathbf{D} &= \rho \\
+        \nabla\cdot\mathbf{B} &= 0
+    \end{aligned}} $$
+
+<p style="text-indent:2em;"><b>积分形式：</b></p>
+
+$$ \boxed{
+    \begin{aligned}
+        \oint_C \mathbf{E}\cdot\,d\mathbf{l} &= -\frac{\,d}{\,dt}\iint_S \mathbf{B}\cdot\,d\mathbf{S} \\
+        \oint_C \mathbf{H}\cdot\,d\mathbf{l} &= \iint_S \mathbf{J}\cdot\,d\mathbf{S} + \frac{\,d}{\,dt}\iint_S \mathbf{D}\cdot\,d\mathbf{S} \\
+        \oiint_S \mathbf{D}\cdot\,d\mathbf{S} &= \iiint_V \rho\,dV \\
+        \oiint_S \mathbf{B}\cdot\,d\mathbf{S} &= 0
+    \end{aligned}} $$
+
+<h3 style="text-indent:0;">边界条件</h3>
+
+$$ \boxed{
+    \begin{aligned}
+        \hat{\mathbf{e}}_{n}\cdot(\mathbf{D}_2 - \mathbf{D}_1) &= \rho_s \\
+        \hat{\mathbf{e}}_{n}\cdot(\mathbf{B}_2 - \mathbf{B}_1) &= 0 \\
+        \hat{\mathbf{e}}_{n}\times(\mathbf{E}_2 - \mathbf{E}_1) &= 0 \\
+        \hat{\mathbf{e}}_{n}\times(\mathbf{H}_2 - \mathbf{H}_1) &= \mathbf{J}_s
+    \end{aligned}} $$
+
+<h3 style="text-indent:0;">电流连续性方程</h3>
+
+$$ \boxed{\nabla\cdot\mathbf{J} + \frac{\partial\rho}{\partial t} = 0} $$
+
+<h3 style="text-indent:0;">洛伦兹力</h3>
+
+$$ \boxed{\mathbf{F} = q(\mathbf{E} + \mathbf{v}\times\mathbf{B})} $$
+
+</div>
