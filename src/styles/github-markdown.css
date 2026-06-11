@@ -228,13 +228,20 @@ clear:both;
 }
 
 .markdown-body table {
-display:block;
-    overflow:auto;
-    width:100%
+display:table;
+    overflow:visible;
+    width:auto;
+    max-width:100%;
+    margin: 1em auto;
+    border-collapse: collapse;
+    border: 1px solid var(--border-light)
 }
 
 .markdown-body td,.markdown-body th {
-padding:0
+padding:6px 13px;
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    background-color: var(--bg-card)
 }
 
 .markdown-body details summary {
@@ -504,21 +511,43 @@ margin-bottom:16px;
 }
 
 .markdown-body table th {
-font-weight:600
+font-weight:600;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary)
 }
 
 .markdown-body table td,.markdown-body table th {
-border:1px solid #dfe2e5;
+border:1px solid var(--border-light);
     padding:6px 13px
 }
 
 .markdown-body table tr {
-background-color:var(--bg-primary);
-    border-top:1px solid #c6cbd1
+background-color:var(--bg-card);
+    border-top:1px solid var(--border-light)
 }
 
 .markdown-body table tr:nth-child(2n) {
-background-color:#f6f8fa
+background-color:var(--bg-secondary)
+}
+
+[data-theme="dark"] .markdown-body table {
+    border-color: var(--border-color)
+}
+[data-theme="dark"] .markdown-body table td,
+[data-theme="dark"] .markdown-body table th {
+    border-color: var(--border-color);
+    color: var(--text-primary);
+    background-color: var(--bg-card)
+}
+[data-theme="dark"] .markdown-body table th {
+    background-color: var(--bg-body)
+}
+[data-theme="dark"] .markdown-body table tr {
+    background-color: var(--bg-card);
+    border-color: var(--border-color)
+}
+[data-theme="dark"] .markdown-body table tr:nth-child(2n) {
+    background-color: var(--bg-body)
 }
 
 .markdown-body img[align=right] {
