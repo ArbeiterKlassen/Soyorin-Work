@@ -690,30 +690,28 @@ list-style: disc;
 
 /* === Global Table Styling (Light + Dark) === */
 .article-content table {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 1em auto !important;
-    border-collapse: collapse !important;
-    border: 1px solid var(--border-light) !important;
+    margin: 1em auto;
+    border-collapse: collapse;
+    border: 1px solid var(--border-light);
     font-size: 13px;
     display: table;
 }
 .article-content th {
-    background: var(--bg-secondary) !important;
-    color: var(--text-primary) !important;
-    border: 1px solid var(--border-light) !important;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
     padding: 8px 12px;
     text-align: center;
     font-weight: 600;
 }
 .article-content td {
-    border: 1px solid var(--border-light) !important;
+    border: 1px solid var(--border-light);
     padding: 6px 10px;
-    color: var(--text-primary) !important;
-    background: var(--bg-card) !important;
+    color: var(--text-primary);
+    background: var(--bg-card);
 }
 .article-content tr:nth-child(even) td {
-    background: var(--bg-secondary) !important;
+    background: var(--bg-secondary);
 }
 .article-content caption {
     font-size: 13px;
@@ -722,20 +720,20 @@ list-style: disc;
 }
 
 [data-theme="dark"] .article-content table {
-    border-color: var(--border-color) !important;
+    border-color: var(--border-color);
 }
 [data-theme="dark"] .article-content th {
-    background: var(--bg-body) !important;
-    color: var(--text-primary) !important;
-    border-color: var(--border-color) !important;
+    background: var(--bg-body);
+    color: var(--text-primary);
+    border-color: var(--border-color);
 }
 [data-theme="dark"] .article-content td {
-    border-color: var(--border-color) !important;
-    color: var(--text-primary) !important;
-    background: var(--bg-card) !important;
+    border-color: var(--border-color);
+    color: var(--text-primary);
+    background: var(--bg-card);
 }
 [data-theme="dark"] .article-content tr:nth-child(even) td {
-    background: var(--bg-body) !important;
+    background: var(--bg-body);
 }
 
 [data-theme="dark"] .toc {
