@@ -1,0 +1,186 @@
+<div style="font-family:Times New Roman,Times,serif;">
+
+<h1 style="text-indent:0;">传感器复习笔记（五）：电感式传感器</h1>
+
+<h2 style="text-indent:0;">概述</h2>
+
+<p style="text-indent:2em;">电感式传感器利用线圈<b>自感</b>或<b>互感</b>的变化实现测量，建立在<b>电磁感应</b>原理基础上。</p>
+
+<p style="text-indent:2em;"><b>按转换原理分：</b>自感式、互感式（差动变压器）、电涡流式</p>
+
+<p style="text-indent:2em;"><b>按结构分：</b>气隙型、面积型和螺管型</p>
+
+<p style="text-indent:2em;"><b>特点：</b>结构简单、灵敏度高、分辨力高、重复性好；缺点是存在交流零位信号，不适宜高频动态测量。</p>
+
+<p style="text-indent:2em;">电感式传感器的核心公式为线圈电感（忽略铁损）：</p>
+
+$$ L = \frac{N^2}{R_m} \approx \frac{N^2\mu_0 S}{2l_\delta} $$
+
+<p style="text-indent:2em;">其中 $N$ 为线圈匝数，$l_\delta$ 为气隙长度，$S$ 为气隙截面积。对于气隙型传感器，改变气隙长度 $l_\delta$ 即可改变电感 $L$。</p>
+
+<h2 style="text-indent:0;">自感式传感器</h2>
+
+<h3 style="text-indent:0;">气隙型电感传感器</h3>
+
+<p style="text-indent:2em;">线圈电感（忽略铁损）为：</p>
+
+$$ L = \frac{N^2}{R_m} \approx \frac{N^2\mu_0 S}{2l_\delta} $$
+
+<p style="text-indent:2em;">其中 $N$ 为线圈匝数，$l_\delta$ 为气隙长度，$S$ 为气隙截面积。</p>
+
+<p style="text-indent:2em;"><b>自感系数相对变化量：</b></p>
+
+$$ \frac{\Delta L}{L_0} \approx \frac{\Delta l_\delta}{l_\delta} $$
+
+<p style="text-indent:2em;"><b>非线性误差：</b></p>
+
+$$ \delta \approx \frac{\Delta l_\delta}{l_\delta} $$
+
+<p style="text-indent:2em;"><b>结论：</b>变间隙式传感器只能工作在很小的区域，仅适用于微位移测量。</p>
+
+<h3 style="text-indent:0;">差动式气隙型电感传感器</h3>
+
+<p style="text-indent:2em;"><b>灵敏度：</b></p>
+
+$$ K = \frac{2L_0}{l_\delta} \quad (\text{比单线圈提高一倍}) $$
+
+<p style="text-indent:2em;"><b>非线性误差：</b></p>
+
+$$ \delta \approx \left(\frac{\Delta l_\delta}{l_\delta}\right)^2 \quad (\text{比单线圈减小一个数量级}) $$
+
+<p style="text-indent:2em;"><b>优点：</b>线性度好、灵敏度提高一倍、温度/电源波动/电磁吸力影响相互抵消。</p>
+
+<h3 style="text-indent:0;">螺管型电感传感器</h3>
+
+<p style="text-indent:2em;"><b>特点：</b>结构简单、线性范围大；但灵敏度低、易受外部磁场干扰、线圈分布电容大。</p>
+
+<h2 style="text-indent:0;">互感式传感器——差动变压器（本章核心）</h2>
+
+<p style="text-indent:2em;">互感式传感器将被测非电量转换为线圈互感量变化，次级线圈采用差动形式连接。</p>
+
+<p style="text-indent:2em;"><b>结构：</b>1个初级线圈 + 2个次级线圈（差动连接）+ 可动衔铁</p>
+
+<p style="text-indent:2em;"><b>原理：</b>衔铁位移 &#8594; 初级与两次级互感不等（$M_1 \neq M_2$）&#8594; 差动输出不为零</p>
+
+<p style="text-indent:2em;"><b>差动变压器 vs 普通变压器：</b></p>
+
+<table style="border-collapse:collapse;margin:0 auto;text-align:center;">
+<tr style="border-bottom:1px solid #ccc;">
+<th style="padding:4px 8px;border:1px solid #ccc;"></th>
+<th style="padding:4px 8px;border:1px solid #ccc;"><b>普通变压器</b></th>
+<th style="padding:4px 8px;border:1px solid #ccc;"><b>差动变压器</b></th>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">磁路</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">闭合</td>
+<td style="padding:4px 8px;border:1px solid #ccc;"><b>开放</b></td>
+</tr>
+<tr>
+<td style="padding:4px 8px;border:1px solid #ccc;">互感</td>
+<td style="padding:4px 8px;border:1px solid #ccc;">常数（固定值）</td>
+<td style="padding:4px 8px;border:1px solid #ccc;"><b>随衔铁位移而变化</b></td>
+</tr>
+</table>
+
+<h3 style="text-indent:0;">工作原理</h3>
+
+<p style="text-indent:2em;"><b>空载输出电压：</b></p>
+
+$$ |e_2| = \left|\frac{\omega(M_1 - M_2)}{\sqrt{R_1^2 + (\omega L_1)^2}} \cdot E_1\right| $$
+
+<p style="text-indent:2em;">其中 $M_1$、$M_2$ 为初级与两个次级线圈的互感。</p>
+
+<ul>
+    <li>衔铁在中间：$M_1=M_2$，$|e_2|=0$</li>
+    <li>衔铁上移：$M_1>M_2$</li>
+    <li>衔铁下移：$M_1<M_2$</li>
+</ul>
+
+<p style="text-indent:2em;"><b>关键特征：</b></p>
+<ul>
+    <li>衔铁居中 &#8594; $M_1=M_2$ &#8594; 输出为零</li>
+    <li>衔铁偏移 &#8594; 输出与位移成正比（交流信号）</li>
+    <li>输出为交流，不能直接判断方向 &#8594; 需<b>差动整流</b>或<b>相敏检波</b></li>
+</ul>
+
+<p style="text-indent:2em;"><b>灵敏度系数影响因素：</b>激励电压频率、初级线圈匝数、次级线圈匝数、激励电流等。</p>
+
+<h3 style="text-indent:0;">零点残余电压（必考概念）</h3>
+
+<p style="text-indent:2em;"><b>定义：</b>当衔铁处于中间位置时，理想输出应为零，但实际仍有微小电压（零点几mV到数十mV），称为零点残余电压。</p>
+
+<p style="text-indent:2em;"><b>产生原因：</b></p>
+<ol>
+    <li><b>基波分量：</b>两个次级绕组参数不一致，铜损电阻和铁损导致相位不同</li>
+    <li><b>高次谐波（主要是三次谐波）：</b>导磁材料磁化曲线的非线性</li>
+</ol>
+
+<p style="text-indent:2em;"><b>消除方法：</b></p>
+<ol>
+    <li>设计和工艺上保证结构对称性</li>
+    <li>选用合适的测量线路（相敏检波电路能自动消除残余电压）</li>
+    <li>采用补偿线路（串并联电阻电容）</li>
+</ol>
+
+<h3 style="text-indent:0;">测量电路</h3>
+
+<h4 style="text-indent:0;">（1）差动整流电路（重点掌握）</h4>
+
+<p style="text-indent:2em;">无论次级线圈输出瞬时电压极性如何，整流电路的输出电压始终为：</p>
+
+$$ e_2 = U_{R1} - U_{R2} $$
+
+<ul>
+    <li>衔铁在中间位置时：$e_{21}=e_{22}$，$e_2=0$</li>
+    <li>衔铁上升时：$e_{21}>e_{22}$，$e_2>0$（正电压）</li>
+    <li>衔铁下降时：$e_{21}<e_{22}$，$e_2<0$（负电压）</li>
+</ul>
+
+<p style="text-indent:2em;">可根据输出电压极性判断衔铁移动方向。</p>
+
+<h4 style="text-indent:0;">（2）二极管相敏检波电路</h4>
+
+<p style="text-indent:2em;"><b>结论：</b></p>
+<ul>
+    <li>衔铁在中间位置：负载 $R_L$ 上输出电压始终为0</li>
+    <li>衔铁在零位以上：输出始终为正</li>
+    <li>衔铁在零位以下：输出始终为负</li>
+    <li>经过相敏检波后，正位移输出正电压，负位移输出负电压，残余电压自动消失</li>
+</ul>
+
+<h2 style="text-indent:0;">电涡流式传感器（了解）</h2>
+
+<ul>
+    <li><b>涡流效应：</b>金属板在线圈交变磁场中产生感应电流（电涡流），消耗能量使线圈阻抗变化</li>
+    <li><b>贯穿深度：</b>$h = \sqrt{\dfrac{\rho}{\pi\mu_0\mu_r f}}$，与激励频率有关（频率越高，穿透越浅）</li>
+    <li><b>分类：</b>高频反射式（位移测量）、低频透射式（厚度测量）</li>
+    <li><b>应用：</b>位移、振动、转速、镀层厚度、表面探伤</li>
+</ul>
+
+<h2 style="text-indent:0;">练习题</h2>
+
+<p style="text-indent:2em;">关于差动变压器式传感器，判断下列说法正误：</p>
+
+<p style="text-indent:2em;">（1）差动变压器的工作原理是基于互感变化。</p>
+
+<p style="text-indent:2em;">（2）衔铁处于中间位置时，理想输出为零，但实际存在零点残余电压。</p>
+
+<p style="text-indent:2em;">（3）零点残余电压只能通过提高加工精度来消除。</p>
+
+<p style="text-indent:2em;">（4）差动整流电路能够判断衔铁的移动方向。</p>
+
+<p style="text-indent:2em;">（5）与普通变压器相比，差动变压器的磁路是闭合的。</p>
+
+<p style="text-indent:2em;"><b>参考答案：</b></p>
+
+<p style="text-indent:2em;">（1）&#10004; <b>正确。</b>差动变压器通过衔铁位移改变初级与次级间的互感来工作。</p>
+
+<p style="text-indent:2em;">（2）&#10004; <b>正确。</b>这就是零点残余电压的定义。</p>
+
+<p style="text-indent:2em;">（3）&#10008; <b>错误。</b>还可以通过相敏检波电路和补偿线路来消除。</p>
+
+<p style="text-indent:2em;">（4）&#10004; <b>正确。</b>差动整流输出正电压/负电压对应衔铁的上移/下移。</p>
+
+<p style="text-indent:2em;">（5）&#10008; <b>错误。</b>差动变压器磁路是<b>开放</b>的（互感随衔铁位移变化），普通变压器磁路才是闭合的（互感为常数）。</p>
+
+</div>

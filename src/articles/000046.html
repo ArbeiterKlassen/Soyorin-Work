@@ -1,0 +1,204 @@
+<div style="font-family:Times New Roman,Times,serif;">
+<h1 style="text-indent:0;">传感器复习笔记（四）：电容式传感器</h1>
+
+<h2 style="text-indent:0;">一、工作原理</h2>
+
+<p style="text-indent:2em;">平行板电容器的电容量（忽略边缘效应）：</p>
+
+$$
+C = \frac{\varepsilon S}{d} = \frac{\varepsilon_0\varepsilon_r S}{d}
+$$
+
+<p style="text-indent:2em;">其中 $\varepsilon_0 = 8.854\times10^{-12}$ F/m（真空介电常数），$\varepsilon_r$ 为相对介电常数，$S$ 为极板覆盖面积，$d$ 为极板间距。</p>
+
+<p style="text-indent:2em;"><b>核心思路：</b>改变 $S$、$d$、$\varepsilon$ 中任意一个参量，电容 $C$ 即发生变化。</p>
+
+<h2 style="text-indent:0;">二、三种基本类型</h2>
+
+<h3 style="text-indent:0;">1. 变面积式电容传感器</h3>
+
+<p style="text-indent:2em;"><b>平面直线位移式：</b>初始电容 $C_0 = \dfrac{\varepsilon b l}{d}$，位移 $x$ 后 $C_x = C_0\left(1 - \dfrac{x}{l}\right)$。</p>
+
+<p style="text-indent:2em;"><b>圆筒直线位移式：</b>$C_0 = \dfrac{2\pi\varepsilon l}{\ln(R/r)}$，位移 $x$ 后 $C_x = C_0\left(1 - \dfrac{x}{l}\right)$。</p>
+
+<p style="text-indent:2em;"><b>角位移式：</b>$C_\theta = C_0\left(1 - \dfrac{\theta}{\pi}\right)$。</p>
+
+<p style="text-indent:2em;"><b>特点：</b>输出与位移/转角呈线性关系，灵敏度 $K$ 与初始电容 $C_0$ 成正比。多用于检测直线位移、角位移、尺寸等。</p>
+
+<h3 style="text-indent:0;">2. 变介质型电容传感器</h3>
+
+<p style="text-indent:2em;">用于测量电介质厚度、液位、温度、湿度等。</p>
+
+<p style="text-indent:2em;"><b>电容液位计（非导体液体）：</b>总电容 $C = C_0 + kh$，其中 $h$ 为液位高度。同心圆筒电容公式为：</p>
+
+$$
+\boxed{C = \frac{2\pi\varepsilon_0\varepsilon_r h}{\ln(R/r)}}
+$$
+
+<p style="text-indent:2em;">总电容等于空气段电容与液体段电容两段并联。对于非导体液体，总电容 = 空气段电容 + 液体段电容。</p>
+
+<p style="text-indent:2em;"><b>电容液位计（导体液体）：</b>液体段电容被短路，仅空气段有效。利用单电极结构，导电液体和容器壁构成外电极。</p>
+
+<h3 style="text-indent:0;">3. 变极板间距型电容传感器</h3>
+
+<p style="text-indent:2em;">初始电容 $C_0 = \dfrac{\varepsilon S}{d_0}$，动极板位移 $\Delta d$ 后：</p>
+
+$$
+C = C_0\frac{1}{1 - \Delta d/d_0}
+$$
+
+<p style="text-indent:2em;">电容相对变化：</p>
+
+$$
+\frac{\Delta C}{C_0} = \frac{\Delta d}{d_0}\left[1 + \frac{\Delta d}{d_0} + \left(\frac{\Delta d}{d_0}\right)^2 + \cdots\right]
+$$
+
+<p style="text-indent:2em;"><b>特点：</b>近似线性，灵敏度 $K = \dfrac{C_0}{d_0}$。非线性随 $\Delta d/d_0$ 增大而增大，适用于微位移测量。</p>
+
+<p style="text-indent:2em;">三种类型对比如下：</p>
+
+<table style="border-collapse:collapse;border:1px solid #000;width:100%;">
+<thead>
+<tr style="background:#f0f0f0;">
+<th style="border:1px solid #000;padding:6px 10px;text-align:center;"><b>类型</b></th>
+<th style="border:1px solid #000;padding:6px 10px;text-align:center;"><b>改变量</b></th>
+<th style="border:1px solid #000;padding:6px 10px;text-align:center;"><b>输出关系</b></th>
+<th style="border:1px solid #000;padding:6px 10px;text-align:center;"><b>主要用途</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #000;padding:6px 10px;">变面积式</td>
+<td style="border:1px solid #000;padding:6px 10px;">覆盖面积 $S$</td>
+<td style="border:1px solid #000;padding:6px 10px;"><b>线性</b>（$C_x = C_0(1-x/l)$）</td>
+<td style="border:1px solid #000;padding:6px 10px;">位移、角度</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 10px;">变介质式</td>
+<td style="border:1px solid #000;padding:6px 10px;">介电常数 $\varepsilon$</td>
+<td style="border:1px solid #000;padding:6px 10px;">取决于介质分布</td>
+<td style="border:1px solid #000;padding:6px 10px;">液位、厚度、温湿度</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 10px;">变极距式</td>
+<td style="border:1px solid #000;padding:6px 10px;">极间距 $d$</td>
+<td style="border:1px solid #000;padding:6px 10px;"><b>非线性</b>（近似线性）</td>
+<td style="border:1px solid #000;padding:6px 10px;">微位移</td>
+</tr>
+</tbody>
+</table>
+
+<h2 style="text-indent:0;">三、差动式电容传感器</h2>
+
+<p style="text-indent:2em;">两个电容差动输出：</p>
+
+$$
+\frac{\Delta C}{C_0} = 2\frac{\Delta d}{d_0}\left[1 + \left(\frac{\Delta d}{d_0}\right)^2 + \cdots\right]
+$$
+
+<p style="text-indent:2em;">与单电容相比：</p>
+<ul>
+    <li>灵敏度提高一倍</li>
+    <li>非线性误差减小一个数量级（消除偶次非线性项）</li>
+    <li>温度等共模干扰可互相抵消</li>
+</ul>
+
+<h2 style="text-indent:0;">四、测量电路</h2>
+
+<h3 style="text-indent:0;">1. 变压器电桥</h3>
+
+<p style="text-indent:2em;">对变间隙型差动电容传感器：</p>
+
+$$
+U_0 = \frac{U}{2}\frac{C_1 - C_2}{C_1 + C_2} = \frac{U}{2}\frac{\Delta d}{d_0}
+$$
+
+<p style="text-indent:2em;"><b>特点：</b>输出电压与被测位移 $\Delta d$ 呈良好线性关系。使用元件最少，桥路内阻最小。</p>
+
+<h3 style="text-indent:0;">2. 差动脉宽调制电路</h3>
+
+<p style="text-indent:2em;">假设 $R_1 = R_2 = R$，输出直流电压：</p>
+
+$$
+U_0 = \frac{C_1 - C_2}{C_1 + C_2}U_1
+$$
+
+<p style="text-indent:2em;"><b>特点：</b></p>
+<ul>
+    <li>适用于任何差动式电容传感器</li>
+    <li>理论上具有线性特性</li>
+    <li>采用直流电源（不需稳频稳幅），电压稳定度高</li>
+    <li>不需要相敏检波与解调</li>
+    <li>经低通滤波器可输出较大的直流电压</li>
+</ul>
+
+<h2 style="text-indent:0;">五、电容式传感器的误差分析</h2>
+
+<ul>
+    <li><b>温度影响：</b>选用热膨胀系数小、几何尺寸稳定的材料（石英、陶瓷等），采用差动对称结构</li>
+    <li><b>边缘效应：</b>减小极板间距，电极做得很薄，增加等位保护环</li>
+    <li><b>寄生电容：</b>增加原始电容值，注意接地和屏蔽，采用"驱动电缆"技术</li>
+</ul>
+
+<h2 style="text-indent:0;">六、计算举例</h2>
+
+<p style="text-indent:2em;"><b>例1：</b>电容式液位传感器由 $\phi 40$ mm 和 $\phi 8$ mm 的两个同心圆柱体组成。储罐直径 50 cm，高 1.2 m。液体 $\varepsilon_r = 2.1$。求传感器最小/最大电容和灵敏度 (pF/L)。</p>
+
+<p style="text-indent:2em;"><b>解：</b></p>
+
+<p style="text-indent:2em;">最小电容（空罐）：</p>
+
+$$
+C_{\min} = \frac{2\pi\varepsilon_0 \times 1.2}{\ln(20/4)} \approx 41.6\ \text{pF}
+$$
+
+<p style="text-indent:2em;">最大电容（满罐）：</p>
+
+$$
+C_{\max} = \frac{2\pi\varepsilon_0\varepsilon_r \times 1.2}{\ln(20/4)} \approx 87.4\ \text{pF}
+$$
+
+<p style="text-indent:2em;">灵敏度：</p>
+
+$$
+K = \frac{C_{\max} - C_{\min}}{V} \approx 0.19\ \text{pF/L}
+$$
+
+<p style="text-indent:2em;"><b>例2：</b>同心圆柱电容液位计，内筒外径 8 mm，外筒内径 40 mm，筒高 1.2 m。被测液体 $\varepsilon_r = 2.5$（非导体）。</p>
+
+<p style="text-indent:2em;">（1）写出空气段和液体段电容的计算公式。</p>
+
+<p style="text-indent:2em;">$\ln(R/r) = \ln(20/4) = \ln 5 \approx 1.609$</p>
+
+<p style="text-indent:2em;">空气段（$h_0 = 1.2 - h$）：</p>
+
+$$
+C_{\text{air}} = \frac{2\pi\varepsilon_0 \times 1 \times (1.2 - h)}{1.609}
+$$
+
+<p style="text-indent:2em;">液体段（$h$）：</p>
+
+$$
+C_{\text{liquid}} = \frac{2\pi\varepsilon_0 \times 2.5 \times h}{1.609}
+$$
+
+<p style="text-indent:2em;">总电容：</p>
+
+$$
+C = C_{\text{air}} + C_{\text{liquid}} = \frac{2\pi\varepsilon_0}{1.609}\big[(1.2 - h) + 2.5h\big] = \frac{2\pi\varepsilon_0}{1.609}(1.2 + 1.5h)
+$$
+
+<p style="text-indent:2em;">（2）当液位 $h = 0.8$ m 时，总电容是多少？</p>
+
+$$
+C = \frac{2\pi \times 8.854 \times 10^{-12}}{1.609} \times (1.2 + 1.5 \times 0.8) \approx 83.0\ \text{pF}
+$$
+
+<p style="text-indent:2em;">（3）差动式电容传感器相比单电容传感器的优势：</p>
+<ol>
+    <li>灵敏度提高一倍</li>
+    <li>非线性误差减小一个数量级</li>
+    <li>温度等共模干扰可互相抵消</li>
+</ol>
+
+</div>

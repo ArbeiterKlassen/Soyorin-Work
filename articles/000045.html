@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="应变效应与电阻应变片、直流电桥与温度补偿、柱式与梁式力传感器、压阻式传感器">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="传感器复习笔记（三）：应变式传感器">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>传感器复习笔记（三）：应变式传感器</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/article-detail.css">
+  
+  <link rel="stylesheet" href="../css/code.css">
+  
+  <link rel="stylesheet" href="../css/github-markdown.css">
+  
+  <link rel="stylesheet" href="../css/vditor.css">
+  
+  
+  <style>
+    .lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }
+    .markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 10px; }
+    @media (max-width: 767px) { .markdown-body { padding: 15px; } .markdown-body h1 { font-size: 1.35em; } }
+    .codehilite { border-radius: 10px; }
+    .article-content img { max-width: 100%; }
+    #outerdiv { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.3); display: none; z-index: 200; }
+  </style>
+  
+  
+  <!-- 初始主题检测 + 全局变量 (需在页面内容前定义) -->
+  <script>
+    var mode = 1;
+    (function() {
+      var saved = localStorage.getItem('soyorin-mode');
+      if (saved) mode = parseInt(saved);
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function getParams(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+  </script>
+</head>
+<body>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
+
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+  </nav>
+  <button id="mobile_cate" style="border:none;outline:none;">☰</button>
+  <div id="nav-m-list">
+    <button id="cancel" style="position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-primary);">✕</button>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
+  </div>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  
+
+  <div class="headpage"><div class="headpage-cover"></div></div>
+<section class="main">
+  <div class="left-box" style="max-width:830px;width:100%;margin:0 auto;float:none;">
+    <div class="article-container">
+      <div class="article-content markdown-body">
+        <div style="font-family:Times New Roman,Times,serif;">
+
+<h1 style="text-indent:0;">传感器复习笔记（三）：应变式传感器</h1>
+
+<h2 style="text-indent:0;">应变效应与基本原理</h2>
+
+<p style="text-indent:2em;"><b>应变效应：</b>金属导体在受到外力作用时产生机械变形，从而导致其电阻值发生变化的现象。</p>
+
+<h3 style="text-indent:0;">基本物理量</h3>
+
+<ul>
+    <li><b>应变 $\varepsilon$：</b>$\varepsilon = \Delta L / L$（无量纲，单位长度伸长量）</li>
+    <li><b>应力 $\sigma$：</b>$\sigma = F/S$</li>
+    <li><b>胡克定律：</b>$\sigma = E\varepsilon$（$E$ 为弹性模量/杨氏模量）</li>
+</ul>
+
+<h3 style="text-indent:0;">电阻应变效应公式</h3>
+
+<p style="text-indent:2em;">对于金属丝电阻 $R = \rho L/S$，受力后的电阻相对变化：</p>
+
+$$
+\frac{\Delta R}{R} = \frac{\Delta\rho}{\rho} + \frac{\Delta L}{L} - \frac{\Delta S}{S}
+$$
+
+<p style="text-indent:2em;">由于 $\Delta S/S = -2\mu\varepsilon$（$\mu$ 为泊松比），且对金属材料 $\Delta\rho/\rho$ 很小可忽略，故：</p>
+
+$$
+\boxed{\frac{\Delta R}{R} = (1+2\mu)\varepsilon}
+$$
+
+<p style="text-indent:2em;"><b>灵敏度系数：</b>$K = \dfrac{\Delta R/R}{\varepsilon} = 1 + 2\mu$</p>
+
+<p style="text-indent:2em;">拉伸时 $\varepsilon>0$，$\Delta R>0$；压缩时 $\varepsilon<0$，$\Delta R<0$。</p>
+
+<h2 style="text-indent:0;">金属应变片的基本结构</h2>
+
+<p style="text-indent:2em;">金属应变片由敏感栅、基底、盖片、引线和粘结剂组成。</p>
+
+<p style="text-indent:2em;"><b>主要类型：</b></p>
+<ol>
+    <li><b>金属丝式：</b>金属细丝绕成栅形，$120\,\Omega$ 最常用</li>
+    <li><b>金属箔式：</b>光刻腐蚀制成，厚 0.003–0.010 mm，精度高、散热好</li>
+    <li><b>金属薄膜式：</b>真空蒸镀或溅射制成，灵敏度高、稳定性好</li>
+</ol>
+
+<h2 style="text-indent:0;">基本测量电路——电桥</h2>
+
+<h3 style="text-indent:0;">直流电桥</h3>
+
+<p style="text-indent:2em;">直流电桥输出电压（负载无穷大时）：</p>
+
+$$
+U_g = U\frac{R_1R_4 - R_2R_3}{(R_1+R_2)(R_3+R_4)}
+$$
+
+<p style="text-indent:2em;"><b>平衡条件：</b>$R_1R_4 = R_2R_3$（相对两臂电阻乘积相等）。</p>
+
+<h3 style="text-indent:0;">等臂电桥（$R_1=R_2=R_3=R_4=R$）</h3>
+
+<p style="text-indent:2em;">四个桥臂均有电阻增量时，输出电压为：</p>
+
+$$
+U_g \approx \frac{U}{4}\left(\frac{\Delta R_1}{R_1} - \frac{\Delta R_2}{R_2} + \frac{\Delta R_3}{R_3} - \frac{\Delta R_4}{R_4}\right)
+$$
+
+<p style="text-indent:2em;">即：</p>
+
+$$
+\boxed{U_g = \frac{UK}{4}(\varepsilon_1 - \varepsilon_2 + \varepsilon_3 - \varepsilon_4)}
+$$
+
+<p style="text-indent:2em;">这个公式是应变式传感器计算的基石。</p>
+
+<p style="text-indent:2em;"><b>电桥排布规律：</b></p>
+
+<table style="border:1px solid #ccc; border-collapse:collapse; margin:1em auto;">
+<thead>
+<tr style="background:#f0f0f0;">
+<th style="border:1px solid #ccc; padding:6px 12px;">臂的关系</th>
+<th style="border:1px solid #ccc; padding:6px 12px;">变化趋势相同</th>
+<th style="border:1px solid #ccc; padding:6px 12px;">变化趋势相反</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #ccc; padding:6px 12px;">相邻臂（$R_1$ 与 $R_2$，$R_3$ 与 $R_4$）</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">相减 $\rightarrow$ <b>抵消</b></td>
+<td style="border:1px solid #ccc; padding:6px 12px;">相加 $\rightarrow$ <b>增强</b></td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:6px 12px;">相对臂（$R_1$ 与 $R_3$，$R_2$ 与 $R_4$）</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">相加 $\rightarrow$ <b>增强</b></td>
+<td style="border:1px solid #ccc; padding:6px 12px;">相减 $\rightarrow$ <b>抵消</b></td>
+</tr>
+</tbody>
+</table>
+
+<p style="text-indent:2em;"><b>实用结论：</b>相同变化趋势的应变片放在对臂，相反变化趋势的放在邻臂。</p>
+
+<h3 style="text-indent:0;">三种等臂电桥形式</h3>
+
+<p style="text-indent:2em;">假设各应变片应变值相同：</p>
+
+<table style="border:1px solid #ccc; border-collapse:collapse; margin:1em auto;">
+<thead>
+<tr style="background:#f0f0f0;">
+<th style="border:1px solid #ccc; padding:6px 12px;">电桥形式</th>
+<th style="border:1px solid #ccc; padding:6px 12px;">配置</th>
+<th style="border:1px solid #ccc; padding:6px 12px;">输出电压</th>
+<th style="border:1px solid #ccc; padding:6px 12px;">电压灵敏度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #ccc; padding:6px 12px;">单臂电桥</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">1个工作片</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">$U_g = \dfrac{U}{4}K\varepsilon$</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">$\dfrac{UK}{4}$</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:6px 12px;">半桥（差动）</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">2个工作片，邻臂</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">$U_g = \dfrac{U}{2}K\varepsilon$</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">$\dfrac{UK}{2}$</td>
+</tr>
+<tr>
+<td style="border:1px solid #ccc; padding:6px 12px;">全桥（差动）</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">4个工作片</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">$U_g = UK\varepsilon$</td>
+<td style="border:1px solid #ccc; padding:6px 12px;">$UK$</td>
+</tr>
+</tbody>
+</table>
+
+<p style="text-indent:2em;"><b>提高输出电压的方法：</b></p>
+<ol>
+    <li>提高供电电压 $U$</li>
+    <li>选择灵敏度系数 $K$ 较高的应变片</li>
+    <li>合理布置应变片：相同变化趋势放在对臂，相反趋势放在邻臂</li>
+</ol>
+
+<h2 style="text-indent:0;">金属应变片的主要特性</h2>
+
+<h3 style="text-indent:0;">灵敏度系数</h3>
+
+<p style="text-indent:2em;">应变片的灵敏系数 $K$ 恒小于线材的灵敏系数 $K_S$，主要原因：</p>
+<ol>
+    <li>胶层传递变形失真</li>
+    <li>横向效应</li>
+</ol>
+
+<h3 style="text-indent:0;">横向效应</h3>
+
+<p style="text-indent:2em;">应变片既受轴向应变影响，又受横向应变影响而引起电阻变化的现象。</p>
+
+<p style="text-indent:2em;"><b>横向效应系数：</b>$H = \dfrac{K_\perp}{K_\parallel}$</p>
+
+<p style="text-indent:2em;">$r$ 愈小、$l$ 愈大（敏感栅越窄、基长越长），$H$ 愈小，横向效应误差越小。</p>
+
+<h3 style="text-indent:0;">其他特性</h3>
+
+<ul>
+    <li><b>机械滞后：</b>加载与卸载特性不重合</li>
+    <li><b>零点漂移：</b>温度恒定、不承受应变时电阻随时间变化</li>
+    <li><b>蠕变：</b>承受恒定应变时电阻随时间变化（方向与原应变相反）</li>
+    <li><b>应变极限：</b>指示应变误差不超过 10% 时的最大真实应变值</li>
+</ul>
+
+<h2 style="text-indent:0;">温度误差及其补偿</h2>
+
+<p style="text-indent:2em;">温度变化 $\Delta t$ 引起的总电阻相对变化：</p>
+
+$$
+\frac{\Delta R_t}{R} = \alpha_t\Delta t + K(\beta_e - \beta_g)\Delta t
+$$
+
+<p style="text-indent:2em;">其中 $\alpha_t$——电阻温度系数，$\beta_e$——试件线膨胀系数，$\beta_g$——敏感栅线膨胀系数。</p>
+
+<p style="text-indent:2em;"><b>相应的虚假应变：</b></p>
+
+$$
+\varepsilon_t = \frac{\alpha_t\Delta t}{K} + (\beta_e - \beta_g)\Delta t
+$$
+
+<p style="text-indent:2em;"><b>三种温度补偿方法：</b></p>
+<ol>
+    <li><b>单丝自补偿应变片：</b>使 $\alpha_t = -K(\beta_e - \beta_g)$，必须在特定材料的试件上使用</li>
+    <li><b>双丝组合式自补偿应变片：</b>两种不同电阻温度系数的材料串联</li>
+    <li><b>电路补偿法（最常用）：</b>
+    <ul>
+        <li>工作片 $R_1$ 贴在被测试件上，补偿片 $R_2$ 贴在相同材料的补偿块上</li>
+        <li>$R_1$ 和 $R_2$ 接入电桥相邻臂</li>
+        <li>温度变化使两者变化相等，相邻臂相减抵消</li>
+        <li>要求：同一批号、相同初始电阻、相同试件材料、同一温度环境</li>
+        <li>最终输出 $U_g = \dfrac{UK}{4}\varepsilon$，只与应变有关，与温度无关</li>
+    </ul>
+    </li>
+</ol>
+
+<h2 style="text-indent:0;">常用应变式传感器</h2>
+
+<h3 style="text-indent:0;">柱式力传感器</h3>
+
+<p style="text-indent:2em;">圆柱（筒）在力 $F$ 作用下的应变：</p>
+
+$$
+\boxed{\varepsilon = \frac{F}{SE}}
+$$
+
+<p style="text-indent:2em;">其中 $S$ 为横截面积，$E$ 为弹性模量。</p>
+
+<p style="text-indent:2em;"><b>布片方式：</b>$R_1$、$R_3$ 沿轴向粘贴（正应变），$R_2$、$R_4$ 沿圆周方向粘贴（负应变 $\varepsilon_r = -\mu\varepsilon$）。四个应变片组成全桥，既提高灵敏度又实现温度补偿。</p>
+
+<h3 style="text-indent:0;">梁式力传感器</h3>
+
+$$
+\begin{aligned}
+\text{等强度梁：}&\quad \varepsilon = \frac{6Fl}{b_0h^2E}\\
+\text{等截面梁：}&\quad \varepsilon = \frac{6Fl}{bh^2E}\\
+\text{固定梁：}&\quad \varepsilon = \frac{3Fl}{4bh^2E}
+\end{aligned}
+$$
+
+<p style="text-indent:2em;">梁上下两侧各贴 2 只应变片，构成全差动电桥。</p>
+
+<h3 style="text-indent:0;">计算示例</h3>
+
+<p style="text-indent:2em;"><b>例：</b>四个相同金属丝应变片（$K=2$）贴在实心圆柱弹性元件上，$F=10$ kN，$r=1$ cm，$E=2\times10^7$ N/cm$^2$，$\mu=0.3$。求各应变片应变值和桥路输出电压（$U=6$ V）。</p>
+
+<p style="text-indent:2em;"><b>解：</b></p>
+
+<p style="text-indent:2em;">（1）$R_1$、$R_3$ 沿轴向，$R_2$、$R_4$ 沿圆周方向，组成全桥。轴向和圆周方向的应变片在相邻位置。</p>
+
+<p style="text-indent:2em;">（2）轴向应变：</p>
+
+$$
+\varepsilon_1 = \varepsilon_3 = \frac{F}{SE} = \frac{10\times10^3}{\pi\times1^2\times2\times10^7} = 1.59\times10^{-4}
+$$
+
+$$
+\frac{\Delta R_1}{R_1} = \frac{\Delta R_3}{R_3} = K\varepsilon_1 = 3.18\times10^{-4}
+$$
+
+<p style="text-indent:2em;">圆周方向应变：</p>
+
+$$
+\varepsilon_2 = \varepsilon_4 = -\mu\varepsilon_1 = -0.3\times1.59\times10^{-4} = -4.77\times10^{-5}
+$$
+
+$$
+\frac{\Delta R_2}{R_2} = \frac{\Delta R_4}{R_4} = -9.54\times10^{-5}
+$$
+
+<p style="text-indent:2em;">（3）桥路输出电压：</p>
+
+$$
+\begin{aligned}
+U_g &= \frac{UK}{4}(\varepsilon_1 - \varepsilon_2 + \varepsilon_3 - \varepsilon_4) \\
+&= \frac{6\times2}{4}\times[1.59\times10^{-4} - (-4.77\times10^{-5}) + 1.59\times10^{-4} - (-4.77\times10^{-5})] \\
+&= 3 \times 4.134 \times 10^{-4} \approx 1.24\;\text{mV}
+\end{aligned}
+$$
+
+<p style="text-indent:2em;">（4）<b>可以补偿温度影响：</b>四个相同应变片在同一温度场，温度引起的电阻变化相等，代入电桥公式后相邻臂相减、相对臂相加，温度影响彻底抵消为零。</p>
+
+<h2 style="text-indent:0;">压阻式传感器</h2>
+
+<p style="text-indent:2em;"><b>压阻效应：</b>单晶硅材料在受到应力作用后，其电阻率发生明显变化的现象。</p>
+
+<p style="text-indent:2em;"><b>电阻相对变化：</b></p>
+
+$$
+\frac{\Delta R}{R} = \pi E\varepsilon
+$$
+
+<p style="text-indent:2em;">其中 $\pi$ 为压阻系数。$\pi E$ 一般比 $(1+2\mu)$ 大几十到上百倍。</p>
+
+<p style="text-indent:2em;"><b>金属 vs 半导体：</b></p>
+<ul>
+    <li>金属：电阻变化主要取决于几何尺寸变化（应变）</li>
+    <li>半导体：电阻变化主要取决于电阻率变化（压阻效应），灵敏度大 50–100 倍</li>
+</ul>
+
+<p style="text-indent:2em;"><b>压阻式传感器优点：</b>频率响应高、体积小、精度高、灵敏度高、可靠性高。</p>
+
+<p style="text-indent:2em;"><b>缺点：</b>温度影响大、工艺复杂、造价高。</p>
+
+</div>
+
+      </div>
+    </div>
+    
+    <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div><a href="../articles/000044.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 传感器复习笔记（二）：传感器的一般特性</a></div>
+      <div><a href="../articles/000046.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">传感器复习笔记（四）：电容式传感器 →</a></div>
+    </div>
+    
+    <div class="article-container" id="comment-box" style="margin-top:10px;">
+      <div class="article-content markdown-body">
+        <h2 style="margin:10px 0">评论</h2>
+        <div id="tcomment"></div>
+        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
+    <ul id="toc-list">
+      <li><a href="#" id="toc-a-on">目录</a></li>
+    </ul>
+  </aside>
+  
+</section>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc-sidebar');
+  var article = document.querySelector('.article-container');
+  if (toc && article) {
+    function updateToc(){
+      var artTop = article.getBoundingClientRect().top;
+      toc.style.top = (artTop > 60 ? artTop : 60) + 'px';
+    }
+    updateToc();
+    toc.style.visibility = 'visible';
+    window.addEventListener('scroll', updateToc);
+    window.addEventListener('resize', updateToc);
+  }
+  var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
+  var tocList = document.getElementById('toc-list');
+  if(!tocList || headings.length === 0) return;
+  tocList.innerHTML = '';
+  headings.forEach(function(h, i){
+    var id = 'heading-' + i;
+    h.id = id;
+    var level = parseInt(h.tagName.charAt(1));
+    var indent = '   '.repeat(level - 1);
+    tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
+  });
+})();
+</script>
+
+
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--bg-card); box-shadow: var(--shadow-card);" onclick="var d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" title="切换深色/浅色模式">
+    <span id="theme-icon">☀️</span>
+  </div>
+  <script>
+    (function(){
+      var icon = document.getElementById('theme-icon');
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      icon.textContent = isDark ? '☀️' : '🌙';
+      var orig = window.pagereload;
+      window.pagereload = function(m){
+        orig(m);
+        icon.textContent = (m === 2) ? '☀️' : '🌙';
+      };
+    })();
+  </script>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2021 – <span class="year"></span> Soyorin.Work</span>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank" rel="noopener">Source</a>
+    </div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="../js/vditor.min.js"></script>
+  <script src="../js/article-detail.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none",
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath:  [["$", "$"]],
+        displayMath: [["$$","$$"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre","code","a"],
+        ignoreClass:"comment-content"
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+        showMathMenu: false
+      }
+    });
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
+
+</body>
+</html>

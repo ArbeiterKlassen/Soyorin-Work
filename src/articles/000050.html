@@ -1,0 +1,122 @@
+<div style="font-family:Times New Roman,Times,serif;">
+
+<h1 style="text-indent:0;">传感器复习笔记（八）：磁敏传感器</h1>
+<p style="text-align:center;font-size:16px;color:var(--text-muted);">传感器原理 · 第八章</p>
+
+<h2 style="text-indent:0;">概述</h2>
+
+<p style="text-indent:2em;">磁敏传感器对磁场参量（磁感应强度、磁通）敏感，通过磁电作用将被测量转换为电信号。</p>
+
+<p style="text-indent:2em;"><b>与电感式传感器的区别：</b>电感式把被测量转换成电感量的变化；磁电式通过检测磁场变化来测量被测量。</p>
+
+<h2 style="text-indent:0;">霍尔效应</h2>
+
+<p style="text-indent:2em;"><b>霍尔效应：</b>当电流垂直于外磁场通过半导体薄片时，在垂直于磁场和电流方向的两个端面之间出现电势差（霍尔电势差 $U_H$）的现象。</p>
+
+<p style="text-indent:2em;"><b>霍尔电势：</b></p>
+
+$$
+U_H = R_H\frac{IB}{d} = K_H IB
+$$
+
+<p style="text-indent:2em;">其中 $R_H = \dfrac{1}{ne}$（霍尔系数），$K_H = \dfrac{R_H}{d}$（霍尔灵敏度），$d$ 为元件厚度。</p>
+
+<p style="text-indent:2em;"><b>导电类型判定：</b>对N型半导体：$R_H &lt; 0$（电子导电）；对P型半导体：$R_H &gt; 0$（空穴导电）。</p>
+
+<p style="text-indent:2em;"><b>讨论：</b></p>
+<ul>
+  <li>$K_H$ 越大，霍尔输出电压越高</li>
+  <li>$K_H \propto 1/d$，元件越薄灵敏度越高（但不能太薄，否则输入输出电阻增加）</li>
+  <li>$K_H \propto \mu$（载流子迁移率）和 $\rho$（电阻率）</li>
+  <li>金属的 $n$ 很大，霍尔效应很弱；绝缘体 $\rho$ 太小；半导体最适合做霍尔元件</li>
+  <li>常用材料：锗(Ge)、硅(Si)、砷化铟(InAs)、锑化铟(InSb)</li>
+</ul>
+
+<h2 style="text-indent:0;">霍尔元件主要特性参数</h2>
+
+<ul>
+  <li><b>额定功耗 $P_0$：</b>允许通过元件的电流和电压乘积</li>
+  <li><b>输入电阻 $R_i$：</b>控制电流端的直流电阻（几十到几百欧）</li>
+  <li><b>输出电阻 $R_o$：</b>霍尔输出端之间的电阻</li>
+  <li><b>不等位电势 $U_0$：</b>$B=0$ 时输出端的开路电压</li>
+  <li><b>霍尔温度系数 $\alpha$：</b>温度变化1℃时霍尔电势变化的百分率</li>
+  <li><b>电阻温度系数 $\beta$：</b>温度变化1℃时输入/输出电阻的相对变化率</li>
+</ul>
+
+<h2 style="text-indent:0;">霍尔元件的温度误差补偿</h2>
+
+<ul>
+  <li>输入回路串并联电阻补偿</li>
+  <li>输出回路负载补偿</li>
+  <li>热敏电阻补偿（输入回路或输出回路）</li>
+  <li>补偿电桥</li>
+</ul>
+
+<h2 style="text-indent:0;">霍尔元件 vs 磁敏二极管/三极管</h2>
+
+<table style="border-collapse:collapse;border:1px solid #000;margin:0.5em 0;">
+  <tr>
+    <th style="border:1px solid #000;padding:4px 10px;text-align:center;">对比项</th>
+    <th style="border:1px solid #000;padding:4px 10px;text-align:center;">霍尔元件</th>
+    <th style="border:1px solid #000;padding:4px 10px;text-align:center;">磁敏二极管/三极管</th>
+  </tr>
+  <tr>
+    <td style="border:1px solid #000;padding:4px 10px;">灵敏度</td>
+    <td style="border:1px solid #000;padding:4px 10px;">一般</td>
+    <td style="border:1px solid #000;padding:4px 10px;">高几百到上千倍</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #000;padding:4px 10px;">线性范围</td>
+    <td style="border:1px solid #000;padding:4px 10px;">宽</td>
+    <td style="border:1px solid #000;padding:4px 10px;">窄</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #000;padding:4px 10px;">能否判磁场方向</td>
+    <td style="border:1px solid #000;padding:4px 10px;">能</td>
+    <td style="border:1px solid #000;padding:4px 10px;">能</td>
+  </tr>
+  <tr>
+    <td style="border:1px solid #000;padding:4px 10px;">适用磁场</td>
+    <td style="border:1px solid #000;padding:4px 10px;">一般</td>
+    <td style="border:1px solid #000;padding:4px 10px;">更适合弱磁场</td>
+  </tr>
+</table>
+
+<h2 style="text-indent:0;">集成霍尔传感器</h2>
+
+<ul>
+  <li><b>线性型：</b>输出电压与外加磁场成线性比例关系</li>
+  <li><b>开关型：</b>含施密特触发器，输出高/低电平数字信号。当磁场强度超过工作点时输出低电平，低于释放点时输出高电平</li>
+</ul>
+
+<h2 style="text-indent:0;">霍尔传感器的应用</h2>
+
+<p style="text-indent:2em;">霍尔传感器的三种测量模式：</p>
+<ol>
+  <li><b>恒定 $I$，测 $B$：</b>磁场测量（特斯拉计/高斯计）</li>
+  <li><b>恒定 $B$，测 $I$：</b>电流测量（霍尔电流传感器，非接触式，不消耗被测电路功率）</li>
+  <li><b>$U_H \propto I \times B$：</b>功率测量</li>
+</ol>
+
+<p style="text-indent:2em;">其他应用：位移测量（1~2mm范围）、转速测量（ABS防抱死系统）、汽车电子点火器、接近开关、计数装置。</p>
+
+<h2 style="text-indent:0;">计算示例</h2>
+
+<p style="text-indent:2em;">一个霍尔元件，霍尔灵敏度 $K_H = 10$ mV/(mA·kGs)，控制电流 $I = 5$mA，置于 $B = 0.5$kGs 的磁场中。</p>
+
+<p style="text-indent:2em;">（1）求霍尔电势 $U_H$。</p>
+<p style="text-indent:2em;">（2）如果想提高霍尔电势，可以采取哪些措施？（列举两个）</p>
+
+<p style="text-indent:2em;"><b>解：</b></p>
+
+<p style="text-indent:2em;">（1）$U_H = K_H I B = 10 \times 5 \times 0.5 = \mathbf{25\;\text{mV}}$</p>
+
+<p style="text-indent:2em;">（2）提高措施（任写两条即可）：</p>
+<ul>
+  <li>增大控制电流 $I$（但受额定功耗限制）</li>
+  <li>选用更薄的霍尔元件（$K_H \propto 1/d$）</li>
+  <li>选用霍尔系数更大的半导体材料（如锑化铟InSb）</li>
+  <li>增大磁感应强度 $B$</li>
+</ul>
+
+</div>

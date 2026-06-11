@@ -1,0 +1,233 @@
+<div style="font-family:Times New Roman,Times,serif;">
+<h1 style="text-indent:0;">传感器复习笔记（九）：光电式传感器</h1>
+
+<h2 style="text-indent:0;">1. 概述</h2>
+
+<p style="text-indent:2em;">光电式传感器以<b>光电效应</b>为基础，将光信号转换成电信号。具有反应速度快、非接触测量、精度高、分辨力高等优点。</p>
+
+<p style="text-indent:2em;"><b>四种基本形式：</b>辐射式（直射式）、吸收式、遮光式、反射式</p>
+
+<h2 style="text-indent:0;">2. 光电效应</h2>
+
+<p style="text-indent:2em;"><b>光电效应</b>是光电式传感器的物理基础——光照射物体引起其电学特性发生变化。</p>
+
+<p style="text-indent:2em;">光电效应的分类如下：</p>
+
+$$
+\begin{array}{lll}
+\text{光电效应}
+&\begin{cases}
+\textbf{外光电效应（电子逸出表面）}
+    &\rightarrow \text{光电管、光电倍增管} \\[8pt]
+\textbf{内光电效应}
+    &\begin{cases}
+    \textbf{光电导效应（电导率变化）}
+        &\rightarrow \text{光敏电阻} \\[4pt]
+    \textbf{光生伏特效应（产生电动势）}
+        &\rightarrow \text{光电池、光电二极管、光电三极管}
+    \end{cases}
+\end{cases}
+\end{array}
+$$
+
+<h3 style="text-indent:0;">2.1 外光电效应（光电发射效应）</h3>
+
+<p style="text-indent:2em;">在光线作用下，物体内的电子逸出物体表面向外发射的现象。</p>
+
+<p style="text-indent:2em;"><b>爱因斯坦光电效应方程：</b></p>
+
+$$
+h\nu = \frac{1}{2}mv_{\max}^2 + W
+$$
+
+<p style="text-indent:2em;">其中 $h\nu$ 为光子能量，$W$ 为逸出功，$\frac{1}{2}mv_{\max}^2$ 为光电子最大动能。</p>
+
+<p style="text-indent:2em;"><b>光电发射四大定律：</b></p>
+<ol>
+    <li><b>斯托列托夫定律：</b>饱和光发射电流与入射光通量成正比</li>
+    <li><b>爱因斯坦定律：</b>光电子最大动能随入射光频率线性增大，<b>与光强无关</b></li>
+    <li><b>红限：</b>只有入射光频率大于截止频率 $\nu_0$（红限）时，电子才能逸出</li>
+    <li><b>瞬时性：</b>延迟时间不超过 $10^{-9}$s</li>
+</ol>
+
+<p style="text-indent:2em;"><b>对应器件：</b>光电管、光电倍增管</p>
+
+<h3 style="text-indent:0;">2.2 内光电效应</h3>
+
+<p style="text-indent:2em;">在光线作用下，物体电导性能发生变化或产生一定方向电动势的现象。</p>
+
+<p style="text-indent:2em;"><b>（1）光电导效应：</b>光子激发电子-空穴对，使材料电导率增大。对应器件：<b>光敏电阻</b>。</p>
+
+<p style="text-indent:2em;"><b>（2）光生伏特效应：</b>光生电子和空穴在内部电场作用下分离，产生电位差。对应器件：<b>光电池、光电二极管、光电三极管</b>。</p>
+
+<h2 style="text-indent:0;">3. 光敏电阻</h2>
+
+<p style="text-indent:2em;">利用<b>光电导效应</b>制成。无光照时暗电阻很大（暗电流小）；有光照时亮电阻急剧减小（亮电流大）。</p>
+
+<p style="text-indent:2em;"><b>光电流 = 亮电流 - 暗电流</b></p>
+
+<p style="text-indent:2em;">暗电阻越大、亮电阻越小，性能越好。</p>
+
+<p style="text-indent:2em;"><b>缺点：</b>光照特性非线性（不宜做定量检测，一般用作光电开关）；响应时延大（不能用于快速响应场合）。</p>
+
+<h2 style="text-indent:0;">4. 光电池</h2>
+
+<p style="text-indent:2em;">利用<b>光生伏特效应</b>直接将光能转变成电能（<b>有源元件</b>）。最常用的是<b>硅光电池</b>和<b>硒光电池</b>。</p>
+
+<p style="text-indent:2em;"><b>工作原理：</b>光照射PN结 $\rightarrow$ 激发电子-空穴对 $\rightarrow$ N区堆积负电荷，P区堆积正电荷 $\rightarrow$ 产生光生电动势（0.2~0.6V，可达50mA）。</p>
+
+<p style="text-indent:2em;"><b>光电池重要特性：</b></p>
+<ul>
+    <li><b>开路电压：</b>与光强成非线性关系，2000lx后趋于饱和</li>
+    <li><b>短路电流：</b>在很大范围内与光强成线性关系</li>
+</ul>
+
+$$
+\boxed{\text{用作检测时，应使光电池工作在近似"短路"状态！}}
+$$
+
+<p style="text-indent:2em;"><b>"短路"条件：</b>负载电阻 $R_L$ 越小，光电流与光强的线性关系越好，线性范围越宽。</p>
+
+<p style="text-indent:2em;"><b>光谱特性：</b>硅光电池峰值波长850nm（400~1100nm）；硒光电池峰值540nm（可见光）。</p>
+
+<h2 style="text-indent:0;">5. 光敏二极管与光敏三极管</h2>
+
+<p style="text-indent:2em;"><b>光敏二极管：</b></p>
+<ul>
+    <li>结面积小，频率特性好（优于光电池）</li>
+    <li>工作在反向偏置状态</li>
+    <li>无光照时反向暗电流很小（nA级）</li>
+    <li>有光照时光电流与光强成正比</li>
+</ul>
+
+<p style="text-indent:2em;"><b>光敏三极管：</b></p>
+<ul>
+    <li>具有电流放大作用（$\beta$ 倍），灵敏度比光敏二极管高</li>
+    <li>集电极电流 $I_C = \beta I_\phi$</li>
+</ul>
+
+<p style="text-indent:2em;"><b>光电池与光电二极管的异同：</b></p>
+
+<table style="border-collapse:collapse;border:1px solid black;margin:1em auto;">
+<thead>
+<tr style="background-color:#f0f0f0;">
+<th style="border:1px solid black;padding:6px 12px;text-align:left;"></th>
+<th style="border:1px solid black;padding:6px 12px;text-align:left;"><b>光电池</b></th>
+<th style="border:1px solid black;padding:6px 12px;text-align:left;"><b>光电二极管</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">PN结面积</td>
+<td style="border:1px solid black;padding:6px 12px;">大</td>
+<td style="border:1px solid black;padding:6px 12px;">小</td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">主要用途</td>
+<td style="border:1px solid black;padding:6px 12px;">太阳能发电 + 检测</td>
+<td style="border:1px solid black;padding:6px 12px;">高速光电检测</td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">频率响应</td>
+<td style="border:1px solid black;padding:6px 12px;">差（结电容大）</td>
+<td style="border:1px solid black;padding:6px 12px;"><b>好</b></td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">工作状态</td>
+<td style="border:1px solid black;padding:6px 12px;">零偏 / 光伏模式</td>
+<td style="border:1px solid black;padding:6px 12px;"><b>反向偏置</b></td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">输出电流</td>
+<td style="border:1px solid black;padding:6px 12px;">较大（mA级）</td>
+<td style="border:1px solid black;padding:6px 12px;">较小（$\mu$A级）</td>
+</tr>
+</tbody>
+</table>
+
+<p style="text-indent:2em;"><b>相同点：</b>都基于光生伏特效应，都是PN结结构。</p>
+
+<p style="text-indent:2em;"><b>不同点：</b>光电池结面积大、可作电源但频率特性差；光电二极管结面积小、频率特性好，工作于反偏状态。</p>
+
+<h2 style="text-indent:0;">6. 光电倍增管</h2>
+
+<p style="text-indent:2em;">利用外光电效应和二次电子发射效应，将微弱光信号转换成电信号的真空管。通过多级倍增极（一般10级左右），电子数量逐级递增，总增益可达 $10^5\sim10^8$ 倍。</p>
+
+<p style="text-indent:2em;"><b>应用：</b>微光探测、快速光子计数、大气探测激光雷达等。</p>
+
+<h2 style="text-indent:0;">7. CCD（电荷耦合器件）与CMOS</h2>
+
+<p style="text-indent:2em;">CCD是一种能将光学影像转化为数字信号的半导体器件。</p>
+
+<p style="text-indent:2em;"><b>基本结构：</b>微透镜阵列 + 色块网格（拜尔滤光片）+ 电子线路矩阵</p>
+
+<p style="text-indent:2em;"><b>工作原理：</b>MOS光敏元在光照下产生光生电荷包，电荷量与光照度成正比。</p>
+
+<p style="text-indent:2em;"><b>CCD vs CMOS 对比：</b></p>
+
+<table style="border-collapse:collapse;border:1px solid black;margin:1em auto;">
+<thead>
+<tr style="background-color:#f0f0f0;">
+<th style="border:1px solid black;padding:6px 12px;text-align:left;">属性</th>
+<th style="border:1px solid black;padding:6px 12px;text-align:left;">CCD</th>
+<th style="border:1px solid black;padding:6px 12px;text-align:left;">CMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">像素输出信号</td>
+<td style="border:1px solid black;padding:6px 12px;">电子包</td>
+<td style="border:1px solid black;padding:6px 12px;">电压</td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">传感器输出</td>
+<td style="border:1px solid black;padding:6px 12px;">电压（模拟）</td>
+<td style="border:1px solid black;padding:6px 12px;">二进制数（数字）</td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">系统噪声</td>
+<td style="border:1px solid black;padding:6px 12px;"><b>低</b></td>
+<td style="border:1px solid black;padding:6px 12px;">高</td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">功耗</td>
+<td style="border:1px solid black;padding:6px 12px;">高</td>
+<td style="border:1px solid black;padding:6px 12px;"><b>低</b></td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">灵敏度</td>
+<td style="border:1px solid black;padding:6px 12px;"><b>高</b></td>
+<td style="border:1px solid black;padding:6px 12px;">低</td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">响应速度</td>
+<td style="border:1px solid black;padding:6px 12px;">慢</td>
+<td style="border:1px solid black;padding:6px 12px;"><b>快</b></td>
+</tr>
+<tr>
+<td style="border:1px solid black;padding:6px 12px;">成本</td>
+<td style="border:1px solid black;padding:6px 12px;">高</td>
+<td style="border:1px solid black;padding:6px 12px;"><b>低</b></td>
+</tr>
+</tbody>
+</table>
+
+<p style="text-indent:2em;"><b>技术指标：</b>尺寸大小、像素数目、灵敏度、信噪比、量子效率。</p>
+
+<h2 style="text-indent:0;">8. 练习与思考题</h2>
+
+<ol>
+<li>光电二极管和光电池都基于什么效应？它们在工作状态上有什么不同？</li>
+<li>在光电效应中，"红限"是什么意思？光电子的最大动能取决于什么？</li>
+<li>用光电池做光照度检测时，应该使用开路电压还是短路电流作为输出信号？为什么？</li>
+</ol>
+
+<p style="text-indent:2em;"><b>参考答案：</b></p>
+
+<p style="text-indent:2em;">（1）都基于<b>光生伏特效应</b>。不同点：光电二极管工作在<b>反向偏置</b>状态，结面积小，频率特性好；光电池通常工作在零偏状态（光伏模式），结面积大，可做电源但频率特性差。</p>
+
+<p style="text-indent:2em;">（2）<b>红限</b>是指能使电子从金属表面逸出的最低入射光频率 $\nu_0$。只有当 $\nu > \nu_0$ 时才能产生外光电效应。光电子最大动能取决于<b>入射光的频率</b>（$E_{k\max}=h\nu-W$），<b>与光强无关</b>。</p>
+
+<p style="text-indent:2em;">（3）应该使用<b>短路电流</b>。因为短路电流在很宽范围内与光照度成<b>线性关系</b>；而开路电压与光照度非线性，且在2000lx后趋于饱和，不利于定量测量。</p>
+
+</div>

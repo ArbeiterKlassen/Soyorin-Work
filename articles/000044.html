@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="HandheldFriendly" content="true">
-  <meta name="description" content="电磁波干涉与行驻波状态、反射系数与透射系数推导、驻波比SWR、斯涅耳定律与菲涅耳公式、全反射临界角与布儒斯特角">
+  <meta name="description" content="静态特性（线性度/灵敏度/精确度/迟滞/重复性）、动态特性（零阶/一阶/二阶系统阶跃响应）">
   <meta name="keywords" content="Soyorin.Work, Blog">
-  <meta property="og:title" content="电磁场理论学习笔记（七）：电磁波的传播">
+  <meta property="og:title" content="传感器复习笔记（二）：传感器的一般特性">
   <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
-  <title>电磁场理论学习笔记（七）：电磁波的传播</title>
+  <title>传感器复习笔记（二）：传感器的一般特性</title>
   <link rel="shortcut icon" href="../img/user.jpeg">
   <link rel="stylesheet" href="../css/variables.css">
   <link rel="stylesheet" href="../css/global.css">
@@ -107,211 +107,253 @@
     <div class="article-container">
       <div class="article-content markdown-body">
         <div style="font-family:Times New Roman,Times,serif;">
-<h1 style="text-indent:0;">电磁场理论学习笔记（七）：电磁波的传播</h1>
-<p style="text-align:center;font-size:16px;color:var(--text-muted);">电磁场理论·第七章</p>
+<h1 style="text-indent:0;">传感器复习笔记（二）：传感器的一般特性</h1>
 
-<h2 style="text-indent:0;">电磁波的干涉</h2>
+<h2 style="text-indent:0;">一、静态特性</h2>
 
-<p style="text-indent:2em;">空间两列或多列同频率电磁波相遇时，合成场强等于各列波场强的<strong>矢量叠加</strong>，干涉现象取决于各列波的相位差。</p>
+<p style="text-indent:2em;">传感器的静态特性是指输入量为静态（常量）或变化缓慢信号时的输入-输出关系。</p>
 
-<p style="text-indent:2em;">对于同频率、初相位固定的两列波 $\dot{\mathbf{E}}_1$ 和 $\dot{\mathbf{E}}_2$，合成场振幅为：</p>
+<h3 style="text-indent:0;">1.1 静态特性的一般数学模型</h3>
 
-$$
-|\dot{\mathbf{E}}|^2 = |\dot{\mathbf{E}}_1|^2 + |\dot{\mathbf{E}}_2|^2 + 2|\dot{\mathbf{E}}_1||\dot{\mathbf{E}}_2|\cos(\Delta\phi)
-$$
-
-<p style="text-indent:2em;">其中 $\Delta\phi = \phi_2-\phi_1$ 为相位差。干涉加强（$\Delta\phi=2n\pi$）和干涉相消（$\Delta\phi=(2n+1)\pi$）。</p>
-
-<p style="text-indent:2em;"><strong>注意：</strong>若两电场矢量相互垂直（如 $\mathbf{E}_1\parallel\hat{\mathbf{e}}_x$，$\mathbf{E}_2\parallel\hat{\mathbf{e}}_y$），则无干涉条纹，但合成场矢量的振动方向会发生变化——这引出<strong>极化</strong>的概念。</p>
-
-<h2 style="text-indent:0;">反射与行驻波</h2>
-
-<h3 style="text-indent:0;">垂直入射模型</h3>
-
-<p style="text-indent:2em;">平面波从媒质1（$\varepsilon_1,\mu_1$）垂直入射到媒质2（$\varepsilon_2,\mu_2$）的分界面（$z=0$）。</p>
-
-<p style="text-indent:2em;">入射波（沿 $+z$）：</p>
+<p style="text-indent:2em;">传感器的静态特性可用代数多项式表示：</p>
 
 $$
-\dot{\mathbf{E}}_i = \hat{\mathbf{e}}_x E_{i0}e^{-\mathrm{j} k_1 z},\quad \dot{\mathbf{H}}_i = \hat{\mathbf{e}}_y\frac{E_{i0}}{\eta_1}e^{-\mathrm{j} k_1 z}
+y = a_0 + a_1x + a_2x^2 + a_3x^3 + \cdots + a_nx^n
 $$
 
-<p style="text-indent:2em;">反射波（沿 $-z$）：</p>
-
-$$
-\dot{\mathbf{E}}_r = \hat{\mathbf{e}}_x E_{r0}e^{+\mathrm{j} k_1 z},\quad \dot{\mathbf{H}}_r = -\hat{\mathbf{e}}_y\frac{E_{r0}}{\eta_1}e^{+\mathrm{j} k_1 z}
-$$
-
-<p style="text-indent:2em;">透射波（沿 $+z$）：</p>
-
-$$
-\dot{\mathbf{E}}_t = \hat{\mathbf{e}}_x E_{t0}e^{-\mathrm{j} k_2 z},\quad \dot{\mathbf{H}}_t = \hat{\mathbf{e}}_y\frac{E_{t0}}{\eta_2}e^{-\mathrm{j} k_2 z}
-$$
-
-<p style="text-indent:2em;">其中 $k_i=\omega\sqrt{\mu_i\varepsilon_i}$，$\eta_i=\sqrt{\mu_i/\varepsilon_i}$。</p>
-
-<h3 style="text-indent:0;">反射系数与透射系数</h3>
-
-<p style="text-indent:2em;">在界面 $z=0$ 处，切向电场和切向磁场连续：</p>
-
-$$
-E_{i0} + E_{r0} = E_{t0},\qquad \frac{E_{i0}}{\eta_1} - \frac{E_{r0}}{\eta_1} = \frac{E_{t0}}{\eta_2}
-$$
-
-<p style="text-indent:2em;">解此方程组得：</p>
-
-<p style="text-indent:2em;"><strong>反射系数（电场）：</strong></p>
-
-$$
-\boxed{\Gamma = \frac{E_{r0}}{E_{i0}} = \frac{\eta_2-\eta_1}{\eta_2+\eta_1}}
-$$
-
-<p style="text-indent:2em;"><strong>透射系数（电场）：</strong></p>
-
-$$
-\boxed{\tau = \frac{E_{t0}}{E_{i0}} = \frac{2\eta_2}{\eta_2+\eta_1} = 1+\Gamma}
-$$
-
-<p style="text-indent:2em;">关系：$\tau = 1+\Gamma$，且当 $\eta_1=\eta_2$ 时 $\Gamma=0$（无反射——匹配）。</p>
-
-<h3 style="text-indent:0;">行驻波与驻波比</h3>
-
-<p style="text-indent:2em;">媒质1中合成电场：</p>
-
-$$
-\begin{aligned}
-\dot{E}_1(z) &= E_{i0}e^{-\mathrm{j} k_1 z} + \Gamma E_{i0}e^{+\mathrm{j} k_1 z} \\
-&= E_{i0}e^{-\mathrm{j} k_1 z}\left(1 + \Gamma e^{2\mathrm{j} k_1 z}\right)
-\end{aligned}
-$$
-
-<p style="text-indent:2em;">振幅：</p>
-
-$$
-|\dot{E}_1(z)| = |E_{i0}|\sqrt{1+|\Gamma|^2+2|\Gamma|\cos(2k_1z+\phi_\Gamma)}
-$$
-
-<p style="text-indent:2em;">定义<strong>驻波比（SWR 或 VSWR）：</strong></p>
-
-$$
-\boxed{\mathrm{SWR} = \frac{|\dot{E}|_{\max}}{|\dot{E}|_{\min}} = \frac{1+|\Gamma|}{1-|\Gamma|}}
-$$
-
-<p style="text-indent:2em;">特殊情形：</p>
 <ul>
-<li>$\Gamma=0$（匹配）：SWR$=1$，纯行波；</li>
-<li>$|\Gamma|=1$（全反射）：SWR$\to\infty$，纯驻波；</li>
-<li>$0<|\Gamma|<1$：行驻波。</li>
+    <li>理想线性：$y = a_1x$（只有奇次项 $a_0=a_2=a_3=\cdots=0$）</li>
+    <li>仅有奇次非线性项：$y = a_1x + a_3x^3 + \cdots$，关于原点对称</li>
+    <li>仅有偶次非线性项：线性差，很少采用</li>
 </ul>
 
-<h3 style="text-indent:0;">介质的等效波阻抗</h3>
+<h3 style="text-indent:0;">1.2 线性度（Linearity）</h3>
 
-<p style="text-indent:2em;">在距离界面 $z = -l$ 处看入的等效波阻抗：</p>
-
-$$
-\eta_{\text{in}}(l) = \eta_1\frac{\eta_2+\mathrm{j}\eta_1\tan(k_1 l)}{\eta_1+\mathrm{j}\eta_2\tan(k_1 l)}
-$$
-
-<p style="text-indent:2em;">当 $l = \lambda/4$ 时：$\eta_{\text{in}} = \eta_1^2/\eta_2$（四分之一波长阻抗变换器）。</p>
-
-<p style="text-indent:2em;">当 $l = \lambda/2$ 时：$\eta_{\text{in}} = \eta_2$（半波长阻抗重复性）。</p>
-
-<h2 style="text-indent:0;">斯涅耳定律</h2>
-
-<p style="text-indent:2em;">平面波以入射角 $\theta_i$ 从媒质1入射到媒质2的分界面。</p>
-
-<p style="text-indent:2em;"><strong>反射定律</strong>：$\theta_r = \theta_i$（反射角等于入射角）。</p>
-
-<p style="text-indent:2em;"><strong>折射定律（斯涅耳定律）</strong>：</p>
+<p style="text-indent:2em;"><b>定义：</b>传感器静态校准曲线与拟合直线的最大偏差与满量程输出值的百分比。</p>
 
 $$
-\boxed{\frac{\sin\theta_i}{\sin\theta_t} = \frac{k_2}{k_1} = \frac{n_2}{n_1}}
+\delta_L = \frac{|\Delta y_{\max}|}{Y_{\text{FS}}} \times 100\%
 $$
 
-<p style="text-indent:2em;">其中 $n=c/v$ 为折射率。当 $n_2 < n_1$ 时，存在全反射临界角：</p>
+<p style="text-indent:2em;">其中 $\Delta y_{\max}$ 为最大偏差，$Y_{\text{FS}}$ 为满量程输出。</p>
+
+<p style="text-indent:2em;"><b>常用拟合方法：</b></p>
+
+<ol>
+    <li><b>端点连线（端基法）拟合：</b>连接零点与满量程点</li>
+    <li><b>最小二乘法拟合：</b>使残差平方和最小</li>
+    <li><b>理论拟合</b></li>
+    <li><b>端点连线平移拟合</b></li>
+    <li><b>过零旋转拟合</b></li>
+</ol>
+
+<p style="text-indent:2em;"><b>关键：</b>拟合直线不同，线性度数值就不同！</p>
+
+<p style="text-indent:2em;"><b>差动测量法改善线性度：</b></p>
+
+<p style="text-indent:2em;">设单传感器：$y = a_0 + a_1x + a_2x^2 + a_3x^3 + \cdots$</p>
+
+<p style="text-indent:2em;">两个性能相同的传感器，一个感受正向变化，一个感受负向变化，输出相减：</p>
+
+<p style="text-indent:2em;">正向传感器：$y_1 = a_0 + a_1x + a_2x^2 + a_3x^3 + \cdots$</p>
+
+<p style="text-indent:2em;">反向传感器：$y_2 = a_0 - a_1x + a_2x^2 - a_3x^3 + \cdots$</p>
+
+<p style="text-indent:2em;">差动输出：</p>
 
 $$
-\theta_c = \arcsin\frac{n_2}{n_1}
+\Delta y = y_1 - y_2 = 2a_1x + 2a_3x^3 + \cdots
 $$
 
-<h2 style="text-indent:0;">菲涅耳公式</h2>
+<p style="text-indent:2em;"><b>三大优点：</b></p>
 
-<h3 style="text-indent:0;">垂直极化波（TE波，$\mathbf{E}\perp$ 入射面）</h3>
+<ol>
+    <li>消除偶阶次非线性误差（$a_2x^2$ 项消失）</li>
+    <li>灵敏度提高一倍</li>
+    <li>消除零位输出</li>
+</ol>
 
-<p style="text-indent:2em;">反射系数：</p>
+<h3 style="text-indent:0;">1.3 灵敏度（Sensitivity）</h3>
 
-$$
-\Gamma_{\perp} = \frac{\eta_2\cos\theta_i - \eta_1\cos\theta_t}{\eta_2\cos\theta_i + \eta_1\cos\theta_t}
-$$
-
-<p style="text-indent:2em;">透射系数：</p>
-
-$$
-\tau_{\perp} = \frac{2\eta_2\cos\theta_i}{\eta_2\cos\theta_i + \eta_1\cos\theta_t}
-$$
-
-<h3 style="text-indent:0;">平行极化波（TM波，$\mathbf{E}\parallel$ 入射面）</h3>
-
-<p style="text-indent:2em;">反射系数：</p>
+<p style="text-indent:2em;"><b>定义：</b>传感器到达稳定工作状态时，输出变化量与输入变化量之比。</p>
 
 $$
-\Gamma_{\parallel} = \frac{\eta_2\cos\theta_t - \eta_1\cos\theta_i}{\eta_2\cos\theta_t + \eta_1\cos\theta_i}
+K = \frac{dy}{dx}
 $$
 
-<h2 style="text-indent:0;">全反射与全透射</h2>
+<p style="text-indent:2em;">线性传感器：$K$ 为常数（特性曲线斜率处处相同）</p>
 
-<p style="text-indent:2em;"><strong>全反射：</strong>当 $n_1>n_2$ 且 $\theta_i\geq\theta_c$ 时，$\Gamma_{\perp}=\Gamma_{\parallel}=1$，无透射能量。但分界面处仍有衰减的倏逝波（evanescent wave）。</p>
+<p style="text-indent:2em;">非线性传感器：$K$ 随工作点变化，$K = \dfrac{\Delta y}{\Delta x}$</p>
 
-<p style="text-indent:2em;"><strong>全透射（布儒斯特角）：</strong>当 $\Gamma_{\parallel}=0$ 时（仅对平行极化），入射角满足：</p>
+<h3 style="text-indent:0;">1.4 精确度（Accuracy）</h3>
+
+<ul>
+    <li><b>精密度：</b>测量结果的一致性程度</li>
+    <li><b>正确度（准确度）：</b>测量结果与真值的接近程度</li>
+    <li><b>精确度（精度）：</b>精密度与正确度的综合</li>
+    <li><b>精确度等级 $A$：</b>$A = \dfrac{|\Delta_{\max}|}{Y_{\text{FS}}} \times 100\%$，如1.5级表示1.5%</li>
+</ul>
+
+<p style="text-indent:2em;"><b>例：</b>检定一台1.5级刻度0-100Pa压力传感器，50Pa处误差最大为1.4Pa，问是否合格？</p>
+
+<p style="text-indent:2em;"><b>解：</b>允许最大绝对误差：$\Delta_{\max} = 100 \times 1.5\% = 1.5\text{Pa}$</p>
+
+<p style="text-indent:2em;">$1.4 < 1.5$，故该传感器合格。</p>
+
+<h3 style="text-indent:0;">1.5 分辨力与最小检测量</h3>
+
+<ul>
+    <li><b>分辨力：</b>传感器能检测到的最小输入增量（绝对值）</li>
+    <li><b>分辨率：</b>分辨力与满量程的百分比</li>
+    <li><b>最小检测量：</b>$M = \dfrac{CN}{K}$，$C$为系数(1-5)，$N$为噪声电平，$K$为灵敏度</li>
+</ul>
+
+<h3 style="text-indent:0;">1.6 迟滞（Hysteresis）</h3>
+
+<p style="text-indent:2em;">传感器正行程与反行程的输入-输出特性曲线不重合的现象。</p>
 
 $$
-\boxed{\tan\theta_B = \frac{n_2}{n_1}}
+\delta_H = \frac{|\Delta H_{\max}|}{Y_{\text{FS}}} \times 100\%
 $$
 
-<p style="text-indent:2em;">此时反射波中只有垂直极化分量——布儒斯特窗效应。</p>
+<p style="text-indent:2em;">产生原因：弹性敏感元件的弹性滞后、运动部件摩擦、传动机构间隙、紧固件松动等。</p>
 
-<p style="text-indent:2em;">对于非磁性介质（$\mu_1\approx\mu_2\approx\mu_0$），$\theta_B = \arctan\sqrt{\varepsilon_2/\varepsilon_1}$。</p>
+<h3 style="text-indent:0;">1.7 重复性（Repeatability）</h3>
 
-<h2 style="text-indent:0;">本章核心公式汇总</h2>
+<p style="text-indent:2em;">传感器输入量按同一方向作多次测量时，输出特性不一致的程度（随机误差，用标准偏差 $\sigma$ 表示）。</p>
 
-<table style="border-collapse:collapse;width:80%;margin:20px auto;text-align:center;">
-<thead>
-<tr>
-<td style="border:1px solid #999;padding:8px;font-weight:bold;">项目</td>
-<td style="border:1px solid #999;padding:8px;font-weight:bold;">公式</td>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="border:1px solid #999;padding:8px;">反射系数（垂直入射）</td>
-<td style="border:1px solid #999;padding:8px;">$\Gamma = \dfrac{\eta_2-\eta_1}{\eta_2+\eta_1}$</td>
-</tr>
-<tr>
-<td style="border:1px solid #999;padding:8px;">透射系数</td>
-<td style="border:1px solid #999;padding:8px;">$\tau = \dfrac{2\eta_2}{\eta_2+\eta_1} = 1+\Gamma$</td>
-</tr>
-<tr>
-<td style="border:1px solid #999;padding:8px;">驻波比</td>
-<td style="border:1px solid #999;padding:8px;">$\mathrm{SWR} = \dfrac{1+|\Gamma|}{1-|\Gamma|}$</td>
-</tr>
-<tr>
-<td style="border:1px solid #999;padding:8px;">斯涅耳定律</td>
-<td style="border:1px solid #999;padding:8px;">$\dfrac{\sin\theta_i}{\sin\theta_t} = \dfrac{n_2}{n_1}$</td>
-</tr>
-<tr>
-<td style="border:1px solid #999;padding:8px;">全反射临界角</td>
-<td style="border:1px solid #999;padding:8px;">$\theta_c = \arcsin(n_2/n_1)$</td>
-</tr>
-<tr>
-<td style="border:1px solid #999;padding:8px;">布儒斯特角</td>
-<td style="border:1px solid #999;padding:8px;">$\tan\theta_B = n_2/n_1$</td>
-</tr>
-<tr>
-<td style="border:1px solid #999;padding:8px;">$\lambda/4$ 阻抗变换</td>
-<td style="border:1px solid #999;padding:8px;">$\eta_{\text{in}} = \eta_1^2/\eta_2$</td>
-</tr>
-</tbody>
-</table>
+$$
+\delta_R = \frac{(2\sim3)\sigma}{Y_{\text{FS}}} \times 100\%
+$$
+
+<p style="text-indent:2em;">其中 $\sigma$ 为标准偏差。</p>
+
+<h3 style="text-indent:0;">1.8 稳定性与漂移</h3>
+
+<ul>
+    <li><b>稳定性：</b>传感器长期保持其性能参数的能力</li>
+    <li><b>漂移：</b>输入不变时输出随时间和温度变化
+        <ul>
+            <li><b>零点漂移（零漂）：</b>无输入时输出偏离零值</li>
+            <li><b>灵敏度漂移：</b>灵敏度随温度/时间变化</li>
+            <li><b>时间漂移（时漂）：</b>随时间缓慢变化</li>
+            <li><b>温度漂移（温漂）：</b>随温度变化</li>
+        </ul>
+    </li>
+</ul>
+
+<h2 style="text-indent:0;">二、动态特性</h2>
+
+<p style="text-indent:2em;">传感器动态特性用常系数线性微分方程描述。绝大多数传感器属于零阶、一阶或二阶系统。</p>
+
+<h3 style="text-indent:0;">2.1 一般数学模型</h3>
+
+<p style="text-indent:2em;">对于线性定常系统，其数学模型为常系数线性微分方程：</p>
+
+$$
+a_n\frac{d^ny}{dt^n} + a_{n-1}\frac{d^{n-1}y}{dt^{n-1}} + \cdots + a_1\frac{dy}{dt} + a_0y = b_m\frac{d^mx}{dt^m} + \cdots + b_1\frac{dx}{dt} + b_0x
+$$
+
+<p style="text-indent:2em;">多数传感器可用零阶、一阶或二阶微分方程描述。</p>
+
+<h3 style="text-indent:0;">2.2 零阶传感器</h3>
+
+<p style="text-indent:2em;"><b>数学模型：</b>$a_0y = b_0x$，即 $y = Kx$（$K = b_0/a_0$ 为静态灵敏度）</p>
+
+<p style="text-indent:2em;"><b>传递函数：</b>$H(s) = K$</p>
+
+<p style="text-indent:2em;"><b>频率特性：</b>$H(j\omega) = K$</p>
+
+<p style="text-indent:2em;"><b>特点：</b>输出随时跟踪输入变化，对任何频率输入均无时间滞后。最简单的系统！</p>
+
+<p style="text-indent:2em;"><b>典型例子：</b>线性电位器式传感器。</p>
+
+<h3 style="text-indent:0;">2.3 一阶传感器</h3>
+
+<p style="text-indent:2em;"><b>数学模型：</b>$a_1\dfrac{dy}{dt} + a_0y = b_0x$，即</p>
+
+$$
+\tau\frac{dy}{dt} + y = Kx
+$$
+
+<p style="text-indent:2em;">其中 $\tau = a_1/a_0$（时间常数），$K = b_0/a_0$（静态灵敏度）</p>
+
+<p style="text-indent:2em;"><b>传递函数：</b>$H(s) = \dfrac{K}{1 + \tau s}$</p>
+
+<p style="text-indent:2em;"><b>频率特性：</b>$H(j\omega) = \dfrac{K}{1 + j\omega\tau}$</p>
+
+<p style="text-indent:2em;"><b>幅频特性：</b>$A(\omega) = \dfrac{K}{\sqrt{1 + (\omega\tau)^2}}$</p>
+
+<p style="text-indent:2em;"><b>相频特性：</b>$\varphi(\omega) = -\arctan(\omega\tau)$</p>
+
+<p style="text-indent:2em;"><b>阶跃响应：</b>$y(t) = K(1 - e^{-t/\tau})$</p>
+
+<p style="text-indent:2em;"><b>特点：</b>$\tau$ 叫做时间常数，是一阶传感器最重要的性能参数！</p>
+
+<ul>
+    <li>$t = (3\sim4)\tau$ 时可认为达到稳态值</li>
+    <li>$\tau$ 越小，响应越快，动态误差越小</li>
+</ul>
+
+<h3 style="text-indent:0;">2.4 二阶传感器</h3>
+
+<p style="text-indent:2em;"><b>数学模型：</b>$a_2\dfrac{d^2y}{dt^2} + a_1\dfrac{dy}{dt} + a_0y = b_0x$，即</p>
+
+$$
+\frac{1}{\omega_0^2}\frac{d^2y}{dt^2} + \frac{2\xi}{\omega_0}\frac{dy}{dt} + y = Kx
+$$
+
+<p style="text-indent:2em;">其中 $\omega_0 = \sqrt{a_0/a_2}$（固有频率），$\xi = a_1/(2\sqrt{a_0a_2})$（阻尼比）</p>
+
+<p style="text-indent:2em;"><b>传递函数：</b>$H(s) = \dfrac{K\omega_0^2}{s^2 + 2\xi\omega_0s + \omega_0^2}$</p>
+
+<p style="text-indent:2em;"><b>幅频特性：</b></p>
+
+$$
+A(\omega) = \frac{K}{\sqrt{[1-(\omega/\omega_0)^2]^2 + (2\xi\omega/\omega_0)^2}}
+$$
+
+<p style="text-indent:2em;"><b>相频特性：</b></p>
+
+$$
+\varphi(\omega) = -\arctan\frac{2\xi\omega/\omega_0}{1-(\omega/\omega_0)^2}
+$$
+
+<p style="text-indent:2em;"><b>阶跃响应特性：</b></p>
+
+<ul>
+    <li>$\xi=1$（临界阻尼）：响应时间最短</li>
+    <li>$\xi>1$（过阻尼）：上升时间长</li>
+    <li>$\xi<1$（欠阻尼）：有过冲，通常取 $\xi=0.7$（最佳阻尼比，兼顾快速响应和小过冲）</li>
+</ul>
+
+<p style="text-indent:2em;"><b>频率响应要点：</b></p>
+
+<ul>
+    <li>$\xi \to 0$ 时，$\omega = \omega_0$ 处谐振（幅值趋于无穷）</li>
+    <li>$\xi \geq 0.707$ 时不出现谐振</li>
+    <li>$\omega_0$ 应至少大于被测信号频率的3-5倍</li>
+</ul>
+
+<h3 style="text-indent:0;">2.5 二阶阶跃响应的性能指标</h3>
+
+<ul>
+    <li><b>上升时间 $t_r$：</b>输出从稳态值的10%变化到90%所需时间</li>
+    <li><b>稳定时间 $t_s$：</b>输出稳定在稳态值附近规定百分比内所需最小时间（$\xi=0.7$时$t_s=3/\omega_0$为最小）</li>
+    <li><b>峰值时间 $t_p$：</b>输出达到第一个峰值所需时间</li>
+</ul>
+
+<h2 style="text-indent:0;">三、课堂练习</h2>
+
+<p style="text-indent:2em;"><b>（1）</b>检定一台精度等级为1.0级、量程0-200℃的温度传感器。在100℃处测得误差最大，为1.8℃。问这台传感器是否合格？</p>
+
+<p style="text-indent:2em;"><b>（2）</b>用一个时间常数 $\tau=5$s 的一阶传感器测量一个从0℃阶跃到100℃的快速温度变化，大约需要多长时间读数才能稳定在100℃附近？</p>
+
+<p style="text-indent:2em;"><b>解答：</b></p>
+
+<p style="text-indent:2em;"><b>（1）</b>允许最大绝对误差 $= 200 \times 1.0\% = 2.0$℃。实际最大误差1.8℃ $<$ 2.0℃，<b>合格</b>。</p>
+
+<p style="text-indent:2em;"><b>（2）</b>一阶系统 $t = (3\sim4)\tau = 15\sim20$s 后达到稳态值。约需<b>15-20秒</b>。</p>
 
 </div>
 
@@ -319,8 +361,8 @@ $$
     </div>
     
     <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
-      <div><a href="../articles/000040.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 电磁场理论学习笔记（六）：均匀平面波</a></div>
-      <div><a href="../articles/000042.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">电磁场理论学习笔记（八）：电磁波的辐射 →</a></div>
+      <div><a href="../articles/000043.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 传感器复习笔记（一）：传感器绪论</a></div>
+      <div><a href="../articles/000045.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">传感器复习笔记（三）：应变式传感器 →</a></div>
     </div>
     
     <div class="article-container" id="comment-box" style="margin-top:10px;">

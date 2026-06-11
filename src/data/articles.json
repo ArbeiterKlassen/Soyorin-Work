@@ -61,6 +61,105 @@
   },
   "articles": [
     {
+      "number": 43,
+      "class": "code",
+      "links": "../articles/000043.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "传感器复习笔记（一）：传感器绪论",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "传感器定义与组成（GB7665-87）、分类体系、三大信息技术支柱地位、发展趋势",
+      "hasToc": true
+    },
+    {
+      "number": 44,
+      "class": "code",
+      "links": "../articles/000044.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "传感器复习笔记（二）：传感器的一般特性",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "静态特性（线性度/灵敏度/精确度/迟滞/重复性）、动态特性（零阶/一阶/二阶系统阶跃响应）",
+      "hasToc": true
+    },
+    {
+      "number": 45,
+      "class": "code",
+      "links": "../articles/000045.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "传感器复习笔记（三）：应变式传感器",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "应变效应与电阻应变片、直流电桥与温度补偿、柱式与梁式力传感器、压阻式传感器",
+      "hasToc": true
+    },
+    {
+      "number": 46,
+      "class": "code",
+      "links": "../articles/000046.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "传感器复习笔记（四）：电容式传感器",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "变面积/变介质/变极距三种类型、差动式结构、测量电路、误差分析与计算举例",
+      "hasToc": true
+    },
+    {
+      "number": 47,
+      "class": "code",
+      "links": "../articles/000047.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "传感器复习笔记（五）：电感式传感器",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "自感式与互感式传感器、差动变压器原理、涡流效应与电涡流传感器、零点残余电压",
+      "hasToc": true
+    },
+    {
+      "number": 48,
+      "class": "code",
+      "links": "../articles/000048.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "传感器复习笔记（六）：压电式传感器",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "压电效应机制、石英晶体与压电陶瓷、等效电路与测量电路、电压放大器与电荷放大器",
+      "hasToc": true
+    },
+    {
+      "number": 49,
+      "class": "code",
+      "links": "../articles/000049.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "传感器复习笔记（七）：热电式传感器",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "温度标尺、热电偶原理与基本定律、冷端补偿、热电阻与热敏电阻",
+      "hasToc": true
+    },
+    {
+      "number": 50,
+      "class": "code",
+      "links": "../articles/000050.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "传感器复习笔记（八）：磁敏传感器",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "霍尔效应与霍尔元件、磁阻效应、磁敏二极管与三极管、磁敏传感器应用",
+      "hasToc": true
+    },
+    {
+      "number": 51,
+      "class": "code",
+      "links": "../articles/000051.html",
+      "time": "2026-06-11",
+      "author": "AKlassen",
+      "name": "传感器复习笔记（九）：光电式传感器",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "光电效应、光敏电阻、光电二极管、光电晶体管、光电池、光电传感器应用电路",
+      "hasToc": true
+    },
+    {
       "number": 42,
       "class": "code",
       "links": "../articles/000042.html",

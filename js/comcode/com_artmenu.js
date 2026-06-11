@@ -8,6 +8,15 @@ function insertHtml(html) {
   }
 }
 var artmenu = [
+        {number:51,type:"art",class:"code",subtype:"normal",links:"../articles/000051.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（九）：光电式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"光电效应、光敏电阻、光电二极管、光电晶体管、光电池、应用电路"},
+    {number:50,type:"art",class:"code",subtype:"normal",links:"../articles/000050.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（八）：磁敏传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"霍尔效应与霍尔元件、磁阻效应、磁敏传感器应用"},
+    {number:49,type:"art",class:"code",subtype:"normal",links:"../articles/000049.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（七）：热电式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"热电偶原理与基本定律、冷端补偿、热电阻与热敏电阻"},
+    {number:48,type:"art",class:"code",subtype:"normal",links:"../articles/000048.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（六）：压电式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"压电效应、石英晶体与压电陶瓷、电压与电荷放大器"},
+    {number:47,type:"art",class:"code",subtype:"normal",links:"../articles/000047.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（五）：电感式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"自感式与互感式、差动变压器、涡流效应、零点残余电压"},
+    {number:46,type:"art",class:"code",subtype:"normal",links:"../articles/000046.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（四）：电容式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"变面积/变介质/变极距型、差动式、测量电路与误差分析"},
+    {number:45,type:"art",class:"code",subtype:"normal",links:"../articles/000045.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（三）：应变式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"应变效应、直流电桥与温度补偿、柱式与梁式力传感器、压阻式"},
+    {number:44,type:"art",class:"code",subtype:"normal",links:"../articles/000044.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（二）：传感器的一般特性",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"静态特性（线性度/灵敏度/迟滞/重复性）、动态特性（零阶/一阶/二阶系统）"},
+    {number:43,type:"art",class:"code",subtype:"normal",links:"../articles/000043.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（一）：传感器绪论",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"传感器定义与组成（GB7665-87）、分类体系、发展趋势"},
     {number:42,type:"art",class:"code",subtype:"normal",links:"../articles/000042.html",time:"2026-6-11",author:"AKlassen",name:"电磁场理论学习笔记（八）：电磁波的辐射",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"天线辐射场、电偶极子与磁偶极子辐射、广义Maxwell方程组与电磁对偶性原理"},
     {number:41,type:"art",class:"code",subtype:"normal",links:"../articles/000041.html",time:"2026-6-11",author:"AKlassen",name:"电磁场理论学习笔记（七）：电磁波的传播",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"电磁波干涉与行驻波、反射与透射系数、斯涅耳定律与菲涅耳公式、全反射与布儒斯特角"},
     {number:40,type:"art",class:"code",subtype:"normal",links:"../articles/000040.html",time:"2026-6-11",author:"AKlassen",name:"电磁场理论学习笔记（六）：均匀平面波",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"理想介质与导电介质平面波、波阻抗、趋肤深度、极化、相速与群速"},

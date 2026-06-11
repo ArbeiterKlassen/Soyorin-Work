@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="HandheldFriendly" content="true">
-  <meta name="description" content="静态电磁场唯一性定理及其证明、分离变量法（直角/圆柱/球坐标系）求解拉普拉斯方程、镜像法（平面镜像与球面镜像）的原理与应用">
+  <meta name="description" content="变面积/变介质/变极距三种类型、差动式结构、测量电路、误差分析与计算举例">
   <meta name="keywords" content="Soyorin.Work, Blog">
-  <meta property="og:title" content="电磁场理论学习笔记（四）：电磁场解析方法">
+  <meta property="og:title" content="传感器复习笔记（四）：电容式传感器">
   <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
-  <title>电磁场理论学习笔记（四）：电磁场解析方法</title>
+  <title>传感器复习笔记（四）：电容式传感器</title>
   <link rel="shortcut icon" href="../img/user.jpeg">
   <link rel="stylesheet" href="../css/variables.css">
   <link rel="stylesheet" href="../css/global.css">
@@ -107,221 +107,216 @@
     <div class="article-container">
       <div class="article-content markdown-body">
         <div style="font-family:Times New Roman,Times,serif;">
-<h1 style="text-indent:0;text-align:center;">电磁场理论学习笔记（四）：电磁场解析方法</h1>
+<h1 style="text-indent:0;">传感器复习笔记（四）：电容式传感器</h1>
 
-<h2 style="text-indent:0;">静态电磁场的唯一性定理</h2>
+<h2 style="text-indent:0;">一、工作原理</h2>
 
-<h2 style="text-indent:0;">定解问题的分类</h2>
-
-<p style="text-indent:2em;">电磁场定解问题可分为三类：</p>
-<ol>
-<li><b>正向问题（正演）：</b>已知源分布和介质特性及边界形状，求场的分布。</li>
-<li><b>逆向问题（反演-1）：</b>已知场和介质特性，求边界形状。</li>
-<li><b>逆向问题（反演-2）：</b>已知场和边界分布，求介质特性参数。</li>
-</ol>
-
-<h2 style="text-indent:0;">唯一性定理</h2>
-
-<h3 style="text-indent:0;">定理陈述</h3>
-
-<p style="text-indent:2em;">设区域 $V$ 内源分布已知，在区域边界 $S$ 上给定电位值 $\phi|_S$（第一类）或电位的法向导数 $\partial\phi/\partial n|_S$（第二类），则在 $V$ 内满足泊松方程的解是<b>唯一</b>的。</p>
-
-<h3 style="text-indent:0;">证明（反证法）</h3>
-
-<p style="text-indent:2em;">设区域 $V$ 内存在两个不同的解 $\phi_1$ 和 $\phi_2$ 均满足泊松方程和边界条件：</p>
+<p style="text-indent:2em;">平行板电容器的电容量（忽略边缘效应）：</p>
 
 $$
-\begin{aligned}
-\nabla^2\phi_1 &= -\frac{\rho}{\varepsilon},\quad \nabla^2\phi_2 = -\frac{\rho}{\varepsilon} \\
-\phi_1|_S &= \phi_2|_S = \psi\quad\text{或}\quad \frac{\partial\phi_1}{\partial n}\bigg|_S = \frac{\partial\phi_2}{\partial n}\bigg|_S = \xi
-\end{aligned}
+C = \frac{\varepsilon S}{d} = \frac{\varepsilon_0\varepsilon_r S}{d}
 $$
 
-<p style="text-indent:2em;">令差值函数 $\Phi = \phi_1 - \phi_2$，则：</p>
+<p style="text-indent:2em;">其中 $\varepsilon_0 = 8.854\times10^{-12}$ F/m（真空介电常数），$\varepsilon_r$ 为相对介电常数，$S$ 为极板覆盖面积，$d$ 为极板间距。</p>
+
+<p style="text-indent:2em;"><b>核心思路：</b>改变 $S$、$d$、$\varepsilon$ 中任意一个参量，电容 $C$ 即发生变化。</p>
+
+<h2 style="text-indent:0;">二、三种基本类型</h2>
+
+<h3 style="text-indent:0;">1. 变面积式电容传感器</h3>
+
+<p style="text-indent:2em;"><b>平面直线位移式：</b>初始电容 $C_0 = \dfrac{\varepsilon b l}{d}$，位移 $x$ 后 $C_x = C_0\left(1 - \dfrac{x}{l}\right)$。</p>
+
+<p style="text-indent:2em;"><b>圆筒直线位移式：</b>$C_0 = \dfrac{2\pi\varepsilon l}{\ln(R/r)}$，位移 $x$ 后 $C_x = C_0\left(1 - \dfrac{x}{l}\right)$。</p>
+
+<p style="text-indent:2em;"><b>角位移式：</b>$C_\theta = C_0\left(1 - \dfrac{\theta}{\pi}\right)$。</p>
+
+<p style="text-indent:2em;"><b>特点：</b>输出与位移/转角呈线性关系，灵敏度 $K$ 与初始电容 $C_0$ 成正比。多用于检测直线位移、角位移、尺寸等。</p>
+
+<h3 style="text-indent:0;">2. 变介质型电容传感器</h3>
+
+<p style="text-indent:2em;">用于测量电介质厚度、液位、温度、湿度等。</p>
+
+<p style="text-indent:2em;"><b>电容液位计（非导体液体）：</b>总电容 $C = C_0 + kh$，其中 $h$ 为液位高度。同心圆筒电容公式为：</p>
 
 $$
-\nabla^2\Phi = 0\;\;(\mathbf{r}\in V),\qquad \Phi|_S = 0\;\text{或}\;\frac{\partial\Phi}{\partial n}\bigg|_S = 0
+\boxed{C = \frac{2\pi\varepsilon_0\varepsilon_r h}{\ln(R/r)}}
 $$
 
-<p style="text-indent:2em;">利用格林第一恒等式：</p>
+<p style="text-indent:2em;">总电容等于空气段电容与液体段电容两段并联。对于非导体液体，总电容 = 空气段电容 + 液体段电容。</p>
+
+<p style="text-indent:2em;"><b>电容液位计（导体液体）：</b>液体段电容被短路，仅空气段有效。利用单电极结构，导电液体和容器壁构成外电极。</p>
+
+<h3 style="text-indent:0;">3. 变极板间距型电容传感器</h3>
+
+<p style="text-indent:2em;">初始电容 $C_0 = \dfrac{\varepsilon S}{d_0}$，动极板位移 $\Delta d$ 后：</p>
 
 $$
-\iiint_V (\Phi\nabla^2\Phi + \nabla\Phi\cdot\nabla\Phi)\,dV = \oiint_S \Phi\frac{\partial\Phi}{\partial n}\,dS
+C = C_0\frac{1}{1 - \Delta d/d_0}
 $$
 
-<p style="text-indent:2em;">代入 $\nabla^2\Phi=0$ 和边界条件（$\Phi|_S=0$ 或 $\partial\Phi/\partial n|_S=0$），右边面积分为零：</p>
+<p style="text-indent:2em;">电容相对变化：</p>
 
 $$
-\iiint_V |\nabla\Phi|^2\,dV = 0
+\frac{\Delta C}{C_0} = \frac{\Delta d}{d_0}\left[1 + \frac{\Delta d}{d_0} + \left(\frac{\Delta d}{d_0}\right)^2 + \cdots\right]
 $$
 
-<p style="text-indent:2em;">由此 $\nabla\Phi\equiv 0$，即 $\Phi$ 为常数。在第一类边界条件下 $\Phi|_S=0$，故 $\Phi\equiv 0$，即 $\phi_1\equiv\phi_2$。$\quad\blacksquare$</p>
+<p style="text-indent:2em;"><b>特点：</b>近似线性，灵敏度 $K = \dfrac{C_0}{d_0}$。非线性随 $\Delta d/d_0$ 增大而增大，适用于微位移测量。</p>
 
-<h3 style="text-indent:0;">物理意义</h3>
+<p style="text-indent:2em;">三种类型对比如下：</p>
 
-<p style="text-indent:2em;">唯一性定理保证：只要找到满足泊松方程和边界条件的<b>任何一个</b>解（无论是用何种方法得到的），它就是<b>唯一的正确解</b>。这为各种近似解法和数值解法提供了理论基础。</p>
-
-<hr>
-
-<h2 style="text-indent:0;">分离变量法</h2>
-
-<h2 style="text-indent:0;">方法概述</h2>
-
-<p style="text-indent:2em;">分离变量法是求解拉普拉斯方程 $\nabla^2\phi=0$ 的基本解析方法。核心思想：将偏微分方程分解为几个常微分方程，分别求解后通过边界条件确定系数。</p>
-
-<h2 style="text-indent:0;">直角坐标系中的分离变量法</h2>
-
-<p style="text-indent:2em;">设 $\phi(x,y,z) = X(x)Y(y)Z(z)$，代入 $\nabla^2\phi=0$：</p>
-
-$$
-YZ\frac{d^2 X}{d x^2} + XZ\frac{d^2 Y}{d y^2} + XY\frac{d^2 Z}{d z^2} = 0
-$$
-
-<p style="text-indent:2em;">除以 $XYZ$：</p>
-
-$$
-\frac{1}{X}\frac{d^2 X}{d x^2} + \frac{1}{Y}\frac{d^2 Y}{d y^2} + \frac{1}{Z}\frac{d^2 Z}{d z^2} = 0
-$$
-
-<p style="text-indent:2em;">引入分离常数 $k_x^2, k_y^2, k_z^2$，满足 $k_x^2+k_y^2+k_z^2=0$，得三个独立的常微分方程：</p>
-
-$$
-\frac{d^2 X}{d x^2} + k_x^2 X = 0,\quad
-\frac{d^2 Y}{d y^2} + k_y^2 Y = 0,\quad
-\frac{d^2 Z}{d z^2} + k_z^2 Z = 0
-$$
-
-<p style="text-indent:2em;">各方程的解为三角函数或双曲函数（或指数函数），具体形式取决于边界条件。</p>
-
-<p style="text-indent:2em;"><b>典型本征函数：</b></p>
-
-$$
-\begin{aligned}
-k_x^2 > 0 &: \quad X(x) = A\cos(k_x x) + B\sin(k_x x) \\
-k_x^2 = 0 &: \quad X(x) = A + Bx \\
-k_x^2 < 0 &: \quad X(x) = A\cosh(|k_x|x) + B\sinh(|k_x|x)
-\end{aligned}
-$$
-
-<p style="text-indent:2em;">通解为所有可能解的线性叠加：</p>
-
-$$
-\phi(x,y,z) = \sum_{m,n} (A_{mn}\cos k_x x + B_{mn}\sin k_x x)(C_{mn}\cos k_y y + D_{mn}\sin k_y y)(E_{mn}e^{k_z z} + F_{mn}e^{-k_z z})
-$$
-
-<h2 style="text-indent:0;">圆柱坐标系中的分离变量法</h2>
-
-<p style="text-indent:2em;">设 $\phi(\rho,\varphi,z) = R(\rho)\Phi(\varphi)Z(z)$，代入柱坐标拉普拉斯方程，分离得：</p>
-
-$$
-\begin{aligned}
-\frac{d^2 Z}{d z^2} - k^2 Z &= 0 \\
-\frac{d^2\Phi}{d\varphi^2} + n^2\Phi &= 0 \quad\Rightarrow\quad \Phi(\varphi) = C\cos(n\varphi) + D\sin(n\varphi) \\
-\rho^2\frac{d^2 R}{d\rho^2} + \rho\frac{d R}{d\rho} + (k^2\rho^2 - n^2)R &= 0 \quad\text{（Bessel方程）}
-\end{aligned}
-$$
-
-<p style="text-indent:2em;">$R(\rho)$ 的通解为 Bessel 函数：$R(\rho) = AJ_n(k\rho) + BN_n(k\rho)$（$k^2>0$），或修正 Bessel 函数（$k^2<0$）。</p>
-
-<h2 style="text-indent:0;">球坐标系中的分离变量法</h2>
-
-<p style="text-indent:2em;">在轴对称情况下（与 $\varphi$ 无关），$\phi(r,\theta) = R(r)\Theta(\theta)$，分离得：</p>
-
-$$
-\begin{aligned}
-\frac{d}{dr}\left(r^2\frac{d R}{dr}\right) - l(l+1)R &= 0 \quad\Rightarrow\quad R = Ar^l + Br^{-(l+1)} \\
-\frac{1}{\sin\theta}\frac{d}{d\theta}\left(\sin\theta\frac{d\Theta}{d\theta}\right) + l(l+1)\Theta &= 0 \quad\Rightarrow\quad \Theta = P_l(\cos\theta)
-\end{aligned}
-$$
-
-<p style="text-indent:2em;">其中 $P_l$ 为勒让德多项式。通解：</p>
-
-$$
-\phi(r,\theta) = \sum_{l=0}^{\infty}\left(A_l r^l + \frac{B_l}{r^{l+1}}\right)P_l(\cos\theta)
-$$
-
-<hr>
-
-<h2 style="text-indent:0;">镜像法</h2>
-
-<h2 style="text-indent:0;">方法原理</h2>
-
-<p style="text-indent:2em;">镜像法的基本思想：用位于求解区域外的<b>虚拟电荷（镜像电荷）</b>代替导体界面上的感应电荷（或介质界面上的极化电荷），使得区域内的场与原问题等价。</p>
-
-<p style="text-indent:2em;">镜像法的理论依据是<b>唯一性定理</b>：只要替代后的配置在求解区域内满足相同的泊松方程和边界条件，解就是唯一正确的。</p>
-
-<h2 style="text-indent:0;">平面镜像</h2>
-
-<h3 style="text-indent:0;">点电荷对无限大导体平面的镜像</h3>
-
-<p style="text-indent:2em;">点电荷 $q$ 位于距无限大接地导体平面 $h$ 处。镜像电荷 $-q$ 位于平面对称位置（距界面 $h$ 的导体内部）。求解区域（$z>0$）内的电位为：</p>
-
-$$
-\phi(x,y,z) = \frac{1}{4\pi\varepsilon_0}\left(\frac{q}{R_1} - \frac{q}{R_2}\right)
-$$
-
-<p style="text-indent:2em;">其中 $R_1=\sqrt{x^2+y^2+(z-h)^2}$，$R_2=\sqrt{x^2+y^2+(z+h)^2}$。</p>
-
-<p style="text-indent:2em;">导体表面的感应电荷密度：</p>
-
-$$
-\rho_s = -\varepsilon_0\frac{\partial\phi}{\partial z}\bigg|_{z=0} = -\frac{qh}{2\pi(x^2+y^2+h^2)^{3/2}}
-$$
-
-<p style="text-indent:2em;">总感应电荷：$\iint_S\rho_s\,dS = -q$（等于镜像电荷）。</p>
-
-<h3 style="text-indent:0;">点电荷对介质分界面的镜像</h3>
-
-<p style="text-indent:2em;">两种介质 $\varepsilon_1$（$z>0$）和 $\varepsilon_2$（$z<0$），点电荷 $q$ 在介质1中距界面 $h$ 处。</p>
-
-<p style="text-indent:2em;">求介质1中电场：镜像电荷 $q' = \frac{\varepsilon_1-\varepsilon_2}{\varepsilon_1+\varepsilon_2}q$ 位于界面下方对称位置。</p>
-
-<p style="text-indent:2em;">求介质2中电场：等效电荷 $q'' = \frac{2\varepsilon_2}{\varepsilon_1+\varepsilon_2}q$ 位于原电荷位置（代替 $q$ 和界面上极化电荷的总效果）。</p>
-
-<h2 style="text-indent:0;">球面镜像</h2>
-
-<p style="text-indent:2em;">点电荷 $q$ 置于接地导体球外距球心 $d$ 处（球半径 $a$）。镜像电荷 $q'$ 位于球内距球心 $b$ 处：</p>
-
-$$
-q' = -\frac{a}{d}q,\qquad b = \frac{a^2}{d}
-$$
-
-<p style="text-indent:2em;">球外区域的电位由 $q$ 和 $q'$ 共同产生。</p>
-
-<h2 style="text-indent:0;">本章核心公式</h2>
-
-<table style="width:100%;border-collapse:collapse;margin:1em auto;">
-<tr style="background-color:var(--bg-secondary, #f5f5f5);">
-<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>方法</b></th>
-<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>核心公式</b></th>
+<table style="border-collapse:collapse;border:1px solid #000;width:100%;">
+<thead>
+<tr style="background:#f0f0f0;">
+<th style="border:1px solid #000;padding:6px 10px;text-align:center;"><b>类型</b></th>
+<th style="border:1px solid #000;padding:6px 10px;text-align:center;"><b>改变量</b></th>
+<th style="border:1px solid #000;padding:6px 10px;text-align:center;"><b>输出关系</b></th>
+<th style="border:1px solid #000;padding:6px 10px;text-align:center;"><b>主要用途</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #000;padding:6px 10px;">变面积式</td>
+<td style="border:1px solid #000;padding:6px 10px;">覆盖面积 $S$</td>
+<td style="border:1px solid #000;padding:6px 10px;"><b>线性</b>（$C_x = C_0(1-x/l)$）</td>
+<td style="border:1px solid #000;padding:6px 10px;">位移、角度</td>
 </tr>
 <tr>
-<td style="border:1px solid var(--border-color, #ccc);padding:8px;">分离变量（直角）</td>
-<td style="border:1px solid var(--border-color, #ccc);padding:8px;">$\phi = \sum (Ae^{k_xx}+Be^{-k_xx})(C\cos k_yy+D\sin k_yy)(E\cosh k_zz+F\sinh k_zz)$</td>
+<td style="border:1px solid #000;padding:6px 10px;">变介质式</td>
+<td style="border:1px solid #000;padding:6px 10px;">介电常数 $\varepsilon$</td>
+<td style="border:1px solid #000;padding:6px 10px;">取决于介质分布</td>
+<td style="border:1px solid #000;padding:6px 10px;">液位、厚度、温湿度</td>
 </tr>
 <tr>
-<td style="border:1px solid var(--border-color, #ccc);padding:8px;">分离变量（球）</td>
-<td style="border:1px solid var(--border-color, #ccc);padding:8px;">$\phi = \sum_l (A_l r^l + B_l/r^{l+1})P_l(\cos\theta)$</td>
+<td style="border:1px solid #000;padding:6px 10px;">变极距式</td>
+<td style="border:1px solid #000;padding:6px 10px;">极间距 $d$</td>
+<td style="border:1px solid #000;padding:6px 10px;"><b>非线性</b>（近似线性）</td>
+<td style="border:1px solid #000;padding:6px 10px;">微位移</td>
 </tr>
-<tr>
-<td style="border:1px solid var(--border-color, #ccc);padding:8px;">平面镜像</td>
-<td style="border:1px solid var(--border-color, #ccc);padding:8px;">$q'=-q$（接地导体），$q'=\frac{\varepsilon_1-\varepsilon_2}{\varepsilon_1+\varepsilon_2}q$（介质分界）</td>
-</tr>
-<tr>
-<td style="border:1px solid var(--border-color, #ccc);padding:8px;">球面镜像</td>
-<td style="border:1px solid var(--border-color, #ccc);padding:8px;">$q'=-\frac{a}{d}q,\; b=\frac{a^2}{d}$</td>
-</tr>
+</tbody>
 </table>
 
-<p style="text-align:center;font-size:13px;color:var(--text-muted);"><b>Table:</b> 本章核心公式</p>
+<h2 style="text-indent:0;">三、差动式电容传感器</h2>
+
+<p style="text-indent:2em;">两个电容差动输出：</p>
+
+$$
+\frac{\Delta C}{C_0} = 2\frac{\Delta d}{d_0}\left[1 + \left(\frac{\Delta d}{d_0}\right)^2 + \cdots\right]
+$$
+
+<p style="text-indent:2em;">与单电容相比：</p>
+<ul>
+    <li>灵敏度提高一倍</li>
+    <li>非线性误差减小一个数量级（消除偶次非线性项）</li>
+    <li>温度等共模干扰可互相抵消</li>
+</ul>
+
+<h2 style="text-indent:0;">四、测量电路</h2>
+
+<h3 style="text-indent:0;">1. 变压器电桥</h3>
+
+<p style="text-indent:2em;">对变间隙型差动电容传感器：</p>
+
+$$
+U_0 = \frac{U}{2}\frac{C_1 - C_2}{C_1 + C_2} = \frac{U}{2}\frac{\Delta d}{d_0}
+$$
+
+<p style="text-indent:2em;"><b>特点：</b>输出电压与被测位移 $\Delta d$ 呈良好线性关系。使用元件最少，桥路内阻最小。</p>
+
+<h3 style="text-indent:0;">2. 差动脉宽调制电路</h3>
+
+<p style="text-indent:2em;">假设 $R_1 = R_2 = R$，输出直流电压：</p>
+
+$$
+U_0 = \frac{C_1 - C_2}{C_1 + C_2}U_1
+$$
+
+<p style="text-indent:2em;"><b>特点：</b></p>
+<ul>
+    <li>适用于任何差动式电容传感器</li>
+    <li>理论上具有线性特性</li>
+    <li>采用直流电源（不需稳频稳幅），电压稳定度高</li>
+    <li>不需要相敏检波与解调</li>
+    <li>经低通滤波器可输出较大的直流电压</li>
+</ul>
+
+<h2 style="text-indent:0;">五、电容式传感器的误差分析</h2>
+
+<ul>
+    <li><b>温度影响：</b>选用热膨胀系数小、几何尺寸稳定的材料（石英、陶瓷等），采用差动对称结构</li>
+    <li><b>边缘效应：</b>减小极板间距，电极做得很薄，增加等位保护环</li>
+    <li><b>寄生电容：</b>增加原始电容值，注意接地和屏蔽，采用"驱动电缆"技术</li>
+</ul>
+
+<h2 style="text-indent:0;">六、计算举例</h2>
+
+<p style="text-indent:2em;"><b>例1：</b>电容式液位传感器由 $\phi 40$ mm 和 $\phi 8$ mm 的两个同心圆柱体组成。储罐直径 50 cm，高 1.2 m。液体 $\varepsilon_r = 2.1$。求传感器最小/最大电容和灵敏度 (pF/L)。</p>
+
+<p style="text-indent:2em;"><b>解：</b></p>
+
+<p style="text-indent:2em;">最小电容（空罐）：</p>
+
+$$
+C_{\min} = \frac{2\pi\varepsilon_0 \times 1.2}{\ln(20/4)} \approx 41.6\ \text{pF}
+$$
+
+<p style="text-indent:2em;">最大电容（满罐）：</p>
+
+$$
+C_{\max} = \frac{2\pi\varepsilon_0\varepsilon_r \times 1.2}{\ln(20/4)} \approx 87.4\ \text{pF}
+$$
+
+<p style="text-indent:2em;">灵敏度：</p>
+
+$$
+K = \frac{C_{\max} - C_{\min}}{V} \approx 0.19\ \text{pF/L}
+$$
+
+<p style="text-indent:2em;"><b>例2：</b>同心圆柱电容液位计，内筒外径 8 mm，外筒内径 40 mm，筒高 1.2 m。被测液体 $\varepsilon_r = 2.5$（非导体）。</p>
+
+<p style="text-indent:2em;">（1）写出空气段和液体段电容的计算公式。</p>
+
+<p style="text-indent:2em;">$\ln(R/r) = \ln(20/4) = \ln 5 \approx 1.609$</p>
+
+<p style="text-indent:2em;">空气段（$h_0 = 1.2 - h$）：</p>
+
+$$
+C_{\text{air}} = \frac{2\pi\varepsilon_0 \times 1 \times (1.2 - h)}{1.609}
+$$
+
+<p style="text-indent:2em;">液体段（$h$）：</p>
+
+$$
+C_{\text{liquid}} = \frac{2\pi\varepsilon_0 \times 2.5 \times h}{1.609}
+$$
+
+<p style="text-indent:2em;">总电容：</p>
+
+$$
+C = C_{\text{air}} + C_{\text{liquid}} = \frac{2\pi\varepsilon_0}{1.609}\big[(1.2 - h) + 2.5h\big] = \frac{2\pi\varepsilon_0}{1.609}(1.2 + 1.5h)
+$$
+
+<p style="text-indent:2em;">（2）当液位 $h = 0.8$ m 时，总电容是多少？</p>
+
+$$
+C = \frac{2\pi \times 8.854 \times 10^{-12}}{1.609} \times (1.2 + 1.5 \times 0.8) \approx 83.0\ \text{pF}
+$$
+
+<p style="text-indent:2em;">（3）差动式电容传感器相比单电容传感器的优势：</p>
+<ol>
+    <li>灵敏度提高一倍</li>
+    <li>非线性误差减小一个数量级</li>
+    <li>温度等共模干扰可互相抵消</li>
+</ol>
+
 </div>
 
       </div>
     </div>
     
     <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
-      <div><a href="../articles/000037.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 电磁场理论学习笔记（三）：静态电磁场</a></div>
-      <div><a href="../articles/000039.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">电磁场理论学习笔记（五）：时变电磁场 →</a></div>
+      <div><a href="../articles/000045.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 传感器复习笔记（三）：应变式传感器</a></div>
+      <div><a href="../articles/000047.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">传感器复习笔记（五）：电感式传感器 →</a></div>
     </div>
     
     <div class="article-container" id="comment-box" style="margin-top:10px;">

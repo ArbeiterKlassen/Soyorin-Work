@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="压电效应机制、石英晶体与压电陶瓷、等效电路与测量电路、电压放大器与电荷放大器">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="传感器复习笔记（六）：压电式传感器">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>传感器复习笔记（六）：压电式传感器</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/article-detail.css">
+  
+  <link rel="stylesheet" href="../css/code.css">
+  
+  <link rel="stylesheet" href="../css/github-markdown.css">
+  
+  <link rel="stylesheet" href="../css/vditor.css">
+  
+  
+  <style>
+    .lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }
+    .markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 10px; }
+    @media (max-width: 767px) { .markdown-body { padding: 15px; } .markdown-body h1 { font-size: 1.35em; } }
+    .codehilite { border-radius: 10px; }
+    .article-content img { max-width: 100%; }
+    #outerdiv { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.3); display: none; z-index: 200; }
+  </style>
+  
+  
+  <!-- 初始主题检测 + 全局变量 (需在页面内容前定义) -->
+  <script>
+    var mode = 1;
+    (function() {
+      var saved = localStorage.getItem('soyorin-mode');
+      if (saved) mode = parseInt(saved);
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function getParams(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+  </script>
+</head>
+<body>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
+
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+  </nav>
+  <button id="mobile_cate" style="border:none;outline:none;">☰</button>
+  <div id="nav-m-list">
+    <button id="cancel" style="position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-primary);">✕</button>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
+  </div>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  
+
+  <div class="headpage"><div class="headpage-cover"></div></div>
+<section class="main">
+  <div class="left-box" style="max-width:830px;width:100%;margin:0 auto;float:none;">
+    <div class="article-container">
+      <div class="article-content markdown-body">
+        <div style="font-family:Times New Roman,Times,serif;">
+
+<h1 style="text-indent:0;">传感器复习笔记（六）：压电式传感器</h1>
+
+<h2 style="text-indent:0;">压电效应</h2>
+
+<p style="text-indent:2em;"><b>正压电效应（顺压电效应）：</b>某些电介质沿一定方向受力变形时，内部产生极化现象，表面产生电荷；外力去掉后恢复不带电状态。作用力方向改变时电荷极性改变。</p>
+
+<p style="text-indent:2em;"><b>逆压电效应（电致伸缩效应）：</b>在电介质极化方向施加电场时，电介质产生机械变形；外加电场撤去时变形消失。</p>
+
+<p style="text-indent:2em;"><b>关系：</b></p>
+$$\boxed{\text{电能} \;\rightleftharpoons\; \text{机械能}}$$
+
+<p style="text-indent:2em;">正逆压电效应互为逆过程。</p>
+
+<h2 style="text-indent:0;">石英晶体压电效应</h2>
+
+<h3 style="text-indent:0;">石英晶体的轴</h3>
+
+<ul>
+<li><b>X轴（电轴）：</b>穿过棱角，与Z轴成90&deg;。沿X轴受力产生"纵向压电效应"</li>
+<li><b>Y轴（机械轴）：</b>与X轴在同一平面且垂直，垂直m柱面。沿Y轴受力产生"横向压电效应"</li>
+<li><b>Z轴（光轴/中性轴）：</b>与c轴重合，沿Z轴受力不产生压电效应</li>
+</ul>
+
+<p style="text-indent:2em;"><b>沿X轴（电轴）加力：</b>
+电荷 $Q = d_{11}F_X$（与晶片几何尺寸无关）</p>
+
+<p style="text-indent:2em;"><b>沿Y轴（机械轴）加力：</b>
+电荷 $Q = -d_{11}\dfrac{l}{h}F_Y$（与几何尺寸有关）</p>
+
+<p style="text-indent:2em;">其中 $d_{11}$ 为压电系数。</p>
+
+<p style="text-indent:2em;"><b>重要结论：</b></p>
+
+<ol>
+<li>X方向力产生的电荷只与作用力成正比，与几何尺寸无关</li>
+<li>Y方向力产生的电荷与几何尺寸有关</li>
+<li>石英晶体并非在任何方向都存在正压电效应</li>
+<li>有正压电效应的方向一定存在逆压电效应</li>
+<li>力（应变）与电荷（电场强度）之间呈线性关系</li>
+</ol>
+
+<h3 style="text-indent:0;">石英晶体 vs 压电陶瓷</h3>
+
+<table style="border-collapse:collapse;border:1px solid #000;margin:1em auto;">
+<thead>
+<tr style="background-color:#eee;">
+<th style="border:1px solid #000;padding:6px 12px;"></th>
+<th style="border:1px solid #000;padding:6px 12px;"><b>石英晶体</b></th>
+<th style="border:1px solid #000;padding:6px 12px;"><b>压电陶瓷</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">结构</td>
+<td style="border:1px solid #000;padding:6px 12px;">单晶体</td>
+<td style="border:1px solid #000;padding:6px 12px;">多晶体（需人工极化）</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">压电性</td>
+<td style="border:1px solid #000;padding:6px 12px;">天然具有</td>
+<td style="border:1px solid #000;padding:6px 12px;">极化后才具有</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">压电系数</td>
+<td style="border:1px solid #000;padding:6px 12px;">小</td>
+<td style="border:1px solid #000;padding:6px 12px;">大（灵敏度高）</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">稳定性</td>
+<td style="border:1px solid #000;padding:6px 12px;">极好</td>
+<td style="border:1px solid #000;padding:6px 12px;">一般</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">居里点</td>
+<td style="border:1px solid #000;padding:6px 12px;">573&deg;C</td>
+<td style="border:1px solid #000;padding:6px 12px;">较低</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">价格</td>
+<td style="border:1px solid #000;padding:6px 12px;">贵</td>
+<td style="border:1px solid #000;padding:6px 12px;">便宜</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">应用</td>
+<td style="border:1px solid #000;padding:6px 12px;">标准仪器、精密测量</td>
+<td style="border:1px solid #000;padding:6px 12px;">通用传感器</td>
+</tr>
+</tbody>
+</table>
+
+<p style="text-indent:2em;">压电陶瓷是人工制造的多晶压电材料，具有<b>电畴结构</b>。</p>
+
+<p style="text-indent:2em;"><b>极化过程：</b></p>
+<ol>
+<li>原始状态：电畴杂乱分布，极化强度为零，不具压电性</li>
+<li>施加外电场：电畴沿外电场方向排列，材料被极化</li>
+<li>外电场撤去后：剩余极化强度大，材料具有压电特性</li>
+</ol>
+
+<p style="text-indent:2em;"><b>与石英晶体的区别：</b>石英是单晶体，天然具有压电性；压电陶瓷是多晶体，需人工极化后才具有压电性。</p>
+
+<h2 style="text-indent:0;">压电材料的主要特性要求</h2>
+
+<ul>
+<li>转换性能：压电常数大</li>
+<li>机械性能：强度高、刚度大</li>
+<li>电性能：高电阻率、大介电常数</li>
+<li>环境适应性：温度湿度稳定性好、居里点高</li>
+<li>时间稳定性：压电性能不随时间变化</li>
+</ul>
+
+<h2 style="text-indent:0;">测量电路</h2>
+
+<h3 style="text-indent:0;">等效电路</h3>
+
+<p style="text-indent:2em;">压电传感器可等效为<b>电荷源与电容并联</b>或<b>电压源与电容串联</b>。</p>
+
+<p style="text-indent:2em;">传感器固有电容：$\displaystyle C_a = \frac{\varepsilon S}{d}$</p>
+
+<p style="text-indent:2em;">输出电压：$\displaystyle U_a = \frac{Q}{C_a}$</p>
+
+<p style="text-indent:2em;"><b>前置放大器的作用：</b></p>
+<ol>
+<li>将传感器的高阻抗输出变换为低阻抗输出</li>
+<li>放大传感器输出的微弱电信号</li>
+</ol>
+
+<h3 style="text-indent:0;">电压放大器 vs 电荷放大器</h3>
+
+<table style="border-collapse:collapse;border:1px solid #000;margin:1em auto;">
+<thead>
+<tr style="background-color:#eee;">
+<th style="border:1px solid #000;padding:6px 12px;"></th>
+<th style="border:1px solid #000;padding:6px 12px;"><b>电压放大器</b></th>
+<th style="border:1px solid #000;padding:6px 12px;"><b>电荷放大器</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">输出关系</td>
+<td style="border:1px solid #000;padding:6px 12px;">与传感器输出电压成正比</td>
+<td style="border:1px solid #000;padding:6px 12px;">与输入电荷 $q$ 成正比</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">电缆电容影响</td>
+<td style="border:1px solid #000;padding:6px 12px;"><b>大</b>（换电缆需重新校准）</td>
+<td style="border:1px solid #000;padding:6px 12px;"><b>极小</b>（几乎不受影响）</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">常用程度</td>
+<td style="border:1px solid #000;padding:6px 12px;">较少</td>
+<td style="border:1px solid #000;padding:6px 12px;"><b>更广泛</b></td>
+</tr>
+</tbody>
+</table>
+
+<p style="text-indent:2em;"><b>电压放大器特点：</b></p>
+<ul>
+<li>当 $\omega=0$（静态力）时，输出电压为零（压电传感器不能用于静态力测量）</li>
+<li>输入电阻越大，测量回路时间常数越大，低频响应越好</li>
+<li>改变电缆长度时 $C_c$ 改变，必须重新校正灵敏度</li>
+</ul>
+
+<p style="text-indent:2em;">要扩大低频端工作频带，需增大时间常数 $\tau = RC$。</p>
+
+<p style="text-indent:2em;"><b>电荷放大器特点：</b></p>
+<ul>
+<li>深度负反馈高增益放大器</li>
+<li>当 $A_0$ 足够大时，$\displaystyle U_{SC} \approx -\frac{q}{C_F}$</li>
+<li>输出电压与输入电荷 $q$ 成正比，与反馈电容 $C_F$ 成反比</li>
+<li><b>电缆长度变化对测量影响很小（最大优点）</b></li>
+<li>$C_F$ 一般取值 100-10$^4$pF</li>
+</ul>
+
+<p style="text-indent:2em;"><b>压电传感器不能用于静态力测量！</b></p>
+
+<p style="text-indent:2em;">原因：$\omega=0$ 时，电荷通过传感器漏电阻和前置放大器输入电阻缓慢泄漏，无法维持稳定输出电压。</p>
+
+<h3 style="text-indent:0;">压电晶片的连接方式</h3>
+
+<table style="border-collapse:collapse;border:1px solid #000;margin:1em auto;">
+<thead>
+<tr style="background-color:#eee;">
+<th style="border:1px solid #000;padding:6px 12px;">连接方式</th>
+<th style="border:1px solid #000;padding:6px 12px;">并联</th>
+<th style="border:1px solid #000;padding:6px 12px;">串联</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">电容</td>
+<td style="border:1px solid #000;padding:6px 12px;">大</td>
+<td style="border:1px solid #000;padding:6px 12px;">小</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">输出电荷</td>
+<td style="border:1px solid #000;padding:6px 12px;">大</td>
+<td style="border:1px solid #000;padding:6px 12px;">小</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">输出电压</td>
+<td style="border:1px solid #000;padding:6px 12px;">小</td>
+<td style="border:1px solid #000;padding:6px 12px;">大</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">时间常数</td>
+<td style="border:1px solid #000;padding:6px 12px;">大</td>
+<td style="border:1px solid #000;padding:6px 12px;">小</td>
+</tr>
+<tr>
+<td style="border:1px solid #000;padding:6px 12px;">适用场合</td>
+<td style="border:1px solid #000;padding:6px 12px;">缓变信号、电荷输出</td>
+<td style="border:1px solid #000;padding:6px 12px;">高频信号、电压输出</td>
+</tr>
+</tbody>
+</table>
+
+<h2 style="text-indent:0;">压电式传感器的应用</h2>
+
+<ul>
+<li><b>压电式加速度传感器：</b>$Q = d_{11}F = d_{11}ma$，电荷量直接反映加速度大小</li>
+<li><b>压电式压力传感器：</b>$q = d_{11}SP$，输出电荷与输入压强成正比</li>
+<li><b>压电式声传感器（超声换能器）：</b>利用正/逆压电效应发射和接收声波</li>
+<li>其他：切削力测量、报警器、交通监测等</li>
+</ul>
+
+<h2 style="text-indent:0;">常见简答题</h2>
+
+<p style="text-indent:2em;"><b>（1）为什么压电式传感器不能用于静态力的测量？</b></p>
+<p style="text-indent:2em;">静态力作用下（$\omega=0$），压电元件产生的电荷会通过传感器自身的漏电阻和前置放大器的输入电阻缓慢泄漏，无法维持稳定的输出电压。因此压电传感器只能测量动态信号。</p>
+
+<p style="text-indent:2em;"><b>（2）石英晶体的X轴和Z轴分别叫什么轴？沿哪个轴加力不产生压电效应？</b></p>
+<p style="text-indent:2em;">X轴叫<b>电轴</b>，Z轴叫<b>光轴（中性轴）</b>。沿<b>Z轴</b>加力不产生压电效应。</p>
+
+<p style="text-indent:2em;"><b>（3）电荷放大器相比电压放大器最大的优点是什么？</b></p>
+<p style="text-indent:2em;">电荷放大器最大的优点是<b>几乎不受电缆长度变化的影响</b>（$U_{SC} \approx -q/C_F$，与电缆电容 $C_c$ 无关），而电压放大器换电缆后必须重新校准灵敏度。</p>
+
+</div>
+      </div>
+    </div>
+    
+    <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div><a href="../articles/000047.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 传感器复习笔记（五）：电感式传感器</a></div>
+      <div><a href="../articles/000049.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">传感器复习笔记（七）：热电式传感器 →</a></div>
+    </div>
+    
+    <div class="article-container" id="comment-box" style="margin-top:10px;">
+      <div class="article-content markdown-body">
+        <h2 style="margin:10px 0">评论</h2>
+        <div id="tcomment"></div>
+        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
+    <ul id="toc-list">
+      <li><a href="#" id="toc-a-on">目录</a></li>
+    </ul>
+  </aside>
+  
+</section>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc-sidebar');
+  var article = document.querySelector('.article-container');
+  if (toc && article) {
+    function updateToc(){
+      var artTop = article.getBoundingClientRect().top;
+      toc.style.top = (artTop > 60 ? artTop : 60) + 'px';
+    }
+    updateToc();
+    toc.style.visibility = 'visible';
+    window.addEventListener('scroll', updateToc);
+    window.addEventListener('resize', updateToc);
+  }
+  var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
+  var tocList = document.getElementById('toc-list');
+  if(!tocList || headings.length === 0) return;
+  tocList.innerHTML = '';
+  headings.forEach(function(h, i){
+    var id = 'heading-' + i;
+    h.id = id;
+    var level = parseInt(h.tagName.charAt(1));
+    var indent = '   '.repeat(level - 1);
+    tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
+  });
+})();
+</script>
+
+
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--bg-card); box-shadow: var(--shadow-card);" onclick="var d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" title="切换深色/浅色模式">
+    <span id="theme-icon">☀️</span>
+  </div>
+  <script>
+    (function(){
+      var icon = document.getElementById('theme-icon');
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      icon.textContent = isDark ? '☀️' : '🌙';
+      var orig = window.pagereload;
+      window.pagereload = function(m){
+        orig(m);
+        icon.textContent = (m === 2) ? '☀️' : '🌙';
+      };
+    })();
+  </script>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2021 – <span class="year"></span> Soyorin.Work</span>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank" rel="noopener">Source</a>
+    </div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="../js/vditor.min.js"></script>
+  <script src="../js/article-detail.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none",
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath:  [["$", "$"]],
+        displayMath: [["$$","$$"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre","code","a"],
+        ignoreClass:"comment-content"
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+        showMathMenu: false
+      }
+    });
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
+
+</body>
+</html>

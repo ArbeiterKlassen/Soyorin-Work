@@ -1,0 +1,304 @@
+<div style="font-family:Times New Roman,Times,serif;">
+
+<h1 style="text-indent:0;">传感器复习笔记（七）：热电式传感器</h1>
+<p style="text-align:center;text-indent:0;font-size:18px;color:var(--text-muted);">传感器复习·第七章</p>
+
+<h2 style="text-indent:0;">温度与温标</h2>
+
+<p style="text-indent:2em;"><b>温标换算关系：</b></p>
+
+$$
+\begin{aligned}
+\text{摄氏度} &= 5(\text{华氏度}-32)/9 \\
+\text{摄氏度} &= \text{开氏度} - 273.15 \\
+\text{华氏度} &= 1.8\times\text{摄氏度} + 32 \\
+\text{开氏度} &= \text{摄氏度} + 273.15
+\end{aligned}
+$$
+
+<h2 style="text-indent:0;">热电偶</h2>
+
+<h3 style="text-indent:0;">工作原理——热电效应（塞贝克效应）</h3>
+
+<p style="text-indent:2em;">两种不同导体（或半导体）A、B组成闭合回路，若两接点温度不同（$T \neq T_0$），则回路中有热电动势产生。</p>
+
+<ul>
+    <li><b>热端（测量端）$T$：</b>置于被测温度场</li>
+    <li><b>冷端（自由端）$T_0$：</b>恒定在标准温度</li>
+    <li><b>热电势由两部分组成：</b>接触电势（占主要）+ 温差电势（可忽略）</li>
+</ul>
+
+<p style="text-indent:2em;"><b>接触电势（主要成分）：</b></p>
+
+$$
+E_{AB}(T) = \frac{kT}{e}\ln\frac{N_A}{N_B}
+$$
+
+<p style="text-indent:2em;"><b>温差电势：</b></p>
+
+$$
+E_A(T,T_0) = \int_{T_0}^{T}\sigma_A dT
+$$
+
+<p style="text-indent:2em;"><b>回路总电势（忽略温差电势）：</b></p>
+
+$$
+E_{AB}(T,T_0) \approx \frac{k}{e}(T-T_0)\ln\frac{N_A}{N_B}
+$$
+
+<p style="text-indent:2em;"><b>重要结论：</b></p>
+
+<ul>
+    <li>热电势只与<b>材料</b>和<b>两端温度</b>有关，与长度、粗细、形状无关</li>
+    <li>只有<b>不同</b>材料才能产生热电势（同材料热电势为零）</li>
+    <li>两端温度<b>不同</b>时才产生热电势（两端等温则热电势为零）</li>
+    <li>金属热电偶中起主要作用的是接触电动势</li>
+</ul>
+
+<h3 style="text-indent:0;">热电偶基本定律（重点）</h3>
+
+<p style="text-indent:2em;"><b>（一）均质导体定律：</b>两电极材料相同则热电势为零（无论接点温度如何）。可用于检验热电极材料是否相同（同名极检验法）。</p>
+
+<p style="text-indent:2em;"><b>（二）中间导体定律：</b>接入第三种导体C，只要C两端温度相同，总热电势不变。这是能用毫伏表测量热电偶的理论依据，允许接入电压表、记录仪等测量仪器。</p>
+
+<p style="text-indent:2em;"><b>（三）标准电极定律：</b>已知A-C和B-C的热电势，则可求A-B的热电势：</p>
+
+$$
+E_{AB}(T,T_0) = E_{AC}(T,T_0) - E_{BC}(T,T_0)
+$$
+
+<p style="text-indent:2em;"><i>用途：</i>用纯铂作标准电极，可由已知的A-铂和B-铂热电势求出A-B热电势。</p>
+
+<p style="text-indent:2em;"><b>（四）中间温度定律（最重要，计算必用）：</b></p>
+
+$$
+\boxed{E_{AB}(T,T_0) = E_{AB}(T,T_n) + E_{AB}(T_n,T_0)}
+$$
+
+<p style="text-indent:2em;"><i>两大用途：</i></p>
+<ul>
+    <li>冷端不为0℃时提供查分度表的依据</li>
+    <li>为引入补偿导线提供理论依据</li>
+</ul>
+
+<p style="text-indent:2em;"><b>例：</b>热端100℃、冷端0℃时，镍铬-铂热电偶热电势2.95mV，考铜-铂为-4.0mV，求镍铬-考铜的热电势。</p>
+
+<p style="text-indent:2em;"><b>解：</b>由标准电极定律：$E_{\text{镍铬-考铜}} = 2.95 - (-4.0) = 6.95$mV</p>
+
+<p style="text-indent:2em;"><b>例：</b>灵敏度0.08mV/℃的热电偶，电压表接线端温度50℃，读数为60mV，求热端温度。</p>
+
+<p style="text-indent:2em;"><b>解：</b>$E(t,50) = 60$mV，而 $E(t,50) = 0.08(t-50)$，$t-50 = 60/0.08 = 750$，$t = 800$℃</p>
+
+<h3 style="text-indent:0;">常用热电偶材料与结构</h3>
+
+<p style="text-indent:2em;"><b>标准化热电偶（8种IEC标准）：</b></p>
+
+<table style="border-collapse:collapse;width:90%;margin:0 auto;">
+<tr style="background-color:var(--bg-secondary, #f5f5f5);">
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>分度号</b></th>
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>名称</b></th>
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>测温范围（长期）</b></th>
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>特点</b></th>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">S</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">铂铑10-铂</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">0-1300℃</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">精密测量、基准热电偶</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">K</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">镍铬-镍硅</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">-270-1000℃</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;"><b>最常用</b>，中高温测量</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">B</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">铂铑30-铂铑6</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">0-1600℃</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">最高温，冷端低于50℃不需补偿</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">T</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">铜-康铜</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">-270-350℃</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">低温测量</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">E</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">镍铬-康铜</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">-270-870℃</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">热电势较大</td>
+</tr>
+</table>
+
+<p style="text-indent:2em;"><b>结构类型：</b>普通装配式、铠装式、薄膜式、快速消耗式</p>
+
+<h3 style="text-indent:0;">冷端处理与补偿</h3>
+
+<p style="text-indent:2em;"><b>补偿原因：</b>分度表以冷端0℃为依据，实际冷端受环境影响难以恒为0℃。</p>
+
+<p style="text-indent:2em;"><b>常用方法：</b></p>
+
+<table style="border-collapse:collapse;width:90%;margin:0 auto;">
+<tr style="background-color:var(--bg-secondary, #f5f5f5);">
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>方法</b></th>
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>原理</b></th>
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>适用场合</b></th>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;"><b>冰点槽法</b></td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">冷端置于冰水混合物（$T_0=0$℃）</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">实验室（最精确）</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;"><b>计算修正法</b></td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">$E_{AB}(T,0) = E_{AB}(T,T_0) + E_{AB}(T_0,0)$，查分度表</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">工业（考试必考）</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;"><b>补偿导线法</b></td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">将冷端延伸到温度恒定的场所</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">工业</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;"><b>补偿电桥法</b></td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">利用不平衡电桥产生热电势补偿</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">工业</td>
+</tr>
+</table>
+
+<p style="text-indent:2em;"><b>例：</b>用K型热电偶测炉温。冷端$t_0=30$℃，测得$E_{AB}(t,30)=39.17$mV，求炉温。</p>
+
+<p style="text-indent:2em;"><b>解：</b>查K型分度表得 $E_{AB}(30,0)=1.203$mV</p>
+
+<p style="text-indent:2em;">$E_{AB}(t,0) = 39.17 + 1.203 = 40.373$mV</p>
+
+<p style="text-indent:2em;">查表：40.373mV对应温度约977℃。</p>
+
+<p style="text-indent:2em;"><b>例：</b>用K型镍铬-镍硅热电偶测量炉温。冷端温度 $t_0=25$℃，测得热电势 $E(t,25)=33.35$mV。已知K型分度表数据：</p>
+
+<table style="border-collapse:collapse;width:50%;margin:0 auto;">
+<tr style="background-color:var(--bg-secondary, #f5f5f5);">
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">温度 $T$ (℃)</th>
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">$E(T,0)$ (mV)</th>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">25</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">1.00</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">800</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">33.28</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">810</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">33.69</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">820</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">34.10</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">830</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">34.50</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">840</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;">34.91</td>
+</tr>
+</table>
+
+<p style="text-indent:2em;">（1）求炉温 $t$。</p>
+
+<p style="text-indent:2em;"><b>解：</b>由<b>中间温度定律</b>：</p>
+
+$$
+E(t,0) = E(t,25) + E(25,0) = 33.35 + 1.00 = 34.35\;\text{mV}
+$$
+
+<p style="text-indent:2em;">查表：34.35mV介于34.10（820℃）和34.50（830℃）之间。</p>
+
+<p style="text-indent:2em;">线性插值：</p>
+
+$$
+t = 820 + \frac{34.35-34.10}{34.50-34.10} \times 10 = 820 + \frac{0.25}{0.40} \times 10 = \mathbf{826.25\text{℃}}
+$$
+
+<p style="text-indent:2em;">（2）如果改用冰点槽法（冷端0℃），毫伏表读数会是多少？</p>
+
+<p style="text-indent:2em;">冰点槽法冷端为0℃，毫伏表读数直接就是 $E(t,0) = \mathbf{34.35\;\text{mV}}$。</p>
+
+<h2 style="text-indent:0;">热电阻</h2>
+
+<h3 style="text-indent:0;">基本原理</h3>
+
+<p style="text-indent:2em;">利用导体材料的电阻随温度变化而变化的特性测温。适用于-200~600℃范围。</p>
+
+<p style="text-indent:2em;">金属温度升高 $\rightarrow$ 原子晶格振动加剧 $\rightarrow$ 自由电子通过阻碍增大 $\rightarrow$ 电阻增加（<b>正温度系数</b>）。</p>
+
+<h3 style="text-indent:0;">常用热电阻</h3>
+
+<p style="text-indent:2em;"><b>铂热电阻（Pt100/Pt1000）：</b></p>
+<ul>
+    <li>Pt100表示0℃时电阻为100$\Omega$（最常用，精度最高，可作为标准）；Pt1000表示0℃时1000$\Omega$</li>
+    <li>0-650℃：$R_t = R_0(1 + At + Bt^2)$</li>
+    <li>-200-0℃：$R_t = R_0[1 + At + Bt^2 + C(t-100)t^3]$</li>
+</ul>
+
+<p style="text-indent:2em;"><b>铜热电阻（Cu50）：</b></p>
+<ul>
+    <li>Cu50：0℃时电阻为50$\Omega$，$-50\sim150$℃范围内：$R_t = R_0(1 + \alpha t)$</li>
+    <li>线性好、价格低，但电阻率低、易氧化，测温范围窄</li>
+</ul>
+
+<h3 style="text-indent:0;">测量电路</h3>
+
+<ul>
+    <li><b>三线制：</b>消除连接导线电阻随温度变化造成的误差</li>
+    <li><b>四线制：</b>电压表测得的是热电阻上的压降，精度最高</li>
+</ul>
+
+<h3 style="text-indent:0;">热电阻与热电偶比较</h3>
+
+<table style="border-collapse:collapse;width:80%;margin:0 auto;">
+<tr style="background-color:var(--bg-secondary, #f5f5f5);">
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>比较项目</b></th>
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>热电阻</b></th>
+<th style="border:1px solid var(--border-color, #ccc);padding:8px;text-align:center;"><b>热电偶</b></th>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">输出信号强度</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">大，易于测量</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">较小</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">是否需要电源</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">需要外接电源</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">无需（自发电）</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">感温部分尺寸</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">较大，反应较慢</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">可做得很小</td>
+</tr>
+<tr>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">同类材料测温上限</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">较低</td>
+<td style="border:1px solid var(--border-color, #ccc);padding:8px;">更高</td>
+</tr>
+</table>
+
+<h2 style="text-indent:0;">热敏电阻</h2>
+
+<p style="text-indent:2em;">利用半导体的电阻值随温度显著变化的特性。有很高的电阻温度系数，灵敏度比热电阻高得多。</p>
+
+<p style="text-indent:2em;"><b>三种类型：</b></p>
+
+<ul>
+    <li><b>NTC（负温度系数）：</b>$R_T = R_0 e^{B(1/T - 1/T_0)}$，温度升高 $\rightarrow$ 电阻降低</li>
+    <li><b>PTC（正温度系数）：</b>在居里点附近电阻急剧增大</li>
+    <li><b>CTR（临界温度型）：</b>在特定温度处有突变特性</li>
+</ul>
+
+</div>
