@@ -87,7 +87,7 @@ $(function () {
     });
 
     //加载进度条
-    paceOptions = {
+    var paceOptions = {
         ajax: false, // disabled
         document: false, // disabled
         eventLag: false, // disabled
