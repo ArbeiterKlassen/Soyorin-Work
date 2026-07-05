@@ -8,7 +8,8 @@ function insertHtml(html) {
   }
 }
 var artmenu = [
-        {number:51,type:"art",class:"code",subtype:"normal",links:"../articles/000051.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（九）：光电式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"光电效应、光敏电阻、光电二极管、光电晶体管、光电池、应用电路"},
+        {number:52,type:"art",class:"tec",subtype:"normal",links:"../articles/000052.html",time:"2026-7-5",author:"AKlassen",name:"国内环境安装 Claude Code 与 DeepSeek 后端配置",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"Ubuntu/服务器/Windows三平台安装方案，npx免安装方案，DeepSeek API后端接入与模型映射"},
+    {number:51,type:"art",class:"code",subtype:"normal",links:"../articles/000051.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（九）：光电式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"光电效应、光敏电阻、光电二极管、光电晶体管、光电池、应用电路"},
     {number:50,type:"art",class:"code",subtype:"normal",links:"../articles/000050.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（八）：磁敏传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"霍尔效应与霍尔元件、磁阻效应、磁敏传感器应用"},
     {number:49,type:"art",class:"code",subtype:"normal",links:"../articles/000049.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（七）：热电式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"热电偶原理与基本定律、冷端补偿、热电阻与热敏电阻"},
     {number:48,type:"art",class:"code",subtype:"normal",links:"../articles/000048.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（六）：压电式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"压电效应、石英晶体与压电陶瓷、电压与电荷放大器"},

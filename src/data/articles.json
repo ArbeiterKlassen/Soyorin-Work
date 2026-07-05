@@ -61,6 +61,17 @@
   },
   "articles": [
     {
+      "number": 52,
+      "class": "tec",
+      "links": "../articles/000052.html",
+      "time": "2026-07-05",
+      "author": "AKlassen",
+      "name": "国内环境安装 Claude Code 与 DeepSeek 后端配置",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "不依赖代理、不修改系统证书、不使用sudo的Claude Code安装方案，涵盖Ubuntu/远程服务器/Windows三平台及npx免安装方案，以及DeepSeek API后端接入与模型映射配置",
+      "hasToc": true
+    },
+    {
       "number": 43,
       "class": "code",
       "links": "../articles/000043.html",
