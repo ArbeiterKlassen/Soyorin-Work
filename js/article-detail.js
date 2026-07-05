@@ -84,7 +84,7 @@ function publish_comment() {
                     vditor.clearCache();
                     location.reload();
                 });
-                setTimeout('location.reload()', 1500);
+                setTimeout(function(){location.reload()}, 1500);
             } else if (data.code === 0) {
                 swal({
                     text: data.msg,
@@ -94,7 +94,6 @@ function publish_comment() {
             }
         },
         error: function (data) {
-            console.log(data);
         }
     });
 }
@@ -128,7 +127,6 @@ function like_comment(comment_id) {
             }
         },
         error: function (data) {
-            console.log(data);
         }
     });
 }
@@ -167,7 +165,6 @@ function reply_comment(obj, comment_id, reply_user_id, article_id) {
         },
         dataType: 'JSON',
         success: function (data) {
-            console.log(data);
             if (data.code === 1) {
                 swal({
                     text: data.msg,
@@ -176,7 +173,7 @@ function reply_comment(obj, comment_id, reply_user_id, article_id) {
                 }).then((value) => {
                     location.reload();
                 });
-                setTimeout('location.reload()', 1500);
+                setTimeout(function(){location.reload()}, 1500);
             } else if (data.code === 0) {
                 swal({
                     text: data.msg,
@@ -186,7 +183,6 @@ function reply_comment(obj, comment_id, reply_user_id, article_id) {
             }
         },
         error: function (data) {
-            console.log(data);
         }
     });
 }
@@ -218,7 +214,7 @@ function deleteComment(id) {
                             }).then(function () {
                                 location.reload();
                             });
-                            setTimeout('location.reload()', 1500);
+                            setTimeout(function(){location.reload()}, 1500);
                         } else { //删除失败
                             swal({
                                 text: data.msg,
@@ -417,7 +413,6 @@ function upload_img(formData) {
         processData: false,
         cache: false,
         success: function (data) {
-            console.log(data);
             if (data.code === 1) { // 上传成功，将图片链接写入编辑器
                 $.each(data.images, function (i, val) {
                     vditor.focus();
@@ -430,7 +425,6 @@ function upload_img(formData) {
             }
         },
         error: function (data) {
-            console.log(data);
         }
     });
 }*/

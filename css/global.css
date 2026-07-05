@@ -634,9 +634,7 @@ text-align: left;
     color: var(--text-secondary);
 }
 
-[data-theme="dark"] */
-
-.c-666 {
+[data-theme="dark"] .c-666 {
 color: var(--text-secondary);
 }
 
