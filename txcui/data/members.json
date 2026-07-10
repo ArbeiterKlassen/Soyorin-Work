@@ -1,0 +1,69 @@
+{
+  "phd_students": [
+    {
+      "name": "Yuheng Xu",
+      "title": "PhD, 2026 Fall -",
+      "bio": "image restoration",
+      "image": "images/person/yuheng.jpg",
+      "links": {
+        "email": "mailto:zeruagogogo@gmail.com"
+      }
+    },
+    {
+      "name": "Jianlong He",
+      "title": "PhD, 2026 Fall -",
+      "bio": "remote sensing",
+      "image": "images/person/jianlong.png",
+      "links": {
+        "homepage": "https://elaxegan.github.io/",
+        "scholar": "https://scholar.google.com/citations?user=3WKpzJ0AAAAJ&hl=en",
+        "github": "https://github.com/elaxEgan"
+      }
+    }
+  ],
+  "master_students": [
+    {
+      "name": "Yu Jiang",
+      "title": "Master, 2026 Fall -",
+      "bio": "3D/video generation",
+      "image": "images/person/yujiang.png",
+      "links": {
+        "github": "https://github.com/jiangyuabc"
+      }
+    },
+    {
+      "name": "Lan Tan",
+      "title": "Master, 2026 Fall -",
+      "bio": "image restoration",
+      "image": "images/site/placeholder-person.svg",
+      "links": {}
+    },
+    {
+      "name": "Haoran Gao",
+      "title": "Master, 2026 Fall -",
+      "bio": "agent",
+      "image": "images/person/haoran.png",
+      "links": {}
+    },
+    {
+      "name": "Tianyu Guo",
+      "title": "Master, 2026 Fall -",
+      "bio": "HDR",
+      "image": "images/person/tianyu.jpg",
+      "links": {}
+    }
+  ],
+  "undergraduate_students": [
+    {
+      "name": "Ailimulati Yusupu",
+      "title": "Undergraduate",
+      "bio": "image generation",
+      "image": "images/person/alimu.jpg",
+      "links": {
+        "email": "mailto:alimuratysp@gmail.com",
+        "homepage": "https://alimuratyusup.github.io"
+      }
+    }
+  ],
+  "alumni": []
+}
