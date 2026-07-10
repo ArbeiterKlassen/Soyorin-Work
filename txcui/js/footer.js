@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="wrapper">
                 <div class="footer-col-wrapper">
                     <div class="footer-col">
-                        <p>© 2025 Chaofeng Chen • All rights reserved</p>
+                        <p>© 2025 Tianxu Cui • All rights reserved</p>
                     </div>
                     <div class="footer-col">
                         <p class="update-time">Last updated: <span id="update-time"></span></p>

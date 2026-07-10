@@ -5,14 +5,10 @@
 
 class NavigationGenerator {
     constructor() {
-        this.siteTitle = "CHEN Chaofeng";
+        this.siteTitle = "CUI Tianxu";
         this.navigationItems = [
             { name: "About", href: "index.html", id: "home" },
-            { name: "Group", href: "group.html", id: "group" },
-            { name: "Publications", href: "publications.html", id: "publications" },
-            // { name: "Projects", href: "projects.html", id: "projects" },
-            { name: "Join us", href: "openings.html", id: "openings" },
-            // { name: "Gallery", href: "gallery.html", id: "gallery" }
+            { name: "Blog", href: "https://soyorin.work", id: "blog" },
         ];
     }
 
