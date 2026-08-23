@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="针对 Steam 定制化钓鱼木马的完整处置教程：感染症状、攻击链、排查与清除步骤、IOC 哈希、下载目录查杀脚本">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="Steam 假红信木马：发现、诊断与清除全流程">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>Steam 假红信木马：发现、诊断与清除全流程</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/article-detail.css">
+  
+  <link rel="stylesheet" href="../css/code.css">
+  
+  <link rel="stylesheet" href="../css/github-markdown.css">
+  
+  <link rel="stylesheet" href="../css/vditor.css">
+  
+  
+  <style>
+    .lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }
+    .markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 10px; }
+    @media (max-width: 767px) { .markdown-body { padding: 15px; } .markdown-body h1 { font-size: 1.35em; } }
+    .codehilite { border-radius: 10px; }
+    .article-content img { max-width: 100%; }
+    #outerdiv { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.3); display: none; z-index: 200; }
+  </style>
+  
+  
+  <!-- 初始主题检测 + 全局变量 (需在页面内容前定义) -->
+  <script>
+    var mode = 1;
+    (function() {
+      var saved = localStorage.getItem('soyorin-mode');
+      if (saved) mode = parseInt(saved);
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function getParams(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+  </script>
+</head>
+<body>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
+
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+  </nav>
+  <button id="mobile_cate" style="border:none;outline:none;">☰</button>
+  <div id="nav-m-list">
+    <button id="cancel" style="position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-primary);">✕</button>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
+  </div>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  
+
+  <div class="headpage"><div class="headpage-cover"></div></div>
+<section class="main">
+  <div class="left-box" style="max-width:830px;width:100%;margin:0 auto;float:none;">
+    <div class="article-container">
+      <div class="article-content markdown-body">
+        <div style="font-family:Times New Roman,Times,serif;">
+<p><h1>Steam 假红信木马：发现、诊断与清除全流程</h1></p>
+<p>近期 Steam 客户端内出现大量伪造的“红信/客服安全提示”，很多用户以为是官方账号异常，实际上这是针对 Steam 的定制化钓鱼木马。它通过本地篡改 Steam UI，把“联系客服”“交易恢复”等页面重定向到钓鱼站点，目的是窃取 Steam 会话与账号凭证。</p>
+<p>本文基于一次真实处置记录，完整说明这类木马的发现流程、诊断方法、清除步骤，以及如何对下载目录做二次查杀。</p>
+<p><h2>一、感染症状</h2></p>
+<p><ul>
+<li>Steam 客户端内部弹出看似官方的“红信”警告，提示账号异常登录。</li>
+<li>点击“联系客服”后被带到非官方页面，或客服页面内容与官方不一致。</li>
+<li><code>C:\Users\<用户名>\AppData\Local</code> 下突然出现 <code>ServiceApp</code> 等可疑目录。</li>
+<li>注册表 Run 启动项出现 <code>ServiceAppMscopiAuto</code>、<code>WindowsUpdateService</code> 等伪系统名称。</li>
+<li>反复删除、重装 Steam 后问题仍然复发。</li>
+</ul></p>
+<p><h2>二、木马做了什么</h2></p>
+<p>这类木马通常由 PyInstaller/PyArmor 打包，常见投放载体包括：</p>
+<p><ul>
+<li>Wallpaper Engine 创意工坊中来路不明的动态壁纸。</li>
+<li>游戏修改器、外挂、破解工具。</li>
+<li>所谓“假入库”脚本。</li>
+<li>陌生人发送的链接或压缩包。</li>
+</ul></p>
+<p>典型攻击链：</p>
+<p>
+<div class="code-holder"><code><span class="code-line">诱导源</span>
+<span class="code-line">  -&gt; 投递木马（dcompiler.exe / paragatorHost.exe 等变体）</span>
+<span class="code-line">  -&gt; 写入 HKCU Run 自启动，开机自动运行</span>
+<span class="code-line">  -&gt; 篡改 SteamUI（备份原文件、注入 sp.js、写入 steam.cfg 阻止 Steam 自修复）</span>
+<span class="code-line">  -&gt; 伪造红信弹窗并劫持“联系客服/交易恢复”路由</span>
+<span class="code-line">  -&gt; 回连 C2 获取消息与远程开关，窃取会话和凭证</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+<h2>三、快速排查</h2></p>
+<p><h3>3.1 检查进程</h3></p>
+<p>
+<div class="code-holder"><code><span class="code-line">Get-CimInstance Win32_Process |</span>
+<span class="code-line">  Where-Object {</span>
+<span class="code-line">    $_.Name -match 'dcompiler|paragatorHost|RuntaExBrok|raphyUpdate|Translate' -or</span>
+<span class="code-line">    $_.ExecutablePath -match 'Temp\\8cz|Temp\\launcher_|Temp\\202ghc'</span>
+<span class="code-line">  } |</span>
+<span class="code-line">  Select-Object ProcessId,Name,ExecutablePath,CommandLine</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+<h3>3.2 检查自启动项</h3></p>
+<p>
+<div class="code-holder"><code><span class="code-line">Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' |</span>
+<span class="code-line">  Select-Object * -ExcludeProperty PSPath,PSParentPath,PSChildName,PSDrive,PSProvider</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+重点关注指向 <code>%TEMP%</code> 下随机目录的启动项，例如：</p>
+<p>
+<div class="code-holder"><code><span class="code-line">ServiceAppMscopiAuto = "...\Temp\8cz8855ntj4qen8e\dcompiler.exe"</span>
+<span class="code-line">WindowsUpdateService = "...\Temp\launcher_adff...\paragatorHost.exe"</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+<h3>3.3 检查 Steam 是否被篡改</h3></p>
+<p>重点检查 Steam 安装目录：</p>
+<p>
+<div class="code-holder"><code><span class="code-line">C:\Program Files (x86)\Steam\_local_patch_backup\</span>
+<span class="code-line">C:\Program Files (x86)\Steam\steam.cfg</span>
+<span class="code-line">C:\Program Files (x86)\Steam\steamui\index.html</span>
+<span class="code-line">C:\Program Files (x86)\Steam\steamui\sp.js</span>
+<span class="code-line">C:\Program Files (x86)\Steam\steamui\chunk~*.js</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+特征：</p>
+<p><ul>
+<li><code>steam.cfg</code> 中出现 <code>BootStrapperInhibitAll=enable</code>。</li>
+<li><code>index.html</code> 被加入 <code><script src="/sp.js"></script></code>。</li>
+<li><code>sp.js</code> 末尾出现 <code>uoooqwe.top</code>、<code>/steamhelper</code>、<code>/*px:b*/</code> 等字符串。</li>
+</ul></p>
+<p><h2>四、清除步骤</h2></p>
+<p><h3>4.1 结束恶意进程并删除启动项</h3></p>
+<p>
+<div class="code-holder"><code><span class="code-line">Stop-Process -Name dcompiler,paragatorHost,RuntaExBrok,raphyUpdate,Translate -Force</span>
+<span class="code-line">&nbsp;</span>
+<span class="code-line">Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' <code></span>
+<span class="code-line">  -Name ServiceAppMscopiAuto -ErrorAction SilentlyContinue</span>
+<span class="code-line">Remove-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' </code></span>
+<span class="code-line">  -Name WindowsUpdateService -ErrorAction SilentlyContinue</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+<h3>4.2 清理 Temp 样本</h3></p>
+<p>删除或隔离以下类型目录：</p>
+<p>
+<div class="code-holder"><code><span class="code-line">%TEMP%\8cz8855ntj4qen8e\</span>
+<span class="code-line">%TEMP%\202ghc9h4q6ezqo6\</span>
+<span class="code-line">%TEMP%\launcher_adffaafdc5f54f96942757bd2d46b62b\</span>
+<span class="code-line">%TEMP%\launcher_35d15d8469634038aca4c0fa36d2982a\</span>
+<span class="code-line">%TEMP%\launcher_ad26e155478b4dfe945840b74a22345a\</span>
+<span class="code-line">%TEMP%\launcher_e9964b3ceda847d09dab81d45ffcd42e\</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+建议先移动到隔离目录确认无影响，再彻底删除。</p>
+<p><h3>4.3 恢复 Steam 文件</h3></p>
+<p>停止 Steam 后，用木马留下的原始备份恢复被篡改文件：</p>
+<p>
+<div class="code-holder"><code><span class="code-line">Stop-Process -Name steam,steamwebhelper,steamservice -Force</span>
+<span class="code-line">&nbsp;</span>
+<span class="code-line">Copy-Item "C:\Program Files (x86)\Steam\_local_patch_backup\index.html" <code></span>
+<span class="code-line">          "C:\Program Files (x86)\Steam\steamui\index.html" -Force</span>
+<span class="code-line">Copy-Item "C:\Program Files (x86)\Steam\_local_patch_backup\sp.js" </code></span>
+<span class="code-line">          "C:\Program Files (x86)\Steam\steamui\sp.js" -Force</span>
+<span class="code-line">Copy-Item "C:\Program Files (x86)\Steam\_local_patch_backup\chunk~2dcc5aaf7.js" <code></span>
+<span class="code-line">          "C:\Program Files (x86)\Steam\steamui\chunk~2dcc5aaf7.js" -Force</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+同时删除木马写入的 </code>steam.cfg<code>，恢复 Steam 自更新能力：</p>
+<p>
+<div class="code-holder"><code><span class="code-line">Remove-Item "C:\Program Files (x86)\Steam\steam.cfg" -Force</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+如果没有原始备份，可删除被篡改文件后让 Steam 重新校验下载，或直接重装 Steam。</p>
+<p><h3>4.4 清理缓存</h3></p>
+<p>
+<div class="code-holder"><code><span class="code-line">Remove-Item "$env:LOCALAPPDATA\Steam\htmlcache" -Recurse -Force</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+Steam 会重新生成缓存，不影响账号与游戏数据。</p>
+<p><h2>五、对下载目录做二次查杀</h2></p>
+<p>360 等杀软可能漏掉藏在游戏资源目录里的副本。可下载本站提供的 PowerShell 查杀脚本：</p>
+<p><a href="../tools/Scan-Malware.ps1">Steam 假红信木马查杀脚本</a></p>
+<p>
+<div class="code-holder"><code><span class="code-line">.\Scan-Malware.ps1 -Path D:\BaiduNetdiskDownload -IncludeSystemChecks</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+脚本支持：</p>
+<p><ul>
+<li>已知哈希比对（dcompiler、paragatorHost、RuntaExBrok、raphyUpdate、Translate 等）。</li>
+<li>木马文件名与目录特征匹配。</li>
+<li>C2 内容标记扫描（</code>uoooqwe.top<code>、</code>ruyicdn.top<code>、</code>steamhelper<code> 等）。</li>
+<li>进程、注册表、计划任务、服务、WMI、启动文件夹系统检查。</li>
+<li>可选 </code>-DeepHash<code> 深哈希模式和 </code>-AutoQuarantine` 自动隔离模式。</li>
+</ul></p>
+<p><h2>六、IOC 清单</h2></p>
+<p><h3>6.1 文件哈希（SHA-256）</h3></p>
+<p>
+<div class="code-holder"><code><span class="code-line">dcompiler.exe      4F9BF3606C376A9214691927058160160D8A2ABB7ED0F493F2290FE09A5C61C8</span>
+<span class="code-line">paragatorHost.exe  4AD24A50E9809A2F075D8D0FDFD4B2931BEB060434E96779F3A43A6079B297F5</span>
+<span class="code-line">RuntaExBrok.exe    54B6501BA1A65D8417DD5E981AE86B58B38D55CFAF619ED4E9B1EBD563EBA246</span>
+<span class="code-line">raphyUpdate.exe    A8C86FCA5241422441BF05811D0D9EA4675F49C35972ED7434380367A396DCD5</span>
+<span class="code-line">Translate.exe      9D7EE054EEED46320D4CBE2CE164986BE3E88AA93F3B9FFD04E1020D9640AE65</span>
+<span class="code-line">fication.rar       1411F97CCA2376A13B747832796BD37CF78062C73430F30F1EA56D798AE61864</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+<h3>6.2 域名与 IP</h3></p>
+<p>
+<div class="code-holder"><code><span class="code-line">uoooqwe.top</span>
+<span class="code-line">wm3q7zng.ruyicdn.top</span>
+<span class="code-line">asianode.ruyicdn.top</span>
+<span class="code-line">ruyicdn.top</span>
+<span class="code-line">222.167.34.0/24</span>
+<span class="code-line">202.144.192.29</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+<h3>6.3 文件与目录特征</h3></p>
+<p>
+<div class="code-holder"><code><span class="code-line">%TEMP%\8cz8855ntj4qen8e\</span>
+<span class="code-line">%TEMP%\202ghc9h4q6ezqo6\</span>
+<span class="code-line">%TEMP%\launcher_&lt;32位十六进制&gt;\</span>
+<span class="code-line">%LOCALAPPDATA%\ServiceApp</span>
+<span class="code-line">Steam 根目录 steam.cfg 中的 BootStrapperInhibitAll=enable</span>
+<span class="code-line">steamui\sp.js 中的 uoooqwe.top / /*px:b*/ / /steamhelper</span>
+<span class="code-line">&nbsp;</span></code></div></p>
+<p>
+<h2>七、事后加固</h2></p>
+<p><ul>
+<li>修改 Steam 密码，开启 Steam Guard，并在 Steam 设置中取消所有其他设备授权。</li>
+<li>使用 360/Defender 全盘扫描，并建议再用独立在线扫描器交叉确认。</li>
+<li>对 C2 域名和 IP 配置防火墙阻断。</li>
+<li>不安装来路不明的 Wallpaper Engine 创意工坊内容、破解工具、假入库脚本。</li>
+<li>对可疑下载目录定期运行查杀脚本。</li>
+</ul></p>
+<p><h2>八、总结</h2></p>
+<p>这类木马最迷惑人的地方在于：它不直接弹网页，而是先篡改 Steam 客户端本身，让“假红信”看起来像官方通知。单靠重装 Steam 无效，因为持久化点在注册表启动项和隐藏的下载目录副本里。只要按“进程 -> 启动项 -> Steam 文件 -> 下载目录”的顺序排查，配合哈希与 C2 特征查杀，就能彻底清除。</p>
+<p><h2>参考</h2></p>
+<p><ul>
+<li><a href="https://bbs.kanxue.com/thread-291985.htm">针对 Steam 定制化钓鱼木马的技术分析报告</a></li>
+<li><a href="https://www.9game.cn/news/12038664.html">已有大量玩家中招 Steam“假红信”病毒可篡改客户端</a></li>
+</ul>
+</p>
+</div>
+      </div>
+    </div>
+    
+    <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div><a href="../articles/000052.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← 国内环境安装 Claude Code 与 DeepSeek 后端配置</a></div>
+      <div></div>
+    </div>
+    
+    <div class="article-container" id="comment-box" style="margin-top:10px;">
+      <div class="article-content markdown-body">
+        <h2 style="margin:10px 0">评论</h2>
+        <div id="tcomment"></div>
+        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
+    <ul id="toc-list">
+      <li><a href="#" id="toc-a-on">目录</a></li>
+    </ul>
+  </aside>
+  
+</section>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc-sidebar');
+  var article = document.querySelector('.article-container');
+  if (toc && article) {
+    function updateToc(){
+      var artTop = article.getBoundingClientRect().top;
+      toc.style.top = (artTop > 60 ? artTop : 60) + 'px';
+    }
+    updateToc();
+    toc.style.visibility = 'visible';
+    window.addEventListener('scroll', updateToc);
+    window.addEventListener('resize', updateToc);
+  }
+  var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
+  var tocList = document.getElementById('toc-list');
+  if(!tocList || headings.length === 0) return;
+  tocList.innerHTML = '';
+  headings.forEach(function(h, i){
+    var id = 'heading-' + i;
+    h.id = id;
+    var level = parseInt(h.tagName.charAt(1));
+    var indent = '   '.repeat(level - 1);
+    tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
+  });
+})();
+</script>
+
+
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--bg-card); box-shadow: var(--shadow-card);" onclick="var d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" title="切换深色/浅色模式">
+    <span id="theme-icon">☀️</span>
+  </div>
+  <script>
+    (function(){
+      var icon = document.getElementById('theme-icon');
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      icon.textContent = isDark ? '☀️' : '🌙';
+      var orig = window.pagereload;
+      window.pagereload = function(m){
+        orig(m);
+        icon.textContent = (m === 2) ? '☀️' : '🌙';
+      };
+    })();
+  </script>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2021 – <span class="year"></span> Soyorin.Work</span>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank" rel="noopener">Source</a>
+    </div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="../js/vditor.min.js"></script>
+  <script src="../js/article-detail.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none",
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath:  [["$", "$"]],
+        displayMath: [["$$","$$"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre","code","a"],
+        ignoreClass:"comment-content"
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+        showMathMenu: false
+      }
+    });
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
+
+</body>
+</html>

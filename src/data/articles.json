@@ -61,6 +61,17 @@
   },
   "articles": [
     {
+      "number": 53,
+      "class": "tec",
+      "links": "../articles/000053.html",
+      "time": "2026-08-23",
+      "author": "AKlassen",
+      "name": "Steam 假红信木马：发现、诊断与清除全流程",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "针对 Steam 定制化钓鱼木马的完整处置教程：感染症状、攻击链、排查与清除步骤、IOC 哈希、下载目录查杀脚本",
+      "hasToc": true
+    },
+    {
       "number": 52,
       "class": "tec",
       "links": "../articles/000052.html",
