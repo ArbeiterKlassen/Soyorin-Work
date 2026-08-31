@@ -8,6 +8,7 @@ function insertHtml(html) {
   }
 }
 var artmenu = [
+        {number:54,type:"art",class:"tec",subtype:"normal",links:"../articles/000054.html",time:"2026-8-31",author:"AKlassen",name:"Codex 聊天上下文为什么把请求撑爆，以及正确的清图做法",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"Codex 上下文如何存储、为什么每次请求会因内联 base64 图像而体积爆炸（413/48M），以及正确的清理与救援思路"},
         {number:53,type:"art",class:"tec",subtype:"normal",links:"../articles/000053.html",time:"2026-8-23",author:"AKlassen",name:"Steam 假红信木马：发现、诊断与清除全流程",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"针对 Steam 定制化钓鱼木马的完整处置教程：感染症状、攻击链、排查与清除步骤、IOC 哈希、下载目录查杀脚本"},
         {number:52,type:"art",class:"tec",subtype:"normal",links:"../articles/000052.html",time:"2026-7-5",author:"AKlassen",name:"国内环境安装 Claude Code 与 DeepSeek 后端配置",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"Ubuntu/服务器/Windows三平台安装方案，npx免安装方案，DeepSeek API后端接入与模型映射"},
     {number:51,type:"art",class:"tec",subtype:"normal",links:"../articles/000051.html",time:"2026-6-11",author:"AKlassen",name:"传感器复习笔记（九）：光电式传感器",headpic:"https://img.soyorin.work/article-img/anon1.png",detail:"光电效应、光敏电阻、光电二极管、光电晶体管、光电池、应用电路"},

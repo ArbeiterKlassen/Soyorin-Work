@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="description" content="Codex 上下文如何存储、为什么每次请求会因内联 base64 图像而体积爆炸（413/48M），以及正确的清理与救援思路">
+  <meta name="keywords" content="Soyorin.Work, Blog">
+  <meta property="og:title" content="Codex 聊天上下文为什么把请求撑爆，以及正确的清图做法">
+  <meta property="og:site_name" content="Soyorin.Work - AKlassen's Blogs">
+  <title>Codex 聊天上下文为什么把请求撑爆，以及正确的清图做法</title>
+  <link rel="shortcut icon" href="../img/user.jpeg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/pace-theme-flash.css">
+  <link rel="stylesheet" href="../css/d-audio.css">
+  <link rel="stylesheet" href="../css/font.css">
+  
+  <link rel="stylesheet" href="../css/article-detail.css">
+  
+  <link rel="stylesheet" href="../css/code.css">
+  
+  <link rel="stylesheet" href="../css/github-markdown.css">
+  
+  <link rel="stylesheet" href="../css/vditor.css">
+  
+  
+  <style>
+    .lazy-image { background: url('../img/loading.gif') no-repeat center; background-size: 26% 35%; height: 100%; width: 100%; }
+    .markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 10px; }
+    @media (max-width: 767px) { .markdown-body { padding: 15px; } .markdown-body h1 { font-size: 1.35em; } }
+    .codehilite { border-radius: 10px; }
+    .article-content img { max-width: 100%; }
+    #outerdiv { width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.3); display: none; z-index: 200; }
+  </style>
+  
+  
+  <!-- 初始主题检测 + 全局变量 (需在页面内容前定义) -->
+  <script>
+    var mode = 1;
+    (function() {
+      var saved = localStorage.getItem('soyorin-mode');
+      if (saved) mode = parseInt(saved);
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = saved ? saved === '2' : prefersDark;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+    function getParams(key) {
+      var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+    function hasadmission() {
+      return localStorage.getItem('soyorin-admission') !== null;
+    }
+    function pagereload(colormode) {
+      localStorage.setItem('soyorin-mode', colormode);
+      document.documentElement.setAttribute('data-theme', colormode === 2 ? 'dark' : 'light');
+    }
+  </script>
+</head>
+<body>
+  <!-- 悬挂的喵 -->
+  <script type="text/javascript" src="../js/hangingcat/hangingcat.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="../css/hangingcat/hangingcat.css">
+  <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -300px; z-index: 999;"></div>
+
+  <!-- PC导航 -->
+  <nav class="nav-bar-holder">
+    <div class="nav-bar" id="nav-bar">
+      <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="../templates/index.html">首页</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/about.html">关于</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/web.sign.html">公告</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/category.html">文章分类</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/manifest.html">清单</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/issue.html">讨论</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../templates/link.html">友情链接</a></div>
+      <div class="nb-a-holder"><a class="nb-a ta-c" href="../index.html">导航页</a></div>
+    </div>
+  </nav>
+
+  <!-- mobile导航 -->
+  <nav class="mobile-nav">
+  </nav>
+  <button id="mobile_cate" style="border:none;outline:none;">☰</button>
+  <div id="nav-m-list">
+    <button id="cancel" style="position:absolute;top:15px;right:15px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-primary);">✕</button>
+    <li id="m-img-li"><img id="m-img" alt="头像" src="../img/user.jpeg"></li>
+    <li><a class="w-h-100 fl" href="../templates/index.html">首页</a></li>
+    <li><a class="w-h-100 fl" href="../templates/about.html">关于</a></li>
+    <li><a class="w-h-100 fl" href="../templates/web.sign.html">公告</a></li>
+    <li><a class="w-h-100 fl" href="../templates/category.html">文章分类</a></li>
+    <li><a class="w-h-100 fl" href="../templates/manifest.html">清单</a></li>
+    <li><a class="w-h-100 fl" href="../templates/issue.html">讨论</a></li>
+    <li><a class="w-h-100 fl" href="../templates/link.html">友情链接</a></li>
+    <li><a class="w-h-100 fl" href="../index.html">导航页</a></li>
+  </div>
+
+  <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+
+  
+
+  <div class="headpage"><div class="headpage-cover"></div></div>
+<section class="main">
+  <div class="left-box" style="max-width:830px;width:100%;margin:0 auto;float:none;">
+    <div class="article-container">
+      <div class="article-content markdown-body">
+        <div style="font-family:Times New Roman,Times,serif;">
+<h1>Codex 聊天上下文为什么把请求撑爆，以及正确的清图做法</h1>
+<p>用 Codex 桌面版做视觉相关的开发任务时，聊久了容易碰到请求体过大。常见提示是 413 <code>Payload Too Large</code>，或者模型后端提示请求里的图像总量超出限制。网上一些做法是删掉 base64 让文件变小，结果经常越修越糟。这篇讲两件事，一是 Codex 怎么存上下文，二是图像为什么会越积越多以及怎么处理。</p>
+<h2>上下文存在哪</h2>
+<p>Codex 桌面端的资料都在 <code>%USERPROFILE%\.codex</code> 下，主要是这几处。</p>
+<table>
+<thead>
+<tr><th>位置</th><th>作用</th></tr>
+</thead>
+<tbody>
+<tr><td><code>thread_history_1.sqlite</code></td><td>线程投影表，是 UI 显示和请求组装的主要来源</td></tr>
+<tr><td><code>state_5.sqlite</code></td><td>线程的 rollout 文件路径和当前模型等元信息</td></tr>
+<tr><td><code>sessions\YYYY\MM\DD\rollout-*.jsonl</code></td><td>原始日志，内联图像的 base64 都在这里</td></tr>
+<tr><td><code>logs_2.sqlite</code></td><td>app 运行日志，排障时有用</td></tr>
+</tbody>
+</table>
+<p><code>rollout-*.jsonl</code> 一行一条 JSON，第一条是 <code>session_meta</code>，里面有 <code>history_mode</code> 和 <code>history_base</code>。长线程会被拆成多个 rollout 文件，靠 <code>history_base</code> 串成链。</p>
+<div class="code-holder"><code><span class="code-line">root -&gt; seg1 -&gt; seg2 -&gt; ... -&gt; 当前文件</span>
+<span class="code-line">&nbsp;</span></code></div>
+<p>每个文件的 <code>session_meta.history_base.end_byte_offset</code> 指向上一个文件的末尾。若把某个文件改小，这个偏移就会指向文件末尾之外，app 会拒绝打开线程，典型报错是 <code>cutoff byte offset is past the source rollout</code>。</p>
+<p><code>thread_history_1.sqlite</code> 里三张表管投影。<code>thread_items</code> 是投影出的对话项，类型有 <code>userMessage</code>、<code>agentMessage</code>、<code>reasoning</code>、<code>commandExecution</code>、<code>imageView</code> 等。<code>thread_turns</code> 是每个回合的边界，带 <code>rollout_byte_offset</code> 和 <code>rollout_end_byte_offset</code>。<code>thread_history_projection_state</code> 记录下次从哪继续读，字段是 <code>next_rollout_byte_offset</code> 和 <code>next_rollout_ordinal</code>。</p>
+<p>有一个坑容易踩。<code>view_image</code> 这类工具调用在投影层会变成 <code>imageView</code>，只带一个路径引用，原始的 <code>function_call</code> 和 <code>function_call_output</code> 并不单独存在。</p>
+<h2>请求为什么会爆炸</h2>
+<p>Codex 没有只发增量的说法。每发一条新消息，它会把从会话开始到现在的所有对话项重新组装进请求。图像是 rollout 里的 <code>input_image</code>，一张就有几 MB 的 base64。看几十张图，累积上百 MB 很正常。到某个上限，比如后端的 48M 或网关的 48 MiB，就会爆。</p>
+<p>区别在于，<code>thread_items</code> 里存的图像只是引用路径，很小，真正的大 base64 在 rollout。只清 SQLite 的引用没用，必须处理 rollout。</p>
+<h2>常见的几种现象</h2>
+<p>最常见的是 413 或图像总量超出。请求体过大，通常是 rollout 里 base64 累积过多。可以先看 rollout 文件大小和 <code>data:image/...;base64,</code> 的数量。</p>
+<p>另一种是界面停在旧时间，但模型还记得最新。UI 显示依赖 <code>thread_items</code>，它要求 ordinal 连续，比较严格。模型请求直接读 rollout，能容忍缺口。所以可能界面停在前几天，你继续聊时模型仍记得最新。界面旧不代表数据丢了。</p>
+<p>还有一种容易被误判成图像问题，其实是顺序问题。报错是 <code>No tool output found for tool call call_01_...</code>。同一回合连发两个 <code>view_image</code> 时，app 会把一条 <code><image_resize_notice></code> 消息插到两个工具输出中间，把第二个调用和它的输出隔开。app 重建请求时把它当成新的段落边界，于是第二个调用找不到输出。两条其实都在 rollout 里，纯粹是顺序。修法是把消息等长挪到两个输出之后。</p>
+<h2>正确的清法和救援</h2>
+<h3>日常预防</h3>
+<p>每看一批图就开新线程，历史最短。先缩图、转 JPEG/WebP 再贴，模型内部本来也会归一化到 800 px 左右。直接调 API 时用 Files API 的 <code>file_id</code>，不占内联请求体。</p>
+<h3>清图只做等长替换</h3>
+<p>不要删 base64 把文件改小。正确做法是把 payload 换成等长的 <code>A</code>，<code>data:image/png;base64,</code> 前缀保留，字节数不变，这样所有偏移和分页链都不受影响。也可以把 <code>thread_items</code> 里的 <code>imageView</code> 路径指向一个 1×1 占位图，只改引用不动 rollout。这能立刻减小请求体，但重启后可能被 rollout 重新投影覆盖。</p>
+<h3>已经坏了怎么救</h3>
+<p>如果已经用过删小的脚本，通常会碰到三类后遗症，分别对应不同修法。</p>
+<p>工具输出缺失时，把中间那条消息等长挪到两个输出后面。判断方法是在事件里找双 <code>function_call</code> 加中间插入 message 的固定模式。</p>
+<p>字节偏移失准时，按当前文件重算 <code>thread_turns</code> 和续点偏移。<code>projection_state</code> 记录的 <code>next_rollout_byte_offset</code> 可能落在 base64 中间而不是行首，这正是投影中断的原因。</p>
+<p>ordinal 有缺口时，有些行真的丢了，备份里也没有。app 要求 ordinal 连续，跨不过缺口，只能补占位行让序号连续。这救不回原文，但能让投影继续走完。</p>
+<p>通用恢复顺序是先修顺序、再修偏移、最后补缺口。每次改完都彻底退出 Codex 再重开，因为 app 内存里缓存的是旧投影状态，不重启它不会用新值。</p>
+<h2>几个判断和避坑</h2>
+<p>分清 UI 投影和请求路径，这是两套。界面旧不代表内容丢，判断数据是否还在要看 rollout 文件。改文件或数据库前先备份，SQLite 用 <code>backup</code> API 拿一致快照。只能等 app 完全关闭后再重置投影，也就是删那三张表里对应线程的行，否则会被内存状态覆盖。一个线程可能横跨多个 rollout 文件，<code>state_5.sqlite.threads.rollout_path</code> 只指向最新那个，看整条链要顺着 <code>history_base</code> 往回追。</p>
+<hr>
+<p>核心只有一句。<code>thread_items</code> 里的图像是引用，rollout 里的 base64 才是大头。清引用治标，清 rollout 才治本，而清 rollout 只能等长替换，绝不能改小字节数。</p>
+</div>
+      </div>
+    </div>
+    
+    <div class="article-nav" style="max-width:830px;width:100%;margin:20px auto;display:flex;justify-content:space-between;padding:0 10px;">
+      <div><a href="../articles/000053.html" style="color:var(--text-link);text-decoration:none;font-size:14px;">← Steam 假红信木马：发现、诊断与清除全流程</a></div>
+      <div></div>
+    </div>
+    
+    <div class="article-container" id="comment-box" style="margin-top:10px;">
+      <div class="article-content markdown-body">
+        <h2 style="margin:10px 0">评论</h2>
+        <div id="tcomment"></div>
+        <div id="lv-container" data-id="city" data-uid="MTAyMC81NzY3Ny8zNDE0MA==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <aside id="toc-sidebar" class="toc" style="position:fixed;left:calc(50% + 435px);width:250px;max-height:calc(100vh - 80px);overflow-y:auto;font-size:13px;background:var(--bg-card);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow-card);z-index:40;visibility:hidden;">
+    <ul id="toc-list">
+      <li><a href="#" id="toc-a-on">目录</a></li>
+    </ul>
+  </aside>
+  
+</section>
+
+<script>
+(function(){
+  var toc = document.getElementById('toc-sidebar');
+  var article = document.querySelector('.article-container');
+  if (toc && article) {
+    function updateToc(){
+      var artTop = article.getBoundingClientRect().top;
+      toc.style.top = (artTop > 60 ? artTop : 60) + 'px';
+    }
+    updateToc();
+    toc.style.visibility = 'visible';
+    window.addEventListener('scroll', updateToc);
+    window.addEventListener('resize', updateToc);
+  }
+  var headings = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3');
+  var tocList = document.getElementById('toc-list');
+  if(!tocList || headings.length === 0) return;
+  tocList.innerHTML = '';
+  headings.forEach(function(h, i){
+    var id = 'heading-' + i;
+    h.id = id;
+    var level = parseInt(h.tagName.charAt(1));
+    var indent = '   '.repeat(level - 1);
+    tocList.innerHTML += '<li style="padding-left:' + ((level-1)*12) + 'px;"><a href="#' + id + '">' + indent + h.textContent + '</a></li>';
+  });
+})();
+</script>
+
+
+
+  <div id="theme-toggle" style="position: fixed; bottom: 40px; right: 17%; z-index: 1000; cursor: pointer; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--bg-card); box-shadow: var(--shadow-card);" onclick="var d=document.documentElement.getAttribute('data-theme')==='dark';pagereload(d?1:2)" title="切换深色/浅色模式">
+    <span id="theme-icon">☀️</span>
+  </div>
+  <script>
+    (function(){
+      var icon = document.getElementById('theme-icon');
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      icon.textContent = isDark ? '☀️' : '🌙';
+      var orig = window.pagereload;
+      window.pagereload = function(m){
+        orig(m);
+        icon.textContent = (m === 2) ? '☀️' : '🌙';
+      };
+    })();
+  </script>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2021 – <span class="year"></span> Soyorin.Work</span>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/arbeiterklassen/Soyorin-Work" target="_blank" rel="noopener">Source</a>
+    </div>
+  </footer>
+
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="../js/sweetalert.min.js"></script>
+  <script src="../js/pace.min.js"></script>
+  <script src="../js/base.js"></script>
+  <script src="../js/d-audio.js"></script>
+  <script src="../js/myPagination.js"></script>
+  
+  <script src="../js/vditor.min.js"></script>
+  <script src="../js/article-detail.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      messageStyle: "none",
+      extensions: ["tex2jax.js"],
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath:  [["$", "$"]],
+        displayMath: [["$$","$$"]],
+        skipTags: ["script", "noscript", "style", "textarea", "pre","code","a"],
+        ignoreClass:"comment-content"
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+        showMathMenu: false
+      }
+    });
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+  <script src="https://cdn.staticfile.org/layer/3.1.1/layer.js"></script>
+  <script>
+    document.body.oncopy = function() {
+      layer.msg("复制成功,若要转载请务必保留原文链接<br>并遵循 (CC)-BY-NC-SA 协议");
+    };
+    document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
+  </script>
+  <script>
+    function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  </script>
+
+</body>
+</html>

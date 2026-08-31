@@ -59,7 +59,18 @@
       []
     ]
   },
-  "articles": [
+"articles": [
+    {
+      "number": 54,
+      "class": "tec",
+      "links": "../articles/000054.html",
+      "time": "2026-08-31",
+      "author": "AKlassen",
+      "name": "Codex 聊天上下文为什么把请求撑爆，以及正确的清图做法",
+      "headpic": "https://img.soyorin.work/article-img/anon1.png",
+      "detail": "Codex 上下文如何存储、为什么每次请求会因内联 base64 图像而体积爆炸（413/48M），以及正确的清理与救援思路",
+      "hasToc": true
+    },
     {
       "number": 53,
       "class": "tec",

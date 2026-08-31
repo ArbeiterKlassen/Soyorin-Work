@@ -1,0 +1,45 @@
+<div style="font-family:Times New Roman,Times,serif;">
+<h1>Codex 聊天上下文为什么把请求撑爆，以及正确的清图做法</h1>
+<p>用 Codex 桌面版做视觉相关的开发任务时，聊久了容易碰到请求体过大。常见提示是 413 <code>Payload Too Large</code>，或者模型后端提示请求里的图像总量超出限制。网上一些做法是删掉 base64 让文件变小，结果经常越修越糟。这篇讲两件事，一是 Codex 怎么存上下文，二是图像为什么会越积越多以及怎么处理。</p>
+<h2>上下文存在哪</h2>
+<p>Codex 桌面端的资料都在 <code>%USERPROFILE%\.codex</code> 下，主要是这几处。</p>
+<table>
+<thead>
+<tr><th>位置</th><th>作用</th></tr>
+</thead>
+<tbody>
+<tr><td><code>thread_history_1.sqlite</code></td><td>线程投影表，是 UI 显示和请求组装的主要来源</td></tr>
+<tr><td><code>state_5.sqlite</code></td><td>线程的 rollout 文件路径和当前模型等元信息</td></tr>
+<tr><td><code>sessions\YYYY\MM\DD\rollout-*.jsonl</code></td><td>原始日志，内联图像的 base64 都在这里</td></tr>
+<tr><td><code>logs_2.sqlite</code></td><td>app 运行日志，排障时有用</td></tr>
+</tbody>
+</table>
+<p><code>rollout-*.jsonl</code> 一行一条 JSON，第一条是 <code>session_meta</code>，里面有 <code>history_mode</code> 和 <code>history_base</code>。长线程会被拆成多个 rollout 文件，靠 <code>history_base</code> 串成链。</p>
+<div class="code-holder"><code><span class="code-line">root -&gt; seg1 -&gt; seg2 -&gt; ... -&gt; 当前文件</span>
+<span class="code-line">&nbsp;</span></code></div>
+<p>每个文件的 <code>session_meta.history_base.end_byte_offset</code> 指向上一个文件的末尾。若把某个文件改小，这个偏移就会指向文件末尾之外，app 会拒绝打开线程，典型报错是 <code>cutoff byte offset is past the source rollout</code>。</p>
+<p><code>thread_history_1.sqlite</code> 里三张表管投影。<code>thread_items</code> 是投影出的对话项，类型有 <code>userMessage</code>、<code>agentMessage</code>、<code>reasoning</code>、<code>commandExecution</code>、<code>imageView</code> 等。<code>thread_turns</code> 是每个回合的边界，带 <code>rollout_byte_offset</code> 和 <code>rollout_end_byte_offset</code>。<code>thread_history_projection_state</code> 记录下次从哪继续读，字段是 <code>next_rollout_byte_offset</code> 和 <code>next_rollout_ordinal</code>。</p>
+<p>有一个坑容易踩。<code>view_image</code> 这类工具调用在投影层会变成 <code>imageView</code>，只带一个路径引用，原始的 <code>function_call</code> 和 <code>function_call_output</code> 并不单独存在。</p>
+<h2>请求为什么会爆炸</h2>
+<p>Codex 没有只发增量的说法。每发一条新消息，它会把从会话开始到现在的所有对话项重新组装进请求。图像是 rollout 里的 <code>input_image</code>，一张就有几 MB 的 base64。看几十张图，累积上百 MB 很正常。到某个上限，比如后端的 48M 或网关的 48 MiB，就会爆。</p>
+<p>区别在于，<code>thread_items</code> 里存的图像只是引用路径，很小，真正的大 base64 在 rollout。只清 SQLite 的引用没用，必须处理 rollout。</p>
+<h2>常见的几种现象</h2>
+<p>最常见的是 413 或图像总量超出。请求体过大，通常是 rollout 里 base64 累积过多。可以先看 rollout 文件大小和 <code>data:image/...;base64,</code> 的数量。</p>
+<p>另一种是界面停在旧时间，但模型还记得最新。UI 显示依赖 <code>thread_items</code>，它要求 ordinal 连续，比较严格。模型请求直接读 rollout，能容忍缺口。所以可能界面停在前几天，你继续聊时模型仍记得最新。界面旧不代表数据丢了。</p>
+<p>还有一种容易被误判成图像问题，其实是顺序问题。报错是 <code>No tool output found for tool call call_01_...</code>。同一回合连发两个 <code>view_image</code> 时，app 会把一条 <code><image_resize_notice></code> 消息插到两个工具输出中间，把第二个调用和它的输出隔开。app 重建请求时把它当成新的段落边界，于是第二个调用找不到输出。两条其实都在 rollout 里，纯粹是顺序。修法是把消息等长挪到两个输出之后。</p>
+<h2>正确的清法和救援</h2>
+<h3>日常预防</h3>
+<p>每看一批图就开新线程，历史最短。先缩图、转 JPEG/WebP 再贴，模型内部本来也会归一化到 800 px 左右。直接调 API 时用 Files API 的 <code>file_id</code>，不占内联请求体。</p>
+<h3>清图只做等长替换</h3>
+<p>不要删 base64 把文件改小。正确做法是把 payload 换成等长的 <code>A</code>，<code>data:image/png;base64,</code> 前缀保留，字节数不变，这样所有偏移和分页链都不受影响。也可以把 <code>thread_items</code> 里的 <code>imageView</code> 路径指向一个 1×1 占位图，只改引用不动 rollout。这能立刻减小请求体，但重启后可能被 rollout 重新投影覆盖。</p>
+<h3>已经坏了怎么救</h3>
+<p>如果已经用过删小的脚本，通常会碰到三类后遗症，分别对应不同修法。</p>
+<p>工具输出缺失时，把中间那条消息等长挪到两个输出后面。判断方法是在事件里找双 <code>function_call</code> 加中间插入 message 的固定模式。</p>
+<p>字节偏移失准时，按当前文件重算 <code>thread_turns</code> 和续点偏移。<code>projection_state</code> 记录的 <code>next_rollout_byte_offset</code> 可能落在 base64 中间而不是行首，这正是投影中断的原因。</p>
+<p>ordinal 有缺口时，有些行真的丢了，备份里也没有。app 要求 ordinal 连续，跨不过缺口，只能补占位行让序号连续。这救不回原文，但能让投影继续走完。</p>
+<p>通用恢复顺序是先修顺序、再修偏移、最后补缺口。每次改完都彻底退出 Codex 再重开，因为 app 内存里缓存的是旧投影状态，不重启它不会用新值。</p>
+<h2>几个判断和避坑</h2>
+<p>分清 UI 投影和请求路径，这是两套。界面旧不代表内容丢，判断数据是否还在要看 rollout 文件。改文件或数据库前先备份，SQLite 用 <code>backup</code> API 拿一致快照。只能等 app 完全关闭后再重置投影，也就是删那三张表里对应线程的行，否则会被内存状态覆盖。一个线程可能横跨多个 rollout 文件，<code>state_5.sqlite.threads.rollout_path</code> 只指向最新那个，看整条链要顺着 <code>history_base</code> 往回追。</p>
+<hr>
+<p>核心只有一句。<code>thread_items</code> 里的图像是引用，rollout 里的 base64 才是大头。清引用治标，清 rollout 才治本，而清 rollout 只能等长替换，绝不能改小字节数。</p>
+</div>

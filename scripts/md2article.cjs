@@ -25,6 +25,29 @@ md = md.replace(/```(\w*)\n([\s\S]*?)```/g, function(m, lang, code) {
     return '\n<div class="code-holder"><code>' + lines.join('\n') + '</code></div>\n';
 });
 
+// Blockquotes: consecutive "> " lines
+md = md.replace(/((?:^> .*\n?)+)/gm, function(m) {
+    const inner = m.replace(/^> ?/gm, '').trim();
+    return '\n<blockquote>' + inner + '</blockquote>\n';
+});
+
+// Markdown tables: header row + separator row + data rows
+md = md.replace(/(^[^\n]*\|[^\n]*\n)(^\|[\s:\-|]+\|\s*\n)((?:^[^\n]*\|[^\n]*\n?)+)/gm,
+function(m, head, sep, body) {
+    const cells = function(line) {
+        return line.trim().replace(/^\||\|$/g, '').split('|').map(s => s.trim());
+    };
+    let html = '<table>\n<thead>\n<tr>';
+    html += cells(head).map(c => '<th>' + (c || '') + '</th>').join('');
+    html += '</tr>\n</thead>\n<tbody>\n';
+    body.trim().split('\n').forEach(function(row) {
+        if (!row.trim()) return;
+        html += '<tr>' + cells(row).map(c => '<td>' + (c || '') + '</td>').join('') + '</tr>\n';
+    });
+    html += '</tbody>\n</table>\n';
+    return html;
+});
+
 // Inline code
 md = md.replace(/`([^`]+)`/g, '<code>$1</code>');
 
@@ -47,11 +70,18 @@ md = md.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>\n$1</ul>\n');
 // Links
 md = md.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 
-// Paragraphs
-md = md.replace(/\n\n/g, '</p>\n<p>');
+// Paragraphs: wrap plain-text runs in <p>, leave block-level HTML untouched
+md = md.replace(/^\n+|\n+$/g, '');
+const segs = md.split(/\n\n+/);
+const body = segs.map(function(seg) {
+    seg = seg.trim();
+    if (!seg) return '';
+    if (/^<(h[1-4]|blockquote|table|div|ul|ol|hr|p)\b/.test(seg)) return seg;
+    return '<p>' + seg.replace(/\n/g, '<br>') + '</p>';
+}).join('\n');
 
 // Wrap in font style for English articles
-let html = '<div style="font-family:Times New Roman,Times,serif;">\n<p>' + md + '</p>\n</div>';
+let html = '<div style="font-family:Times New Roman,Times,serif;">\n' + body + '\n</div>';
 
 const outPath = 'src/articles/' + paddedNum + '.html';
 fs.writeFileSync(outPath, html);
